@@ -1,0 +1,2481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Toner-Tu Model and Active Nematics – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture09/lecture09.html" rel="next">
+<link href="../lecture07/lecture07.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture08/lecture08.html">Lecture 8</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#toner-tu-model-for-flocking" id="toc-toner-tu-model-for-flocking" class="nav-link active" data-scroll-target="#toner-tu-model-for-flocking">Toner-Tu Model for Flocking</a>
+  <ul class="collapse">
+  <li><a href="#interactive-simulation-of-the-toner-tu-model" id="toc-interactive-simulation-of-the-toner-tu-model" class="nav-link" data-scroll-target="#interactive-simulation-of-the-toner-tu-model">Interactive Simulation of the Toner-Tu Model</a></li>
+  </ul></li>
+  <li><a href="#active-liquid-crystals-and-nematic-order" id="toc-active-liquid-crystals-and-nematic-order" class="nav-link" data-scroll-target="#active-liquid-crystals-and-nematic-order">Active Liquid Crystals and Nematic Order</a>
+  <ul class="collapse">
+  <li><a href="#liquid-crystals" id="toc-liquid-crystals" class="nav-link" data-scroll-target="#liquid-crystals">Liquid Crystals</a></li>
+  <li><a href="#from-passive-to-active-nematics-adding-energy-to-the-mix" id="toc-from-passive-to-active-nematics-adding-energy-to-the-mix" class="nav-link" data-scroll-target="#from-passive-to-active-nematics-adding-energy-to-the-mix">From Passive to Active Nematics: Adding Energy to the Mix</a></li>
+  <li><a href="#rod-like-particles-with-no-front-or-back" id="toc-rod-like-particles-with-no-front-or-back" class="nav-link" data-scroll-target="#rod-like-particles-with-no-front-or-back">Rod-Like Particles with No Front or Back</a></li>
+  <li><a href="#describing-alignment-the-director-field-and-order-parameter" id="toc-describing-alignment-the-director-field-and-order-parameter" class="nav-link" data-scroll-target="#describing-alignment-the-director-field-and-order-parameter">Describing Alignment: The Director Field and Order Parameter</a></li>
+  <li><a href="#the-q-tensor-a-complete-mathematical-description" id="toc-the-q-tensor-a-complete-mathematical-description" class="nav-link" data-scroll-target="#the-q-tensor-a-complete-mathematical-description">The Q-Tensor: A Complete Mathematical Description</a></li>
+  <li><a href="#q-tensor-visualization" id="toc-q-tensor-visualization" class="nav-link" data-scroll-target="#q-tensor-visualization">Q Tensor Visualization</a></li>
+  <li><a href="#understanding-defects-in-nematic-fields" id="toc-understanding-defects-in-nematic-fields" class="nav-link" data-scroll-target="#understanding-defects-in-nematic-fields">Understanding Defects in Nematic Fields</a></li>
+  <li><a href="#director-field-visualization-with-tensor-glyphs" id="toc-director-field-visualization-with-tensor-glyphs" class="nav-link" data-scroll-target="#director-field-visualization-with-tensor-glyphs">Director Field Visualization with Tensor Glyphs</a></li>
+  <li><a href="#continuum-theory-of-active-nematics" id="toc-continuum-theory-of-active-nematics" class="nav-link" data-scroll-target="#continuum-theory-of-active-nematics">Continuum Theory of Active Nematics</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture08.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture08/lecture08.html">Lecture 8</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Toner-Tu Model and Active Nematics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="toner-tu-model-for-flocking" class="level2">
+<h2 class="anchored" data-anchor-id="toner-tu-model-for-flocking">Toner-Tu Model for Flocking</h2>
+<p>The Toner-Tu model describes the collective motion of self-propelled particles that exhibit polar order, such as birds in flocks, fish in schools, or migrating cells. Unlike nematic systems (which we will discuss below), where particles have head-tail symmetry, flocking systems display clear polar order—particles have distinct front and back ends and move preferentially in the direction they are pointing. Developed by John Toner and Yuhai Tu in 1995, this continuum theory provides a hydrodynamic framework for understanding collective motion in active systems far from equilibrium.</p>
+<p>The model extends the microscopic Vicsek model, where particles move at constant speed and align their direction with nearby neighbors while experiencing random noise. What distinguishes the Toner-Tu approach is its focus on emergent, macroscopic behavior through coarse-grained hydrodynamic equations, analogous to how fluid dynamics describes collective molecular motion without tracking individual molecules.</p>
+<p>The Toner-Tu model tracks two essential hydrodynamic fields:</p>
+<ol type="1">
+<li>The density field <span class="math inline">\(\rho(\mathbf{r},t)\)</span> - representing the number of particles per unit area/volume at position <span class="math inline">\(\mathbf{r}\)</span> and time <span class="math inline">\(t\)</span></li>
+<li>The velocity field <span class="math inline">\(\mathbf{v}(\mathbf{r},t)\)</span> - describing the average direction and speed of particles at position <span class="math inline">\(\mathbf{r}\)</span> and time <span class="math inline">\(t\)</span></li>
+</ol>
+<p>The complete hydrodynamic equations are:</p>
+<p><span class="math display">\[\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0\]</span></p>
+<p>This first equation is the continuity equation expressing particle number conservation—particles can neither be created nor destroyed, only redistributed. <span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{v}}{\partial t} + \lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v} + \lambda_2 (\nabla \cdot \mathbf{v})\mathbf{v} + \lambda_3 \nabla(|\mathbf{v}|^2) &amp;= \\
+&amp;\alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v} - \nabla P \\
+&amp;+ D_L \nabla(\nabla \cdot \mathbf{v}) + D_T \nabla^2 \mathbf{v} \\
+&amp;+ D_2(\mathbf{v}\cdot\nabla)^2\mathbf{v} + \mathbf{f}
+\end{aligned}
+\]</span></p>
+<p>The simplified version of this equation, which still captures the essential physics, is:</p>
+<p><span class="math display">\[\frac{\partial \mathbf{v}}{\partial t} + \lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v} = \alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v} - \nabla P + D \nabla^2 \mathbf{v} + \mathbf{f}\]</span></p>
+<p>Each term in this equation has a specific physical meaning:</p>
+<ul>
+<li><p><span class="math inline">\(\alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v}\)</span>: This is the self-propulsion term that drives the system to a preferred speed <span class="math inline">\(v_0 = \sqrt{\alpha/\beta}\)</span> when <span class="math inline">\(\alpha &gt; 0\)</span>. It’s analogous to setting a “cruise control” for the flock, preventing particles from stopping or accelerating indefinitely.</p></li>
+<li><p><span class="math inline">\(\lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v}\)</span>: This nonlinear advection term describes how velocity propagates itself spatially—similar to how turning behavior spreads through a bird flock. Unlike in fluid dynamics where <span class="math inline">\(\lambda_1 = 1\)</span>, in flocking systems this coefficient can differ from unity due to the absence of Galilean invariance.</p></li>
+<li><p><span class="math inline">\(\nabla P\)</span>: This pressure gradient term pushes particles from high-density to low-density regions, preventing overcrowding. In the full model, P depends on both density (<span class="math inline">\(\rho\)</span>) and speed (<span class="math inline">\(|\mathbf{v}|\)</span>).</p></li>
+<li><p><span class="math inline">\(D \nabla^2 \mathbf{v}\)</span>: This diffusion term smooths out sharp velocity gradients, representing how neighboring particles align with each other. In the complete model, diffusion can be anisotropic with different coefficients for longitudinal (<span class="math inline">\(D_L\)</span>) and transverse (<span class="math inline">\(D_T\)</span>) components.</p></li>
+<li><p><span class="math inline">\(\mathbf{f}\)</span>: This represents random noise—unpredictable movements due to individual decisions, environmental factors, or other stochastic influences. The noise has specific statistical properties crucial for the model’s behavior.</p></li>
+</ul>
+<p>What makes flocking systems remarkable is their ability to maintain long-range orientational order in two dimensions, even in the presence of noise. This contradicts the Mermin-Wagner theorem, which states that continuous symmetries cannot be spontaneously broken in equilibrium systems with short-range interactions in dimensions d ≤ 2. Flocks evade this limitation because they are inherently nonequilibrium systems that continuously consume energy to maintain their ordered state.</p>
+<p>The Toner-Tu model predicts several distinctive signatures that experimentalists can look for:</p>
+<ol type="1">
+<li><p><strong>Giant number fluctuations</strong>: In equilibrium systems, the standard deviation of particle number scales as √N with the average number N. In flocks, these fluctuations scale as N^α where α &gt; 1/2, leading to much larger density variations than expected in equilibrium systems.</p></li>
+<li><p><strong>Self-organized flows</strong>: The system spontaneously develops coherent flow patterns such as traveling bands, vortices, or asters that persist over long time scales.</p></li>
+<li><p><strong>Anomalous sound propagation</strong>: Disturbances propagate through the flock with different speeds depending on their direction relative to the flock’s motion—longitudinal sound waves travel faster than transverse ones, unlike in simple fluids.</p></li>
+<li><p><strong>Robust long-range order</strong>: The system maintains its coherent motion across length scales that grow with system size, even in two dimensions where thermal equilibrium systems would become disordered.</p></li>
+</ol>
+<p>These predicted behaviors have been confirmed in diverse experimental systems—from bacterial colonies like E. coli swarming on agar surfaces to epithelial cell sheets migrating during wound healing, and even in synthetic active matter systems like vibrated granular rods or light-activated colloidal particles. The remarkable success of this relatively simple hydrodynamic model in describing such varied systems demonstrates the universality of the physics governing collective motion in active systems.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Properties of the Toner-Tu Model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Directed motion</strong>: Describes systems where particles have a definite front and back (unlike nematic systems)</li>
+<li><strong>Continuum description</strong>: Uses density field ρ(r,t) and velocity field v(r,t) to describe collective behavior</li>
+<li><strong>Long-range order</strong>: Maintains coordinated motion over long distances even in 2D, defying the Mermin-Wagner theorem that applies to equilibrium systems</li>
+<li><strong>Distinctive signatures</strong>: Exhibits giant number fluctuations, self-organized flows, directional wave propagation, and robust ordering</li>
+<li><strong>Universal application</strong>: Successfully models diverse systems from bird flocks to bacterial colonies, cell migrations, and synthetic active matter</li>
+</ul>
+</div>
+</div>
+<section id="interactive-simulation-of-the-toner-tu-model" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-simulation-of-the-toner-tu-model">Interactive Simulation of the Toner-Tu Model</h3>
+<p>Below is an interactive simulation that demonstrates the key features of the Toner-Tu model described above. This simulation visualizes how the hydrodynamic equations translate into collective motion with long-range order, allowing you to explore how different parameters affect the system’s behavior.</p>
+<div id="toner-tu-simulation" style="width: 100%; height: 600px; border: 1px solid #ccc;">
+  <div id="combined-field" style="width: 100%; height: 500px; position: relative;">
+    <div id="annotation-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;"></div>
+  </div>
+  <div style="display: flex; justify-content: space-around; margin-top: 10px; flex-wrap: wrap;">
+    <div style="margin: 0 10px;">
+      <label for="alignment-strength" title="Controls how strongly particles align with their neighbors (corresponds to diffusion term)">Alignment Strength: </label>
+      <input type="range" id="alignment-strength" min="0" max="1" step="0.01" value="0.5">
+      <span id="alignment-value">0.5</span>
+    </div>
+    <div style="margin: 0 10px;">
+      <label for="noise-strength" title="Controls the random fluctuations in particle motion (corresponds to noise term f)">Noise: </label>
+      <input type="range" id="noise-strength" min="0" max="0.5" step="0.01" value="0.1">
+      <span id="noise-valuett">0.1</span>
+    </div>
+    <div style="margin: 0 10px;">
+      <label for="density-decay" title="Controls how long density patterns persist">Density Persistence: </label>
+      <input type="range" id="density-decay" min="0.5" max="0.99" step="0.01" value="0.85">
+      <span id="density-valuett">0.85</span>
+    </div>
+    <button id="reset-simulation">Reset</button>
+  </div>
+  <div style="text-align: center; margin-top: 10px; font-size: 14px; font-weight: bold;">
+    Order Parameter φ: <span id="order-parameter-value" style="color: steelblue;">0.00</span>
+    <span id="phase-indicator" style="margin-left: 20px; padding: 2px 8px; border-radius: 4px; background-color: #f8f8f8;">Disordered</span>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// Simulation parameters
+const width = document.getElementById('toner-tu-simulation').clientWidth;
+const height = 500;
+const gridSize = 10; // Smaller grid cells for higher resolution
+const gridCols = Math.ceil(width / gridSize);
+const gridRows = Math.ceil(height / gridSize);
+const particleSpeed = 2.5;
+const numParticles = 20000;
+let diffusionRate = 0.1; // Rate at which density diffuses
+let densityDecay = 0.85; // How much density persists between frames
+
+// Toner-Tu model parameters
+const alpha = 1.0;  // Self-propulsion strength
+const beta = 1.0 / (particleSpeed * particleSpeed);  // Sets preferred speed to particleSpeed
+
+// Create SVG container for combined visualization
+const combinedSvg = d3.select("#combined-field")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+// Create a group for density cells
+const densityGroup = combinedSvg.append("g");
+
+// Create a group for velocity vectors that will be drawn on top
+const vectorGroup = combinedSvg.append("g");
+
+// Create annotation layer
+const annotationLayer = d3.select("#annotation-layer");
+
+// Create text annotations
+const waveAnnotation = annotationLayer.append("div")
+  .attr("class", "annotation")
+  .style("position", "absolute")
+  .style("background-color", "rgba(255,255,255,0.7)")
+  .style("border", "1px solid steelblue")
+  .style("border-radius", "4px")
+  .style("padding", "4px")
+  .style("pointer-events", "none")
+  .style("display", "none")
+  .text("Density Wave");
+
+const orderAnnotation = annotationLayer.append("div")
+  .attr("class", "annotation")
+  .style("position", "absolute")
+  .style("top", "10px")
+  .style("left", "10px")
+  .style("background-color", "rgba(255,255,255,0.7)")
+  .style("border", "1px solid steelblue")
+  .style("border-radius", "4px")
+  .style("padding", "4px")
+  .style("pointer-events", "none")
+  .style("display", "none")
+  .text("Ordered Phase");
+
+// Add arrowhead marker
+combinedSvg.append("defs").append("marker")
+  .attr("id", "arrowhead")
+  .attr("viewBox", "0 -5 10 10")
+  .attr("refX", 5)
+  .attr("refY", 0)
+  .attr("markerWidth", 4)
+  .attr("markerHeight", 4)
+  .attr("orient", "auto")
+  .append("path")
+  .attr("d", "M0,-5L10,0L0,5")
+  .attr("fill", "steelblue");
+
+// Initialize density grid and velocity field
+let densityGrid = Array(gridRows).fill().map(() => Array(gridCols).fill(0));
+let velocityField = Array(gridRows).fill().map(() =>
+  Array(gridCols).fill().map(() => ({ vx: 0, vy: 0 }))
+);
+
+// Create grid cells for density visualization
+const densityCells = densityGroup.selectAll(".density-cell")
+  .data(d3.cross(d3.range(gridRows), d3.range(gridCols)))
+  .enter()
+  .append("rect")
+  .attr("class", "density-cell")
+  .attr("x", d => d[1] * gridSize)
+  .attr("y", d => d[0] * gridSize)
+  .attr("width", gridSize)
+  .attr("height", gridSize)
+  .attr("fill", "white");
+
+// Create arrows for vector field visualization
+const vectorArrows = vectorGroup.selectAll(".vector-arrow")
+  .data(d3.cross(
+    d3.range(0, gridRows, 2), // Sample every other cell to avoid overcrowding
+    d3.range(0, gridCols, 2)
+  ))
+  .enter()
+  .append("line")
+  .attr("class", "vector-arrow")
+  .attr("x1", d => (d[1] + 0.5) * gridSize)
+  .attr("y1", d => (d[0] + 0.5) * gridSize)
+  .attr("x2", d => (d[1] + 0.5) * gridSize)
+  .attr("y2", d => (d[0] + 0.5) * gridSize)
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", 1.5)
+  .attr("marker-end", "url(#arrowhead)");
+
+// Initialize particles with clustered positions to create density waves
+let particles = [];
+function initializeParticles() {
+  particles = [];
+  // Reset density and velocity fields
+  densityGrid = densityGrid.map(row => row.map(() => 0));
+  velocityField = velocityField.map(row => row.map(() => ({ vx: 0, vy: 0 })));
+
+  // Create several clusters of particles
+  const numClusters = 5;
+  for (let c = 0; c < numClusters; c++) {
+    const clusterX = Math.random() * width;
+    const clusterY = Math.random() * height;
+    const clusterSize = 50 + Math.random() * 50;
+    const clusterParticles = Math.floor(numParticles / numClusters);
+
+    // Create a shared initial direction for the cluster
+    const clusterAngle = Math.random() * 2 * Math.PI;
+    const clusterVx = Math.cos(clusterAngle);
+    const clusterVy = Math.sin(clusterAngle);
+
+    for (let i = 0; i < clusterParticles; i++) {
+      // Gaussian-like distribution within cluster
+      const r = clusterSize * Math.sqrt(Math.random());
+      const theta = Math.random() * 2 * Math.PI;
+      const x = clusterX + r * Math.cos(theta);
+      const y = clusterY + r * Math.sin(theta);
+
+      // Small variation in initial velocity direction
+      const angleVar = 0.5; // Variation in radians
+      const angle = clusterAngle + (Math.random() - 0.5) * angleVar;
+
+      particles.push({
+        id: particles.length,
+        x: (x + width) % width, // Ensure within bounds
+        y: (y + height) % height,
+        vx: particleSpeed * Math.cos(angle),
+        vy: particleSpeed * Math.sin(angle),
+      });
+    }
+  }
+
+  // Fill remaining slots with random particles
+  const remainingParticles = numParticles - particles.length;
+  for (let i = 0; i < remainingParticles; i++) {
+    const angle = Math.random() * 2 * Math.PI;
+    particles.push({
+      id: particles.length,
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: particleSpeed * Math.cos(angle),
+      vy: particleSpeed * Math.sin(angle),
+    });
+  }
+}
+
+// Update density grid based on particle positions
+function updateDensityGrid() {
+  densityDecay = parseFloat(d3.select("#density-decay").property("value"));
+  d3.select("#density-valuett").text(densityDecay.toFixed(2));
+
+  // First decay existing density (instead of full diffusion which is computationally expensive)
+  for (let i = 0; i < gridRows; i++) {
+    for (let j = 0; j < gridCols; j++) {
+      densityGrid[i][j] *= densityDecay;
+    }
+  }
+
+  // Apply simplified diffusion (just to neighboring cells)
+  const newDensityGrid = densityGrid.map(row => [...row]);
+  for (let i = 0; i < gridRows; i++) {
+    for (let j = 0; j < gridCols; j++) {
+      if (densityGrid[i][j] > 0.1) { // Only diffuse significant density
+        for (let di = -1; di <= 1; di++) {
+          for (let dj = -1; dj <= 1; dj++) {
+            if (di === 0 && dj === 0) continue;
+            const ni = (i + di + gridRows) % gridRows;
+            const nj = (j + dj + gridCols) % gridCols;
+            newDensityGrid[ni][nj] += densityGrid[i][j] * diffusionRate / 8; // 8 neighbors
+          }
+        }
+        newDensityGrid[i][j] -= densityGrid[i][j] * diffusionRate;
+      }
+    }
+  }
+  densityGrid = newDensityGrid;
+
+  // Add particle contributions with Gaussian-like density
+  particles.forEach(particle => {
+    const gridX = Math.floor(particle.x / gridSize);
+    const gridY = Math.floor(particle.y / gridSize);
+
+    // Add density not just to the particle's cell but to a small area around it
+    const spreadRadius = 1; // How many cells around the particle to affect
+
+    for (let di = -spreadRadius; di <= spreadRadius; di++) {
+      for (let dj = -spreadRadius; dj <= spreadRadius; dj++) {
+        const distance = Math.sqrt(di*di + dj*dj);
+        if (distance <= spreadRadius) {
+          const density = 1.0 * Math.exp(-distance*distance/1.5); // Gaussian falloff
+          const ni = (gridY + di + gridRows) % gridRows; // Wrap around edges
+          const nj = (gridX + dj + gridCols) % gridCols;
+          densityGrid[ni][nj] += density;
+        }
+      }
+    }
+  });
+}
+
+// Update velocity field based on particle velocities
+function updateVelocityField() {
+  // Reset velocity counts
+  const velocityCounts = Array(gridRows).fill().map(() =>
+    Array(gridCols).fill().map(() => ({ vx: 0, vy: 0, count: 0 }))
+  );
+
+  // Accumulate velocities for each grid cell
+  particles.forEach(particle => {
+    const gridX = Math.floor(particle.x / gridSize);
+    const gridY = Math.floor(particle.y / gridSize);
+
+    if (gridX >= 0 && gridX < gridCols && gridY >= 0 && gridY < gridRows) {
+      velocityCounts[gridY][gridX].vx += particle.vx;
+      velocityCounts[gridY][gridX].vy += particle.vy;
+      velocityCounts[gridY][gridX].count++;
+    }
+  });
+
+  // Average the velocities
+  for (let i = 0; i < gridRows; i++) {
+    for (let j = 0; j < gridCols; j++) {
+      if (velocityCounts[i][j].count > 0) {
+        velocityField[i][j].vx = velocityCounts[i][j].vx / velocityCounts[i][j].count;
+        velocityField[i][j].vy = velocityCounts[i][j].vy / velocityCounts[i][j].count;
+      } else {
+        // Smooth velocity field by averaging neighbors when no particles present
+        let sumVx = 0, sumVy = 0, count = 0;
+
+        for (let di = -1; di <= 1; di++) {
+          for (let dj = -1; dj <= 1; dj++) {
+            const ni = (i + di + gridRows) % gridRows;
+            const nj = (j + dj + gridCols) % gridCols;
+            if (velocityCounts[ni][nj].count > 0) {
+              sumVx += velocityCounts[ni][nj].vx / velocityCounts[ni][nj].count;
+              sumVy += velocityCounts[ni][nj].vy / velocityCounts[ni][nj].count;
+              count++;
+            }
+          }
+        }
+
+        if (count > 0) {
+          velocityField[i][j].vx = 0.8 * velocityField[i][j].vx + 0.2 * (sumVx / count);
+          velocityField[i][j].vy = 0.8 * velocityField[i][j].vy + 0.2 * (sumVy / count);
+        } else {
+          // Decay velocity if no neighbors have particles
+          velocityField[i][j].vx *= 0.95;
+          velocityField[i][j].vy *= 0.95;
+        }
+      }
+    }
+  }
+}
+
+// Visualize density grid with enhanced contrast
+function visualizeDensityGrid() {
+  // Find max density for better color scaling
+  let maxDensity = 0.1; // Minimal baseline to avoid division by zero
+  for (let i = 0; i < gridRows; i++) {
+    for (let j = 0; j < gridCols; j++) {
+      maxDensity = Math.max(maxDensity, densityGrid[i][j]);
+    }
+  }
+
+  const colorScale = d3.scaleSequential(d3.interpolateReds)
+    .domain([0, maxDensity * 0.8]); // Scale to improve visibility
+
+  densityCells.attr("fill", d => {
+    const density = densityGrid[d[0]][d[1]];
+    return colorScale(density);
+  })
+  .attr("fill-opacity", 0.8); // Slightly transparent to see arrows better
+}
+
+// Visualize velocity field
+function visualizeVelocityField() {
+  vectorArrows.each(function(d) {
+    const i = d[0];
+    const j = d[1];
+    const vx = velocityField[i][j].vx;
+    const vy = velocityField[i][j].vy;
+    const speed = Math.sqrt(vx*vx + vy*vy);
+
+    // Only show arrows where there's significant velocity
+    if (speed > 0.1) {
+      const arrowLength = Math.min(gridSize * 0.9, speed * 3);
+      const x1 = (j + 0.5) * gridSize;
+      const y1 = (i + 0.5) * gridSize;
+      const x2 = x1 + (vx / speed) * arrowLength;
+      const y2 = y1 + (vy / speed) * arrowLength;
+
+      d3.select(this)
+        .attr("x1", x1)
+        .attr("y1", y1)
+        .attr("x2", x2)
+        .attr("y2", y2)
+        .attr("stroke-opacity", Math.min(1, speed))
+        .attr("visibility", "visible");
+    } else {
+      d3.select(this).attr("visibility", "hidden");
+    }
+  });
+}
+
+// Update particle positions and velocities based on Toner-Tu model
+function updateParticles() {
+  const alignmentStrength = parseFloat(d3.select("#alignment-strength").property("value"));
+  const noiseStrength = parseFloat(d3.select("#noise-strength").property("value"));
+
+  d3.select("#alignment-value").text(alignmentStrength.toFixed(2));
+  d3.select("#noise-valuett").text(noiseStrength.toFixed(2));
+
+  // Add density-dependent movement: particles prefer to move toward higher density
+  const densityAttraction = 0.3;
+
+  // Update each particle
+  particles.forEach(particle => {
+    // Get grid cell location
+    const gridX = Math.floor(particle.x / gridSize);
+    const gridY = Math.floor(particle.y / gridSize);
+
+    // Determine local alignment field
+    let fieldVx = 0, fieldVy = 0;
+    let localDensityGradX = 0, localDensityGradY = 0;
+
+    if (gridX >= 0 && gridX < gridCols && gridY >= 0 && gridY < gridRows) {
+      fieldVx = velocityField[gridY][gridX].vx;
+      fieldVy = velocityField[gridY][gridX].vy;
+
+      const fieldSpeed = Math.sqrt(fieldVx*fieldVx + fieldVy*fieldVy);
+      if (fieldSpeed > 0) {
+        fieldVx /= fieldSpeed;
+        fieldVy /= fieldSpeed;
+      }
+
+      // Calculate local density gradient (simplified)
+      for (let di = -1; di <= 1; di += 2) { // Just check left/right
+        const ni = (gridY + gridRows) % gridRows;
+        const nj = (gridX + di + gridCols) % gridCols;
+        localDensityGradX += di * densityGrid[ni][nj];
+      }
+
+      for (let dj = -1; dj <= 1; dj += 2) { // Just check up/down
+        const ni = (gridY + dj + gridRows) % gridRows;
+        const nj = (gridX + gridCols) % gridCols;
+        localDensityGradY += dj * densityGrid[ni][nj];
+      }
+
+      // Normalize density gradient if significant
+      const gradMag = Math.sqrt(localDensityGradX*localDensityGradX + localDensityGradY*localDensityGradY);
+      if (gradMag > 0.1) {
+        localDensityGradX /= gradMag;
+        localDensityGradY /= gradMag;
+      } else {
+        localDensityGradX = 0;
+        localDensityGradY = 0;
+      }
+    }
+
+    // Explicit implementation of Toner-Tu terms:
+
+    // 1. Self-propulsion term (α·v - β|v|²·v)
+    const speedSquared = particle.vx*particle.vx + particle.vy*particle.vy;
+    const selfPropulsionX = alpha * particle.vx - beta * speedSquared * particle.vx;
+    const selfPropulsionY = alpha * particle.vy - beta * speedSquared * particle.vy;
+
+    // 2. Diffusion term (alignment with neighbors)
+    const diffusionX = alignmentStrength * (fieldVx - particle.vx);
+    const diffusionY = alignmentStrength * (fieldVy - particle.vy);
+
+    // 3. Response to density gradient
+    const densityResponseX = densityAttraction * localDensityGradX;
+    const densityResponseY = densityAttraction * localDensityGradY;
+
+    // 4. Random noise
+    const noiseX = (Math.random() - 0.5) * noiseStrength;
+    const noiseY = (Math.random() - 0.5) * noiseStrength;
+
+    // Combine all terms to update velocity
+    particle.vx += selfPropulsionX + diffusionX + densityResponseX + noiseX;
+    particle.vy += selfPropulsionY + diffusionY + densityResponseY + noiseY;
+
+    // Maintain approximately constant speed - a key feature of Toner-Tu
+    const speed = Math.sqrt(particle.vx**2 + particle.vy**2);
+    if (speed > 0) {
+      // Let the self-propulsion term drive the speed to the preferred value
+      // rather than strictly enforcing it
+      const targetSpeed = particleSpeed;
+      const speedFactor = 0.1;
+      const adjustedSpeed = speed * (1 - speedFactor) + targetSpeed * speedFactor;
+
+      particle.vx = (particle.vx / speed) * adjustedSpeed;
+      particle.vy = (particle.vy / speed) * adjustedSpeed;
+    }
+
+    // Update position
+    particle.x += particle.vx;
+    particle.y += particle.vy;
+
+    // Periodic boundary conditions
+    if (particle.x < 0) particle.x += width;
+    if (particle.x > width) particle.x -= width;
+    if (particle.y < 0) particle.y += height;
+    if (particle.y > height) particle.y -= height;
+  });
+}
+
+// Calculate the order parameter
+function calculateOrderParameter() {
+  // Sum all particle velocities
+  let sumVx = 0, sumVy = 0;
+  particles.forEach(particle => {
+    sumVx += particle.vx;
+    sumVy += particle.vy;
+  });
+
+  // Calculate magnitude of average velocity
+  const avgVMag = Math.sqrt(sumVx*sumVx + sumVy*sumVy) / numParticles;
+
+  // Order parameter = |∑v_i|/(N|v_0|)
+  const orderParameter = avgVMag / particleSpeed;
+
+  return orderParameter;
+}
+
+// Detect and annotate density waves
+function detectAndAnnotateWaves() {
+  // Find high density regions that might be waves
+  let maxDensity = 0;
+  let maxDensityLocation = { x: 0, y: 0 };
+
+  // Sample grid to find high density regions
+  for (let i = 0; i < gridRows; i += 3) {
+    for (let j = 0; j < gridCols; j += 3) {
+      if (densityGrid[i][j] > maxDensity) {
+        maxDensity = densityGrid[i][j];
+        maxDensityLocation = { x: j * gridSize, y: i * gridSize };
+      }
+    }
+  }
+
+  // If we found a significant density peak, show the annotation
+  if (maxDensity > 5) {
+    waveAnnotation
+      .style("display", "block")
+      .style("left", (maxDensityLocation.x + 15) + "px")
+      .style("top", (maxDensityLocation.y - 10) + "px");
+  } else {
+    waveAnnotation.style("display", "none");
+  }
+}
+
+// Update phase indicator
+function updatePhaseIndicator(orderParameter) {
+  const phaseIndicator = d3.select("#phase-indicator");
+
+  if (orderParameter > 0.6) {
+    phaseIndicator.text("Ordered Phase")
+      .style("background-color", "#d1e7dd")
+      .style("color", "#0a3622");
+    orderAnnotation.style("display", "block");
+  } else if (orderParameter > 0.3) {
+    phaseIndicator.text("Transitional")
+      .style("background-color", "#fff3cd")
+      .style("color", "#664d03");
+    orderAnnotation.style("display", "none");
+  } else {
+    phaseIndicator.text("Disordered")
+      .style("background-color", "#f8d7da")
+      .style("color", "#58151c");
+    orderAnnotation.style("display", "none");
+  }
+}
+
+// Main simulation step
+function simulationStep() {
+  updateParticles();
+  updateDensityGrid();
+  updateVelocityField();
+  visualizeDensityGrid();
+  visualizeVelocityField();
+
+  // Calculate and display order parameter
+  const orderParameter = calculateOrderParameter();
+  d3.select("#order-parameter-value").text(orderParameter.toFixed(2));
+
+  // Update annotations
+  detectAndAnnotateWaves();
+  updatePhaseIndicator(orderParameter);
+}
+
+// Initialize and start the simulation
+initializeParticles();
+let timer = d3.interval(simulationStep, 30);
+
+// Reset button handler
+d3.select("#reset-simulation").on("click", () => {
+  timer.stop();
+  initializeParticles();
+  timer = d3.interval(simulationStep, 30);
+});
+</script>
+<p>This interactive simulation demonstrates several key aspects of the Toner-Tu model:</p>
+<ol type="1">
+<li><p><strong>Emergent Order</strong>: Even with simple local alignment rules, the particles spontaneously organize into coherent moving flocks. The order parameter φ quantifies this collective alignment - values close to 1 indicate strong alignment, while values close to 0 indicate disorder.</p></li>
+<li><p><strong>Parameter Sensitivity</strong>: You can adjust the alignment strength to see how strongly particles align with neighbors (corresponding to the diffusion term in the equations), and the noise level to represent individual randomness in movement decisions (the noise term f).</p></li>
+<li><p><strong>Phase Transitions</strong>: At low noise and high alignment strength, particles form a coherent flock with global order. As noise increases or alignment decreases, the system transitions to a disordered state. The phase indicator shows when the system crosses these transitions.</p></li>
+<li><p><strong>Density Waves</strong>: Under certain parameter regimes, you may observe waves of high density propagating through the system (highlighted by annotations when they appear). These are similar to the density fluctuations predicted by the Toner-Tu model, arising from the coupling between density and velocity fields.</p></li>
+<li><p><strong>Self-Propulsion</strong>: The simulation explicitly implements the self-propulsion term (α·v - β|v|²·v) that drives particles to move at a preferred speed, which is crucial for the formation of flocks.</p></li>
+</ol>
+<p>The key insight from the Toner-Tu model is that polar active matter can exhibit true long-range order in two dimensions, which would be impossible in equilibrium systems according to the Mermin-Wagner theorem. This property enables bird flocks, fish schools, and other collective biological systems to maintain coherence over large distances.</p>
+</section>
+</section>
+<section id="active-liquid-crystals-and-nematic-order" class="level2">
+<h2 class="anchored" data-anchor-id="active-liquid-crystals-and-nematic-order">Active Liquid Crystals and Nematic Order</h2>
+<section id="liquid-crystals" class="level3">
+<h3 class="anchored" data-anchor-id="liquid-crystals">Liquid Crystals</h3>
+<p>Liquid crystals represent a state of matter that combines properties of both liquids and crystalline solids. Unlike ordinary liquids where molecules move and orient randomly, or crystals where molecules are locked in rigid lattices, liquid crystals flow like liquids while maintaining some degree of molecular orientation order.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Entropic Origin of Liquid Crystal Ordering
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The ordering in liquid crystals arises primarily from entropic effects due to steric interactions (physical exclusion) rather than energetic attractions between molecules. When rod-like molecules become densely packed, they spontaneously align to maximize the available free volume and thus maximize entropy. This counterintuitive “order from disorder” phenomenon occurs because aligned rod-like molecules can actually access more translational configurations than randomly oriented ones at sufficient density, making the aligned state entropically favorable.</p>
+<p>Mathematically, this can be shown using Onsager’s theory, where the free energy per particle has the form:</p>
+<p><span class="math display">\[F = F_\text{ideal} + F_\text{excluded} = k_B T \int f(\Omega) \ln[f(\Omega)] d\Omega + \frac{1}{2} \rho \int\int f(\Omega_1) f(\Omega_2) V_\text{excl}(\Omega_1, \Omega_2) d\Omega_1 d\Omega_2\]</span></p>
+<p>where <span class="math inline">\(f(\Omega)\)</span> is the orientational distribution function that describes the probability of finding a rod pointing in direction <span class="math inline">\(\Omega\)</span>. Here, <span class="math inline">\(\Omega\)</span> represents the angular coordinates (usually polar and azimuthal angles) that specify the rod’s orientation in space. If the rods were completely randomly oriented, <span class="math inline">\(f(\Omega)\)</span> would be uniform across all angles. In an ordered nematic phase, <span class="math inline">\(f(\Omega)\)</span> has peaks in the preferred direction(s).</p>
+<p>The first term <span class="math inline">\(F_\text{ideal}\)</span> measures the entropic cost of constraining the rods to particular orientations rather than allowing them to point in any direction. The second term <span class="math inline">\(F_\text{excluded}\)</span> accounts for the entropy loss due to volume exclusion between pairs of rods with orientations <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span>, where <span class="math inline">\(\rho\)</span> is the number density of rods.</p>
+<p>For rod-like particles of length <span class="math inline">\(L\)</span> and diameter <span class="math inline">\(D\)</span>:</p>
+<p><span class="math display">\[V_\text{excl} \approx 2L^2 D |\sin\gamma|\]</span></p>
+<p>where <span class="math inline">\(\gamma\)</span> is the angle between the rods. When the rods are parallel (<span class="math inline">\(\gamma = 0\)</span>), the excluded volume is minimized, reducing the second term in the free energy. At high enough densities, this entropic gain from minimizing excluded volume outweighs the entropic cost of orientational ordering (first term), driving the spontaneous transition to the nematic phase.</p>
+</div>
+</div>
+</div>
+<div id="fig-liquid-crystal-phases" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-liquid-crystal-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture08/liquid_crystal_phases.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-liquid-crystal-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Different phases of liquid crystals, showing the progression from solid crystal to isotropic liquid, with various liquid crystal phases in between.
+</figcaption>
+</figure>
+</div>
+<p>The simplest and most common type of liquid crystal is the nematic phase, named from the Greek word “νήμα” (nema) meaning “thread.” In nematics, rod-like molecules align roughly parallel to each other, but their centers of mass are distributed randomly like in a liquid. This gives the material a preferred direction, known as the director, while still allowing it to flow.</p>
+<p>This makes liquid crystals useful in everyday applications like LCD displays, where electric fields can be used to control the orientation of the liquid crystal molecules, affecting how light passes through them.</p>
+</section>
+<section id="from-passive-to-active-nematics-adding-energy-to-the-mix" class="level3">
+<h3 class="anchored" data-anchor-id="from-passive-to-active-nematics-adding-energy-to-the-mix">From Passive to Active Nematics: Adding Energy to the Mix</h3>
+<p>Active nematics take the concept of liquid crystals one step further by incorporating internal energy consumption. While regular (passive) liquid crystals only change their configuration in response to external forces, active nematics continuously convert stored or ambient energy into motion.</p>
+<p>Think about the difference between a crowd of people standing still (passive system) versus a crowd where everyone is walking (active system). Both might show alignment—people facing the same direction—but the active system has a constant energy input that drives motion.</p>
+<p>In laboratory settings, active nematics can be created using:</p>
+<ol type="1">
+<li><strong>Biological components</strong>: Mixtures of microtubules (protein filaments from cell structures) and kinesin motor proteins that consume ATP for movement</li>
+<li><strong>Bacterial suspensions</strong>: Rod-shaped bacteria like E. coli that swim using flagella</li>
+<li><strong>Synthetic systems</strong>: Specially designed particles that convert chemical energy or light into motion</li>
+</ol>
+</section>
+<section id="rod-like-particles-with-no-front-or-back" class="level3">
+<h3 class="anchored" data-anchor-id="rod-like-particles-with-no-front-or-back">Rod-Like Particles with No Front or Back</h3>
+<p>A key distinction between the Vicsek model (discussed earlier) and nematic systems lies in the symmetry of the particles:</p>
+<ul>
+<li><p>In the Vicsek model, particles have a distinct front and back (like birds or fish), giving them a clear direction of movement. This is called <strong>polar symmetry</strong>.</p></li>
+<li><p>In nematic systems, the rod-like particles have <strong>head-tail symmetry</strong> - they look the same from either end (like a pencil). This means that a particle pointing “up” is equivalent to one pointing “down.”</p></li>
+</ul>
+<p>This fundamental difference in particle symmetry leads to entirely different types of collective behavior and mathematical descriptions.</p>
+<div id="fig-liquid-crystal-phases" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-liquid-crystal-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture08/biosystems.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-liquid-crystal-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Active nematic defects in biological systems. a Expanding colony of E. coli bacteria showing how the migration of +1/2 defects toward the growing edge can influence colony morphology. b Epithelial layer of Madine–Darby canine kidney (MDCK) cells (scale bar: 10 μm) where researchers have observed significant associations between +1/2 defect positions and cellular apoptosis and extrusion processes. c Neural progenitor stem cell monolayer demonstrating selective cell distribution with depletion around −1/2 defects (blue trefoil markers) and accumulation near +1/2 defects (red comet-shaped markers). d Mouse fibroblast cells in a dense monolayer exhibiting both −1/2 and +1/2 topological defects indicated by blue and orange circles, respectively. Source: Doostmohammadi, A., Ignés-Mullol, J., Yeomans, J.M. et al.&nbsp;Active nematics. Nat Commun 9, 3246 (2018).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="describing-alignment-the-director-field-and-order-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="describing-alignment-the-director-field-and-order-parameter">Describing Alignment: The Director Field and Order Parameter</h3>
+<p>In nematic systems, we need two key concepts to describe the alignment:</p>
+<ol type="1">
+<li><p><strong>The director field (n)</strong>: A unit vector that represents the average orientation of particles at each point in space. Because of head-tail symmetry, n and -n represent the same physical state.</p></li>
+<li><p><strong>The scalar order parameter (S)</strong>: A measure of how well-aligned the particles are with the director. S ranges from 0 (complete disorder) to 1 (perfect alignment).</p></li>
+</ol>
+<p>For a collection of rod-like particles, the scalar order parameter can be calculated as:</p>
+<p><span class="math display">\[S = \langle 2(\mathbf{u}_i \cdot \mathbf{n})^2 - 1 \rangle\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{u}_i\)</span> is the orientation of the i-th particle, <span class="math inline">\(\mathbf{n}\)</span> is the director, and the angle brackets represent an average over all particles in a small region. This formula gives S = 1 when all particles align perfectly with n, and S = 0 when orientations are completely random.</p>
+</section>
+<section id="the-q-tensor-a-complete-mathematical-description" class="level3">
+<h3 class="anchored" data-anchor-id="the-q-tensor-a-complete-mathematical-description">The Q-Tensor: A Complete Mathematical Description</h3>
+<p>While the director and scalar order parameter provide an intuitive picture, a more complete mathematical description uses the Q-tensor. This tensor captures both the direction of alignment and its strength in a single mathematical object.</p>
+<p>The Q-tensor is defined as:</p>
+<p><span class="math display">\[\mathbf{Q} = S \left(\mathbf{n}\mathbf{n} - \frac{1}{d}\mathbf{I}\right)\]</span></p>
+<p>where:</p>
+<ul>
+<li>S is the scalar order parameter (strength of alignment)</li>
+<li>n is the director field (average orientation)</li>
+<li>d is the dimension of space (usually 2 or 3)</li>
+<li>I is the identity tensor</li>
+</ul>
+<p>This might look complicated, but it has a simple physical interpretation: the Q-tensor describes how the orientation of particles deviates from being completely random. The subtraction of I/d ensures that the tensor is traceless (the sum of diagonal elements is zero), reflecting the fact that we’re measuring deviations from the isotropic (random) state.</p>
+</section>
+<section id="q-tensor-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="q-tensor-visualization">Q Tensor Visualization</h3>
+<div id="q-tensor-visualization" style="width: 100%; height: 450px; margin-bottom: 20px;">
+  <div style="display: flex; justify-content: space-between;">
+    <div id="ellipsoid-container" style="width: 60%; height: 400px;"></div>
+    <div style="width: 35%; padding: 20px;">
+      <h4 class="anchored">Q Tensor Parameters</h4>
+      <div style="margin: 15px 0;">
+        <label for="scalar-parameter">Scalar Order Parameter (S): <span id="s-value">0.5</span></label><br>
+        <input type="range" id="scalar-parameter" min="0" max="1" step="0.01" value="0.5" style="width: 100%;">
+      </div>
+      <div style="margin: 15px 0;">
+        <label for="director-theta">Director θ (azimuthal): <span id="theta-value">0</span>°</label><br>
+        <input type="range" id="director-theta" min="0" max="360" step="1" value="0" style="width: 100%;">
+      </div>
+      <div style="margin: 15px 0;">
+        <label for="director-phi">Director φ (polar): <span id="phi-value">0</span>°</label><br>
+        <input type="range" id="director-phi" min="0" max="180" step="1" value="0" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initial parameters
+  let S = 0.5; // scalar order parameter
+  let theta = 0; // azimuthal angle in degrees
+  let phi = 0; // polar angle in degrees
+
+  // Function to update the visualization
+  function updateQTensorVisualization() {
+    // Convert angles to radians
+    const thetaRad = theta * Math.PI / 180;
+    const phiRad = phi * Math.PI / 180;
+
+    // Calculate director vector
+    const nx = Math.sin(phiRad) * Math.cos(thetaRad);
+    const ny = Math.sin(phiRad) * Math.sin(thetaRad);
+    const nz = Math.cos(phiRad);
+
+    // Calculate Q tensor (in 3D)
+    const d = 3; // dimension
+
+    // Q tensor components (using the formula Q_ij = S * (n_i * n_j - delta_ij/d))
+    const Qxx = S * (nx * nx - 1/d);
+    const Qxy = S * (nx * ny);
+    const Qxz = S * (nx * nz);
+    const Qyy = S * (ny * ny - 1/d);
+    const Qyz = S * (ny * nz);
+    const Qzz = S * (nz * nz - 1/d);
+
+    // Calculate eigenvalues and eigenvectors
+    // For simplicity, we'll use the fact that for a uniaxial nematic:
+    // The eigenvalue along the director is S*(d-1)/d
+    // The eigenvalues perpendicular to the director are -S/d
+
+    const eigenvalue1 = S * (d-1)/d;
+    const eigenvalue2 = -S/d;
+    const eigenvalue3 = -S/d;
+
+    // Scale for visualization (adjust if needed)
+    const scale = 1.5;
+    const e1 = scale * (eigenvalue1 + 0.5);
+    const e2 = scale * (eigenvalue2 + 0.5);
+    const e3 = scale * (eigenvalue3 + 0.5);
+
+    // Generate points for ellipsoid with higher resolution for smoother appearance
+    const u = Array.from({length: 100}, (_, i) => i * Math.PI / 50);
+    const v = Array.from({length: 100}, (_, i) => i * 2 * Math.PI / 100);
+
+    const x = [], y = [], z = [];
+
+    // Find two vectors perpendicular to the director to form a complete basis
+    // First perpendicular vector
+    let p1x, p1y, p1z;
+    if (Math.abs(nz) < 0.9) {
+      // If not too close to z-axis, create perpendicular using cross product with z
+      const norm = Math.sqrt(nx*nx + ny*ny);
+      p1x = -ny/norm;
+      p1y = nx/norm;
+      p1z = 0;
+    } else {
+      // If close to z-axis, create perpendicular using cross product with x
+      const norm = Math.sqrt(ny*ny + nz*nz);
+      p1x = 0;
+      p1y = -nz/norm;
+      p1z = ny/norm;
+    }
+
+    // Second perpendicular vector (cross product of director and first perpendicular)
+    const p2x = ny*p1z - nz*p1y;
+    const p2y = nz*p1x - nx*p1z;
+    const p2z = nx*p1y - ny*p1x;
+
+    // Create a properly connected surface by organizing points into a grid
+    for (let i = 0; i < u.length; i++) {
+      const uVal = u[i];
+      // Start a new row for each u value
+      const xRow = [], yRow = [], zRow = [];
+
+      for (let j = 0; j < v.length; j++) {
+        const vVal = v[j];
+
+        // Generate points on unit sphere
+        const sx = Math.sin(uVal) * Math.cos(vVal);
+        const sy = Math.sin(uVal) * Math.sin(vVal);
+        const sz = Math.cos(uVal);
+
+        // Scale by eigenvalues along appropriate axes
+        // e1 (largest eigenvalue) along director, e2 and e3 along perpendicular vectors
+        const xVal = e1 * sx * nx + e2 * sy * p1x + e3 * sz * p2x;
+        const yVal = e1 * sx * ny + e2 * sy * p1y + e3 * sz * p2y;
+        const zVal = e1 * sx * nz + e2 * sy * p1z + e3 * sz * p2z;
+
+        xRow.push(xVal);
+        yRow.push(yVal);
+        zRow.push(zVal);
+      }
+
+      // Add this row of points to our surface
+      x.push(xRow);
+      y.push(yRow);
+      z.push(zRow);
+    }
+
+    // Add the first point of each row to the end to close the loop
+    for (let i = 0; i < x.length; i++) {
+      x[i].push(x[i][0]);
+      y[i].push(y[i][0]);
+      z[i].push(z[i][0]);
+    }
+
+    // Add director vector
+    const directorScale = 2;
+    const directorX = [0, directorScale * nx];
+    const directorY = [0, directorScale * ny];
+    const directorZ = [0, directorScale * nz];
+
+    // Create the plot
+    const ellipsoidTrace = {
+      type: 'surface',
+      x: x,
+      y: y,
+      z: z,
+      opacity: 0.8,
+      surfacecolor: Array(x.length).fill(Array(x[0].length).fill(1)),
+      colorscale: [[0, 'rgb(200, 220, 240)'], [1, 'rgb(120, 160, 210)']],
+      showscale: false,
+      hoverinfo: 'none',
+      contours: {
+        x: { highlight: false },
+        y: { highlight: false },
+        z: { highlight: false }
+      },
+      lighting: {
+        ambient: 0.6,
+        diffuse: 0.9,
+        specular: 0.3,
+        roughness: 0.3,
+        fresnel: 0.2
+      }
+    };
+
+    const directorTrace = {
+      type: 'scatter3d',
+      mode: 'lines',
+      x: directorX,
+      y: directorY,
+      z: directorZ,
+      line: {
+        width: 8,
+        color: 'rgba(220, 50, 50, 0.9)'
+      },
+      name: 'Director (n)'
+    };
+
+    const layout = {
+      autosize: true,
+      scene: {
+        aspectratio: {x: 1, y: 1, z: 1},
+        camera: {
+          eye: {x: 1.5, y: 1.5, z: 1.5}
+        },
+        xaxis: {range: [-2, 2], showgrid: true, zeroline: true, showticklabels: true, title: 'x'},
+        yaxis: {range: [-2, 2], showgrid: true, zeroline: true, showticklabels: true, title: 'y'},
+        zaxis: {range: [-2, 2], showgrid: true, zeroline: true, showticklabels: true, title: 'z'}
+      },
+      margin: {l: 0, r: 0, b: 0, t: 0},
+      showlegend: false,
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+
+    Plotly.newPlot('ellipsoid-container', [ellipsoidTrace, directorTrace], layout);
+  }
+
+  // Initialize visualization
+  updateQTensorVisualization();
+
+  // Add event listeners to sliders
+  document.getElementById('scalar-parameter').addEventListener('input', function(e) {
+    S = parseFloat(e.target.value);
+    document.getElementById('s-value').textContent = S.toFixed(2);
+    updateQTensorVisualization();
+  });
+
+  document.getElementById('director-theta').addEventListener('input', function(e) {
+    theta = parseFloat(e.target.value);
+    document.getElementById('theta-value').textContent = theta.toFixed(0);
+    updateQTensorVisualization();
+  });
+
+  document.getElementById('director-phi').addEventListener('input', function(e) {
+    phi = parseFloat(e.target.value);
+    document.getElementById('phi-value').textContent = phi.toFixed(0);
+    updateQTensorVisualization();
+  });
+});
+</script>
+<p>In the visualization above, the ellipsoid represents the Q tensor with:</p>
+<ul>
+<li>The red line shows the director (n), the average orientation of particles</li>
+<li>The blue ellipsoid shape is determined by the scalar order parameter (S)</li>
+<li>When S = 1 (perfect alignment), the ellipsoid is maximally elongated along the director</li>
+<li>When S = 0 (no alignment), the ellipsoid becomes a sphere, indicating no preferred direction</li>
+</ul>
+</section>
+<section id="understanding-defects-in-nematic-fields" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-defects-in-nematic-fields">Understanding Defects in Nematic Fields</h3>
+<p>Defects in nematic liquid crystals are not merely structural curiosities; they represent regions of stored energy. The free energy density in a nematic liquid crystal can be expressed as:</p>
+<p><span class="math display">\[F_T = F_0 + F_d\]</span></p>
+<p>where <span class="math inline">\(F_0\)</span> is the free energy density of the uniformly aligned state, and <span class="math inline">\(F_d\)</span> is the contribution due to distortions. The distortion free energy, also known as the <strong>Frank free energy density</strong>, consists of three main terms for non-chiral nematics:</p>
+<p><span class="math display">\[F_d = \frac{1}{2}K_1(\nabla \cdot \mathbf{n})^2 + \frac{1}{2}K_2(\mathbf{n} \cdot \nabla \times \mathbf{n})^2 + \frac{1}{2}K_3(\mathbf{n} \times \nabla \times \mathbf{n})^2\]</span></p>
+<p>representing <strong>splay</strong>, <strong>twist</strong>, and <strong>bend</strong> deformations respectively, with <span class="math inline">\(K_1\)</span>, <span class="math inline">\(K_2\)</span>, and <span class="math inline">\(K_3\)</span> as the corresponding elastic constants.</p>
+<div id="fig-deformation-modes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-deformation-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture08/twist_splay_bend.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-deformation-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— The three fundamental deformation modes in nematic liquid crystals: splay, twist, and bend. Each mode has an associated elastic constant (<span class="math inline">\(K_1\)</span>, <span class="math inline">\(K_2\)</span>, <span class="math inline">\(K_3\)</span>) that determines the energy cost of that particular deformation. <a href="https://link.springer.com/chapter/10.1007/978-3-030-23370-9_3">Source</a>
+</figcaption>
+</figure>
+</div>
+<p>In any nematic system, there are points or regions where perfect alignment becomes impossible. These are called <strong>topological defects</strong>, and they’re unavoidable when the director field must satisfy certain boundary conditions. These can be considered as “frustration points” in the system.</p>
+<p>The most common defects in 2D nematics are characterized by their <strong>topological charge</strong> or <strong>winding number</strong>, which indicates how the director rotates as one moves around the defect:</p>
+<ul>
+<li><strong>+1/2 defect</strong>: The director rotates by 180° (half a turn) as you move around the defect. These have a distinctive comet-like appearance with a single tail.</li>
+<li><strong>-1/2 defect</strong>: Similar to +1/2 but with opposite rotation, creating a three-pronged star pattern.</li>
+<li><strong>+1 defect</strong>: The director rotates by 360° (full turn), creating a pattern that resembles a source or sink.</li>
+</ul>
+<div id="defect-rotation-visualization" style="width: 100%; height: 400px; display: flex; justify-content: space-between; margin: 20px 0;">
+  <div style="width: 32%; height: 100%; position: relative; border: 1px solid #ccc;">
+    <div style="position: absolute; top: 10px; left: 10px; font-weight: bold;">+1/2 Defect</div>
+    <svg id="plus-half-defect" width="100%" height="100%"></svg>
+  </div>
+  <div style="width: 32%; height: 100%; position: relative; border: 1px solid #ccc;">
+    <div style="position: absolute; top: 10px; left: 10px; font-weight: bold;">-1/2 Defect</div>
+    <svg id="minus-half-defect" width="100%" height="100%"></svg>
+  </div>
+  <div style="width: 32%; height: 100%; position: relative; border: 1px solid #ccc;">
+    <div style="position: absolute; top: 10px; left: 10px; font-weight: bold;">+1 Defect</div>
+    <svg id="plus-one-defect" width="100%" height="100%"></svg>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+  <button id="rotate-button" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    Show Director Rotation
+  </button>
+  <div style="margin-left: 20px;">
+    <label for="rotation-speed">Rotation Speed:</label>
+    <input type="range" id="rotation-speed" min="1" max="10" value="5" style="width: 100px;">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration
+  const svgIds = ['plus-half-defect', 'minus-half-defect', 'plus-one-defect'];
+  const charges = [0.5, -0.5, 1.0];
+  const colors = ['#4285F4', '#EA4335', '#34A853'];
+  const rotationAngle = 2; // degrees per step
+
+  // SVG setup for each defect type
+  const svgs = svgIds.map(id => {
+    const svg = d3.select(`#${id}`);
+    const width = svg.node().getBoundingClientRect().width;
+    const height = svg.node().getBoundingClientRect().height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    // Draw center point
+    svg.append('circle')
+      .attr('cx', centerX)
+      .attr('cy', centerY)
+      .attr('r', 4)
+      .attr('fill', 'black');
+
+    // Draw circle path
+    svg.append('circle')
+      .attr('cx', centerX)
+      .attr('cy', centerY)
+      .attr('r', Math.min(width, height) * 0.35)
+      .attr('fill', 'none')
+      .attr('stroke', '#ccc')
+      .attr('stroke-dasharray', '3,3')
+      .attr('stroke-width', 1);
+
+    return {svg, width, height, centerX, centerY};
+  });
+
+  // Create director field for each defect
+  function createDirectorField(svgInfo, charge, color) {
+    const {svg, width, height, centerX, centerY} = svgInfo;
+    const radius = Math.min(width, height) * 0.35;
+    const numDirectors = 36;
+    const angleStep = 2 * Math.PI / numDirectors;
+
+    // Group for directors
+    const directorsGroup = svg.append('g')
+      .attr('class', 'directors');
+
+    // Create directors around the circle
+    for (let i = 0; i < numDirectors; i++) {
+      const angle = i * angleStep;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+
+      // Calculate director orientation based on defect charge
+      const directorAngle = charge * angle;
+
+      // Draw director line
+      directorsGroup.append('line')
+        .attr('x1', x - 10 * Math.cos(directorAngle))
+        .attr('y1', y - 10 * Math.sin(directorAngle))
+        .attr('x2', x + 10 * Math.cos(directorAngle))
+        .attr('y2', y + 10 * Math.sin(directorAngle))
+        .attr('stroke', color)
+        .attr('stroke-width', 2)
+        .attr('class', 'director');
+    }
+
+    // Add marker dot to indicate rotation position
+    svg.append('circle')
+      .attr('cx', centerX + radius)
+      .attr('cy', centerY)
+      .attr('r', 6)
+      .attr('fill', 'red')
+      .attr('class', 'position-marker');
+
+    return directorsGroup;
+  }
+
+  // Create director fields
+  const directorGroups = svgs.map((svgInfo, i) =>
+    createDirectorField(svgInfo, charges[i], colors[i]));
+
+  // Animation variables
+  let animationId;
+  let currentAngle = 0;
+  let isAnimating = false;
+
+  // Function to update the animation
+  function updateAnimation() {
+    if (!isAnimating) return;
+
+    const speedFactor = parseInt(document.getElementById('rotation-speed').value) / 5;
+    currentAngle += rotationAngle * speedFactor;
+    if (currentAngle >= 360) currentAngle = 0;
+
+    // Update position marker
+    svgs.forEach(({svg, centerX, centerY}) => {
+      const radius = Math.min(svg.node().getBoundingClientRect().width,
+                              svg.node().getBoundingClientRect().height) * 0.35;
+      const radians = currentAngle * Math.PI / 180;
+      svg.select('.position-marker')
+        .attr('cx', centerX + radius * Math.cos(radians))
+        .attr('cy', centerY + radius * Math.sin(radians));
+    });
+
+    animationId = requestAnimationFrame(updateAnimation);
+  }
+
+  // Button event listener
+  document.getElementById('rotate-button').addEventListener('click', function() {
+    if (isAnimating) {
+      isAnimating = false;
+      cancelAnimationFrame(animationId);
+      this.textContent = 'Show Director Rotation';
+    } else {
+      isAnimating = true;
+      updateAnimation();
+      this.textContent = 'Stop Rotation';
+    }
+  });
+});
+</script>
+<p>The energy of a defect scales with its topological charge in a simple mathematical relationship. Using the Frank free energy formalism introduced above, we can express the elastic energy of a defect with charge m as:</p>
+<p><span class="math display">\[E \propto \pi K m^2 \ln(R/a)\]</span></p>
+<p>where K is the relevant elastic constant (or combination of splay, twist, and bend constants), R is the system size, and a is the defect core radius. This formula clearly shows that energy scales with the square of the topological charge. Consequently, a +1 defect (with m=1) has four times the energy of a +1/2 defect (with m=1/2), explaining why +1 defects often spontaneously split into two +1/2 defects in many systems.</p>
+<p>These high-energy regions are not just theoretical constructs but have practical applications in <strong>defect engineering</strong>, where they can attract particles or reagents, enabling the creation of novel self-assembling materials and structures.</p>
+<!-- These deformation modes - splay, twist, and bend - each contribute differently to the total elastic energy of the system. The splay deformation (associated with K₁) involves diverging or converging director lines, twist (K₂) involves rotation of the director around an axis perpendicular to it, and bend (K₃) describes the curving of director lines. In many liquid crystal systems, these elastic constants have different values, leading to anisotropic elastic behavior. -->
+</section>
+<section id="director-field-visualization-with-tensor-glyphs" class="level3">
+<h3 class="anchored" data-anchor-id="director-field-visualization-with-tensor-glyphs">Director Field Visualization with Tensor Glyphs</h3>
+<p>For 2D nematic fields, combine director field visualization with tensor glyphs:</p>
+<div id="nematic-field-container" style="width: 90%; height: 500px; margin-bottom: 20px;">
+  <div style="display: flex; justify-content: space-between;">
+    <div id="nematic-field" style="width: 75%; height: 500px;"></div>
+    <div style="width: 23%; padding: 10px;">
+      <h4 class="anchored">Nematic Field Controls</h4>
+      <div style="margin: 15px 0;">
+        <label for="defect-type">Defect Type:</label><br>
+        <select id="defect-type" style="width: 100%; padding: 5px;">
+          <option value="none">No Defect</option>
+          <option value="+1/2">+1/2 Defect</option>
+          <option value="-1/2">-1/2 Defect</option>
+          <option value="+1">+1 Defect</option>
+        </select>
+      </div>
+      <div style="margin: 15px 0;">
+        <label for="field-density">Director Density:</label><br>
+        <input type="range" id="field-density" min="5" max="20" value="10" style="width: 100%;">
+      </div>
+      <div style="margin: 15px 0;">
+        <label for="order-variance">Order Parameter Variation:</label><br>
+        <input type="range" id="order-variance" min="0" max="1" step="0.1" value="0.3" style="width: 100%;">
+    </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // SVG setup
+  const container = d3.select("#nematic-field");
+  const width = container.node().getBoundingClientRect().width;
+  const height = 500;
+
+  const svg = container.append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("background", "#f9f9f9");
+
+  // Parameters
+  let gridSize = 10; // Default director density
+  let orderVariance = 0.3; // How much the order parameter varies near defects
+  let defectType = "none";
+
+  // Create a color scale for the order parameter
+  const colorScale = d3.scaleSequential(d3.interpolateRdYlBu)
+    .domain([0, 1]);
+
+  // Function to calculate director field based on defect type
+  function calculateDirectorField(x, y) {
+    // Convert to coordinates centered at defect (middle of the visualization)
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const dx = x - centerX;
+    const dy = y - centerY;
+
+    // Calculate polar coordinates
+    const r = Math.sqrt(dx*dx + dy*dy);
+    let theta = Math.atan2(dy, dx);
+
+    // Director angle based on defect type
+    let directorAngle = 0;
+    let orderParameter = 1.0;
+
+    if (defectType === "+1/2") {
+      directorAngle = theta / 2;
+      orderParameter = Math.min(1, r / 50); // Order decreases near defect core
+    } else if (defectType === "-1/2") {
+      directorAngle = -theta / 2;
+      orderParameter = Math.min(1, r / 50);
+    } else if (defectType === "+1") {
+      directorAngle = theta;
+      orderParameter = Math.min(1, r / 50);
+    } else {
+      // No defect, use a simple uniform field
+      directorAngle = Math.PI / 4; // 45 degrees
+      orderParameter = 1.0;
+    }
+
+    // Apply variance to order parameter
+    if (defectType !== "none") {
+      orderParameter = Math.min(1, orderParameter + (Math.random() * 2 - 1) * orderVariance * 0.2);
+    }
+
+    // Director vector components (unit vector)
+    const nx = Math.cos(directorAngle);
+    const ny = Math.sin(directorAngle);
+
+    // Calculate Q tensor components (in 2D)
+    const S = orderParameter;
+    const d = 2; // dimension
+
+    const Qxx = S * (nx * nx - 1/d);
+    const Qxy = S * (nx * ny);
+    const Qyy = S * (ny * ny - 1/d);
+
+    // Eigenvalues and eigenvectors
+    // For a 2D nematic, we have one positive and one negative eigenvalue
+    const eigenvalue1 = S/2;
+    const eigenvalue2 = -S/2;
+
+    // Scaling factor for visualization
+    const scale = 50;
+
+    return {
+      angle: directorAngle,
+      nx: nx,
+      ny: ny,
+      S: orderParameter,
+      Qxx: Qxx,
+      Qxy: Qxy,
+      Qyy: Qyy,
+      majorAxis: scale * (eigenvalue1 + 0.5),
+      minorAxis: scale * (eigenvalue2 + 0.5)
+    };
+  }
+
+  // Function to draw the director field
+  function drawNematicField() {
+    // Clear previous field
+    svg.selectAll("*").remove();
+
+    // Calculate grid points
+    const points = [];
+    for (let x = gridSize; x < width; x += width / gridSize) {
+      for (let y = gridSize; y < height; y += height / gridSize) {
+        const directorData = calculateDirectorField(x, y);
+        points.push({
+          x: x,
+          y: y,
+          ...directorData
+        });
+      }
+    }
+
+    // Draw ellipses representing Q tensor
+    svg.selectAll(".tensor-glyph")
+      .data(points)
+      .enter()
+      .append("ellipse")
+      .attr("class", "tensor-glyph")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("rx", d => d.majorAxis)
+      .attr("ry", d => d.minorAxis)
+      .attr("transform", d => `rotate(${d.angle * 180 / Math.PI}, ${d.x}, ${d.y})`)
+      .attr("fill", d => colorScale(d.S))
+      .attr("stroke", "#333")
+      .attr("stroke-width", 0.5)
+      .attr("opacity", 0.7);
+
+    // Draw lines representing director field
+    svg.selectAll(".director")
+      .data(points)
+      .enter()
+      .append("line")
+      .attr("class", "director")
+      .attr("x1", d => d.x - 20 * d.nx)
+      .attr("y1", d => d.y - 20 * d.ny)
+      .attr("x2", d => d.x + 20 * d.nx)
+      .attr("y2", d => d.y + 20 * d.ny)
+      .attr("stroke", "black")
+      .attr("stroke-width", 2.0);
+
+    // Add defect center marker
+    if (defectType !== "none") {
+      svg.append("circle")
+        .attr("cx", width / 2)
+        .attr("cy", height / 2)
+        .attr("r", 5)
+        .attr("fill", "red");
+    }
+
+    // Add color legend
+    const legendWidth = 200;
+    const legendHeight = 20;
+    const legendX = width - legendWidth - 20;
+    const legendY = height - 40;
+
+    // Create gradient
+    const defs = svg.append("defs");
+    const gradient = defs.append("linearGradient")
+      .attr("id", "legend-gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")
+      .attr("x2", "100%")
+      .attr("y2", "0%");
+
+    // Add color stops
+    const stops = [0, 0.25, 0.5, 0.75, 1];
+    stops.forEach(stop => {
+      gradient.append("stop")
+        .attr("offset", `${stop * 100}%`)
+        .attr("stop-color", colorScale(stop));
+    });
+
+    // Draw legend rectangle
+    svg.append("rect")
+      .attr("x", legendX)
+      .attr("y", legendY)
+      .attr("width", legendWidth)
+      .attr("height", legendHeight)
+      .style("fill", "url(#legend-gradient)");
+
+    // Add legend labels
+    svg.append("text")
+      .attr("x", legendX)
+      .attr("y", legendY - 5)
+      .text("S = 0")
+      .attr("font-size", "12px");
+
+    svg.append("text")
+      .attr("x", legendX + legendWidth - 30)
+      .attr("y", legendY - 5)
+      .text("S = 1")
+      .attr("font-size", "12px");
+
+    svg.append("text")
+      .attr("x", legendX + legendWidth / 2 - 60)
+      .attr("y", legendY - 5)
+      .text("Scalar Order Parameter")
+      .attr("font-size", "12px");
+  }
+
+  // Initial drawing
+  drawNematicField();
+
+  // Event listeners
+  d3.select("#defect-type").on("change", function() {
+    defectType = this.value;
+    drawNematicField();
+  });
+
+  d3.select("#field-density").on("input", function() {
+    gridSize = +this.value;
+    drawNematicField();
+  });
+
+  d3.select("#order-variance").on("input", function() {
+    orderVariance = +this.value;
+    drawNematicField();
+  });
+});
+</script>
+</div>
+<div style="margin-top: 30px;">
+<p>
+<strong>Visualization Guide:</strong>
+</p>
+<ul>
+<li>Lines represent the director field (n)</li>
+<li>Ellipses represent Q tensor</li>
+<li>Color indicates scalar order parameter (S)</li>
+<li>Notice how defects affect both director orientation and magnitude of order</li>
+</ul>
+</div>
+<!-- ### 3. Component Matrix Visualization
+
+To help students understand the mathematical structure of the Q tensor:
+
+<div id="q-matrix-container" style="width: 100%; margin-bottom: 20px; text-align: center;">
+  <h4>Q Tensor Components Visualization</h4>
+  <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+    <div style="width: 40%;">
+      <label for="director-angle">Director Angle: <span id="angle-value">0</span>°</label><br>
+      <input type="range" id="director-angle" min="0" max="180" step="1" value="0" style="width: 100%;">
+    </div>
+    <div style="width: 40%;">
+      <label for="matrix-s-value">Order Parameter (S): <span id="matrix-s-display">0.6</span></label><br>
+      <input type="range" id="matrix-s-value" min="0" max="1" step="0.05" value="0.6" style="width: 100%;">
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <div>
+      <div style="font-size: 24px; margin-bottom: 10px;">
+        Q = <span id="s-value-display">0.6</span> ×
+      </div>
+      <div style="font-size: 24px;">
+        ( <span id="nn-matrix">
+          [cos²θ - 1/2, cosθ·sinθ]<br>
+          [cosθ·sinθ, sin²θ - 1/2]
+        </span> )
+      </div>
+      <div style="margin-top: 30px; font-size: 24px;">
+        = <span id="q-matrix">
+          [0.1, 0]<br>
+          [0, -0.1]
+        </span>
+      </div>
+    </div>
+
+    <div id="director-visualization" style="margin-left: 50px; width: 200px; height: 200px; border: 1px solid #ccc;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initial values
+  let angle = 0; // degrees
+  let S = 0.6;   // scalar order parameter
+
+  // SVG for director visualization
+  const dirWidth = 200;
+  const dirHeight = 200;
+  const centerX = dirWidth / 2;
+  const centerY = dirHeight / 2;
+
+  const dirSvg = d3.select("#director-visualization")
+    .append("svg")
+    .attr("width", dirWidth)
+    .attr("height", dirHeight);
+
+  // Add circle to represent unit circle
+  dirSvg.append("circle")
+    .attr("cx", centerX)
+    .attr("cy", centerY)
+    .attr("r", 80)
+    .attr("fill", "none")
+    .attr("stroke", "#ccc")
+    .attr("stroke-width", 1);
+
+  // Add director line
+  const directorLine = dirSvg.append("line")
+    .attr("x1", centerX)
+    .attr("y1", centerY)
+    .attr("x2", centerX + 80)
+    .attr("y2", centerY)
+    .attr("stroke", "red")
+    .attr("stroke-width", 2);
+
+  // Add director head indicator
+  const directorHead = dirSvg.append("circle")
+    .attr("cx", centerX + 80)
+    .attr("cy", centerY)
+    .attr("r", 5)
+    .attr("fill", "red");
+
+  // Add ellipse representing the Q tensor
+  const tensorEllipse = dirSvg.append("ellipse")
+    .attr("cx", centerX)
+    .attr("cy", centerY)
+    .attr("rx", 60)
+    .attr("ry", 30)
+    .attr("fill", "rgba(70, 130, 180, 0.3)")
+    .attr("stroke", "steelblue")
+    .attr("stroke-width", 1.5);
+
+  // Function to update visualization
+  function updateQMatrixVisualization() {
+    // Convert angle to radians
+    const angleRad = angle * Math.PI / 180;
+
+    // Calculate director components
+    const nx = Math.cos(angleRad);
+    const ny = Math.sin(angleRad);
+
+    // Calculate Q tensor components in 2D
+    const d = 2;
+    const Qxx = S * (nx * nx - 1/d);
+    const Qxy = S * nx * ny;
+    const Qyy = S * (ny * ny - 1/d);
+
+    // Update matrix display
+    document.getElementById('s-value-display').textContent = S.toFixed(2);
+
+    // Display the nn - I/d matrix
+    const nn_xx = (nx * nx - 1/d).toFixed(2);
+    const nn_xy = (nx * ny).toFixed(2);
+    const nn_yy = (ny * ny - 1/d).toFixed(2);
+
+    document.getElementById('nn-matrix').innerHTML =
+      `[${nn_xx}, ${nn_xy}]<br>[${nn_xy}, ${nn_yy}]`;
+
+    // Display the Q matrix
+    document.getElementById('q-matrix').innerHTML =
+      `[${Qxx.toFixed(2)}, ${Qxy.toFixed(2)}]<br>[${Qxy.toFixed(2)}, ${Qyy.toFixed(2)}]`;
+
+    // Update director visualization
+    directorLine
+      .attr("x2", centerX + 80 * nx)
+      .attr("y2", centerY + 80 * ny);
+
+    directorHead
+      .attr("cx", centerX + 80 * nx)
+      .attr("cy", centerY + 80 * ny);
+
+    // Update ellipse representing the Q tensor
+    // The eigenvalues in 2D are S/2 and -S/2
+    const majorAxis = 70 * (1 + S/2);
+    const minorAxis = 70 * (1 - S/2);
+
+    tensorEllipse
+      .attr("rx", majorAxis)
+      .attr("ry", minorAxis)
+      .attr("transform", `rotate(${angle}, ${centerX}, ${centerY})`);
+  }
+
+  // Initial update
+  updateQMatrixVisualization();
+
+  // Event listeners
+  document.getElementById('director-angle').addEventListener('input', function(e) {
+    angle = parseFloat(e.target.value);
+    document.getElementById('angle-value').textContent = angle.toFixed(0);
+    updateQMatrixVisualization();
+  });
+
+  document.getElementById('matrix-s-value').addEventListener('input', function(e) {
+    S = parseFloat(e.target.value);
+    document.getElementById('matrix-s-display').textContent = S.toFixed(2);
+    updateQMatrixVisualization();
+  });
+});
+</script>
+``` -->
+<!-- ## Animal Collective Behavior and Biological Swarms
+
+Biological collective motion provides both inspiration for theoretical models and testing grounds for their predictions. Across diverse organisms—from bird flocks and fish schools to insect swarms and mammalian herds—similar patterns of self-organization emerge despite vastly different sensory and cognitive capabilities.
+
+In bird flocks (particularly starlings), high-resolution tracking has revealed several key features:
+- Scale-free velocity correlations, where correlation length scales with group size
+- The "topological" nature of interactions, with birds responding to a fixed number of neighbors (~6-7) rather than all neighbors within a metric distance
+- Information transfer through linear waves during turning maneuvers, propagating at speeds faster than would be predicted by simple reaction times
+- Marginal opacity, where the average number of individuals blocked from view remains constant regardless of flock density
+
+Fish schools exhibit distinct dynamical regimes characterized by:
+- Highly aligned, polarized schools during directed travel
+- Milling patterns (toroidal rotations) during foraging or predator response
+- Sudden transitions between these states triggered by environmental cues or internal fluctuations
+- Dynamic responses to predators including the "flash expansion" (rapid outward acceleration) and "fountain effect" (splitting and rejoining around a predator)
+
+Insect swarms (like midges) show different organizing principles:
+- Limited polarization but strong density correlations
+- Emergent virial scaling relations between kinetic energy and group size
+- Evidence for tensile forces mediated through the air, effectively creating "social potential" between individuals
+
+The functional benefits of collective motion include enhanced predator detection (many-eyes effect), confusion of predators through density waves, improved navigation accuracy through error cancellation, and energetic advantages from hydrodynamic or aerodynamic interactions.
+
+Surprisingly, many of these diverse systems can be effectively modeled using relatively simple interaction rules, suggesting convergent evolution toward similar strategies for coordinating groups across different ecological contexts and evolutionary lineages.
+
+## Synthetic Realizations of Collective Motion
+
+Engineering artificial systems that exhibit collective motion offers both practical applications and fundamental tests of theoretical principles. These synthetic active matter systems span multiple scales, from nanometers to centimeters, and utilize diverse energy sources.
+
+At microscopic scales, self-propelled colloids represent a versatile platform:
+- Janus particles with asymmetric surface chemistry, propelled by catalytic reactions (e.g., platinum-coated silica spheres in hydrogen peroxide)
+- Light-activated particles that convert optical energy into motion through thermophoresis or photocatalysis
+- These systems demonstrate motility-induced phase separation (MIPS), where purely repulsive particles spontaneously form dense clusters due to their self-propulsion
+
+Active emulsions and droplets exploit:
+- Marangoni flows driven by chemical gradients at liquid-liquid interfaces
+- Controlled release of surfactants leading to directed motion
+- These systems can perform complex tasks including maze-solving and cargo transport through chemical sensing and response
+
+Macroscopic active matter includes:
+- Vibrated granular rods that convert vertical vibration into horizontal motion through asymmetric friction
+- Robotic swarms with programmable interaction rules, enabling systematic variation of parameters impossible in biological systems
+- Magnetically actuated systems where external fields drive particle motion while interactions arise from induced dipoles
+
+Recent innovations combine active matter with designed environments:
+- Topological defects in nematic fields can guide particle trajectories
+- Curved surfaces induce effective forces that organize collective motion
+- Patterned substrates create energy landscapes that shape emergent behaviors
+
+These synthetic systems offer several advantages:
+- Precise control over interaction parameters
+- Direct visualization of individual and collective dynamics
+- The ability to incorporate feedback between environmental sensing and behavioral response
+
+Bridging the gap between biological and synthetic systems, bio-hybrid active materials incorporate biological components (molecular motors, bacteria, or cells) with engineered structures, creating systems that harvest biological energy transduction mechanisms while allowing technological control and functionality.
+
+The development of these synthetic systems not only validates theoretical models but also points toward applications in self-assembled materials, microsurgery, environmental remediation, and distributed sensing networks.
+ -->
+</section>
+<section id="continuum-theory-of-active-nematics" class="level3">
+<h3 class="anchored" data-anchor-id="continuum-theory-of-active-nematics">Continuum Theory of Active Nematics</h3>
+<p>Based on this understanding of nematic liquid crystals, we now extend these concepts to active systems. As we’ve seen, passive nematics are characterized by rod-like particles with head-tail symmetry that align along a common director. Active nematics maintain this same orientational order but with a crucial difference: each constituent continuously injects energy into the system, driving it far from equilibrium.</p>
+<p>The comprehensive review by Doostmohammadi et al.&nbsp;(2018) provides a theoretical framework that connects the fundamental concepts of nematic order we’ve discussed with the rich dynamics that emerge when energy is continuously supplied at the microscale.</p>
+<section id="from-q-tensor-to-hydrodynamics" class="level4">
+<h4 class="anchored" data-anchor-id="from-q-tensor-to-hydrodynamics">From Q-Tensor to Hydrodynamics</h4>
+<p>Recall that we described nematic order using the Q-tensor, which captures both the director orientation and the degree of alignment. In active systems, this Q-tensor becomes dynamically coupled to fluid flow. The continuum description of active nematics combines the Q-tensor formalism with hydrodynamic equations through several coupled differential equations.</p>
+<p>The first equation describes the conservation of mass:</p>
+<p><span class="math display">\[\partial_t \rho + \nabla \cdot (\rho \mathbf{u}) = 0\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is the density and <span class="math inline">\(\mathbf{u}\)</span> is the velocity field. This standard continuity equation ensures that mass is neither created nor destroyed.</p>
+<p>The momentum conservation equation governs the flow field:</p>
+<p><span class="math display">\[\rho (\partial_t + \mathbf{u} \cdot \nabla) \mathbf{u} = \nabla \cdot \sigma^{total}\]</span></p>
+<p>Here, the left side represents the inertial terms (often negligible in microscopic systems), while the right side incorporates all stresses that drive the flow. The total stress tensor <span class="math inline">\(\sigma^{total}\)</span> includes several contributions:</p>
+<p><span class="math display">\[\sigma^{total} = \sigma^{passive} + \sigma^{active}\]</span></p>
+<p>The passive stress <span class="math inline">\(\sigma^{passive}\)</span> includes viscous and elastic contributions familiar from passive liquid crystal theory. The elastic stress depends on gradients of the Q-tensor and resists distortions in the director field.</p>
+<p>What distinguishes active from passive nematics is the addition of the active stress tensor:</p>
+<p><span class="math display">\[\sigma^{active} = -\zeta \mathbf{Q}\]</span></p>
+<p>This remarkably simple term encapsulates the essence of activity in the system. The activity parameter <span class="math inline">\(\zeta\)</span> determines both the strength and type of active stress:</p>
+<ul>
+<li>When <span class="math inline">\(\zeta &gt; 0\)</span> (extensile systems), the active units push outward along the director axis</li>
+<li>When <span class="math inline">\(\zeta &lt; 0\)</span> (contractile systems), the active units pull inward along the director axis</li>
+</ul>
+<div id="fig-active-nematics-defects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-active-nematics-defects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture08/extensile_contractile.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-nematics-defects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Particle alignment and velocity fields around ±1/2 topological defects in extensile and contractile active systems. <a href="https://www.nature.com/articles/s41467-018-05666-8">Source</a>
+</figcaption>
+</figure>
+</div>
+<p>Examples of extensile systems include microtubule bundles pushed apart by kinesin motors, while actomyosin networks in cells often exhibit contractile behavior.</p>
+<div id="fig-microtubule-motors" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-microtubule-motors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture08/motors.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-microtubule-motors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Schematic illustration of microtubule bundles driven by kinesin motors. This biological system represents a classic example of extensile active nematics, where motor proteins convert chemical energy (ATP) into mechanical work that pushes adjacent microtubules apart, generating active stresses.
+</figcaption>
+</figure>
+</div>
+<p>The final key equation describes how the nematic order itself evolves:</p>
+<p><span class="math display">\[(\partial_t + \mathbf{u} \cdot \nabla) \mathbf{Q} - \mathbf{S} = \Gamma \mathbf{H}\]</span></p>
+<p>This equation includes:</p>
+<ul>
+<li>Advection of the nematic order by the flow (the <span class="math inline">\(\mathbf{u} \cdot \nabla \mathbf{Q}\)</span> term)</li>
+<li>Flow-induced rotation and stretching of the director (the <span class="math inline">\(\mathbf{S}\)</span> term)</li>
+<li>Relaxation toward equilibrium (the <span class="math inline">\(\Gamma \mathbf{H}\)</span> term, where <span class="math inline">\(\mathbf{H}\)</span> is the molecular field derived from the free energy)</li>
+</ul>
+<p>Together, these equations create a feedback loop: the nematic order generates active stresses, which create flows, which in turn affect the nematic order.</p>
+</section>
+<section id="instabilities-and-the-emergence-of-active-turbulence" class="level4">
+<h4 class="anchored" data-anchor-id="instabilities-and-the-emergence-of-active-turbulence">Instabilities and the Emergence of Active Turbulence</h4>
+<p>The most striking feature of active nematics is their inherent instability above a critical activity threshold. This instability stems directly from the interplay between active stress and nematic elasticity.</p>
+<p>Consider a small bend distortion in an otherwise uniform nematic. The active stress associated with this distortion generates a flow that, rather than restoring the uniform state, amplifies the initial distortion. This positive feedback mechanism destabilizes the uniform state when activity exceeds a threshold value.</p>
+<p>Mathematically, linear stability analysis reveals that the critical activity scales with the specific elastic constant corresponding to the primary distortion mode:</p>
+<p><span class="math display">\[\zeta_c \sim K_i/L^2\]</span></p>
+<p>where <span class="math inline">\(K_i\)</span> is the relevant elastic constant (<span class="math inline">\(K_1\)</span> for splay in contractile systems, <span class="math inline">\(K_3\)</span> for bend in extensile systems) and <span class="math inline">\(L\)</span> is the system size. In practice, the most unstable mode depends on the sign of the activity: extensile systems (ζ &gt; 0) primarily destabilize through bend deformations (governed by <span class="math inline">\(K_3\)</span>), while contractile systems (ζ &lt; 0) do so through splay deformations (governed by <span class="math inline">\(K_1\)</span>). Beyond this threshold, the system develops a complex, chaotic flow state termed “active turbulence.”</p>
+<p>The characteristic length scale of this turbulent flow is:</p>
+<p><span class="math display">\[l_{active} \sim \sqrt{K/|\zeta|}\]</span></p>
+<p>This important relation explains why active turbulence displays structures (vortices and jets) with a characteristic size that decreases with increasing activity. Unlike inertial turbulence where energy cascades across scales, active turbulence has an intrinsic length scale determined by the balance between elastic resistance and active driving.</p>
+</section>
+<section id="topological-defects-as-active-particles" class="level4">
+<h4 class="anchored" data-anchor-id="topological-defects-as-active-particles">Topological Defects as Active Particles</h4>
+<p>Topological defects—points where the nematic order breaks down—take on a new significance in active systems. In passive nematics, defects are static imperfections that gradually annihilate to minimize elastic energy. In active nematics, they become dynamic entities that drive the system’s complex behavior.</p>
+<p>Active nematics spontaneously generate pairs of topological defects with charges +1/2 and -1/2. The +1/2 defects, with their comet-like structure, experience an active force along their symmetry axis, causing them to move like self-propelled particles. Their velocity scales with activity:</p>
+<p><span class="math display">\[v_{+1/2} \sim \zeta l_d/\eta\]</span></p>
+<p>where <span class="math inline">\(l_d\)</span> is the defect core size and <span class="math inline">\(\eta\)</span> is the viscosity. In contrast, -1/2 defects with three-fold symmetry experience no net active force and move primarily due to elastic interactions and background flow.</p>
+<p>This continuous creation, motion, and annihilation of defects sustains the active turbulent state. The defect density in steady state scales as:</p>
+<p><span class="math display">\[n_{defect} \sim |\zeta|/K\]</span></p>
+<p>showing that stronger activity generates more defects, while stronger elasticity suppresses them.</p>
+</section>
+<section id="experimental-realizations" class="level4">
+<h4 class="anchored" data-anchor-id="experimental-realizations">Experimental Realizations</h4>
+<p>The theoretical framework of active nematics has been validated in diverse experimental systems. Each system demonstrates how the Q-tensor formalism and active stress concept can capture complex behaviors across different scales and materials.</p>
+<p>Reconstituted systems of microtubules and kinesin motor proteins provide perhaps the cleanest realization of active nematics. In these systems, ATP hydrolysis powers the extension of microtubule bundles, creating active stresses that drive the formation of defects and turbulent-like flows. The experiments by Sanchez et al.&nbsp;(2012) beautifully confirmed the theoretical predictions regarding defect dynamics and active length scales.</p>
+<p>Bacterial suspensions of rod-shaped organisms like E. coli or B. subtilis also exhibit nematic ordering at high densities. The flagellar propulsion of these bacteria generates active stresses that drive complex flows. Measurements by Dunkel et al.&nbsp;(2013) revealed velocity fields and energy spectra consistent with active nematic theory.</p>
+<p>Perhaps most surprisingly, multicellular systems including epithelial cell monolayers display active nematic behavior. The elongated shape of these cells naturally promotes nematic alignment, while cellular forces generate active stresses. Recent work by Saw et al.&nbsp;(2017) demonstrated that topological defects in these cellular nematics can even influence biological functions, triggering processes like cell extrusion at +1/2 defect locations.</p>
+</section>
+<section id="controlling-active-nematics-through-confinement" class="level4">
+<h4 class="anchored" data-anchor-id="controlling-active-nematics-through-confinement">Controlling Active Nematics Through Confinement</h4>
+<p>Active nematics respond dramatically to geometric confinement, offering opportunities to control their complex dynamics. Unlike equilibrium systems where confinement generally simplifies behavior, active nematics in confinement can develop entirely new dynamical states.</p>
+<p>In circular confinements, active nematics can form regular arrays of defects that would be impossible in unconfined systems. The competition between boundary-imposed alignment and bulk active stresses leads to these organized defect lattices.</p>
+<div id="fig-active-turbulence" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-active-turbulence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/CyPy1_bVsbU" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-turbulence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Active nematic turbulence showing the characteristic flow patterns and defect dynamics. <a href="https://www.pnas.org/doi/full/10.1073/pnas.1816733116">Opathalage, A. et al.&nbsp;Self-organized dynamics and the transition to turbulence of confined active nematics. Proc. Natl. Acad. Sci. 116, 4788–4797 (2019).</a>.
+</figcaption>
+</figure>
+</div>
+<p>Channel geometries provide another route to control active nematics. When the channel width approaches the intrinsic active length scale <span class="math inline">\(l_{active}\)</span>, the chaotic active turbulence can transform into coherent, unidirectional flows. This phenomenon suggests potential applications in microfluidic pumping and transport.</p>
+<p>Some confined geometries even produce oscillatory states, where the system cycles regularly between different defect configurations. These active nematic oscillators represent a form of mechanical self-organization that converts continuous energy input into regular motion—a principle that may have applications in designing synthetic motors at the microscale.</p>
+</section>
+<section id="active-nematics-in-biology" class="level4">
+<h4 class="anchored" data-anchor-id="active-nematics-in-biology">Active Nematics in Biology</h4>
+<p>The active nematic framework provides a powerful lens for understanding biological organization across scales. From subcellular structures to developing tissues, many biological systems display features consistent with active nematic physics.</p>
+<p>The cytoskeleton itself combines semiflexible filaments (microtubules, actin) with molecular motors in a manner that closely resembles an active nematic. The branched actin networks driving cell motility and the spindle apparatus separating chromosomes during cell division both exhibit active stress generation coupled with orientational order.</p>
+<p>At the tissue level, many cell types are naturally elongated and form nematic arrangements when crowded. The active stresses generated by these cells create patterns of deformation and flow that influence tissue development. Recent work has identified nematic ordering and topological defects in developing fruit fly wings, embryonic tissues, and even tumor cell invasions.</p>
+<p>This growing evidence suggests that active nematic physics may represent a fundamental organizing principle in biology, contributing to pattern formation and function across scales. The mathematical framework we’ve discussed provides a quantitative language for understanding these complex biological phenomena.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture07/lecture07.html" class="pagination-link" aria-label="Lecture 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 7</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture09/lecture09.html" class="pagination-link" aria-label="Lecture 9">
+        <span class="nav-page-text">Lecture 9</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

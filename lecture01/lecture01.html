@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to Active Matter – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture02/lecture02.html" rel="next">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Lecture 1</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-1" id="toc-lecture-1" class="nav-link active" data-scroll-target="#lecture-1">Lecture 1</a>
+  <ul class="collapse">
+  <li><a href="#historical-context-and-emergence-of-the-field" id="toc-historical-context-and-emergence-of-the-field" class="nav-link" data-scroll-target="#historical-context-and-emergence-of-the-field">Historical context and emergence of the field</a></li>
+  <li><a href="#distinguishing-features-from-equilibrium-systems" id="toc-distinguishing-features-from-equilibrium-systems" class="nav-link" data-scroll-target="#distinguishing-features-from-equilibrium-systems">Distinguishing features from equilibrium systems</a></li>
+  <li><a href="#classification-and-examples-of-active-systems" id="toc-classification-and-examples-of-active-systems" class="nav-link" data-scroll-target="#classification-and-examples-of-active-systems">Classification and Examples of Active Systems</a></li>
+  <li><a href="#overview-of-theoretical-approaches-and-challenges" id="toc-overview-of-theoretical-approaches-and-challenges" class="nav-link" data-scroll-target="#overview-of-theoretical-approaches-and-challenges">Overview of theoretical approaches and challenges</a></li>
+  <li><a href="#challenges-in-the-field-of-active-matter" id="toc-challenges-in-the-field-of-active-matter" class="nav-link" data-scroll-target="#challenges-in-the-field-of-active-matter">Challenges in the field of active matter</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Lecture 1</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Introduction to Active Matter</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-1" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-1">Lecture 1</h2>
+<section id="historical-context-and-emergence-of-the-field" class="level3">
+<h3 class="anchored" data-anchor-id="historical-context-and-emergence-of-the-field">Historical context and emergence of the field</h3>
+<p>The study of active matter emerged in the late 20th century at the intersection of soft matter physics, biophysics, and statistical mechanics. An important precursor to the field came from computer graphics, where Craig Reynolds developed the <a href="http://www.red3d.com/cwr/boids/">Boids</a> simulation in 1986 - an artificial life program that demonstrated how simple rules governing individual agents could produce realistic flocking behaviors in computer animations. Earlier cellular automata models like <a href="https://conwaylife.com/">Conway’s Game of Life</a> had also shown how simple rules could lead to complex emergent behaviors, helping establish some of the conceptual foundations for understanding collective systems.</p>
+<div id="fig-boids" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="boids-container"></div>
+
+<style>
+  #boids-container {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    border: 0px solid #ccc;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .boid {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 2.5px solid transparent;
+    border-right: 2.5px solid transparent;
+    border-bottom: 6px solid #000000;
+    transform-origin: 50% 67%;
+  }
+
+  .controls {
+    margin: 10px auto;
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  button, label {
+    margin: 0 10px;
+  }
+
+  button {
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+</style>
+
+<div class="controls" style="display: flex; justify-content: space-between; align-items: flex-start;margin-left:20 px;">
+  <div>
+    <button id="reset-btn">Reset Simulation</button>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 10px; margin-right: 100px;">
+    <label style="margin-bottom: 5px;">Separation: <input type="range" id="separation" min="0" max="5" step="0.1" value="2.5"></label>
+    <label style="margin-bottom: 5px;">Alignment: <input type="range" id="alignment" min="0" max="2" step="0.1" value="0.2"></label>
+    <label style="margin-bottom: 5px;">Cohesion: <input type="range" id="cohesion" min="0" max="2" step="0.1" value="0.2"></label>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Configuration
+  const config = {
+    numBoids: 1000,
+    width: 800,
+    height: 500,
+    maxSpeed: 3,
+    minSpeed: 1,
+    perceptionRadius: 20,
+    separationWeight: 2.5,
+    alignmentWeight: 0.2,
+    cohesionWeight: 0.01,
+    avoidBoundaryWeight: 1.0,
+    boundaryMargin: 50,
+    maxForce: 0.2
+  };
+
+  // Initialize boids
+  let boids = [];
+
+  function initBoids() {
+    boids = [];
+    for (let i = 0; i < config.numBoids; i++) {
+      boids.push({
+        id: i,
+        x: Math.random() * config.width,
+        y: Math.random() * config.height,
+        vx: Math.random() * 2 - 1,
+        vy: Math.random() * 2 - 1,
+        history: []
+      });
+    }
+
+    // Normalize velocities
+    boids.forEach(boid => {
+      const speed = Math.sqrt(boid.vx * boid.vx + boid.vy * boid.vy);
+      boid.vx = (boid.vx / speed) * (config.minSpeed + Math.random() * (config.maxSpeed - config.minSpeed));
+      boid.vy = (boid.vy / speed) * (config.minSpeed + Math.random() * (config.maxSpeed - config.minSpeed));
+    });
+  }
+
+  // D3 setup
+  const container = d3.select('#boids-container');
+
+  function updateBoids() {
+    // Read current slider values
+    config.separationWeight = parseFloat(d3.select('#separation').property('value'));
+    config.alignmentWeight = parseFloat(d3.select('#alignment').property('value'));
+    config.cohesionWeight = parseFloat(d3.select('#cohesion').property('value'));
+
+    boids.forEach(boid => {
+      // Find neighbors within perception radius
+      const neighbors = boids.filter(other => {
+        if (other.id === boid.id) return false;
+        const dx = boid.x - other.x;
+        const dy = boid.y - other.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        return dist < config.perceptionRadius;
+      });
+
+      // Apply Reynolds' three rules plus boundary avoidance
+
+      // Rule 1: Separation - avoid crowding neighbors
+      let separationForceX = 0;
+      let separationForceY = 0;
+
+      neighbors.forEach(neighbor => {
+        const dx = boid.x - neighbor.x;
+        const dy = boid.y - neighbor.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        // Weight by inverse distance - closer neighbors have more influence
+        const factor = Math.max(0, config.perceptionRadius - dist) / config.perceptionRadius;
+        separationForceX += (dx / dist) * factor;
+        separationForceY += (dy / dist) * factor;
+      });
+
+      // Rule 2: Alignment - steer towards average heading of neighbors
+      let alignmentForceX = 0;
+      let alignmentForceY = 0;
+
+      if (neighbors.length > 0) {
+        let avgVx = 0;
+        let avgVy = 0;
+
+        neighbors.forEach(neighbor => {
+          avgVx += neighbor.vx;
+          avgVy += neighbor.vy;
+        });
+
+        avgVx /= neighbors.length;
+        avgVy /= neighbors.length;
+
+        // Calculate steering force toward alignment
+        alignmentForceX = avgVx - boid.vx;
+        alignmentForceY = avgVy - boid.vy;
+      }
+
+      // Rule 3: Cohesion - steer towards center of mass of neighbors
+      let cohesionForceX = 0;
+      let cohesionForceY = 0;
+
+      if (neighbors.length > 0) {
+        let centerX = 0;
+        let centerY = 0;
+
+        neighbors.forEach(neighbor => {
+          centerX += neighbor.x;
+          centerY += neighbor.y;
+        });
+
+        centerX /= neighbors.length;
+        centerY /= neighbors.length;
+
+        // Calculate steering force toward center
+        cohesionForceX = centerX - boid.x;
+        cohesionForceY = centerY - boid.y;
+      }
+
+      // Boundary avoidance
+      let boundaryForceX = 0;
+      let boundaryForceY = 0;
+
+      if (boid.x < config.boundaryMargin) {
+        boundaryForceX = config.boundaryMargin - boid.x;
+      } else if (boid.x > config.width - config.boundaryMargin) {
+        boundaryForceX = (config.width - config.boundaryMargin) - boid.x;
+      }
+
+      if (boid.y < config.boundaryMargin) {
+        boundaryForceY = config.boundaryMargin - boid.y;
+      } else if (boid.y > config.height - config.boundaryMargin) {
+        boundaryForceY = (config.height - config.boundaryMargin) - boid.y;
+      }
+
+      // Apply all forces with weights
+      let accelerationX = separationForceX * config.separationWeight +
+                          alignmentForceX * config.alignmentWeight +
+                          cohesionForceX * config.cohesionWeight +
+                          boundaryForceX * config.avoidBoundaryWeight;
+
+      let accelerationY = separationForceY * config.separationWeight +
+                          alignmentForceY * config.alignmentWeight +
+                          cohesionForceY * config.cohesionWeight +
+                          boundaryForceY * config.avoidBoundaryWeight;
+
+      // Limit force magnitude
+      const forceMagnitude = Math.sqrt(accelerationX * accelerationX + accelerationY * accelerationY);
+      if (forceMagnitude > config.maxForce) {
+        accelerationX = (accelerationX / forceMagnitude) * config.maxForce;
+        accelerationY = (accelerationY / forceMagnitude) * config.maxForce;
+      }
+
+      // Update velocity
+      boid.vx += accelerationX;
+      boid.vy += accelerationY;
+
+      // Limit speed
+      const speed = Math.sqrt(boid.vx * boid.vx + boid.vy * boid.vy);
+      if (speed > config.maxSpeed) {
+        boid.vx = (boid.vx / speed) * config.maxSpeed;
+        boid.vy = (boid.vy / speed) * config.maxSpeed;
+      } else if (speed < config.minSpeed) {
+        boid.vx = (boid.vx / speed) * config.minSpeed;
+        boid.vy = (boid.vy / speed) * config.minSpeed;
+      }
+
+      // Update position
+      boid.x += boid.vx;
+      boid.y += boid.vy;
+
+      // Keep track of history for trail (optional)
+      boid.history.push({ x: boid.x, y: boid.y });
+      if (boid.history.length > 10) {
+        boid.history.shift();
+      }
+
+      // Wrap around boundaries (alternative to avoidance)
+      /*
+      if (boid.x < 0) boid.x = config.width;
+      if (boid.x > config.width) boid.x = 0;
+      if (boid.y < 0) boid.y = config.height;
+      if (boid.y > config.height) boid.y = 0;
+      */
+    });
+  }
+
+  function render() {
+    // Update boid elements
+    const boidElements = container.selectAll('.boid')
+      .data(boids, d => d.id);
+
+    // Enter
+    boidElements.enter()
+      .append('div')
+      .attr('class', 'boid')
+      .attr('id', d => `boid-${d.id}`);
+
+    // Update
+    container.selectAll('.boid')
+      .style('left', d => `${d.x}px`)
+      .style('top', d => `${d.y}px`)
+      .style('transform', d => {
+        const angle = Math.atan2(d.vy, d.vx) * (180 / Math.PI) + 90;
+        return `translate(-50%, -50%) rotate(${angle}deg)`;
+      });
+
+    // Exit
+    boidElements.exit().remove();
+  }
+
+  function animate() {
+    updateBoids();
+    render();
+    requestAnimationFrame(animate);
+  }
+
+  // Reset function and event binding
+  function resetSimulation() {
+    initBoids();
+    render();
+  }
+
+  d3.select('#reset-btn').on('click', resetSimulation);
+
+  // Initialize and start animation
+  initBoids();
+  animate();
+});
+</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Interactive simulation of the Boids model, where you can adjust the three key parameters that govern flocking behavior: separation (avoidance of crowding), alignment (steering towards average heading), and cohesion (steering towards center of mass).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Boids Model Explained
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Boids model, developed by Craig Reynolds in 1986, simulates the flocking behavior of birds using three simple rules:</p>
+<ol type="1">
+<li><strong>Separation</strong>: Each boid avoids crowding nearby flockmates, steering away when they get too close.</li>
+<li><strong>Alignment</strong>: Each boid aligns its direction of flight with nearby flockmates, matching their average velocity.</li>
+<li><strong>Cohesion</strong>: Each boid moves toward the center of mass of nearby flockmates, creating a tendency to stick together.</li>
+</ol>
+<p>These local interaction rules, when applied to all individuals simultaneously, produce complex global behaviors that remarkably resemble natural flocking patterns. The simulation above demonstrates how adjusting these three parameters affects the emergent collective motion:</p>
+<ul>
+<li><strong>High separation, low alignment, low cohesion</strong>: Dispersed individuals with minimal coordination</li>
+<li><strong>Low separation, high alignment, medium cohesion</strong>: Coherent flocking with directional movement</li>
+<li><strong>Balanced parameters</strong>: Natural-looking flocking behaviors with dynamic subgroup formation</li>
+</ul>
+<p>This model illustrates a fundamental principle in active matter physics: complex collective behaviors can emerge from simple local rules without centralized control.</p>
+</div>
+</div>
+</div>
+<p>This computational model later influenced physical approaches to collective motion. Early foundational work by scientists like T. Vicsek in the 1990s established computational models for collective motion, particularly his 1995 paper introducing what is now known as the <a href="https://www.dmsussman.org/resources/vicsekmodelsimulator/">Vicsek model</a> for self-propelled particles with alignment interactions. Prior to this, early biological observations of collective behaviors in nature, such as bird flocking and fish schooling, had long fascinated scientists but lacked rigorous physical frameworks. The field gained significant momentum in the late 1990swith seminal papers by John Toner and Yuhai Tu, who published their groundbreaking work on flocking theory in 1995, and later Sriram Ramaswamy who developed continuum theories for active nematics.</p>
+<p>The theoretical foundations were further strengthened by contributions from European researchers like Michael Cates (Edinburgh), Jean-François Joanny (Paris), and Jacques Prost (Paris), who developed the active gel theory to describe cytoskeletal dynamics in the mid-2000s. Simultaneously, M. Cristina Marchetti and her collaborators formulated comprehensive hydrodynamic theories for active systems across various symmetry classes. Sriram Ramaswamy made fundamental contributions through his work on active liquid crystals and the development of generic hydrodynamic theories for active matter. The pioneering work of John Toner and Yuhai Tu established the theoretical framework for understanding the emergence of long-range order in flocking systems, demonstrating how activity can stabilize orientational order even in two dimensions. Julia Yeomans (Oxford) advanced our understanding of active turbulence and topological defects in active nematics through innovative computational approaches, while Hartmut Löwen (Düsseldorf) developed influential theories for the collective behavior of active Brownian particles and motility-induced phase separation. These theoretical advances were complemented by experimental breakthroughs, notably Howard Berg’s groundbreaking work in the 1970s at Harvard on bacterial chemotaxis and motility, where he developed the tracking microscope to follow individual E. coli bacteria and discovered their run-and-tumble motion patterns. Additional experimental contributions came from Raymond Goldstein (Cambridge) and others who established quantitative measurements of collective motion in bacterial systems.</p>
+<p>Experimental breakthroughs with bacterial suspensions (notably work by Igor Aranson and Raymond Goldstein on Bacillus subtilis), cell tissues (including Xavier Trepat’s research at IBEC in Barcelona on epithelial cell sheets), and synthetic active colloids (pioneered by European researchers like Jérémie Palacci (Lyon/San Diego), Julien Perrin (Paris), and Clemens Bechinger (Konstanz/Stuttgart) with light-activated Janus particles) further propelled the field forward. The development of artificial microswimmers by international collaborations involving European teams led by Roberto Di Leonardo (Rome), Ramin Golestanian (Oxford/Göttingen), and Frank Cichos (Leipzig), alongside US-based researchers like Steve Granick and Ayusman Sen, opened new avenues for creating controllable active systems outside biological contexts.</p>
+<p>By the 2010s, active matter had developed into a distinct discipline with dedicated conferences and research groups worldwide. The establishment of specialized research centers across Europe such as the Max Planck Institute for Dynamics and Self-Organization in Göttingen, the Physics of Living Matter Group at Cambridge, the Biological Physics and Morphogenesis groups at MPIPKS Dresden, alongside the Syracuse Soft and Living Matter Program, the Center for the Physics of Biological Function at Princeton, and the Active Matter Lab at MIT reflected the field’s growing importance. Major milestones included the observation of motility-induced phase separation by Michael Cates (Edinburgh) and Julien Tailleur (Paris) (2013), the discovery of topological defect motility in active nematics by Zvonimir Dogic and collaborators (2014), and the creation of the first autonomous active material capable of performing work by Daniela Wilson’s group (Nijmegen) (2019). The field continues to expand with increasing interdisciplinary collaborations between physicists, biologists, materials scientists, and engineers, addressing fundamental questions in non-equilibrium physics while developing applications in biomedicine, soft robotics, and smart materials.</p>
+</section>
+<section id="distinguishing-features-from-equilibrium-systems" class="level3">
+<h3 class="anchored" data-anchor-id="distinguishing-features-from-equilibrium-systems">Distinguishing features from equilibrium systems</h3>
+<p>Understanding how active matter systems differ from equilibrium systems is crucial for developing new theoretical frameworks and experimental approaches. The continuous energy input and self-driven nature of active matter leads to behaviors that challenge our traditional physics understanding. Consider the following key distinctions between equilibrium and active matter systems:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 38%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Equilibrium Systems</th>
+<th>Active Matter Systems</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Detailed Balance</strong></td>
+<td>Forward and reverse processes occur at equal rates</td>
+<td>Continuously broken through energy consumption, driving the system away from equilibrium</td>
+</tr>
+<tr class="even">
+<td><strong>Fluctuation-Dissipation Theorem</strong></td>
+<td>Valid relationship between spontaneous fluctuations and response to external perturbations</td>
+<td>Breaks down as fluctuations can be driven by internal activity</td>
+</tr>
+<tr class="odd">
+<td><strong>Particle Motion</strong></td>
+<td>Random Brownian motion</td>
+<td>Persistent directional motion over certain timescales</td>
+</tr>
+<tr class="even">
+<td><strong>Statistical Distributions</strong></td>
+<td>Follow Boltzmann statistics</td>
+<td>Non-Boltzmann statistics, making standard thermodynamic tools inapplicable</td>
+</tr>
+<tr class="odd">
+<td><strong>Macroscopic Currents</strong></td>
+<td>Absent in steady states</td>
+<td>Can sustain macroscopic currents and flux cycles even in steady states</td>
+</tr>
+<tr class="even">
+<td><strong>Phase Behavior</strong></td>
+<td>Well-established equilibrium phases</td>
+<td>Unique phase transitions with no equilibrium counterparts (e.g., motility-induced phase separation, active turbulence)</td>
+</tr>
+<tr class="odd">
+<td><strong>Mechanical Pressure</strong></td>
+<td>Independent of boundary properties</td>
+<td>Can depend on properties of confining walls, violating equilibrium equations of state</td>
+</tr>
+<tr class="even">
+<td><strong>Energy and Entropy</strong></td>
+<td>Minimize free energy, maximize entropy</td>
+<td>Continuously dissipate energy and produce entropy even in steady states</td>
+</tr>
+<tr class="odd">
+<td><strong>Time-Reversal Symmetry</strong></td>
+<td>Dynamics appear similar when played forward or backward</td>
+<td>Dynamics look distinctly different when played forward versus backward</td>
+</tr>
+<tr class="even">
+<td><strong>Force Characteristics</strong></td>
+<td>Derivable from a potential energy function</td>
+<td>Cannot generally be derived from a potential energy function</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classification-and-examples-of-active-systems" class="level3">
+<h3 class="anchored" data-anchor-id="classification-and-examples-of-active-systems">Classification and Examples of Active Systems</h3>
+<p>Active matter encompasses a diverse range of systems, from biological organisms to synthetic particles, that share the common feature of continuously converting energy into systematic motion. These systems can be organized into several categories based on their energy sources, symmetries, and the nature of their interactions, providing a framework for understanding their distinct behaviors and properties.</p>
+<div id="fig-active-matter-systems" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-active-matter-systems-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture01/41526_2022_230_Fig1_HTML.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-matter-systems-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Overview of active matter systems at different scales and domains. The field spans from microscopic biological systems like cellular components to macroscopic collective behaviors and engineered synthetic systems. (<a href="https://doi.org/10.1038/s41526-022-00230-7">source</a>)
+</figcaption>
+</figure>
+</div>
+<p>Active matter systems can be categorized based on several key characteristics:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Energy conversion mechanism</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Symmetry of motion</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Medium and interactions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Structural arrangement</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Length scale and dimensionality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ul>
+<li><strong>Biological active matter</strong>: Systems that convert chemical energy (ATP, nutrients) into mechanical work (e.g., bacteria, cells, tissues). These systems span multiple scales, from molecular motors like kinesin and myosin that transport cargo along cytoskeletal filaments, to cellular components such as the dynamic cytoskeleton that enables cell shape changes and migration. At multicellular scales, coordinated activity enables tissue morphogenesis during development, wound healing, and collective cell migration. The energy conversion typically involves ATP hydrolysis, which provides approximately 20 kT of energy per molecule, enabling these systems to perform work against thermal fluctuations. Unlike their synthetic counterparts, biological active matter often exhibits adaptive behaviors, feedback regulation, and hierarchical organization that enhances functionality and robustness.</li>
+</ul>
+<div id="fig-energy-bio" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energy-bio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/ADPATP.png" height="200" class="figure-img"></p>
+<figcaption>ATP hydrolysis is the primary energy source in most cellular processes</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/bacteria.png" height="200" class="figure-img"></p>
+<figcaption>Bacteria like E. coli use flagella powered by molecular motors</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energy-bio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: ATP hydrolysis and bacterial motility represent key examples of chemical energy conversion in biological active matter
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Synthetic active matter</strong>: Engineered systems powered by external fields, chemical reactions, or light (e.g., Janus particles, active colloids). These artificial systems represent human-designed analogs to biological active matter, with scientists having precise control over their properties and behaviors. Synthetic active particles typically feature asymmetric structures or surface properties that enable self-propulsion. Common examples include Janus particles with catalyst-coated hemispheres that decompose hydrogen peroxide to create propulsion, light-activated particles that convert photonic energy into motion, and magnetically-actuated microswimmers that respond to oscillating external fields. Unlike biological systems, synthetic active matter can be designed with specific functionalities, such as targeted drug delivery, environmental remediation, or self-assembly into complex structures. Recent advances have produced programmable behaviors through responsive materials, feedback mechanisms, and even rudimentary “communication” between synthetic active agents.</li>
+</ul>
+<div id="fig-energy-synthetic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energy-synthetic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture01/active_particles.png" height="250" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energy-synthetic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Synthetic active particles can be designed with asymmetric properties to enable self-propulsion through various mechanisms
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ul>
+<li><strong>Polar active matter</strong>: Entities with defined front-back asymmetry and directional motion (e.g., birds, fish). These systems are characterized by particles or organisms that have a clear direction of motion and can align their movement with neighbors. For example, fish schools demonstrate this through their streamlined body shape that defines a clear swimming direction, while their lateral line system helps them align with neighboring fish. Similarly, migratory birds show polar order through their aerodynamic body structure and visual alignment with flock-mates during flight. At the microscopic scale, many bacteria like E. coli exhibit polar motion through their flagellar propulsion system that creates directed swimming. The polar nature of these systems often leads to unique collective phenomena like the emergence of large-scale coherent motion and the formation of traveling bands or density waves.</li>
+</ul>
+<div id="fig-polar-motion" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polar-motion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/fish_school.png" alt="School of fish swimming in formation" height="200" class="figure-img"></p>
+<figcaption>Fish schools demonstrate collective motion through simple alignment rules</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/birds.png" alt="Birds flying in formation" height="200" class="figure-img"></p>
+<figcaption>Bird flocks exhibit emergent order through local interactions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-motion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Examples of polar active matter: fish schools (<a href="https://daily.jstor.org/how-do-fish-schools-work/">source</a>) and bird flocks (<a href="https://www.eurekalert.org/news-releases/560920">source</a>)
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Apolar active matter</strong>: Systems generating motion without a defined direction (e.g., melanocytes, active nematics). These systems exhibit interesting collective behaviors despite lacking a preferred direction of motion at the individual level. For example, melanocytes, the cells responsible for skin pigmentation, extend and retract protrusions in multiple directions as they move and distribute melanin. Similarly, active nematics, such as dense suspensions of microtubules and molecular motors, generate complex flows and defect dynamics without any preferred direction of motion for individual components. The apolar nature of these systems often leads to unique phenomena like the spontaneous formation and annihilation of topological defects, and the emergence of active turbulence in confined geometries.</li>
+</ul>
+<div id="fig-apolar-motion" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-apolar-motion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/Melano1.png" alt="Melanocyte cells with extended protrusions" height="200" class="figure-img"></p>
+<figcaption>Melanocyte cells showing apolar migration patterns</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/anematics.png" alt="Active nematic liquid crystal with visible defects" height="200" class="figure-img"></p>
+<figcaption>Active nematic liquid crystals with defect patterns</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apolar-motion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Examples of apolar active matter: melanocytes (<a href="https://cellntec.com/products/melanocyte/melanocyte-expansion/">source</a>) and active nematics (<a href="https://www.youtube.com/user/DogicLab">source</a>)
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Chiral active matter</strong>: Systems with inherent rotational motion or handedness. These systems exhibit systematic rotational motion in addition to translational movement, often due to structural asymmetry or biased force generation. Examples include bacterial flagella that rotate to create propulsion, sperm cells that swim with helical trajectories, and synthetic microswimmers with chiral shapes that spin as they move through fluid. The interplay between rotational and translational motion in these systems can lead to unique collective behaviors, such as the formation of rotating clusters or vortex arrays. At the microscopic scale, molecular motors like the bacterial flagellar motor demonstrate how nature utilizes chirality to generate motion, while at larger scales, schools of fish can form rotating vortex patterns through their collective swimming behavior.</li>
+</ul>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<ul>
+<li><p><strong>Dry active matter</strong>: Systems where momentum dissipates to a substrate (e.g., cells on surfaces). In these systems, the primary interaction between particles occurs through direct contact or short-range forces, as the substrate quickly dampens any long-range hydrodynamic effects. A classic example is cells crawling on a surface, where the friction with the substrate dominates the dynamics. Another example is vibrated granular layers, where energy input causes particle motion but momentum is quickly dissipated through collisions with the base plate and between particles.</p></li>
+<li><p><strong>Wet active matter</strong>: Systems embedded in a fluid where hydrodynamic interactions dominate (e.g., bacterial suspensions). These systems exhibit complex long-range interactions mediated by the fluid, as the motion of each active particle creates flow fields that affect distant particles. Examples include swimming microorganisms in water, where the fluid flows generated by one organism can influence the motion of others several body lengths away. Active colloids in suspension also demonstrate these effects, where the chemical activity or motion of particles creates fluid flows that lead to collective behaviors and pattern formation.</p></li>
+</ul>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<ul>
+<li><p><strong>Active crystals</strong>: Ordered lattice-like arrangements with activity. These systems maintain crystalline order while individual units remain active, such as in bacterial colonies that form regular spatial patterns while each bacterium continues to move and metabolize. A key example is the formation of living crystals from light-activated colloidal particles, where the particles self-organize into a crystalline lattice while maintaining their individual motility.</p></li>
+<li><p><strong>Active glasses</strong>: Disordered, jammed configurations with activity. Unlike traditional glasses, these systems combine structural disorder with persistent local motion, leading to unique dynamical behaviors. Examples include dense bacterial suspensions at high concentrations where cells become trapped in disordered configurations but continue to exert active forces on their neighbors, or crowded solutions of motor proteins and filaments where steric constraints create glassy dynamics despite ongoing ATP-driven activity.</p></li>
+<li><p><strong>Active fluids/gases</strong>: Flowing systems with active components. These systems exhibit fluid-like behavior but with constituents that continuously inject energy at the microscopic scale. Examples range from dilute bacterial suspensions that show enhanced diffusion and collective motion, to dense active liquid crystals where the interplay between flow and orientational order creates complex dynamical patterns like active turbulence. In the gas-like regime, systems like midge swarms demonstrate how active particles can maintain cohesion while exhibiting fluid-like properties.</p></li>
+</ul>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<ul>
+<li><p><strong>Microscopic</strong>: Cellular and subcellular systems (cytoskeleton, bacterial colonies). At this scale, active matter emerges from molecular motors like kinesin and dynein walking along cytoskeletal filaments, or the collective motion of bacterial cells in colonies. The cytoskeleton itself is a fascinating example where networks of actin filaments and microtubules, driven by ATP-powered molecular motors, create complex dynamics essential for cell function and division.</p></li>
+<li><p><strong>Mesoscopic</strong>: Tissue and organ-level organizations. At the tissue level, collective cell behavior leads to emergent phenomena like wound healing and morphogenesis during development. Epithelial tissues demonstrate active matter dynamics through coordinated cell migration and mechanical force transmission between neighboring cells. These intermediate scales bridge individual cell behavior with organ-level function.</p></li>
+</ul>
+<div id="fig-morphogenesis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-morphogenesis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/QF1BW9fFhig?si=nSWW1lDf8Xw_RpS5" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-morphogenesis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Time-lapse microscopy of Drosophila embryo development showing gastrulation and tissue folding - a striking example of how active matter principles govern morphogenesis. The coordinated cell shape changes and movements create complex three-dimensional structures from an initially simple tissue sheet. <a href="https://www.youtube.com/@tglab">source</a>
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Macroscopic</strong>: Animal groups, human crowds. Large-scale collective behaviors emerge in systems like bird flocks, fish schools, and human crowds in urban environments. These systems demonstrate how simple interaction rules between individuals can create complex, coordinated motion patterns that span hundreds or thousands of times the size of individual agents. Traffic flow and pedestrian dynamics are particularly relevant examples for urban planning and crowd safety.</p></li>
+<li><p><strong>Quasi-2D vs.&nbsp;3D systems</strong>: Systems confined to surfaces vs.&nbsp;fully three-dimensional systems. Many active matter systems are effectively two-dimensional, like bacterial colonies growing on agar plates or cells migrating on substrates. These confined geometries often simplify both experimental observation and theoretical analysis. In contrast, true three-dimensional systems like bacterial suspensions in fluid or cell movement in tissue matrices exhibit additional complexities due to hydrodynamic interactions and the full range of possible motion directions.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="overview-of-theoretical-approaches-and-challenges" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-theoretical-approaches-and-challenges">Overview of theoretical approaches and challenges</h3>
+<p>The theoretical description of active matter draws from and extends multiple branches of physics:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Kinetic theories</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Continuum field theories</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Agent-based and particle models</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ul>
+<li><p><strong>Boltzmann-like approaches</strong>: Describing probability distributions of particle positions and orientations in active systems. For example, in bacterial suspensions, this approach tracks how the probability of finding bacteria with specific positions and swimming directions evolves over time. The key difference from classical Boltzmann equations is the inclusion of self-propulsion forces and alignment interactions. These equations have been particularly successful in describing the transition from disordered to ordered states in active systems like bird flocks and fish schools.</p></li>
+<li><p><strong>Fokker-Planck equations</strong>: Capturing the evolution of probability densities in phase space by incorporating both deterministic and stochastic effects. In active matter, these equations describe how probability distributions change due to systematic forces (like self-propulsion), random fluctuations (thermal or active noise), and interactions between particles. For instance, they can model how Janus particles move under the influence of chemical gradients while experiencing rotational diffusion, or how swimming bacteria respond to chemical attractants while subject to tumbling events.</p></li>
+<li><p><strong>Smoluchowski equations</strong>: Modeling overdamped dynamics common in biological active systems where inertial effects are negligible compared to viscous forces. These equations are particularly relevant for microscopic swimmers like bacteria or colloidal particles where the Reynolds number is very small. They have been successfully applied to describe phenomena like bacterial chemotaxis, the collective motion of cell populations, and the dynamics of motor proteins along cytoskeletal filaments. A classic example is modeling E. coli’s run-and-tumble motion, where the Smoluchowski equation – the overdamped limit of the Fokker-Planck equation – captures the interplay between directed swimming and random reorientations.</p></li>
+</ul>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<ul>
+<li><p><strong>Toner-Tu theory</strong>: A hydrodynamic framework that describes collective motion in flocking systems by incorporating broken continuous symmetry. This theory is particularly powerful for analyzing large systems, where it predicts true long-range order can exist even in two dimensions, in contrast to equilibrium systems. While real flocks are finite, the theory provides insights into large-scale behaviors like the scale-free correlations observed in starling murmurations, where thousands of birds maintain coherent motion despite environmental perturbations.</p></li>
+<li><p><strong>Active gel theories</strong>: These theories extend traditional liquid crystal physics by incorporating force-generating active stresses. They are particularly successful in describing biological materials like the cell cytoskeleton, where molecular motors generate internal forces. A key example is explaining the spontaneous flows observed in actomyosin networks, where myosin motors walking along actin filaments create large-scale coherent motion.</p></li>
+<li><p><strong>Active nematics</strong>: Field theories that describe systems with orientational order but no polar direction, driven out of equilibrium by active stresses. These theories have been instrumental in understanding phenomena like the chaotic dynamics of microtubule-kinesin mixtures, where energy input from molecular motors leads to the continuous creation, motion, and annihilation of topological defects, resulting in active turbulence.</p></li>
+<li><p><strong>Phase field models</strong>: Mathematical frameworks that track the evolution of interfaces and boundaries in active systems without explicitly tracking individual particles. These models have been successfully applied to describe phenomena like cell membrane deformation during motility, tissue morphogenesis, and the dynamics of active droplets. For instance, they can capture how a crawling cell changes shape and moves by coupling chemical signals to mechanical deformations of the cell membrane.</p></li>
+</ul>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<ul>
+<li><p><strong>Vicsek model</strong>: The foundational model for collective motion where particles move at constant speed and align their direction with neighbors within a certain radius, subject to noise. For example, in simulating bird flocks, each bird adjusts its direction to match the average flight direction of nearby birds, plus some random variation. This simple rule produces rich collective behaviors like the transition from disordered motion at high noise to coordinated flocking at low noise.</p></li>
+<li><p><strong>Active Brownian particles</strong>: Self-propelled particles that maintain constant speed but undergo rotational diffusion, leading to persistent random walks. A classic example is light-activated Janus colloids - microscopic particles with one hemisphere coated in a light-responsive material. Under illumination, these particles swim in a directed manner but gradually change direction due to thermal fluctuations, resulting in motion that is ballistic at short times but diffusive at long times.</p></li>
+<li><p><strong>Run-and-tumble models</strong>: These models capture the motion pattern of bacteria like E. coli, which alternate between straight “runs” and random “tumbles.” During runs, the bacteria swim in nearly straight lines using their flagella. Tumbles occur when the flagella bundle comes apart, causing the cell to randomly reorient. This mechanism allows bacteria to effectively explore their environment and respond to chemical gradients through biased random walks.</p></li>
+<li><p><strong>Active Ornstein-Uhlenbeck particles</strong>: A model incorporating temporal correlations in the active propulsion force, leading to more realistic descriptions of biological swimmers. For instance, in modeling the motion of algae like Chlamydomonas, the swimming force isn’t purely random but shows correlations over the time scale of the flagellar beat cycle. This correlation produces more accurate predictions of diffusion and clustering behaviors compared to simpler active particle models.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="challenges-in-the-field-of-active-matter" class="level3">
+<h3 class="anchored" data-anchor-id="challenges-in-the-field-of-active-matter">Challenges in the field of active matter</h3>
+<p>The scientific study of active matter presents several key theoretical and experimental challenges that continue to motivate research and technological innovation in the field:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Experimental challenges</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Theoretical challenges</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<ul>
+<li><p><strong>Diversity in propulsion mechanisms and functionality</strong>: Creating synthetic active particles with diverse propulsion strategies and functional capabilities remains challenging. Current systems are largely limited to chemical catalysis, light activation, or magnetic actuation. Beyond propulsion, developing particles capable of force generation, information processing, and programmable behaviors through compartmentalization and feedback control is crucial. This includes systems that can adapt their behavior based on environmental cues or machine learning algorithms.</p></li>
+<li><p><strong>Multi-component systems</strong>: Developing heterogeneous active matter systems with different types of particles that can interact and coordinate. For example, combining light-activated and chemically-powered particles, or integrating passive and active components to create hierarchical structures with emergent behaviors.</p></li>
+<li><p><strong>Measurement techniques</strong>: Developing methods to track fast dynamics across multiple scales. Active matter systems often exhibit complex spatiotemporal dynamics that require simultaneous tracking of individual particles and collective behaviors. High-speed imaging, particle tracking, and flow visualization techniques must be adapted to capture both the rapid motion of individual active units and the slower evolution of large-scale patterns.</p></li>
+<li><p><strong>System preparation</strong>: Creating synthetic particles with programmable behaviors and functions. The synthesis of active colloids requires careful control over particle size, shape, surface chemistry, and catalyst distribution, as well as the integration of responsive elements that enable specific functionalities. For instance, incorporating multiple catalytic or stimuli-responsive domains to create particles capable of complex tasks remains technically challenging.</p></li>
+<li><p><strong>Boundary conditions</strong>: Controlling and characterizing interactions with surfaces. Active matter systems are highly sensitive to boundary conditions, which can significantly influence their behavior. Creating well-defined boundaries while maintaining activity and avoiding unwanted surface effects requires careful experimental design and characterization.</p></li>
+<li><p><strong>Energy input</strong>: Maintaining steady, uniform activation across synthetic systems. Whether through chemical fuel concentration, light intensity, magnetic fields, or electric fields, ensuring uniform activation throughout the sample volume is crucial. Challenges include maintaining constant H2O2 concentration for catalytic swimmers or uniform illumination for light-activated particles.</p></li>
+<li><p><strong>Time limitations</strong>: Managing fuel depletion and particle degradation while maintaining function. Synthetic active systems face challenges like catalyst poisoning, fuel consumption, and photobleaching that can impair their ability to perform desired tasks. For chemical swimmers, local fuel depletion can create concentration gradients that affect particle behavior, while light-activated systems may suffer from photodamage over time.</p></li>
+<li><p><strong>Imaging limitations</strong>: Balancing spatial and temporal resolution with field of view. Active matter often requires both high-resolution imaging to track individual particles and wide-field observation to capture collective effects. This creates technical challenges in microscopy and imaging systems, particularly for three-dimensional systems.</p></li>
+<li><p><strong>Parameter space</strong>: Exploring vast parameter spaces with limited resources. Synthetic active matter systems have many tunable parameters including particle size, shape, surface chemistry, fuel concentration, and external field strengths. Systematically exploring these parameters while maintaining experimental consistency requires significant time and resources.</p></li>
+<li><p><strong>System integration</strong>: Incorporating active matter into functional devices or materials while maintaining desired behaviors. Synthetic active matter experiments require careful integration with other components while preserving activity and function. Creating stable, reliable systems that can operate under real-world conditions presents significant engineering challenges.</p></li>
+</ul>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<ul>
+<li><p><strong>Bridging scales</strong>: Connecting microscopic mechanisms to macroscopic behaviors. Active matter systems often exhibit behaviors across many orders of magnitude in length and time scales, making it challenging to track how molecular-level processes give rise to large-scale collective phenomena. For example, in bacterial colonies, individual cell motility and interactions must be connected to population-level dynamics and pattern formation, requiring sophisticated multi-scale modeling approaches.</p></li>
+<li><p><strong>Non-equilibrium statistical mechanics</strong>: Developing systematic frameworks beyond equilibrium concepts. Traditional statistical mechanics relies heavily on concepts like detailed balance and the fluctuation-dissipation theorem, which break down in active systems due to continuous energy input. The lack of an energy minimum principle or equivalent organizing framework makes it difficult to develop general theories for non-equilibrium steady states.</p></li>
+<li><p><strong>Topological effects</strong>: Understanding defect nucleation, motion, and interactions. In active systems, topological defects can spontaneously nucleate, move, and interact in ways fundamentally different from their equilibrium counterparts due to the continuous energy input. The coupling between defect dynamics and active stresses creates complex feedback loops that are challenging to describe theoretically.</p></li>
+<li><p><strong>Capturing boundary effects</strong>: Modeling how boundaries and confinement influence active dynamics. Active matter systems exhibit unique responses to boundaries that can qualitatively change their behavior, such as accumulation at walls or spontaneous circulation in confined geometries. These boundary effects often depend non-trivially on microscopic details of both the active particles and the confining surfaces.</p></li>
+<li><p><strong>Incorporating disorder and heterogeneity</strong>: Addressing realistic imperfections in theoretical frameworks. Real active matter systems invariably contain disorder and heterogeneity in particle properties, interactions, and environmental conditions. Incorporating these imperfections while maintaining theoretical tractability requires careful balance between complexity and analytical feasibility.</p></li>
+<li><p><strong>Coupling to external fields</strong>: Describing responses to gradients, flows, and applied fields. Active matter systems show complex and often counterintuitive responses to external fields, such as negative mobility or upstream swimming in flows. The interplay between internal activity and external forcing creates rich dynamics that challenge our theoretical understanding.</p></li>
+<li><p><strong>Information flow</strong>: Quantifying information processing in active biological systems. Biological active matter systems process and respond to information in sophisticated ways, from bacterial chemotaxis to collective decision making in animal groups. Developing theoretical frameworks to quantify and model this information processing remains a major challenge.</p></li>
+<li><p><strong>Perception-reaction delays</strong>: Biological active matter processes information at rates significantly slower than modern computers due to the inherent limitations of biochemical signaling pathways. These delays between perception and response manifest in various active systems, from human driving behavior in daily traffic to collective animal movement patterns. Such temporal gaps between stimulus detection and behavioral adjustment critically influence numerous dynamical states in active matter. To compensate for this inherent slowness, biological systems have evolved predictive mechanisms that anticipate future states and allow for more effective responses despite processing limitations. Dealing with such delays is a considerable challenge for theoretical modelling.</p></li>
+<li><p><strong>Predictive power</strong>: Developing theories with quantitative predictive capabilities for experiments. The complexity and non-equilibrium nature of active matter systems often leads to theories that are qualitative rather than quantitative in nature. Making precise, testable predictions requires better understanding of the relevant control parameters and their relationships to observable phenomena.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture02/lecture02.html" class="pagination-link" aria-label="Lecture 2">
+        <span class="nav-page-text">Lecture 2</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,5 +1,0 @@
----
-title: "About"
----
-
-This is the Active Matter Physics website.

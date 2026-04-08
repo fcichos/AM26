@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Mechanical Properties of Active Materials – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture11/lecture11.html" rel="next">
+<link href="../lecture09/lecture09.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture10/lecture10.html">Lecture 10</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#active-stresses-and-force-transmission" id="toc-active-stresses-and-force-transmission" class="nav-link active" data-scroll-target="#active-stresses-and-force-transmission">Active Stresses and Force Transmission</a>
+  <ul class="collapse">
+  <li><a href="#origins-and-mathematical-description-of-active-stresses" id="toc-origins-and-mathematical-description-of-active-stresses" class="nav-link" data-scroll-target="#origins-and-mathematical-description-of-active-stresses">Origins and Mathematical Description of Active Stresses</a></li>
+  <li><a href="#force-transmission-pathways" id="toc-force-transmission-pathways" class="nav-link" data-scroll-target="#force-transmission-pathways">Force Transmission Pathways</a></li>
+  </ul></li>
+  <li><a href="#fluctuations-in-active-systems" id="toc-fluctuations-in-active-systems" class="nav-link" data-scroll-target="#fluctuations-in-active-systems">Fluctuations in Active Systems</a>
+  <ul class="collapse">
+  <li><a href="#beyond-thermal-fluctuations" id="toc-beyond-thermal-fluctuations" class="nav-link" data-scroll-target="#beyond-thermal-fluctuations">Beyond Thermal Fluctuations</a></li>
+  <li><a href="#mechanical-consequences-of-active-fluctuations" id="toc-mechanical-consequences-of-active-fluctuations" class="nav-link" data-scroll-target="#mechanical-consequences-of-active-fluctuations">Mechanical Consequences of Active Fluctuations</a></li>
+  <li><a href="#fluctuation-spectra-and-material-response" id="toc-fluctuation-spectra-and-material-response" class="nav-link" data-scroll-target="#fluctuation-spectra-and-material-response">Fluctuation Spectra and Material Response</a></li>
+  </ul></li>
+  <li><a href="#activity-induced-rigidity-and-softening" id="toc-activity-induced-rigidity-and-softening" class="nav-link" data-scroll-target="#activity-induced-rigidity-and-softening">Activity-Induced Rigidity and Softening</a>
+  <ul class="collapse">
+  <li><a href="#dual-effects-of-activity-on-material-properties" id="toc-dual-effects-of-activity-on-material-properties" class="nav-link" data-scroll-target="#dual-effects-of-activity-on-material-properties">Dual Effects of Activity on Material Properties</a></li>
+  <li><a href="#emergent-viscoelasticity" id="toc-emergent-viscoelasticity" class="nav-link" data-scroll-target="#emergent-viscoelasticity">Emergent Viscoelasticity</a></li>
+  <li><a href="#critical-phenomena-in-active-materials" id="toc-critical-phenomena-in-active-materials" class="nav-link" data-scroll-target="#critical-phenomena-in-active-materials">Critical Phenomena in Active Materials</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture10.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture10/lecture10.html">Lecture 10</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Mechanical Properties of Active Materials</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In previous lectures, we explored how active particles self-organize into collective states—from the flocking patterns described by the Vicsek and Toner-Tu models, to the complex flows of active nematics, and the density segregation in motility-induced phase separation (MIPS). These models revealed how microscopic activity drives macroscopic order through symmetry breaking and phase transitions. Now we shift our focus from collective motion patterns to a complementary aspect of active matter: how activity fundamentally alters the mechanical properties of materials themselves.</p>
+<p>While our earlier discussions centered on emergent collective behaviors—birds flocking, bacteria swarming, or liquid crystals flowing—this lecture examines how the same principles of energy injection and force generation create materials with mechanical properties impossible in equilibrium systems. The key insight is that activity doesn’t just organize particles into patterns; it transforms how materials respond to stress, transmit forces, and maintain their structural integrity.</p>
+<p>Consider the distinction: in the Vicsek model, we asked “how do active particles coordinate their motion?” Here we ask “what happens when active components are embedded in or constitute a material?” The answer reveals surprising phenomena—materials that stiffen under their own internal forces like contracting muscles, systems that can switch between solid and liquid states on demand, and structures that violate fundamental symmetries of passive mechanics. We’ll explore these mechanical signatures of activity, building on the non-equilibrium concepts from our earlier models while focusing specifically on stress, strain, elasticity, and the other quantities that define a material’s mechanical character.</p>
+<section id="active-stresses-and-force-transmission" class="level2">
+<h2 class="anchored" data-anchor-id="active-stresses-and-force-transmission">Active Stresses and Force Transmission</h2>
+<section id="origins-and-mathematical-description-of-active-stresses" class="level3">
+<h3 class="anchored" data-anchor-id="origins-and-mathematical-description-of-active-stresses">Origins and Mathematical Description of Active Stresses</h3>
+<p>Active stresses emerge from internal energy conversion processes (chemical, light, electric/magnetic fields, or mechanical), distinguishing them from passive stresses which merely result from external loading and thermal fluctuations. At the microscopic level, we can understand active stress generation through the Active Brownian Particle (ABP) model introduced in Lecture 3, where particles self-propel with constant speed v₀ in a direction undergoing rotational diffusion:</p>
+<p><span class="math display">\[\dot{\mathbf{r}} = v_0 \mathbf{n} + \sqrt{2D_T}\boldsymbol{\eta}(t)\]</span> <span class="math display">\[\dot{\mathbf{n}} = \sqrt{2D_R}\boldsymbol{\xi}(t) \times \mathbf{n}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{r}\)</span> is position, <span class="math inline">\(\mathbf{n}\)</span> is orientation, <span class="math inline">\(D_T\)</span> and <span class="math inline">\(D_R\)</span> are translational and rotational diffusion coefficients, and <span class="math inline">\(\boldsymbol{\eta}(t)\)</span> and <span class="math inline">\(\boldsymbol{\xi}(t)\)</span> are Gaussian white noise terms. The persistent motion characterized by length <span class="math inline">\(l_p = v_0/D_R\)</span> distinguishes this from equilibrium Brownian motion.</p>
+<div id="fig-active-stress" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-active-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/active_stress.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Visualization of active stress generation by a chain of self-propelled particles. Each particle creates local flow fields (shown by streamlines) in the surrounding fluid as it attempts to swim. When particles encounter obstacles or boundaries, they continue exerting propulsive forces, generating characteristic dipolar flow patterns that extend into the surrounding medium. These individual flow fields superpose to create the macroscopic active stress field that governs the material’s mechanical properties.
+</figcaption>
+</figure>
+</div>
+<p>ABPs propel because of friction, not against it. When encountering obstacles, they continue applying propulsive force, generating fluid flows that create stresses in the surrounding medium. These microscopic stresses propagate through the system via fluid flow patterns around particles, pressure gradients, hydrodynamic interactions between particles, and elastic deformations in solid or viscoelastic media. Collectively, these mechanisms generate the macroscopic active stress tensor:</p>
+<p><span class="math display">\[\sigma_{ij}^{active} = -\zeta \Delta \mu \int \mathbf{n}_i \mathbf{n}_j c(\mathbf{r}, \mathbf{n}) d\mathbf{n}\]</span></p>
+<p>where <span class="math inline">\(c(\mathbf{r}, \mathbf{n})\)</span> is the particle distribution and <span class="math inline">\(\zeta \Delta \mu\)</span> represents self-propulsion strength. The negative sign indicates most ABPs are “pushers” generating extensile stresses along their motion direction.</p>
+<p>To describe active stresses more generally in a material, we need to use tensors, which are mathematical objects that represent forces acting in different directions.</p>
+<p>The active stress tensor can be written as:</p>
+<p><span class="math display">\[\sigma_{ij}^{active} = \alpha c(r,t) Q_{ij}(r,t)\]</span></p>
+<p>This equation has three important parts:</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> is the activity parameter (how strongly the active components generate force)</li>
+<li><span class="math inline">\(c(r,t)\)</span> is the concentration of active components at position <span class="math inline">\(r\)</span> and time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(Q_{ij}(r,t)\)</span> is the order parameter tensor, which describes how the active units are oriented</li>
+</ul>
+<p>For the simplest case where active particles don’t have a preferred direction (isotropic case), the stress takes a simpler form: <span class="math display">\[\sigma_{ij}^{active} = -\zeta \Delta \mu c(r,t) \delta_{ij}\]</span></p>
+<p>Here, <span class="math inline">\(\zeta \Delta \mu\)</span> represents how strongly each active unit generates force, and <span class="math inline">\(\delta_{ij}\)</span> is the identity tensor (forces are equal in all directions).</p>
+<p>The key takeaway is that active stresses:</p>
+<ol type="1">
+<li>Are proportional to the concentration of active components</li>
+<li>Depend on how those components are organized and oriented</li>
+<li>Convert chemical energy (<span class="math inline">\(\Delta \mu\)</span>) into mechanical forces</li>
+</ol>
+<p>A simple example is a swarm of bacteria in a fluid - each bacterium exerts small forces, and together they can generate significant stresses that affect the overall mechanical properties of the system.</p>
+<p>Experimental evidence supports this theoretical framework. Recent studies have directly measured local stresses in active particle systems. For example, work on “Local stress and pressure in an inhomogeneous system of spherical active Brownian particles” has shown that ABPs generate measurable mechanical stresses that depend on particle activity and local density. The transmission efficiency depends on the surrounding medium’s properties—forces dissipate quickly in viscous fluids but propagate farther in elastic networks. While Takatori, S. C., &amp; Brady, J. F. (2016) in “Towards a thermodynamics of active matter” published in Physical Review E focused on developing a thermodynamic framework for active systems, related experimental work has confirmed that microscopic activity creates non-equilibrium stresses. Similarly, studies of active polymers, such as Harder, J., Valeriani, C., &amp; Cacciuto, A. (2014) in “Activity-induced collapse and reexpansion of rigid polymers” published in Physical Review E, have shown how activity modifies polymer conformations and effective interactions. These studies collectively demonstrate that persistent self-propulsion breaks detailed balance at the microscopic scale, driving the system away from equilibrium and generating mechanical stresses that propagate through the material.</p>
+</section>
+<section id="force-transmission-pathways" class="level3">
+<h3 class="anchored" data-anchor-id="force-transmission-pathways">Force Transmission Pathways</h3>
+<p>Once active stresses are generated at the microscopic scale, their transmission through the material determines the macroscopic mechanical response. While the detailed hydrodynamics of force transmission in active fluids like active nematics was covered in Lecture 8, here we focus on the general principles that apply across different types of active materials.</p>
+<section id="key-principles-of-force-propagation" class="level4">
+<h4 class="anchored" data-anchor-id="key-principles-of-force-propagation">Key Principles of Force Propagation</h4>
+<p>The fundamental force balance equation with active contributions is:</p>
+<p><span class="math display">\[\nabla \cdot (\sigma^{passive} + \sigma^{active}) + \mathbf{f}^{ext} = \rho \frac{\partial^2 \mathbf{u}}{\partial t^2}\]</span></p>
+<p>where <span class="math inline">\(\sigma^{passive}\)</span> is the passive stress tensor, <span class="math inline">\(\sigma^{active}\)</span> is the active stress contribution, <span class="math inline">\(\mathbf{f}^{ext}\)</span> represents external body forces, and <span class="math inline">\(\mathbf{u}\)</span> is the displacement field.</p>
+<p>The transmission mechanisms vary significantly across material types:</p>
+<ul>
+<li><strong>Viscous fluids</strong>: Forces decay slowly (<span class="math inline">\(\sim 1/r\)</span>) through hydrodynamic interactions</li>
+<li><strong>Elastic solids</strong>: Localized active stresses create displacement fields that decay as <span class="math inline">\(\sim 1/r^3\)</span></li>
+<li><strong>Granular materials</strong>: Forces transmit through discrete contact networks with exponential probability distributions</li>
+</ul>
+<p>The key insight is that activity modifies these transmission pathways, often enhancing the range and efficiency of force propagation compared to passive systems.</p>
+</section>
+<section id="enhanced-long-range-force-transmission" class="level4">
+<h4 class="anchored" data-anchor-id="enhanced-long-range-force-transmission">Enhanced Long-Range Force Transmission</h4>
+<p>A remarkable feature of active materials is their ability to transmit forces over longer distances than passive materials. To understand this, let’s first think about how forces typically decay in materials.</p>
+<p>In most materials, when you apply a force at one point, its effect weakens as you move away from that point. Think of pressing your finger into a soft gel - the deformation is strongest right under your finger and gets smaller farther away. The characteristic distance over which forces remain significant is called the “screening length.” Beyond this distance, the force effect becomes negligible.</p>
+<p>This enhancement in active materials arises through several mechanisms:</p>
+<ol type="1">
+<li><p><strong>Modified Screening Lengths</strong>: In ordinary viscoelastic materials (materials that are part solid, part liquid-like), forces decay over a characteristic distance called the screening length: <span class="math display">\[\ell_{screen} = \sqrt{\eta/G}\]</span> where <span class="math inline">\(\eta\)</span> is viscosity (resistance to flow) and <span class="math inline">\(G\)</span> is the elastic modulus (stiffness).</p>
+<p>In active materials, the activity effectively adds to the viscosity, increasing this screening length: <span class="math display">\[\ell_{screen}^{active} = \sqrt{(\eta + \eta_{active})/G}\]</span></p>
+<p>This means forces can “reach” farther in active materials - like having a louder voice that carries across a larger room.</p></li>
+<li><p><strong>Collective Effects and Bacterial Superfluidity</strong>: Active particles generate correlated flow fields and stresses that couple their motion over distances larger than individual particle sizes. A striking example is bacterial superfluidity - when bacterial suspensions become dense enough, they can exhibit a dramatic reduction in viscosity, sometimes approaching zero or even becoming negative. This counterintuitive behavior occurs because the bacteria’s swimming motion collectively reduces the resistance to flow, allowing forces to propagate with minimal dissipation.</p>
+<p>In superfluid bacterial suspensions, the effective viscosity can be written as: <span class="math display">\[\eta_{eff} = \eta_0(1 - \alpha n v_0)\]</span></p>
+<p>where <span class="math inline">\(\eta_0\)</span> is the viscosity of the suspending fluid, <span class="math inline">\(n\)</span> is the bacterial density, <span class="math inline">\(v_0\)</span> is the swimming speed, and <span class="math inline">\(\alpha\)</span> is a coefficient that depends on bacterial shape and swimming mechanism. When <span class="math inline">\(\alpha n v_0 &gt; 1\)</span>, the effective viscosity becomes negative, creating a state where disturbances can actually be amplified rather than damped.</p></li>
+</ol>
+<div id="fig-bacterial-superfluidity" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bacterial-superfluidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bacterial-superfluidity" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-superfluid1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-superfluid1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/superfluid1.png" class="img-fluid figure-img" data-ref-parent="fig-bacterial-superfluidity">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-superfluid1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Shear stress <span class="math inline">\(\Sigma\)</span> rescaled by the applied shear rate <span class="math inline">\(\dot{\gamma}\)</span> during the rotation to display an effective viscosity <span class="math inline">\(\Sigma/\dot{\gamma}\)</span> in the sheared regime.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bacterial-superfluidity" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-superfluid2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-superfluid2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/superfluid2.png" class="img-fluid figure-img" data-ref-parent="fig-bacterial-superfluidity">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-superfluid2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Relative viscosity <span class="math inline">\(\eta/\eta_0\)</span> averaged over three realisations as a function of <span class="math inline">\(\dot{\gamma}\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bacterial-superfluidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Experimental evidence of bacterial superfluidity from López et al.&nbsp;(2015). (a) The effective viscosity <span class="math inline">\(\Sigma/\dot{\gamma}\)</span> shows dramatic reduction with increasing bacterial activity. (b) The relative viscosity <span class="math inline">\(\eta/\eta_0\)</span> can drop below 0.1, approaching the superfluid regime where viscosity nearly vanishes. These measurements confirm that dense bacterial suspensions can exhibit superfluid-like behavior with viscosity reductions exceeding 90%.
+</figcaption>
+</figure>
+</div>
+<p>This superfluidity enables force transmission over much larger distances than would be possible in passive fluids - it’s like the difference between shouting through thick honey versus clear air.</p>
+<ol start="3" type="1">
+<li><strong>Non-equilibrium Interactions</strong>: Activity creates effective long-range interactions between particles that would not exist in equilibrium systems. These are like chain reactions where one particle’s activity triggers nearby particles, which trigger others, extending the range of influence. In bacterial systems approaching superfluidity, these interactions become particularly strong, with collective swimming patterns creating coherent flows that span the entire system.</li>
+</ol>
+<p>Experimental evidence for enhanced force transmission includes: - Photoelastic measurements in active granular systems showing dynamic force chains (Deseigne et al., 2010) - these are like “highways” of force that form and reform dynamically - Traction force microscopy revealing long-range stress correlations in active biological tissues - showing that cells can “feel” each other from surprisingly far away - Direct visualization of collective flows in bacterial suspensions with distinct scaling properties - revealing how microscopic swimming creates large-scale fluid flows. Studies by López et al.&nbsp;(2015) demonstrated superfluid-like behavior in E. coli suspensions, with viscosity reductions of up to 90% at high bacterial densities - Measurements of negative viscosity in pusher-type bacterial suspensions (Gachelin et al., 2013), confirming theoretical predictions of bacterial superfluidity</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Current Research Frontiers in Force Transmission
+</div>
+</div>
+<section id="applications-of-force-transmission-properties" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="applications-of-force-transmission-properties">Applications of Force Transmission Properties</h4>
+<p>The unique force transmission in active materials is driving exciting current research in several directions:</p>
+<ol type="1">
+<li><p><strong>Enhanced Mechanosensing</strong>: Active materials can detect and amplify weak mechanical signals through collective response - like having many small sensors work together to detect something that one sensor alone would miss</p></li>
+<li><p><strong>Adaptive Load Distribution</strong>: Dynamic redistribution of stresses to prevent material failure - the material can actively shift loads away from weak points</p></li>
+<li><p><strong>Long-Range Communication</strong>: Mechanical signals can propagate across active materials more effectively than in passive systems - enabling coordination across the entire material</p></li>
+</ol>
+<p>These capabilities are being actively explored in: - Biological systems where cells communicate mechanically across tissues (e.g., how cells coordinate during wound healing) - Synthetic materials designed for sensing and actuation (e.g., smart prosthetics that can feel) - Smart structures that must respond to distributed mechanical inputs (e.g., adaptive building facades)</p>
+</section>
+</div>
+</section>
+</section>
+</section>
+<section id="fluctuations-in-active-systems" class="level2">
+<h2 class="anchored" data-anchor-id="fluctuations-in-active-systems">Fluctuations in Active Systems</h2>
+<section id="beyond-thermal-fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="beyond-thermal-fluctuations">Beyond Thermal Fluctuations</h3>
+<p>Building on the single-particle dynamics of active particles discussed earlier, we now examine how microscopic activity translates into material-level fluctuations that fundamentally alter mechanical properties. While we previously saw how individual active particles exhibit enhanced diffusion and effective temperatures (recall the sedimentation of active particles under gravity), here we focus on how these microscopic behaviors collectively generate unique mechanical fluctuations in bulk active materials.</p>
+<p>The key differences between thermal and active fluctuations at the material level are:</p>
+<ul>
+<li><strong>Thermal fluctuations</strong>:
+<ul>
+<li>Follow Gaussian statistics in material deformations</li>
+<li>Obey the fluctuation-dissipation theorem linking material response to equilibrium fluctuations</li>
+<li>Scale with temperature uniformly throughout the material</li>
+</ul></li>
+<li><strong>Active fluctuations</strong>:
+<ul>
+<li>Show non-Gaussian statistics in stress and strain fluctuations</li>
+<li>Violate the fluctuation-dissipation theorem, decoupling material response from fluctuation spectra</li>
+<li>Create spatially heterogeneous fluctuations even in homogeneous materials</li>
+</ul></li>
+</ul>
+<p>These enhanced fluctuations manifest as measurable mechanical phenomena. For instance, in active gels containing molecular motors, the local stress fluctuations can be orders of magnitude larger than thermal expectations, driving spontaneous flows and deformations absent in passive materials.</p>
+</section>
+<section id="mechanical-consequences-of-active-fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="mechanical-consequences-of-active-fluctuations">Mechanical Consequences of Active Fluctuations</h3>
+<p>The effective temperature concept introduced for single active particles extends to describe mechanical fluctuations in active materials, but with important modifications. While an isolated active particle in sedimentation equilibrium experiences a well-defined effective temperature, active materials exhibit mode-dependent effective temperatures that vary with length scale and frequency.</p>
+<p>For a viscoelastic material with normal modes <span class="math inline">\(\{q_n\}\)</span>, the equipartition theorem in equilibrium states:</p>
+<p><span class="math display">\[\langle q_n^2 \rangle = \frac{k_B T}{k_n}\]</span></p>
+<p>where <span class="math inline">\(k_n\)</span> is the mode stiffness. In active materials, this becomes:</p>
+<p><span class="math display">\[\langle q_n^2 \rangle = \frac{k_B T_\text{eff}(n)}{k_n}\]</span></p>
+<p>The effective temperature <span class="math inline">\(T_\text{eff}(n)\)</span> now depends on how activity couples to each mechanical mode. Long-wavelength modes typically experience higher effective temperatures, reflecting the collective nature of active forces—similar to how active particle sedimentation profiles differ from Boltzmann distributions at large scales.</p>
+<p>This scale-dependent activity manifests in anomalous mechanical fluctuations:</p>
+<p><span class="math display">\[\langle |\Delta u(r,t)|^2 \rangle \sim t^\alpha\]</span></p>
+<p>where <span class="math inline">\(u(r,t)\)</span> is the local displacement field. The exponent <span class="math inline">\(\alpha &gt; 1\)</span> indicates superdiffusive mechanical fluctuations, contrasting with the subdiffusive behavior (<span class="math inline">\(\alpha &lt; 1\)</span>) often seen in passive viscoelastic materials.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding Displacement Fields and Diffusive Behavior
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For those unfamiliar with displacement fields: <span class="math inline">\(u(r,t)\)</span> represents how much a point at position <span class="math inline">\(r\)</span> has moved from its original location at time <span class="math inline">\(t\)</span>. The quantity <span class="math inline">\(\langle |\Delta u(r,t)|^2 \rangle\)</span> measures the mean squared displacement - essentially how far points typically move over time.</p>
+<p>The exponent <span class="math inline">\(\alpha\)</span> tells us about the nature of these fluctuations:</p>
+<ul>
+<li><strong>Normal diffusion</strong> (<span class="math inline">\(\alpha = 1\)</span>): Like ink spreading in water, displacement grows as <span class="math inline">\(\sqrt{t}\)</span></li>
+<li><strong>Subdiffusive</strong> (<span class="math inline">\(\alpha &lt; 1\)</span>): Motion is hindered, particles move slower than normal diffusion (common in crowded/constrained systems)</li>
+<li><strong>Superdiffusive</strong> (<span class="math inline">\(\alpha &gt; 1\)</span>): Motion is enhanced, particles move faster than normal diffusion</li>
+</ul>
+<p>In passive viscoelastic materials (like polymer gels), particles typically show subdiffusive behavior because they get trapped by the network structure. Active materials show superdiffusive behavior because the energy input drives enhanced motion beyond what thermal fluctuations alone would produce.</p>
+</div>
+</div>
+</div>
+<p>These enhanced fluctuations drive mechanical processes impossible in equilibrium. Just as active particles can swim upward against gravity (violating the barometric formula), active materials can spontaneously generate persistent deformations and flows that would require external work in passive systems.</p>
+</section>
+<section id="fluctuation-spectra-and-material-response" class="level3">
+<h3 class="anchored">Fluctuation Spectra and Material Response</h3>
+<p>Active fluctuations affect the frequency-dependent mechanical response of materials:</p>
+<ul>
+<li>Low-frequency enhancement of fluctuations</li>
+<li>Non-equilibrium correlations between stress and strain fluctuations</li>
+<li>Breaking of time-reversal symmetry in mechanical response functions</li>
+</ul>
+<p>To understand what makes active materials special, let’s first think about a key symmetry in physics. In passive materials, if you could film their molecular motion and play it backwards, the reversed movie would look physically reasonable - this is called time-reversal symmetry. It’s like watching a pendulum swing: the backwards movie looks just like normal pendulum motion.</p>
+<p>Active materials break this symmetry because energy continuously flows through them in one direction. Imagine filming bacteria swimming - if you played it backwards, they’d appear to swim backwards, which doesn’t happen naturally! This broken symmetry has profound consequences for how materials respond to forces.</p>
+<p>For passive viscoelastic materials, this symmetry constrains their mechanical properties through mathematical relationships called the Kramers-Kronig relations:</p>
+<p><span class="math display">\[G'(\omega) = \frac{2}{\pi}\mathcal{P}\int_0^{\infty} \frac{\omega' G''(\omega')}{\omega'^2 - \omega^2} d\omega'\]</span> <span class="math display">\[G''(\omega) = -\frac{2\omega}{\pi}\mathcal{P}\int_0^{\infty} \frac{G'(\omega')}{\omega'^2 - \omega^2} d\omega'\]</span></p>
+<p>where <span class="math inline">\(\mathcal{P}\)</span> denotes the principal value. These equations mean that if you know how a passive material stores energy (G’), you can predict how it dissipates energy (G’’), and vice versa - they’re not independent!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kramers-Kronig Relations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Kramers-Kronig relations are fundamental constraints that apply to any physical system obeying causality - the principle that effects cannot precede their causes. Let’s break down what this means for materials.</p>
+<p><strong>What are <span class="math inline">\(G'\)</span> and <span class="math inline">\(G''\)</span>?</strong></p>
+<ul>
+<li><strong><span class="math inline">\(G'(\omega)\)</span></strong> is the storage modulus - it measures how much energy a material stores elastically when deformed at frequency <span class="math inline">\(\omega\)</span> (like a spring storing energy)</li>
+<li><strong><span class="math inline">\(G''(\omega)\)</span></strong> is the loss modulus - it measures how much energy is dissipated as heat (like honey resisting flow)</li>
+</ul>
+<p>Together, they form the complex modulus: <span class="math inline">\(G^*(\omega) = G'(\omega) + iG''(\omega)\)</span></p>
+<p><strong>Why must they be related?</strong> The key insight is causality: when you apply a force to a material, the response cannot happen before the force is applied. This seemingly obvious requirement has profound mathematical consequences. It constrains the real and imaginary parts of any response function to be related through integral transforms.</p>
+<p><strong>Physical intuition:</strong> Think of it this way - if a material stores energy at one frequency, this affects how it must dissipate energy at all other frequencies. It’s like a universal accounting system: the way energy flows through the material at different timescales must be self-consistent.</p>
+<p><strong>Example in everyday materials:</strong></p>
+<ul>
+<li><strong>Rubber band</strong>: At low frequencies (slow stretching), it’s mostly elastic (high <span class="math inline">\(G'\)</span>, low <span class="math inline">\(G''\)</span>)</li>
+<li><strong>Honey</strong>: At all normal frequencies, it’s mostly viscous (low <span class="math inline">\(G'\)</span>, high <span class="math inline">\(G''\)</span>)</li>
+<li><strong>Silly putty</strong>: Shows both behaviors depending on frequency - bounces when thrown (high frequency, elastic) but flows when left alone (low frequency, viscous)</li>
+</ul>
+<p>In all these passive materials, if you measure <span class="math inline">\(G'\)</span> at all frequencies, you can calculate <span class="math inline">\(G''\)</span> using the Kramers-Kronig relations, and vice versa. This is why breaking these relations in active materials is so remarkable - it means the material is doing something fundamentally impossible for any equilibrium system.</p>
+</div>
+</div>
+</div>
+<p>In active systems, these relations can be violated because the continuous energy input creates non-conservative forces. This allows for completely new mechanical behaviors impossible in passive materials.</p>
+<p>These violations manifest directly in measurable quantities like the power spectral density of displacement fluctuations. This spectrum tells us how much the material fluctuates at different frequencies and reveals the signature of active forces:</p>
+<p><span class="math display">\[S_x(\omega) = S_x^{eq}(\omega) + S_x^{active}(\omega) = \frac{2k_BT}{\omega^2}\text{Im}[1/G^*(\omega)] + \frac{A}{\omega^{\beta}}\]</span></p>
+<p>The first term represents normal thermal fluctuations that obey the Kramers-Kronig relations, while the second term captures the active contribution that violates these constraints. For many active systems, <span class="math inline">\(\beta \approx 2\)</span> and the amplitude <span class="math inline">\(A\)</span> scales with the active force generation strength. This frequency dependence reveals that active materials exhibit enhanced fluctuations particularly at low frequencies - a direct consequence of the broken time-reversal symmetry.</p>
+<p>Beyond modifying fluctuation spectra, this broken symmetry enables entirely new mechanical phenomena.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Elasticity tensor
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The elasticity tensor <span class="math inline">\(\mathbf{C}_{ijkl}\)</span> is a fourth-rank tensor that relates stress and strain in elastic materials through the generalized Hooke’s law:</p>
+<p><span class="math display">\[\sigma_{ij} = C_{ijkl} \varepsilon_{kl}\]</span></p>
+<p>where the strain tensor is defined as:</p>
+<p><span class="math display">\[\varepsilon_{ij} = \frac{1}{2}(\partial_i u_j + \partial_j u_i)\]</span></p>
+<p>from the displacement field <span class="math inline">\(\mathbf{u}\)</span>. The fundamental mathematical structure emerges from the symmetry of both stress and strain tensors:</p>
+<p><span class="math display">\[\sigma_{ij} = \sigma_{ji}, \quad \varepsilon_{ij} = \varepsilon_{ji}\]</span></p>
+<p>which immediately imposes the major symmetries:</p>
+<p><span class="math display">\[C_{ijkl} = C_{jikl} = C_{ijlk}\]</span></p>
+<p>In conventional passive materials, the existence of an elastic potential energy density <span class="math inline">\(w(\varepsilon)\)</span> leads to the constitutive relation:</p>
+<p><span class="math display">\[\sigma_{ij} = \partial w/\partial \varepsilon_{ij}\]</span></p>
+<p>from which the elasticity tensor emerges as:</p>
+<p><span class="math display">\[C_{ijkl} = \partial^2 w/\partial \varepsilon_{ij} \partial \varepsilon_{kl}\]</span></p>
+<p>The commutativity of mixed partial derivatives then enforces the minor symmetry:</p>
+<p><span class="math display">\[C_{ijkl} = C_{klij}\]</span></p>
+<p>reducing the 81 tensor components to at most 21 independent constants in the most general anisotropic case, and to just 2 (bulk modulus <span class="math inline">\(K\)</span> and shear modulus <span class="math inline">\(G\)</span>) for isotropic materials through the relations:</p>
+<p><span class="math display">\[C_{ijkl} = K \delta_{ij}\delta_{kl} + G(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk} - \frac{2}{3}\delta_{ij}\delta_{kl})\]</span></p>
+<p>However, active forces fundamentally break this framework by eliminating the scalar potential <span class="math inline">\(w(\varepsilon)\)</span> through non-conservative interactions that violate detailed balance and inject energy continuously at the microscopic level. The work done by active forces around a closed strain cycle becomes:</p>
+<p><span class="math display">\[W = \oint \sigma_{ij} d\varepsilon_{ij} = C_{ijkl}^{\text{antisym}} \oint \varepsilon_{kl} d\varepsilon_{ij} \neq 0\]</span></p>
+<p>where the antisymmetric component:</p>
+<p><span class="math display">\[C_{ijkl}^{\text{antisym}} = \frac{1}{2}(C_{ijkl} - C_{klij})\]</span></p>
+<p>represents the odd elastic moduli. This antisymmetric component characterizes the material’s ability to function as a distributed mechanical engine, converting stored active energy into macroscopic work through quasistatic deformation cycles.</p>
+</div>
+</div>
+</div>
+<p>One fascinating consequence is the emergence of “odd elasticity” - a property where pushing on a material in one direction causes motion in a perpendicular direction! This is characterized by an antisymmetric component of the elastic modulus tensor:</p>
+<p><span class="math display">\[C_{ij}^{\text{odd}} = \frac{1}{2}(C_{ij} - C_{ji})\]</span></p>
+<p>To visualize this: imagine pushing down on a special material, and instead of just compressing, it also slides sideways. This would be impossible in any passive material but can occur in active systems.</p>
+<div id="fig-odd-elasticity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-odd-elasticity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/odd.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-odd-elasticity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Demonstration of odd elasticity in active materials. When a vertical force is applied (downward arrow), the material not only compresses vertically but also generates a perpendicular displacement (horizontal arrow). This coupling between orthogonal deformations, characterized by the antisymmetric component of the elastic modulus tensor <span class="math inline">\(C_{ij}^{\text{odd}}\)</span>, is impossible in passive materials where energy conservation requires symmetric response. In active materials, continuous energy injection breaks time-reversal symmetry, enabling this exotic mechanical behavior where stress in one direction induces strain in perpendicular directions.
+</figcaption>
+</figure>
+</div>
+<p>The theoretical work by Scheibner et al.&nbsp;(2020) predicted that odd elasticity in active materials would enable exotic mechanical responses including:</p>
+<ul>
+<li><strong>Non-reciprocal wave propagation</strong>: Waves that travel differently in opposite directions (like a one-way street for vibrations)</li>
+<li><strong>Topologically protected edge modes</strong>: Vibrations that can only travel along material boundaries and are immune to defects</li>
+</ul>
+<p>These phenomena arise directly from the broken time-reversal symmetry and represent a distinctive mechanical signature unique to active materials. While initially predicted theoretically, these effects have since been observed in various active systems, from spinning gyroscopes to active colloids. Recent work on <a href="https://www.nature.com/articles/s41586-022-04889-6">“Odd dynamics of living chiral crystals”</a> has provided striking experimental evidence of these odd mechanical behaviors in biological systems, where living chiral crystals exhibit both odd elasticity and odd viscosity, confirming that these exotic properties can emerge naturally in active living matter.</p>
+<div id="fig-starfish-embryo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-starfish-embryo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/starfish_embryo.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-starfish-embryo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Time sequence showing crystal assembly and dissolution in starfish embryos. (a) Still images showing crystal formation from the onset of clustering (t = 0 h). Scale bar, 1 mm. (b) Embryo morphology (left) and flow fields (right) evolve with developmental time. Shape scale bar, 100 μm; flow-field scale bar, 200 μm. (c) Embryos assembled in a crystal perform global collective rotation. Scale bar, 2 mm. (d) Spinning embryos (yellow arrows) form a hexagonal lattice with fivefold (purple) and sevenfold (orange) defects. Scale bar, 0.5 mm. (e) Schematic showing embryo dynamics and fluid flows from side view (left) and top view (right). Crystals of spinning embryos form near the air–water interface, where self-generated hydrodynamic flows create effective attraction between surface-bound embryos. Blue arrows depict fluid flows; dark red arrows indicate rotations of embryo groups. Figure adapted from Tan, T.H., Mietke, A., Li, J. et al.&nbsp;<em>Nature</em> 607, 287–293 (2022).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Origin of Odd Elasticity in Starfish Embryos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Chiral Swimming Motion</strong>: Each starfish embryo rotates as it swims, creating a chiral (handed) motion. When thousands of these embryos pack into a crystalline arrangement, they maintain their individual rotation while being confined by their neighbors.</p>
+<p><strong>Hydrodynamic Coupling</strong>: The rotating embryos create flow fields in the surrounding water. Because each embryo is spinning, these flows have a rotational (vortical) component. The hydrodynamic interactions between neighboring spinning embryos are inherently <strong>non-reciprocal</strong> - the force embryo A exerts on embryo B is not equal and opposite to the force B exerts on A.</p>
+<p><strong>Broken Reciprocity → Odd Elasticity</strong>: This non-reciprocal interaction manifests as an antisymmetric component in the elastic modulus tensor. When you compress the crystal in one direction, the spinning embryos don’t just push back - they also generate forces in the perpendicular direction, creating the characteristic “odd” response.</p>
+<section id="emergence-of-waves" class="level2">
+<h2 class="anchored" data-anchor-id="emergence-of-waves">Emergence of Waves</h2>
+<p><strong>Self-Sustained Oscillations</strong>: The combination of:</p>
+<ul>
+<li>Active rotation of individual embryos</li>
+<li>Elastic interactions through packing</li>
+<li>Hydrodynamic coupling through the fluid</li>
+</ul>
+<p>creates a feedback mechanism that drives oscillatory waves through the crystal.</p>
+<p><strong>Chiral Wave Propagation</strong>: Because of the odd elastic properties, these waves are chiral - they propagate differently depending on their direction. The waves are:</p>
+<ul>
+<li><strong>Non-reciprocal</strong>: Forward and backward propagating waves have different properties</li>
+<li><strong>Self-amplifying</strong>: The active nature of the embryos can pump energy into certain wave modes</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="activity-induced-rigidity-and-softening" class="level2">
+<h2 class="anchored" data-anchor-id="activity-induced-rigidity-and-softening">Activity-Induced Rigidity and Softening</h2>
+<section id="dual-effects-of-activity-on-material-properties" class="level3">
+<h3 class="anchored" data-anchor-id="dual-effects-of-activity-on-material-properties">Dual Effects of Activity on Material Properties</h3>
+<p>Activity can both stiffen and soften materials depending on conditions:</p>
+<section id="mechanisms-of-activity-induced-stiffening" class="level4">
+<h4 class="anchored" data-anchor-id="mechanisms-of-activity-induced-stiffening">Mechanisms of Activity-Induced Stiffening</h4>
+<p>Active materials can stiffen through several mechanisms:</p>
+<ul>
+<li><strong>Network prestress</strong>: Active forces generate tension that stiffens networks</li>
+<li><strong>Crosslink reinforcement</strong>: Activity can increase effective crosslinking</li>
+<li><strong>Activity-driven densification</strong>: Active forces can drive particles into denser configurations, potentially inducing jamming</li>
+</ul>
+<p>The stiffening effect can be quantified through a nonlinear elasticity framework. For a semiflexible polymer network with persistence length <span class="math inline">\(\ell_p\)</span> and contour length <span class="math inline">\(\ell_c\)</span>, the differential modulus <span class="math inline">\(K\)</span> under prestress <span class="math inline">\(\sigma\)</span> scales as:</p>
+<p><span class="math display">\[K(\sigma) = \frac{d\sigma}{d\gamma} \sim \sigma^{3/2}\]</span></p>
+<p>where <span class="math inline">\(\sigma\)</span> is the stress and <span class="math inline">\(\gamma\)</span> is the strain. When active motors generate internal stress <span class="math inline">\(\sigma_a\)</span>, the effective differential modulus becomes:</p>
+<p><span class="math display">\[K_\text{eff} \sim (\sigma_\text{ext} + \sigma_a)^{3/2}\]</span></p>
+<p>This predicts a dramatic stiffening effect that scales nonlinearly with activity. Experimental validation by <a href="https://www.pnas.org/doi/10.1073/pnas.0903974106">Koenderink et al.&nbsp;(2009)</a> in actin-myosin networks demonstrated up to 100-fold increases in elastic modulus when motor activity was present.</p>
+<div id="fig-koenderink" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-koenderink-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/koenderink.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-koenderink-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Microstructure of F-actin networks visualized by electron and fluorescence microscopy. (A) Passive solutions show isotropic, unbundled filaments. (B) Active solutions with myosin motors exhibit local alignment and bundling. (C) Active networks with cross-linkers display contractile foci with bundled filaments extending outward. (D) Schematic of active stiffening mechanism: myosin motors contract actin filaments, pulling against cross-links to generate internal stress. From Koenderink, G. H. et al.&nbsp;<em>Proceedings of the National Academy of Sciences</em> 106, 15192-15197 (2009).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Origin of the Stiffening Relations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Nonlinear elasticity scaling <span class="math inline">\(K(\sigma) \sim \sigma^{3/2}\)</span></strong>: This relation emerges from the physics of semiflexible polymer networks. When prestressed, these networks exhibit strain-stiffening because:</p>
+<ol type="1">
+<li><strong>Entropic elasticity</strong>: Under small strains, polymer flexibility is dominated by thermal fluctuations (entropic effects)</li>
+<li><strong>Transition to enthalpic elasticity</strong>: As stress increases, polymers straighten and approach their contour length, transitioning to backbone stretching</li>
+<li><strong>Affine deformation assumption</strong>: The network deforms uniformly at the continuum scale</li>
+</ol>
+<p>The <span class="math inline">\(3/2\)</span> exponent specifically arises from solving the force-extension relation for semiflexible polymers combined with network connectivity constraints. MacKintosh et al.&nbsp;(1995) first derived this scaling using:</p>
+<ul>
+<li>Single polymer mechanics: <span class="math inline">\(f \sim (x/\ell_p)^{3/2}\)</span> for extension <span class="math inline">\(x\)</span></li>
+<li>Network geometry: Relating macroscopic strain to microscopic extension</li>
+<li>Affine assumption: All crosslinks move proportionally to applied strain</li>
+</ul>
+<p><strong>Effective modulus with activity</strong>: The relation <span class="math inline">\(K_\text{eff} \sim (\sigma_\text{ext} + \sigma_a)^{3/2}\)</span> assumes that active stresses simply add to external stresses. This additivity holds when:</p>
+<ul>
+<li>Active forces are distributed uniformly throughout the network</li>
+<li>Motor-generated forces act on timescales slower than network relaxation</li>
+<li>The network remains in quasi-static mechanical equilibrium</li>
+</ul>
+<p><strong>Jamming density shift</strong>: The linear shift <span class="math inline">\(\phi_J(a) = \phi_J(0) - C a^{\alpha}\)</span> is empirical but can be understood through:</p>
+<ul>
+<li>Active forces effectively increasing particle size (larger excluded volume)</li>
+<li>Persistent motion preventing stable contacts from forming</li>
+<li>Activity-induced velocity correlations that modify the jamming criterion</li>
+</ul>
+<p>The exponent <span class="math inline">\(\alpha\)</span> depends on the specific active mechanism and typically ranges from 0.5 to 1.</p>
+</div>
+</div>
+</div>
+<div id="fig-differential-modulus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-differential-modulus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture10/stiffening.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-differential-modulus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Experimental demonstration of activity-induced stiffening through differential modulus measurements. The differential modulus K’ = dσ/dγ shows dramatic enhancement in active networks (red) compared to passive networks (blue), confirming the theoretical prediction K ∼ σ^(3/2). The nonlinear stiffening response emerges from motor-generated prestress, with active networks exhibiting up to 100-fold increases in modulus. From Koenderink, G. H. et al.&nbsp;<em>Proceedings of the National Academy of Sciences</em> 106, 15192-15197 (2009).
+</figcaption>
+</figure>
+</div>
+<p>For particulate active systems, stiffening can occur through activity-driven densification leading to jamming. It’s important to distinguish this from motility-induced phase separation (MIPS), as both involve density changes in active matter:</p>
+<p><strong>Jamming</strong> refers to a mechanical transition where particles become so densely packed they can no longer rearrange, creating a rigid structure. Think of sand grains in an hourglass neck - they jam and stop flowing when packed too tightly. The system develops a finite yield stress and elastic modulus.</p>
+<p><strong>MIPS</strong> is a dynamic phase separation where active particles spontaneously segregate into dense and dilute regions due to their self-propulsion. Unlike jamming, MIPS regions remain fluid-like - particles continue moving within the dense phase. It’s more analogous to oil and water separating, but driven by activity rather than thermodynamics.</p>
+<p>While activity often facilitates unjamming by helping particles escape cages, certain conditions can lead to activity-induced stiffening through jamming. For instance, when active forces drive particles toward obstacles or boundaries, local densification can exceed the jamming threshold even when the bulk density remains below it. The effective jamming density in such systems becomes position-dependent:</p>
+<p><span class="math display">\[\phi_J^\text{eff}(r) = \phi_J^0 + f(a, \nabla\rho)\]</span></p>
+<p>where <span class="math inline">\(f(a, \nabla\rho)\)</span> captures how activity and density gradients modify the local jamming criterion. This can create rigid, jammed regions within otherwise fluid active materials, contributing to overall stiffening. The activity-induced stiffening discussed here thus encompasses both prestress effects in networks and localized jamming in particulate systems, representing complementary mechanisms for creating emergent rigidity in active materials.</p>
+</section>
+<section id="mechanisms-of-activity-induced-softening" class="level4">
+<h4 class="anchored" data-anchor-id="mechanisms-of-activity-induced-softening">Mechanisms of Activity-Induced Softening</h4>
+<ul>
+<li><strong>Bond breaking</strong>: Active forces can rupture weak bonds</li>
+<li><strong>Fluidization</strong>: Persistent active forces can overcome yield stresses</li>
+<li><strong>Defect generation</strong>: Activity can create defects that soften materials</li>
+</ul>
+<p>The softening effect can be modeled through an activity-dependent yield stress. In a material with passive yield stress <span class="math inline">\(\sigma_y^0\)</span>, activity reduces the effective yield stress according to:</p>
+<p><span class="math display">\[\sigma_y^\text{eff} = \sigma_y^0 - \zeta a\]</span></p>
+<p>where <span class="math inline">\(\zeta\)</span> is a coupling coefficient and <span class="math inline">\(a\)</span> is the activity parameter. When <span class="math inline">\(\sigma_y^\text{eff}\)</span> approaches zero, the material undergoes a unjamming transition from solid-like to fluid-like behavior.</p>
+<p>The competition between stiffening and softening mechanisms creates a non-monotonic dependence of mechanical properties on activity level. Computational studies by Berthier and Kurchan (2013) demonstrated that this competition leads to optimal activity levels for specific mechanical properties, enabling precise tuning of material response through activity control.</p>
+</section>
+</section>
+<section id="emergent-viscoelasticity" class="level3">
+<h3 class="anchored" data-anchor-id="emergent-viscoelasticity">Emergent Viscoelasticity</h3>
+<p>Active materials exhibit unique viscoelastic behaviors through mechanisms distinct from passive materials. Unlike bacterial suspensions that primarily show viscosity reduction, active gels and motor-protein networks display complex, tunable viscoelasticity where both storage and loss moduli (G’ and G’’, see collapsible note above) are actively controlled.</p>
+<p>Key features of active viscoelasticity:</p>
+<ul>
+<li><strong>Activity-induced timescales</strong>: Create new relaxation mechanisms at characteristic frequencies</li>
+<li><strong>Mode-coupling effects</strong>: Lead to non-standard frequency dependencies</li>
+<li><strong>Odd viscoelasticity</strong>: In chiral active materials, stress in one direction generates flows in perpendicular directions - connecting to the odd elasticity framework discussed earlier</li>
+</ul>
+<p>Experiments with synthetic active gels (Fodor et al., 2016) demonstrate progressive solid-to-liquid transitions with increasing activity, offering opportunities for on-demand mechanical property switching.</p>
+</section>
+<section id="critical-phenomena-in-active-materials" class="level3">
+<h3 class="anchored" data-anchor-id="critical-phenomena-in-active-materials">Critical Phenomena in Active Materials</h3>
+<p>Activity drives unique mechanical phase transitions beyond the stiffening and softening effects discussed above:</p>
+<ul>
+<li><strong>Unjamming transitions</strong>: From solid-like to fluid-like behavior (the inverse of the jamming transitions mentioned earlier)</li>
+<li><strong>Rigidity percolation</strong>: Emergence of system-spanning mechanical networks</li>
+<li><strong>Strain localization</strong>: Formation of yield zones and shear bands</li>
+</ul>
+<p>These transitions follow critical phenomena frameworks. For activity-driven unjamming, an order parameter <span class="math inline">\(\psi\)</span> (e.g., the yield strain) scales with distance from the critical activity <span class="math inline">\(a_c\)</span>:</p>
+<p><span class="math display">\[\psi \sim |a - a_c|^\beta\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is the critical exponent. Similarly, the correlation length <span class="math inline">\(\xi\)</span> diverges near the transition:</p>
+<p><span class="math display">\[\xi \sim |a - a_c|^{-\nu}\]</span></p>
+<p>and the relaxation time follows:</p>
+<p><span class="math display">\[\tau \sim |a - a_c|^{-z\nu}\]</span></p>
+<p>where <span class="math inline">\(z\)</span> is the dynamical critical exponent.</p>
+<p>Numerical simulations by Bi, D., Yang, X., Marchetti, M. C., &amp; Manning, M. L. (2016) in “Motility-driven glass and jamming transitions in biological tissues” published in Physical Review X for active particle systems revealed critical exponents <span class="math inline">\(\beta \approx 0.6\)</span>, <span class="math inline">\(\nu \approx 0.8\)</span>, and <span class="math inline">\(z \approx 2.5\)</span>, placing active unjamming in a distinct universality class from passive thermal unjamming transitions.</p>
+<p>The rigidity percolation in active fiber networks shows a sharper transition than in passive networks. For a network with fiber concentration <span class="math inline">\(c\)</span> and active unit concentration <span class="math inline">\(c_a\)</span>, the critical behavior follows:</p>
+<p><span class="math display">\[G \sim (c - c_p(c_a))^f\]</span></p>
+<p>where <span class="math inline">\(c_p(c_a)\)</span> is the activity-dependent percolation threshold and <span class="math inline">\(f\)</span> is the critical exponent. Experiments by Alvarado, J., Sheinman, M., Sharma, A., MacKintosh, F. C., &amp; Koenderink, G. H. (2013) in “Molecular motors robustly drive active gels to a critically connected state” published in Nature Physics demonstrated that the exponent <span class="math inline">\(f\)</span> decreases with increasing activity, indicating a more abrupt emergence of rigidity.</p>
+<p>Strain localization in active materials leads to the formation of self-organized shear bands. The width of these bands <span class="math inline">\(w\)</span> scales with activity according to:</p>
+<p><span class="math display">\[w \sim a^{-1/2}\]</span></p>
+<p>providing a mechanism for activity-controlled material failure. This scaling relationship has been observed in various active systems, offering potential pathways for controlling fracture and flow patterns through activity modulation.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture09/lecture09.html" class="pagination-link" aria-label="Lecture 9">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 9</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture11/lecture11.html" class="pagination-link" aria-label="Lecture 11">
+        <span class="nav-page-text">Lecture 11</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

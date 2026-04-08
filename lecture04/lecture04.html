@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Microscopic Models of Self-propulsion – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture05/lecture05.html" rel="next">
+<link href="../lecture03/lecture03.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture04/lecture04.html">Lecture 4</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#swimming-at-low-reynolds-number" id="toc-swimming-at-low-reynolds-number" class="nav-link active" data-scroll-target="#swimming-at-low-reynolds-number">Swimming at Low Reynolds Number</a>
+  <ul class="collapse">
+  <li><a href="#the-scallop-theorem" id="toc-the-scallop-theorem" class="nav-link" data-scroll-target="#the-scallop-theorem">The Scallop Theorem</a></li>
+  <li><a href="#breaking-time-reversibility" id="toc-breaking-time-reversibility" class="nav-link" data-scroll-target="#breaking-time-reversibility">Breaking Time-Reversibility</a></li>
+  </ul></li>
+  <li><a href="#from-swimming-to-hydrodynamic-interactions" id="toc-from-swimming-to-hydrodynamic-interactions" class="nav-link" data-scroll-target="#from-swimming-to-hydrodynamic-interactions">From Swimming to Hydrodynamic Interactions</a>
+  <ul class="collapse">
+  <li><a href="#fundamental-solutions-to-the-stokes-equations" id="toc-fundamental-solutions-to-the-stokes-equations" class="nav-link" data-scroll-target="#fundamental-solutions-to-the-stokes-equations">Fundamental Solutions to the Stokes Equations</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture04/lecture04.html">Lecture 4</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Microscopic Models of Self-propulsion</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="swimming-at-low-reynolds-number" class="level2">
+<h2 class="anchored" data-anchor-id="swimming-at-low-reynolds-number">Swimming at Low Reynolds Number</h2>
+<p>Microorganisms and synthetic microswimmers propel themselves in a liquid environment generally described by the Navier-Stokes equation, which governs fluid motion by balancing inertial forces with pressure gradients, viscous forces, and external forces:</p>
+<p><span class="math display">\[\rho\left(\frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v}\right) = -\nabla p + \eta\nabla^2\mathbf{v} + \mathbf{f}\]</span></p>
+<p>Here, <span class="math inline">\(\rho\)</span> is fluid density, <span class="math inline">\(\mathbf{v}\)</span> is velocity, <span class="math inline">\(p\)</span> is pressure, <span class="math inline">\(\eta\)</span> is dynamic viscosity, and <span class="math inline">\(\mathbf{f}\)</span> represents external force density. Through dimensional analysis, we can determine the relative importance of the inertial (<span class="math inline">\(\rho\mathbf{v} \cdot \nabla \mathbf{v}\)</span>) versus viscous (<span class="math inline">\(\eta\nabla^2\mathbf{v}\)</span>) terms. If we scale length by <span class="math inline">\(L\)</span>, velocity by <span class="math inline">\(V\)</span>, and time by <span class="math inline">\(L/V\)</span>, the inertial term scales as <span class="math inline">\(\rho V^2/L\)</span> while the viscous term scales as <span class="math inline">\(\eta V/L^2\)</span>. Their ratio yields the dimensionless Reynolds number:</p>
+<p><span class="math display">\[Re = \frac{\rho v L}{\eta}\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is the fluid density, <span class="math inline">\(v\)</span> is the characteristic velocity, <span class="math inline">\(L\)</span> is the characteristic length scale, and <span class="math inline">\(\eta\)</span> is the fluid viscosity.</p>
+<p>For a swimming bacterium like E. coli:</p>
+<ul>
+<li><span class="math inline">\(L \approx 1 \, \mu\text{m}\)</span></li>
+<li><span class="math inline">\(v \approx 30 \, \mu\text{m/s}\)</span></li>
+<li><span class="math inline">\(\rho \approx 10^3 \, \text{kg/m}^3\)</span> (water)</li>
+<li><span class="math inline">\(\eta \approx 10^{-3} \, \text{Pa} \cdot \text{s}\)</span> (water)</li>
+</ul>
+<p>This gives <span class="math inline">\(Re \approx 3 \times 10^{-5}\)</span>, indicating that viscous forces overwhelmingly dominate inertial forces. This regime presents unique challenges for locomotion that are fundamentally different from our macroscopic experience.</p>
+<section id="the-scallop-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-scallop-theorem">The Scallop Theorem</h3>
+<p>At low Reynolds numbers, the inertial term in the Navier-Stokes equations can be dropped, leading to the simplified Stokes equations:</p>
+<p><span class="math display">\[\eta \nabla^2 \mathbf{v} - \nabla p = 0\]</span> <span class="math display">\[\nabla \cdot \mathbf{v} = 0\]</span></p>
+<p>where <span class="math inline">\(\mathbf{v}\)</span> is the fluid velocity and <span class="math inline">\(p\)</span> is the pressure. These equations are linear and time-independent, which is always nicely demonstrated in the experiment by G.I. Taylor</p>
+<div id="fig-lowRE" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lowRE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture04/lowRE.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lowRE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Kinematic reversibility. Experiment demonstrating the kinematic reversibility of the Stokes equations. (a) Taylor-Couette cell with a highly viscous fluid. (b) Injection needle. (c) The dye is injected. (d) The inner cylinder is turned four times: the blob of dye has been smeared out completely. (e) The rotation is reversed: the force acting on the fluid from the surface of the inner cylinder is reversed. (f) After rotating back the inner cylinder four times, the blob of dye is recovered. Reproduced from: G.I. Taylor: Low Reynolds number flows (1967). (source Active Matter Book, see Reseource page)
+</figcaption>
+</figure>
+</div>
+<div id="fig-scallop-video" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scallop-video-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zeUzhy7FgmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scallop-video-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— A short video of G.I. Taylor on low Reynolds number flows including experimental demonstrations
+</figcaption>
+</figure>
+</div>
+<p>This time-reversibility is the origin of the “scallop theorem”.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Scallop Theorem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Scallop Theorem states that a microswimmer with a single degree of freedom cannot achieve net displacement in a Stokesian fluid (low Reynolds number). A scallop, which can only open and close its shell, represents such a mechanism with a single hinge. When the scallop opens slowly and closes rapidly in water, it generates thrust at the macroscale where inertia matters. However, at the microscale where viscous forces dominate, the time-reversibility of Stokes flow means the scallop would simply trace the same path backward and forward, resulting in no net movement regardless of how asymmetrically it times its opening and closing motions.</p>
+<div id="fig-scallop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scallop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture03/Purcell’s_swimming_scallop_with_reciprocal_motion.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scallop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Illustration of the scallop theorem principle: a scallop-like mechanism with a single hinge can generate thrust at high Reynolds numbers (left) but produces no net motion at the microscale (right) where viscous forces dominate, as the motion is fully reversible. Source: [1] Yang, C., Liu, X., Song, X. &amp; Zhang, L. Design and batch fabrication of anisotropic microparticles toward small-scale robots using microfluidics: recent advances. Lab a Chip 24, 4514–4535 (2024).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This theorem, formulated by Edward Purcell, can be understood as follows: if a swimmer changes its shape from A to B and then reverses this change from B to A along exactly the same path in configuration space, the net displacement will be zero. This is in stark contrast to swimming at high Reynolds numbers, where inertia allows for net displacement even with reciprocal motion.</p>
+</section>
+<section id="breaking-time-reversibility" class="level3">
+<h3 class="anchored" data-anchor-id="breaking-time-reversibility">Breaking Time-Reversibility</h3>
+<p>To achieve net displacement at low Reynolds numbers, a swimmer must break time-reversibility. This can be done in several ways:</p>
+<ol type="1">
+<li><strong>Non-reciprocal deformation</strong>: The swimmer changes shape in a way that is not simply the reverse of the previous motion. Examples include Purcell’s three-link swimmer and the flexible oar.</li>
+</ol>
+<div id="fig-amoeba" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-amoeba-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture03/amoaba.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amoeba-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Amoeboid movement represents a classic example of non-reciprocal deformation, where the organism extends pseudopodia (temporary projections of cytoplasm) in a coordinated sequence that cannot be simply reversed. This asymmetric reshaping of the cell body enables locomotion even at low Reynolds numbers by creating a non-time-reversible sequence of configurations.
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><strong>Chiral propellers</strong>: Rotating a chiral structure like a bacterial flagellum creates propulsion. The helical shape of the flagellum converts rotational motion into translational thrust.</li>
+</ol>
+<div id="fig-flagellum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flagellum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture03/Swimming-Bacillus-300x140.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flagellum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— The helical structure of a bacterial flagellum allows it to convert rotational motion into translational thrust through a process known as the “whirlpool effect.” As the flagellum rotates, it creates a swirling motion in the surrounding fluid, which pushes the cell forward.
+</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li><strong>Multiple degrees of freedom</strong>: Using two or more degrees of freedom with phase differences between them (like the motion of cilia) creates non-reciprocal motion.</li>
+</ol>
+<div id="fig-purcell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-purcell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture03/purcell_swimmer.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-purcell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Purcell’s three-link swimmer demonstrates how a simple articulated structure with two degrees of freedom (two hinges) can achieve net displacement at low Reynolds numbers. By executing a non-reciprocal sequence of shape changes—moving the links in a way that cannot be reversed by simply retracing the path—this minimal swimmer breaks time-reversibility and generates directed motion in a viscous environment.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="from-swimming-to-hydrodynamic-interactions" class="level2">
+<h2 class="anchored" data-anchor-id="from-swimming-to-hydrodynamic-interactions">From Swimming to Hydrodynamic Interactions</h2>
+<p>When microorganisms swim at low Reynolds numbers, they don’t just move themselves - they also generate flow fields in the surrounding fluid. These flow fields arise from the force-free swimming mechanisms we’ve explored and significantly influence how microswimmers interact with their environment and each other.</p>
+<section id="fundamental-solutions-to-the-stokes-equations" class="level3">
+<h3 class="anchored" data-anchor-id="fundamental-solutions-to-the-stokes-equations">Fundamental Solutions to the Stokes Equations</h3>
+<p>To understand how swimming generates flow fields, we need to examine fundamental solutions to the Stokes equations. A particularly instructive example comes from analyzing the flow field around a sphere moving through a fluid.</p>
+<p>When a sphere of radius <span class="math inline">\(a\)</span> moves through a fluid with velocity <span class="math inline">\(\mathbf{v}_p=\frac{\mathbf{F}}{6\pi\eta a}\)</span>, it generates a flow field given by:</p>
+<p><span class="math display">\[\mathbf{u}(\mathbf{r}) = \frac{3a}{4r} \left( \mathbf{I} + \frac{\mathbf{r}\mathbf{r}}{r^2} \right) \cdot \mathbf{v}_p + \frac{a^3}{4r^3} \left( \mathbf{I} - 3\frac{\mathbf{r}\mathbf{r}}{r^2} \right) \mathbf{v}_p\]</span></p>
+<p>The first term represents the Stokeslet (point force) contribution, which decays as <span class="math inline">\(1/r\)</span>. This term is related to the Oseen tensor, which is the fundamental solution to the Stokes equation for a point force acting on a fluid element. The Oseen tensor describes the resulting velocity field when an isolated force is applied to a fluid, assuming boundary conditions where the flow vanishes at infinity:</p>
+<p><span class="math display">\[G_{ij}(\mathbf{r}) = \frac{1}{8\pi\eta}\left(\frac{\delta_{ij}}{r} + \frac{r_i r_j}{r^3}\right)\]</span></p>
+<p>Therefore the flow field around a point force is given by</p>
+<p><span class="math display">\[\mathbf{u}_{Stokeslet}(\mathbf{r}) = \frac{3a}{4r} \left( \mathbf{I} + \frac{\mathbf{r}\mathbf{r}}{r^2} \right) \cdot \mathbf{v}_p\]</span></p>
+<p>which is plotted below.</p>
+<div id="cell-fig-oseen" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-oseen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-oseen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-oseen-output-1.png" width="340" height="333" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oseen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Flow field generated by a point force (Stokeslet) acting along the positive x-direction. The streamlines show the characteristic flow pattern of the Oseen tensor solution, where fluid velocity decays as <span class="math inline">\(1/r\)</span>. This fundamental solution forms the basis for more complex hydrodynamic interactions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This flow field obviously violates the hydrodynamic boundary condition at the sphere’s surface. The velocity at the spheres boundary should fulfill two conditions. i) There is no inflow or outflow at the boundary, and ii) the velocity at the boundary matches the sphere’s velocity <span class="math inline">\(\mathbf{v}_p\)</span>.</p>
+<p>The second term in the above equation must therefore be responsible for the correction of the boundary conditions.</p>
+<p><span class="math display">\[\mathbf{u}_{Sliplet}(\mathbf{r}) =  \frac{a^3}{4r^3} \left( \mathbf{I} - 3\frac{\mathbf{r}\mathbf{r}}{r^2} \right) \mathbf{v}_p\]</span></p>
+<div id="cell-fig-source-sliplet" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-source-sliplet" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-source-sliplet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-source-sliplet-output-1.png" width="340" height="333" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-source-sliplet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8— Flow field generated by the sliplet (source dipole) term for a sphere moving in the positive x-direction. This term decays as <span class="math inline">\(1/r^3\)</span> and contributes to satisfying the no-slip boundary condition at the sphere’s surface.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This flow field looks dipolar and as a dipole it will have a source and a sink combined. We call this flow field a source dipole (or sometimes “sliplet”) to account for the correction at the boundary. Since all the force and friction is contained in the point force solution, the source dipole does not contribute to hydrodynamic forces.</p>
+<p>The combined flow field of both point force solution (Stokeslet and Source Dipole) lookes then Like</p>
+<div id="cell-fig-combined-flow" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a grid</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate R (distance from origin) for each point</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up arrays for velocity field components</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.zeros_like(Y)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Particle velocity and parameters</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>v_p_x, v_p_y <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">0.0</span>  <span class="co"># sphere moving in x-direction</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># sphere radius</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># normalized viscosity</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Avoid singularity at origin and set valid points outside the sphere</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> R <span class="op">&gt;</span> a</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the Stokeslet contribution - decays as 1/r</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># For a sphere moving with velocity v_p, the Stokeslet is proportional to the velocity</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>stokeslet_prefactor <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>a<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>R[mask])</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>u_stokeslet <span class="op">=</span> stokeslet_prefactor<span class="op">*</span>((<span class="dv">1</span> <span class="op">+</span> X[mask]<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_x <span class="op">+</span> (X[mask]<span class="op">*</span>Y[mask]<span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_y)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>v_stokeslet <span class="op">=</span> stokeslet_prefactor<span class="op">*</span>((X[mask]<span class="op">*</span>Y[mask]<span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_x <span class="op">+</span> (<span class="dv">1</span> <span class="op">+</span> Y[mask]<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_y)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the source dipole (sliplet) contribution - decays as 1/r³</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># This term ensures the no-slip boundary condition at the sphere's surface</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>sliplet_prefactor <span class="op">=</span> a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>R[mask]<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>u_sliplet <span class="op">=</span> sliplet_prefactor<span class="op">*</span>((<span class="dv">1</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>X[mask]<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_x <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>(X[mask]<span class="op">*</span>Y[mask]<span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_y)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>v_sliplet <span class="op">=</span> sliplet_prefactor<span class="op">*</span>((<span class="op">-</span><span class="dv">3</span><span class="op">*</span>X[mask]<span class="op">*</span>Y[mask]<span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_x <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>Y[mask]<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v_p_y)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined flow field (outside the sphere only)</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>u[mask] <span class="op">=</span> u_stokeslet <span class="op">+</span> u_sliplet</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>v[mask] <span class="op">=</span> v_stokeslet <span class="op">+</span> v_sliplet</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to particle frame</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>u[mask] <span class="op">=</span> u[mask] <span class="op">-</span> v_p_x</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>v[mask] <span class="op">=</span> v[mask] <span class="op">-</span> v_p_y</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Explicitly zero out flow inside the sphere</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># This prevents streamlines from appearing inside</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>inside_mask <span class="op">=</span> R <span class="op">&lt;=</span> a</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>u[inside_mask] <span class="op">=</span> np.nan  <span class="co"># Using NaN instead of zero to prevent streamplot from drawing there</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>v[inside_mask] <span class="op">=</span> np.nan</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot streamlines of combined field</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.streamplot(X, Y, u, v, density<span class="op">=</span><span class="fl">1.2</span>, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, arrowsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sphere and velocity vector</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>plt.gca().add_patch(circle)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>circle_outline <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), a, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">'blue'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>plt.gca().add_patch(circle_outline)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>plt.arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.05</span>, head_width<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>          head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'red'</span>, ec<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Sphere velocity'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-combined-flow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-combined-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-combined-flow-output-1.png" width="340" height="333" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-combined-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9— Combined flow field around a sphere moving in the positive x-direction in the moving frame, showing the superposition of the Stokeslet (point force, decaying as <span class="math inline">\(1/r\)</span>) and source dipole (sliplet, decaying as <span class="math inline">\(1/r^3\)</span>) contributions. This complete solution satisfies the no-slip boundary condition at the sphere’s surface.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the first term in the total flow field is responsible for the forces, the second one does not add any forces. It must be therefore a force free solution for a sphere moving at <span class="math inline">\(\mathbf{v}_p\)</span>. To create a swimmer from this, this sliplet term should respect the no-influx condition, i.e., there should be no normal component of the flow field on the sphere boundary.</p>
+<p>Calculating the normal component by</p>
+<p><span class="math display">\[\mathbf{u}_{\text{normal}}(\mathbf{r}) = \mathbf{u}_{Sliplet}(\mathbf{r}) \cdot \mathbf{\hat{r}}\]</span></p>
+<p>yields</p>
+<p><span class="math display">\[\mathbf{u}(\mathbf{r}) \cdot \mathbf{\hat{r}}= \frac{a^3}{4r^3}(1-3)\mathbf{\hat{r}}\cdot\mathbf{v}_p=-\frac{a^3}{2r^3}v_p\cos(\theta)\]</span></p>
+<p>To get no influx, we would need to go to a moving particle frame where the particle moves at a speed of <span class="math inline">\(v_{p}/2\)</span>. This means that multiplying the sliplet flow field by a factor of <span class="math inline">\(-2\)</span> will generate a force free solution where the particle moves at a velocity of <span class="math inline">\(\mathbf{v}_p\)</span>.</p>
+<p>The flow field of a force free ideal spherical swimmer is therefore</p>
+<p><span class="math display">\[\mathbf{u}_{Swimmer}(\mathbf{r}) = \frac{a^3}{2r^3} \left( 3\frac{\mathbf{r}\mathbf{r}}{r^2}- \mathbf{I} \right) \mathbf{v}_p\]</span></p>
+<p>This flow field is that of a source dipole. This is analogous to the electric field of an electric dipole, with the <span class="math inline">\(1/r^3\)</span> decay characteristic of dipole fields.</p>
+<p>In terms of the Oseen tensor, a source dipole can be expressed as a derivative of the Stokeslet solution. If we consider the Oseen tensor <span class="math inline">\(G_{ij}(\mathbf{r})\)</span> and take its derivative with respect to the source position, we obtain the source dipole:</p>
+<p><span class="math display">\[\mathbf{u}_{\text{source dipole}, i}(\mathbf{r}) = p_j \frac{\partial}{\partial r_j} G_{ik}(\mathbf{r}) p_k\]</span></p>
+<p>where <span class="math inline">\(\mathbf{p}\)</span> is the dipole moment vector. This formulation highlights how the source dipole represents a higher-order singularity in the Stokes flow, derived from the fundamental Stokeslet solution by spatial differentiation.</p>
+<div id="cell-fig-source-dipole" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-source-dipole" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-source-dipole-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-source-dipole-output-1.png" width="340" height="333" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-source-dipole-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10— Flow field generated by a source dipole with dipole moment <span class="math inline">\(\mathbf{p}\)</span> pointing in the x-direction. The streamlines show the characteristic pattern of fluid being pushed away along the dipole axis and drawn in from the sides, with the flow strength decaying as <span class="math inline">\(1/r^3\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Beyond the source dipole, which is resembling the ideal swimmer, there are also situations where additional flow field components exist, that are, however, not contributing to the propulsion. Such a component is a force dipole, which is for example relavant for a E.coli bacterium.</p>
+<div id="fig-pusher-puller" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pusher-puller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture04/pusher_puller.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pusher-puller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11— Mechanical forces on microswimmers: E. coli (left) generates thrust from the back, pushing fluid backwards to propel itself forward - a “pusher” flow field. Chlamydomonas (right) pulls fluid from the front using its flagella in a breaststroke motion, creating a “puller” flow field. These distinct force distributions create fundamentally different hydrodynamic interactions.
+</figcaption>
+</figure>
+</div>
+<p><strong>Force dipoles</strong>: Since microswimmers are force-free (no net external force), the thrust forces they generate must be balanced by drag forces, creating a force dipole configuration. A force dipole is generated by two equal and opposite point forces aligned along the x-axis, either both pointing towards the origin (converging) or both pointing away from the origin (diverging). These force dipoles:</p>
+<ul>
+<li>Decay more slowly with distance as <span class="math inline">\(1/r^2\)</span></li>
+<li>Dominate the long-range hydrodynamic interactions</li>
+<li>Allow us to classify swimmers as either “pushers” (forces pointing away from the origin, like E. coli) or “pullers” (forces pointing towards the origin, like Chlamydomonas)</li>
+</ul>
+<p>The flow field generated by a force dipole can be derived from the Oseen tensor. It is consisting of two forces <span class="math inline">\(\mathbf{F}\)</span> and <span class="math inline">\(-\mathbf{F}\)</span> separated by a small distance <span class="math inline">\(\mathbf{d}\)</span> along the x-axis, we can express the velocity field using the spatial derivative of the Oseen tensor:</p>
+<p><span class="math display">\[u_i(\mathbf{r}) = d_j F_k \frac{\partial G_{ik}}{\partial r_j}\]</span></p>
+<p>Here, <span class="math inline">\(u_i\)</span> represents the <span class="math inline">\(i\)</span>-th component of the fluid velocity at position <span class="math inline">\(\mathbf{r}\)</span>. The indices <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>, and <span class="math inline">\(k\)</span> follow Einstein summation convention (summing over repeated indices). The term <span class="math inline">\(d_j\)</span> is the <span class="math inline">\(j\)</span>-th component of the displacement vector <span class="math inline">\(\mathbf{d}\)</span> between the two forces, while <span class="math inline">\(F_k\)</span> is the <span class="math inline">\(k\)</span>-th component of the force vector <span class="math inline">\(\mathbf{F}\)</span>. The expression <span class="math inline">\(\frac{\partial G_{ik}}{\partial r_j}\)</span> denotes the spatial derivative of the <span class="math inline">\((i,k)\)</span> component of the Oseen tensor <span class="math inline">\(G\)</span> with respect to the <span class="math inline">\(j\)</span>-th coordinate direction.</p>
+<p>For a force dipole aligned along the unit vector <span class="math inline">\(\mathbf{e}\)</span> with strength <span class="math inline">\(S = \kappa |\mathbf{F}||\mathbf{d}|\)</span>, this results in the stresslet flow field:</p>
+<p><span class="math display">\[\mathbf{u}_{\text{stresslet}}(\mathbf{r}) = \frac{S}{8\pi\eta}\left[\frac{3(\mathbf{e}\cdot\mathbf{r})^2\mathbf{r} - r^2\mathbf{e}}{r^5}\right]\]</span></p>
+<p>where <span class="math inline">\(S\)</span> is the stresslet strength (dipole moment) and <span class="math inline">\(\eta\)</span> is the fluid viscosity. The sign of <span class="math inline">\(S\)</span> (and this <span class="math inline">\(\kappa=\pm 1\)</span>) determines the swimmer type: <span class="math inline">\(S &lt; 0\)</span> for pushers and <span class="math inline">\(S &gt; 0\)</span> for pullers. For a swimmer of size <span class="math inline">\(a\)</span> moving at speed <span class="math inline">\(v_0\)</span>, we can estimate <span class="math inline">\(S \sim \eta a^2 v_0\)</span>.</p>
+<p>At large distances, this simplifies to:</p>
+<p><span class="math display">\[\mathbf{u}_{\text{stresslet}}(\mathbf{r}) \approx \frac{S}{8\pi\eta}\frac{3(\mathbf{e}\cdot\hat{\mathbf{r}})^2-1}{r^2}\hat{\mathbf{r}} \quad \text{as } r \to \infty\]</span></p>
+<p>where <span class="math inline">\(\hat{\mathbf{r}} = \mathbf{r}/r\)</span> is the direction vector.</p>
+<div id="cell-fig-stresslet" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-stresslet" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stresslet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-stresslet-output-1.png" width="694" height="350" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stresslet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12— Pusher Puller
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the far field, the flow generated by a force dipole (pusher, S &gt; 0) at large distances from the swimmer exhibits a dominant <span class="math inline">\(1/r^2\)</span> decay pattern. Fluid is pulled in from the sides and pushed away along the swimming direction.</p>
+<div id="cell-fig-farfield" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-farfield" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-farfield-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture04_files/figure-html/fig-farfield-output-1.png" width="440" height="412" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-farfield-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13— Far-field approximation of the flow generated by a force dipole (pusher, S &lt; 0) at large distances from the swimmer. The streamlines illustrate how the dominant <span class="math inline">\(1/r^2\)</span> decay pattern emerges, with fluid being pulled in from the sides and pushed away along the swimming direction.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Such flow fields have been measured experimentally for bacteria.</p>
+<div id="fig-real-flow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-real-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture04/flow_field_measured.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14— Average flow field created by a single freely swimming bacterium far from surfaces (A–D) and close to a wall (E–H). Streamlines indicate the local direction of flow, and the logarithmic color scheme indicates flow speed magnitudes. (A) Experimentally measured flow field in the bacterial swimming plane, with the inset showing the anterior-posterior asymmetry close to the cell body. (B) Best-fit force dipole flow. (C) Residual flow field, obtained by subtracting the best-fit dipole model from the measured field. (D) Radial decay of the flow speed <span class="math inline">\(u\)</span> in different directions, with <span class="math inline">\(r = 0\)</span> corresponding to the center of the cell body. For distances <span class="math inline">\(r \lesssim 6~\mu\text{m}\)</span> the dipole model overestimates the flow field behind and to the side of the cell body. (E) Experimentally measured flow field in the bacterial swimming plane, for bacteria swimming parallel to a wall at a distance of <span class="math inline">\(2~\mu\text{m}\)</span>. (F) Best-fit force dipole flow, where the presence of the wall causes inward and outward streamlines to join. (G) Residual flow field. (H) The flow speed decays much faster for bacteria swimming close to a wall, as the fluid velocity must vanish on the surface. <a href="https://www.damtp.cam.ac.uk/user/gold/pdfs/PNAS-2011-Drescher-1019079108.pdf">Source: Drescher, K., Dunkel, J., Cisneros, L. H., Ganguly, S., &amp; Goldstein, R. E. (2011). Proceedings of the National Academy of Sciences, 108(27), 10940-10945.</a>
+</figcaption>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture03/lecture03.html" class="pagination-link" aria-label="Lecture 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 3</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture05/lecture05.html" class="pagination-link" aria-label="Lecture 5">
+        <span class="nav-page-text">Lecture 5</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

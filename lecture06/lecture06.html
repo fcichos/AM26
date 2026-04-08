@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Phase Transitions and Motility-Induced Phase Separation – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture07/lecture07.html" rel="next">
+<link href="../lecture05/lecture05.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Lecture 6</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#equilibrium-phase-transitions-fundamental-principles" id="toc-equilibrium-phase-transitions-fundamental-principles" class="nav-link active" data-scroll-target="#equilibrium-phase-transitions-fundamental-principles">Equilibrium Phase Transitions: Fundamental Principles</a>
+  <ul class="collapse">
+  <li><a href="#classification-of-phase-transitions" id="toc-classification-of-phase-transitions" class="nav-link" data-scroll-target="#classification-of-phase-transitions">Classification of Phase Transitions</a></li>
+  <li><a href="#landau-ginzburg-theory" id="toc-landau-ginzburg-theory" class="nav-link" data-scroll-target="#landau-ginzburg-theory">Landau-Ginzburg Theory</a></li>
+  <li><a href="#universality" id="toc-universality" class="nav-link" data-scroll-target="#universality">Universality</a></li>
+  <li><a href="#the-ising-model" id="toc-the-ising-model" class="nav-link" data-scroll-target="#the-ising-model">The Ising Model</a></li>
+  <li><a href="#ising-model-simulation" id="toc-ising-model-simulation" class="nav-link" data-scroll-target="#ising-model-simulation">Ising Model Simulation</a></li>
+  </ul></li>
+  <li><a href="#motility-induced-phase-separation" id="toc-motility-induced-phase-separation" class="nav-link" data-scroll-target="#motility-induced-phase-separation">Motility Induced Phase Separation</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-description" id="toc-mathematical-description" class="nav-link" data-scroll-target="#mathematical-description">Mathematical Description</a></li>
+  </ul></li>
+  <li><a href="#mips-simulation" id="toc-mips-simulation" class="nav-link" data-scroll-target="#mips-simulation">MIPS Simulation</a>
+  <ul class="collapse">
+  <li><a href="#continuum-theory" id="toc-continuum-theory" class="nav-link" data-scroll-target="#continuum-theory">Continuum Theory</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Lecture 6</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Phase Transitions and Motility-Induced Phase Separation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="equilibrium-phase-transitions-fundamental-principles" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-phase-transitions-fundamental-principles">Equilibrium Phase Transitions: Fundamental Principles</h2>
+<p>Unlike the non-equilibrium phase separation phenomena we will discuss later, equilibrium phase transitions form the bedrock of conventional condensed matter physics. These transitions represent dramatic changes in the physical properties of a system when certain conditions, like temperature or pressure, are varied across a critical point. Phase transitions, whether in equilibrium systems or non-equilibrium active matter, are quintessential <em>emergent phenomena</em> where the collective interactions of enormous numbers of microscopic constituents produce entirely new states of matter with <em>qualitatively different properties—properties</em> that don’t exist at the microscopic level. During these transitions, we typically observe <em>spontaneous symmetry breaking</em>, where the system collectively “chooses” one of several equivalent states, creating order from disorder in a way that cannot be predicted from individual particle behavior. Perhaps most strikingly, systems with completely different microscopic details can exhibit identical critical behavior when they belong to the same <em>universality class</em>, demonstrating how macroscopic physics emerges independently of microscopic details. This non-reducibility often necessitates new theoretical frameworks that operate at higher levels of organization than the underlying microscopic laws.</p>
+<section id="classification-of-phase-transitions" class="level3">
+<h3 class="anchored" data-anchor-id="classification-of-phase-transitions">Classification of Phase Transitions</h3>
+<p>Equilibrium phase transitions are traditionally classified using Ehrenfest’s approach, which focuses on the behavior of the free energy. The general expression for the Gibbs free energy is:</p>
+<p><span class="math display">\[G(T,P) = H - TS = U + PV - TS\]</span></p>
+<p>where <span class="math inline">\(H\)</span> is enthalpy, <span class="math inline">\(T\)</span> is temperature, <span class="math inline">\(S\)</span> is entropy, <span class="math inline">\(U\)</span> is internal energy, <span class="math inline">\(P\)</span> is pressure, and <span class="math inline">\(V\)</span> is volume.</p>
+<p>First-order transitions show discontinuities in the first derivatives of the free energy. This manifests as jumps in quantities like volume (<span class="math inline">\(V = \partial G/\partial P\)</span>) or entropy (<span class="math inline">\(S = -\partial G/\partial T\)</span>), with familiar examples including water boiling or ice melting. These transitions involve latent heat and exhibit phase coexistence, where both phases can exist simultaneously.</p>
+<p>In contrast, second-order (or continuous) transitions show continuous first derivatives but discontinuous second derivatives of the free energy. For example, the heat capacity <span class="math inline">\(C = -T \frac{\partial^2 G}{\partial T^2}\)</span> may exhibit a discontinuity or divergence at the transition. These transitions are characterized by diverging correlation lengths and scale invariance near the critical point. The magnetization of a ferromagnet near its Curie temperature exemplifies this behavior, with free energy of the form</p>
+<p><span class="math display">\[G(T,H) = G_0(T) - H M(T) - \frac{1}{2}\chi(T)H^2 + ...\]</span>,</p>
+<p>where <span class="math inline">\(G(T,H)\)</span> is the Gibbs free energy as a function of temperature <span class="math inline">\(T\)</span> and magnetic field <span class="math inline">\(H\)</span>, <span class="math inline">\(G_0(T)\)</span> is the field-independent part of the free energy, <span class="math inline">\(M(T)\)</span> is the magnetization (the order parameter), <span class="math inline">\(\chi(T)\)</span> is the magnetic susceptibility which measures how the magnetization responds to the applied field, and the susceptibility <span class="math inline">\(\chi(T)\)</span> diverges at the critical point. Modern physics often simply distinguishes between discontinuous (first-order) and continuous transitions, with the latter revealing fascinating universal properties at the critical point.</p>
+<div id="fig-ehrenfest" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ehrenfest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture06/ehrenfest.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ehrenfest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Ehrenfest classification of phase transitions. First-order transitions show discontinuities in first derivatives of the free energy (such as volume or entropy), while second-order transitions show discontinuities in second derivatives (such as heat capacity or compressibility).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="landau-ginzburg-theory" class="level3">
+<h3 class="anchored" data-anchor-id="landau-ginzburg-theory">Landau-Ginzburg Theory</h3>
+<p>Landau-Ginzburg theory offers an elegant approach to understanding continuous phase transitions through the concept of an order parameter <span class="math inline">\(\phi\)</span>, which distinguishes between different phases. For a magnet, this might be the magnetization; for a liquid-gas transition, it could be the density difference from the critical value.</p>
+<p>The theory is built around a free energy functional:</p>
+<p><span class="math display">\[F[\phi] = \int d^d\mathbf{r} \left[ \frac{1}{2}(\nabla\phi)^2 + V(\phi) \right]\]</span></p>
+<p>where the first term <span class="math inline">\(\frac{1}{2}(\nabla\phi)^2\)</span> represents the energy cost of spatial variations in the order parameter. This gradient term penalizes rapid changes in <span class="math inline">\(\phi\)</span>, reflecting the energetic cost of creating interfaces between different phases. Without this term, the system would fragment into microscopic domains; its presence ensures physically reasonable domain sizes and interface profiles.</p>
+<p>The potential <span class="math inline">\(V(\phi)\)</span> is typically expanded as a power series:</p>
+<p><span class="math display">\[V(\phi) = r\phi^2 + u\phi^4 + \ldots\]</span></p>
+<p>These even power terms naturally appear in systems with up-down symmetry. For example, in ferromagnets, flipping all spins (<span class="math inline">\(\phi \to -\phi\)</span>) shouldn’t change the energy. Similarly, in liquid-gas transitions, the potential depends on density fluctuations symmetrically around the critical density.</p>
+<p>For systems without this symmetry, odd power terms can appear:</p>
+<p><span class="math display">\[V(\phi) = r\phi^2 - h\phi + u\phi^3 + v\phi^4 + \ldots\]</span></p>
+<p>This occurs in ferromagnets under external magnetic fields (the <span class="math inline">\(h\phi\)</span> term) or in systems near a first-order phase transition (the <span class="math inline">\(u\phi^3\)</span> term), such as certain structural or metamagnetic transitions.</p>
+<p>What makes this formulation powerful is how the parameter <span class="math inline">\(r\)</span> varies with temperature: <span class="math inline">\(r \propto (T-T_c)\)</span>. When temperature exceeds the critical temperature (<span class="math inline">\(T &gt; T_c\)</span>), the free energy minimum occurs at <span class="math inline">\(\phi = 0\)</span>, corresponding to the disordered phase. Below the critical temperature (<span class="math inline">\(T &lt; T_c\)</span>), the minima shift to non-zero values of <span class="math inline">\(\phi\)</span>, representing the ordered phase.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax_critical, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Above Tc (r &gt; 0)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>V_above <span class="op">=</span> r <span class="op">*</span> phi<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> u <span class="op">*</span> phi<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax1.plot(phi, V_above, <span class="st">'b-'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'above $T_c$ ($r &gt; 0$)'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'order parameter $</span><span class="ch">\\</span><span class="st">phi$'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'potential $V(</span><span class="ch">\\</span><span class="st">phi)$'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax1.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">5</span>)  <span class="co"># Mark the minimum</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># At Tc (r = 0)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>V_critical <span class="op">=</span> r <span class="op">*</span> phi<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> u <span class="op">*</span> phi<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax_critical.plot(phi, V_critical, <span class="st">'b-'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax_critical.set_title(<span class="st">'at $T_c$ ($r = 0$)'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax_critical.set_xlabel(<span class="st">'order parameter $</span><span class="ch">\\</span><span class="st">phi$'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax_critical.set_ylabel(<span class="st">'potential $V(</span><span class="ch">\\</span><span class="st">phi)$'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax_critical.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax_critical.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">5</span>)  <span class="co"># Mark the minimum</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Below Tc (r &lt; 0)</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>V_below <span class="op">=</span> r <span class="op">*</span> phi<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> u <span class="op">*</span> phi<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax2.plot(phi, V_below, <span class="st">'b-'</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'below $T_c$ ($r &lt; 0$)'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'order parameter $</span><span class="ch">\\</span><span class="st">phi$'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'potential $V(</span><span class="ch">\\</span><span class="st">phi)$'</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the minima</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>phi_min <span class="op">=</span> np.sqrt(<span class="op">-</span>r<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>u))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>V_min <span class="op">=</span> r <span class="op">*</span> phi_min<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> u <span class="op">*</span> phi_min<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>ax2.plot(phi_min, V_min, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax2.plot(<span class="op">-</span>phi_min, V_min, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-landau-potential" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-landau-potential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="d3e8fbf8" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture06_files/figure-html/cell-3-output-1.png" width="699" height="282" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-landau-potential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Potential <span class="math inline">\(V(\phi)\)</span> in the Landau theory. Left: Above <span class="math inline">\(T_c\)</span> (<span class="math inline">\(r &gt; 0\)</span>), the potential has a single minimum at <span class="math inline">\(\phi = 0\)</span>, corresponding to the disordered phase. Right: Below <span class="math inline">\(T_c\)</span> (<span class="math inline">\(r &lt; 0\)</span>), the potential develops two symmetric minima at <span class="math inline">\(\phi = \pm \sqrt{-r/(2u)}\)</span>, representing the ordered phase with spontaneous symmetry breaking.
+</figcaption>
+</figure>
+</div>
+<p>The system naturally evolves toward states that minimize this free energy, following the Euler-Lagrange equation:</p>
+<p><span class="math display">\[-\nabla^2\phi + \frac{\partial V}{\partial \phi} = 0\]</span></p>
+<p>Near the critical point, the system exhibits remarkable scaling behaviors that define its critical properties. Let’s explore these key behaviors in more detail:</p>
+<ol type="1">
+<li><p><strong>Correlation Length (ξ)</strong>: This measures how far the influence of one microscopic variable extends to others. Mathematically, it can be calculated from the spatial correlation function <span class="math inline">\(G(r) = \langle \phi(0) \phi(r) \rangle - \langle \phi \rangle^2\)</span>, which typically decays exponentially as <span class="math inline">\(G(r) \sim e^{-r/\xi}\)</span> away from the critical point. Near the critical point, it diverges according to <span class="math inline">\(\xi \sim |T-T_c|^{-\nu}\)</span>, meaning fluctuations become correlated over macroscopic distances.</p></li>
+<li><p><strong>Order Parameter (φ)</strong>: This quantity distinguishes between phases - like magnetization in magnets or density difference in fluids. It scales as <span class="math inline">\(\phi \sim |T-T_c|^{\beta}\)</span> below Tc, gradually vanishing as temperature approaches the critical point.</p></li>
+<li><p><strong>Susceptibility (χ)</strong>: This measures how responsive the system is to external fields (like magnetic susceptibility). It diverges as <span class="math inline">\(\chi \sim |T-T_c|^{-\gamma}\)</span>, indicating the system becomes extremely sensitive to small perturbations.</p></li>
+<li><p><strong>Specific Heat (C)</strong>: This thermodynamic quantity shows how much energy is needed to raise the temperature, scaling as <span class="math inline">\(C \sim |T-T_c|^{-\alpha}\)</span>.</p></li>
+</ol>
+<p>These power laws are characterized by critical exponents (α, β, γ, ν) that aren’t independent but satisfy scaling relations such as <span class="math inline">\(\alpha + 2\beta + \gamma = 2\)</span> and <span class="math inline">\(\nu d = 2 - \alpha\)</span> (where d is the spatial dimension). These relations emerge from the fundamental scaling properties of the free energy and reflect the underlying physics of how fluctuations propagate through the system at criticality.</p>
+</section>
+<section id="universality" class="level3">
+<h3 class="anchored" data-anchor-id="universality">Universality</h3>
+<p>Perhaps the most remarkable aspect of phase transitions is universality. Seemingly different physical systems—like magnets, fluids, or alloys—can exhibit identical critical behavior if they share the same symmetries and dimensionality. This universality is reflected in matching sets of critical exponents, regardless of microscopic details.</p>
+</section>
+<section id="the-ising-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-ising-model">The Ising Model</h3>
+<p>The Ising model provides perhaps the simplest theoretical framework exhibiting a continuous second order phase transition:</p>
+<p><span class="math display">\[H = -J\sum_{\langle i,j \rangle} \sigma_i \sigma_j - h\sum_i \sigma_i\]</span></p>
+<p>Where <span class="math inline">\(\sigma_i = \pm 1\)</span> represents a spin at site <span class="math inline">\(i\)</span>, <span class="math inline">\(J\)</span> is the coupling constant, and <span class="math inline">\(h\)</span> is an external field. The model describes a ferromagnetic transition with order parameter <span class="math inline">\(M = \frac{1}{N}\sum_i \sigma_i\)</span> (the magnetization).</p>
+<p>The Ising model has been realized experimentally in various magnetic systems:</p>
+<ul>
+<li>Fe<span class="math inline">\(_2\)</span> compounds demonstrate critical behavior closely matching 3D Ising model predictions</li>
+<li>Thin films of ferromagnetic materials often exhibit 2D Ising behavior</li>
+<li>CoNb<span class="math inline">\(_2\)</span>O<span class="math inline">\(_6\)</span> (cobalt niobate) provides a rare example of a 1D Ising system</li>
+</ul>
+<p>The 2D Ising model was solved analytically by Onsager, revealing a critical temperature <span class="math inline">\(T_c = \frac{2J}{k_B\ln(1+\sqrt{2})}\)</span> and critical exponents: <span class="math inline">\(\alpha = 0\)</span>, <span class="math inline">\(\beta = 1/8\)</span>, <span class="math inline">\(\gamma = 7/4\)</span>, and <span class="math inline">\(\nu = 1\)</span>.</p>
+<div id="cell-fig-ising" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the susceptibility and order parameter for the 2D Ising model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperature range (normalized by J/k_B)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="fl">1.8</span>, <span class="fl">2.8</span>, <span class="dv">1000</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>T_c <span class="op">=</span> <span class="fl">2.27</span>  <span class="co"># Critical temperature for 2D Ising model</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Order parameter (magnetization) with critical exponent beta = 1/8</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.zeros_like(T)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(T):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t <span class="op">&lt;</span> T_c:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        m[i] <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> t<span class="op">/</span>T_c) <span class="op">**</span> beta</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        m[i] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Susceptibility with critical exponent gamma = 7/4</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>chi <span class="op">=</span> np.zeros_like(T)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="dv">7</span><span class="op">/</span><span class="dv">4</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="dv">10</span>  <span class="co"># Amplitude factor for visualization</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(T):</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(t <span class="op">-</span> T_c) <span class="op">&lt;</span> <span class="fl">0.001</span>:  <span class="co"># Avoid division by zero at critical point</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        chi[i] <span class="op">=</span> A <span class="op">*</span> <span class="dv">100</span>  <span class="co"># Large but finite value at critical point</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        chi[i] <span class="op">=</span> A <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span><span class="bu">abs</span>(t <span class="op">-</span> T_c))<span class="op">**</span>gamma</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> chi[i] <span class="op">&gt;</span> A <span class="op">*</span> <span class="dv">100</span>:  <span class="co"># Cap the maximum value for better visualization</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            chi[i] <span class="op">=</span> A <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot order parameter (magnetization)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>ax1.plot(T, m, <span class="st">'b-'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'temperature $T$ (in units of $J/k_B$)'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'magnetization $|M|$'</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax1.axvline(x<span class="op">=</span>T_c, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax1.text(T_c<span class="op">+</span><span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="st">'$T_c$'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="fl">1.8</span>, <span class="fl">2.8</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot susceptibility</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax2.plot(T, chi, <span class="st">'g-'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'temperature $T$ (in units of $J/k_B$)'</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'susceptibility $</span><span class="ch">\\</span><span class="st">chi$'</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax2.axvline(x<span class="op">=</span>T_c, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax2.text(T_c<span class="op">+</span><span class="fl">0.05</span>, <span class="dv">50</span>, <span class="st">'$T_c$'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim(<span class="fl">1.8</span>, <span class="fl">2.8</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">510</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ising" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ising-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture06_files/figure-html/fig-ising-output-1.png" width="707" height="343" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ising-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Critical behavior of the 2D Ising model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ising-model-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="ising-model-simulation">Ising Model Simulation</h3>
+<p>Below is an interactive simulation of the Ising model that allows you to explore phase transitions by adjusting key parameters. The simulation visualizes the spin configurations in real-time, demonstrating how the system behavior changes across the critical temperature.</p>
+<style>
+.simulation-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.ising-grid {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.slider-container {
+  margin-bottom: 15px;
+}
+
+.slider-container label {
+  display: inline-block;
+  width: 180px;
+  font-weight: bold;
+}
+
+.slider-value {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+  margin-left: 10px;
+}
+
+button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.stats {
+  margin-top: 10px;
+  font-size: 14px;
+}
+</style>
+
+<div class="simulation-container">
+  <div id="ising-container"></div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="temperature">Temperature (T/J):</label>
+      <input type="range" id="temperature" min="0.1" max="5" step="0.01" value="2.27">
+      <span class="slider-value" id="temperature-value">2.27</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="magnetic-field">Magnetic Field (h/J):</label>
+      <input type="range" id="magnetic-field" min="-1" max="1" step="0.01" value="0">
+      <span class="slider-value" id="magnetic-field-value">0</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="coupling">Coupling Strength (J):</label>
+      <input type="range" id="coupling" min="0.1" max="2" step="0.01" value="1">
+      <span class="slider-value" id="coupling-value">1.0</span>
+    </div>
+
+    <button id="reset">Reset</button>
+    <button id="toggle-simulation">Pause</button>
+  </div>
+
+  <div class="stats">
+    <div>Magnetization: <span id="magnetization">0</span></div>
+    <div>Energy: <span id="energy">0</span></div>
+    <div>Critical temperature (2D Ising): T<sub>c</sub> ≈ 2.27J/k<sub>B</sub></div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// Simulation parameters
+const gridSize = 100;
+const cellSize = 4;
+const width = gridSize * cellSize;
+const height = gridSize * cellSize;
+let running = true;
+
+// Create SVG
+const svg = d3.select("#ising-container")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("class", "ising-grid");
+
+// Create spin lattice
+let spins = Array(gridSize).fill()
+  .map(() => Array(gridSize).fill().map(() => Math.random() < 0.5 ? 1 : -1));
+
+// Draw initial configuration
+const cells = svg.selectAll("rect")
+  .data(spins.flat())
+  .enter()
+  .append("rect")
+  .attr("x", (d, i) => (i % gridSize) * cellSize)
+  .attr("y", (d, i) => Math.floor(i / gridSize) * cellSize)
+  .attr("width", cellSize)
+  .attr("height", cellSize)
+  .attr("fill", d => d === 1 ? "#cccccc" : "#000000");
+
+// Controls
+const temperatureSlider = document.getElementById("temperature");
+const temperatureValue = document.getElementById("temperature-value");
+const magneticFieldSlider = document.getElementById("magnetic-field");
+const magneticFieldValue = document.getElementById("magnetic-field-value");
+const couplingSlider = document.getElementById("coupling");
+const couplingValue = document.getElementById("coupling-value");
+const resetButton = document.getElementById("reset");
+const toggleButton = document.getElementById("toggle-simulation");
+const magnetizationText = document.getElementById("magnetization");
+const energyText = document.getElementById("energy");
+
+// Update displayed values
+temperatureSlider.addEventListener("input", () => {
+  temperatureValue.textContent = parseFloat(temperatureSlider.value).toFixed(2);
+});
+
+magneticFieldSlider.addEventListener("input", () => {
+  magneticFieldValue.textContent = parseFloat(magneticFieldSlider.value).toFixed(2);
+});
+
+couplingSlider.addEventListener("input", () => {
+  couplingValue.textContent = parseFloat(couplingSlider.value).toFixed(1);
+});
+
+// Reset simulation
+resetButton.addEventListener("click", () => {
+  spins = Array(gridSize).fill()
+    .map(() => Array(gridSize).fill().map(() => Math.random() < 0.5 ? 1 : -1));
+  updateVisualization();
+  updateStatistics();
+});
+
+// Toggle simulation
+toggleButton.addEventListener("click", () => {
+  running = !running;
+  toggleButton.textContent = running ? "Pause" : "Resume";
+});
+
+// Calculate energy of a single spin
+function calculateSpinEnergy(i, j) {
+  const J = parseFloat(couplingSlider.value);
+  const h = parseFloat(magneticFieldSlider.value);
+  const spin = spins[i][j];
+
+  // Neighbor spins (with periodic boundary conditions)
+  const up = spins[(i - 1 + gridSize) % gridSize][j];
+  const down = spins[(i + 1) % gridSize][j];
+  const left = spins[i][(j - 1 + gridSize) % gridSize];
+  const right = spins[i][(j + 1) % gridSize];
+
+  // Calculate energy from J*sum(s_i*s_j) + h*s_i
+  return -J * spin * (up + down + left + right) - h * spin;
+}
+
+// Calculate total energy
+function calculateTotalEnergy() {
+  let energy = 0;
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      energy += calculateSpinEnergy(i, j);
+    }
+  }
+  // Divide by 2 to avoid double counting
+  return energy / 2;
+}
+
+// Calculate magnetization
+function calculateMagnetization() {
+  const totalSpins = spins.flat().reduce((sum, spin) => sum + spin, 0);
+  return totalSpins / (gridSize * gridSize);
+}
+
+// Update statistics display
+function updateStatistics() {
+  const mag = calculateMagnetization();
+  const energy = calculateTotalEnergy();
+  magnetizationText.textContent = mag.toFixed(3);
+  energyText.textContent = energy.toFixed(1);
+}
+
+// Update visualization
+function updateVisualization() {
+  const flatSpins = spins.flat();
+  svg.selectAll("rect")
+    .data(flatSpins)
+    .attr("fill", d => d === 1 ? "#cccccc" : "#000000");
+}
+
+// Metropolis algorithm step
+function metropolisStep() {
+  const T = parseFloat(temperatureSlider.value);
+  const J = parseFloat(couplingSlider.value);
+  const h = parseFloat(magneticFieldSlider.value);
+
+  // Perform N^2 single-spin updates
+  for (let step = 0; step < gridSize * gridSize; step++) {
+    // Choose a random spin
+    const i = Math.floor(Math.random() * gridSize);
+    const j = Math.floor(Math.random() * gridSize);
+
+    // Calculate energy change if we flip this spin
+    const oldEnergy = calculateSpinEnergy(i, j);
+    spins[i][j] *= -1; // Flip
+    const newEnergy = calculateSpinEnergy(i, j);
+    const deltaE = newEnergy - oldEnergy;
+
+    // Accept or reject based on Metropolis algorithm
+    if (deltaE > 0 && Math.random() > Math.exp(-deltaE / T)) {
+      spins[i][j] *= -1; // Flip back if rejected
+    }
+  }
+
+  updateVisualization();
+  updateStatistics();
+}
+
+// Run simulation
+function simulate() {
+  if (running) {
+    metropolisStep();
+  }
+  requestAnimationFrame(simulate);
+}
+
+// Start simulation
+updateStatistics();
+simulate();
+</script>
+<p>This interactive simulation allows you to explore the Ising model’s phase transition by adjusting three key parameters:</p>
+<ol type="1">
+<li><p><strong>Temperature (T/J)</strong>: Control thermal fluctuations. Notice how the system organizes into ordered domains below the critical temperature (<span class="math inline">\(T_c ≈ 2.27\)</span>) and becomes increasingly disordered above it.</p></li>
+<li><p><strong>Magnetic Field (h/J)</strong>: Apply an external field that biases spins. At strong fields, the system magnetizes regardless of temperature.</p></li>
+<li><p><strong>Coupling Strength (J)</strong>: Adjust the interaction strength between neighboring spins. Higher values promote stronger ordering.</p></li>
+</ol>
+<p>The simulation uses the Metropolis algorithm to sample configurations according to the Boltzmann distribution. The visualization shows spin states (black = up, gray = down) updating in real-time, while displaying the current magnetization and energy of the system.</p>
+<p>Try setting the temperature near the critical point (<span class="math inline">\(T ≈ 2.27\)</span>) and observe the large, fluctuating domains characteristic of critical phenomena. This behavior illustrates the diverging correlation length and enhanced fluctuations discussed in the Ising model section.</p>
+</section>
+</section>
+<section id="motility-induced-phase-separation" class="level2">
+<h2 class="anchored" data-anchor-id="motility-induced-phase-separation">Motility Induced Phase Separation</h2>
+<p>When active particles are experimentally realized from colloidal systems, they can exhibit dynamical clustering phenomena such as display in the movie below and in a number of other studies.</p>
+<div id="fig-MIPS" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MIPS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="../assets/movies/lecture06/1230020s2.mov" class="img-fluid" style="width:100.0%" controls=""><a href="../assets/movies/lecture06/1230020s2.mov">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MIPS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Formation of lvining crystals from light activated colloidal surfers. <a href="https://www.science.org/doi/10.1126/science.1230020">Palacci, J., Sacanna, S., Steinberg, A. P., Pine, D. J. &amp; Chaikin, P. M. Living Crystals of Light-Activated Colloidal Surfers. Science 339, 936–940 (2013)</a>
+</figcaption>
+</figure>
+</div>
+<p>The generic mechanism of this clustering has been termed Motility Induced Phase Separation (MIPS) and describes the spontaneous segregation of self-propelled particles into dense and dilute phases, occurring without any attractive interactions between particles. This counterintuitive phenomenon emerges purely from the interplay between self-propulsion and steric hindrance. It carries signatures of a phase transition when the control parameter, i.e.&nbsp;the speed of the active particles is varied.</p>
+<div id="fig-MIPST" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MIPST-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture06/MIPS.png" id="fig-MIPS-clustering" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MIPST-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Phase separation: (a) Relative mean size <span class="math inline">\(P\)</span> of the largest cluster as a function of swimming speed <span class="math inline">\(v\)</span>. Shown are experimental results (open symbols) and simulation results (closed symbols). (b) Simulation snapshot of the separated system at <span class="math inline">\(\phi=0.5\)</span> and speed <span class="math inline">\(\mathrm{Pe}=100\)</span>. (c) Experimental snapshot at <span class="math inline">\(\phi \simeq 0.25\)</span> and <span class="math inline">\(v \simeq 1.45 \mu \mathrm{~m} / \mathrm{s}\)</span>. <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.110.238301">Buttinoni, I. et al.&nbsp;Dynamical Clustering and Phase Separation in Suspensions of Self-Propelled Colloidal Particles. Phys. Rev.&nbsp;Lett. 110, 238301 (2017)</a>
+</figcaption>
+</figure>
+</div>
+<p>The central mechanism of MIPS can be understood through a feedback loop: active particles move slower in crowded regions due to collisions, leading to their accumulation, which further increases local density. This positive feedback mechanism drives phase separation even with purely repulsive interactions—a stark departure from equilibrium phase transitions that typically require attractive forces.</p>
+<p>In real experimental systems, the actual active particle interactions are not completely free of additional forces other than steric forces, though the principle phenomenon of MIPS is to some extent preserved.</p>
+<section id="mathematical-description" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-description">Mathematical Description</h3>
+<p>At the microscopic level, MIPS is typically modeled using Active Brownian Particles (ABPs) or even discs with excluded volume interactions. These particles follow dynamics governed by:</p>
+<p><span class="math display">\[\dot{\mathbf{r}}_i = v_0 \mathbf{n}_i + \mu \sum_{j \neq i} \mathbf{F}_{ij} + \sqrt{2D_t} \boldsymbol{\xi}_i(t)\]</span></p>
+<p><span class="math display">\[\dot{\theta}_i = \sqrt{2D_r} \eta_i(t)\]</span></p>
+<p>In these equations, <span class="math inline">\(\mathbf{r}_i\)</span> represents the position of particle <span class="math inline">\(i\)</span>, and <span class="math inline">\(\mathbf{n}_i = (\cos\theta_i, \sin\theta_i)\)</span> is its orientation unit vector. The equation includes self-propulsion with speed <span class="math inline">\(v_0\)</span>, repulsive interactions <span class="math inline">\(\mathbf{F}_{ij}\)</span> between particles, and translational diffusion with coefficient <span class="math inline">\(D_t\)</span> and Gaussian white noise <span class="math inline">\(\boldsymbol{\xi}_i(t)\)</span>. The particle’s orientation evolves through rotational diffusion with coefficient <span class="math inline">\(D_r = 1/\tau_p\)</span>.</p>
+<p>The key feedback mechanism in MIPS arises from how particle speed effectively decreases in crowded regions. While <span class="math inline">\(v_0\)</span> is constant in the equation, actual displacement reduces due to collisions. This can be captured by defining a density-dependent effective speed:</p>
+<p><span class="math display">\[v_\text{eff}(\rho) = v_0 \cdot f(\rho)\]</span></p>
+<p>where <span class="math inline">\(f(\rho)\)</span> decreases with local density <span class="math inline">\(\rho\)</span>, commonly expressed as:</p>
+<p><span class="math display">\[f(\rho) = (1 - \rho/\rho_{max})^\alpha\]</span></p>
+<p>with <span class="math inline">\(\alpha &gt; 0\)</span>. This establishes the crucial coupling between motility and density that drives MIPS. Later, we will explore a continuum description that more directly illuminates how this feedback mechanism leads to phase separation.</p>
+</section>
+</section>
+<section id="mips-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="mips-simulation">MIPS Simulation</h2>
+<p>Below is an interactive simulation of Motility-Induced Phase Separation (MIPS) that demonstrates how self-propelled particles can spontaneously form dense clusters without any attractive interactions. The key parameters you can adjust are:</p>
+<ol type="1">
+<li><p><strong>Filling Fraction</strong>: Controls the density of particles in the system. Higher values promote clustering.</p></li>
+<li><p><strong>Orientational Noise</strong>: Determines how randomly particles change their direction. Low noise allows particles to move persistently, facilitating phase separation.</p></li>
+<li><p><strong>Particle Speed</strong>: Sets how quickly particles move. Higher speeds typically enhance phase separation.</p></li>
+<li><p><strong>Attraction Strength</strong>: An additional sttraction between the particles due to phoretic fields, for example</p></li>
+</ol>
+<style>
+.mips-simulation-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.mips-canvas-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+.slider-container {
+  margin-bottom: 15px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-container label {
+  display: inline-block;
+  width: 160px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.slider-container input {
+  width: 200px;
+}
+
+.slider-value {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+  margin-left: 10px;
+}
+
+button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.stats {
+  margin-top: 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stats div {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+</style>
+
+<div class="mips-simulation-container">
+
+  <div class="mips-canvas-container">
+    <canvas id="mips-canvas" width="600" height="600"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="density">Filling Fraction:</label>
+      <input type="range" id="density" min="0.05" max="0.6" step="0.01" value="0.35">
+      <span class="slider-value" id="density-value">0.35</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="noise">Orientational Noise:</label>
+      <input type="range" id="noise" min="0" max="0.5" step="0.01" value="0.05">
+      <span class="slider-value" id="noise-value">0.05</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="speed">Particle Speed:</label>
+      <input type="range" id="speed" min="0.1" max="1" step="0.01" value="0.2">
+      <span class="slider-value" id="speed-value">1.0</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="attraction">Attraction Strength:</label>
+      <input type="range" id="attraction" min="0" max="1.5" step="0.05" value="0">
+      <span class="slider-value" id="attraction-value">0</span>
+    </div>
+
+    <button id="reset-sim">Reset</button>
+    <button id="toggle-sim">Pause</button>
+  </div>
+
+  <div class="stats">
+    <div>Cluster Count: <span id="cluster-count">0</span></div>
+    <div>Largest Cluster: <span id="largest-cluster">0%</span></div>
+    <div>Phase Separation: <span id="phase-separation">No</span></div>
+  </div>
+
+
+</div>
+
+<script>
+class Particle {
+  constructor(x, y, radius, angle) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.angle = angle;
+    this.cluster = -1; // Cluster ID, -1 means not assigned
+  }
+
+  // Check if two particles overlap
+  overlaps(other) {
+    const dx = this.x - other.x;
+    const dy = this.y - other.y;
+    const distance = Math.sqrt(dx*dx + dy*dy);
+    return distance < (this.radius + other.radius);
+  }
+}
+
+// Main simulation class
+class MIPSSimulation {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    this.ctx = this.canvas.getContext('2d');
+    this.width = this.canvas.width;
+    this.height = this.canvas.height;
+
+    // Simulation parameters
+    this.particleRadius = 5;
+    this.particleCount = 0;
+    this.fillingFraction = 0.35;  // Changed default to MIPS-favorable settings
+    this.speed = 0.2;             // Changed default to MIPS-favorable settings
+    this.noise = 0.05;            // Changed default to MIPS-favorable settings
+    this.attraction = 0.0;        // Default to no attraction
+    this.running = true;
+
+    // Particle storage
+    this.particles = [];
+
+    // Spatial grid for collision detection
+    this.gridSize = this.particleRadius * 2;
+    this.grid = {};
+
+    // Initialize
+    this.createParticles();
+    this.animate = this.animate.bind(this);
+    requestAnimationFrame(this.animate);
+  }
+
+  // Create particles based on filling fraction
+  createParticles() {
+    this.particles = [];
+    this.grid = {}; // Clear the grid before creating new particles
+
+    const area = this.width * this.height;
+    const particleArea = Math.PI * this.particleRadius * this.particleRadius;
+    this.particleCount = Math.floor(this.fillingFraction * area / particleArea);
+
+    // Limit maximum attempts to prevent infinite loops at high density
+    const maxAttempts = 10000;
+    let totalAttempts = 0;
+    let particlesCreated = 0;
+
+    while (particlesCreated < this.particleCount && totalAttempts < maxAttempts) {
+      let attempt = 0;
+      let valid = false;
+      let particle;
+
+      // Try to place particles without overlap
+      while (!valid && attempt < 100) {
+        // Ensure particles are distributed across the entire canvas
+        const x = this.particleRadius + Math.random() * (this.width - 2 * this.particleRadius);
+        const y = this.particleRadius + Math.random() * (this.height - 2 * this.particleRadius);
+        const angle = Math.random() * 2 * Math.PI;
+
+        particle = new Particle(x, y, this.particleRadius, angle);
+
+        // Check for overlaps with nearby particles
+        valid = true;
+        const nearbyParticles = this.getNearbyParticles(particle);
+        for (let other of nearbyParticles) {
+          if (particle.overlaps(other)) {
+            valid = false;
+            break;
+          }
+        }
+
+        attempt++;
+        totalAttempts++;
+      }
+
+      // If we found a valid position, add the particle
+      if (valid && particle) {
+        this.particles.push(particle);
+        this.addToGrid(particle);
+        particlesCreated++;
+      }
+    }
+
+    console.log(`Created ${this.particles.length} particles out of ${this.particleCount} requested`);
+    this.updateStats();
+  }
+
+  // Update grid structure for efficient collision detection
+  updateGrid() {
+    this.grid = {};
+    for (let particle of this.particles) {
+      this.addToGrid(particle);
+    }
+  }
+
+  // Add a particle to the grid
+  addToGrid(particle) {
+    const gridX = Math.floor(particle.x / this.gridSize);
+    const gridY = Math.floor(particle.y / this.gridSize);
+    const key = `${gridX},${gridY}`;
+
+    if (!this.grid[key]) {
+      this.grid[key] = [];
+    }
+
+    this.grid[key].push(particle);
+  }
+
+  // Remove a particle from the grid
+  removeFromGrid(particle) {
+    const gridX = Math.floor(particle.x / this.gridSize);
+    const gridY = Math.floor(particle.y / this.gridSize);
+    const key = `${gridX},${gridY}`;
+
+    if (this.grid[key]) {
+      const index = this.grid[key].indexOf(particle);
+      if (index !== -1) {
+        this.grid[key].splice(index, 1);
+      }
+    }
+  }
+
+  // Get nearby particles efficiently using the grid
+  getNearbyParticles(particle) {
+    const nearbyParticles = [];
+    const gridX = Math.floor(particle.x / this.gridSize);
+    const gridY = Math.floor(particle.y / this.gridSize);
+
+    // Check 3x3 grid cells around the particle
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        const key = `${gridX + i},${gridY + j}`;
+        if (this.grid[key]) {
+          nearbyParticles.push(...this.grid[key]);
+        }
+      }
+    }
+
+    return nearbyParticles.filter(p => p !== particle);
+  }
+
+  // Update the simulation state
+  update() {
+    if (!this.running) return;
+
+    // Update each particle position and orientation
+    for (let particle of this.particles) {
+      // Remove from grid before updating
+      this.removeFromGrid(particle);
+
+      // Random direction change (noise)
+      particle.angle += (Math.random() * 2 - 1) * this.noise * Math.PI;
+
+      // Calculate new position
+      const vx = this.speed * Math.cos(particle.angle);
+      const vy = this.speed * Math.sin(particle.angle);
+      let newX = particle.x + vx;
+      let newY = particle.y + vy;
+
+      // Apply periodic boundary conditions
+      if (newX < 0) {
+        newX += this.width;
+      } else if (newX > this.width) {
+        newX -= this.width;
+      }
+
+      if (newY < 0) {
+        newY += this.height;
+      } else if (newY > this.height) {
+        newY -= this.height;
+      }
+
+      // Tentatively update position
+      particle.x = newX;
+      particle.y = newY;
+
+      // Check for collisions with other particles
+      const nearbyParticles = this.getNearbyParticles(particle);
+      for (let other of nearbyParticles) {
+        // Calculate the shortest distance considering periodic boundaries
+        let dx = particle.x - other.x;
+        let dy = particle.y - other.y;
+
+        // Apply periodic boundary adjustment to find shortest distance
+        if (Math.abs(dx) > this.width/2) {
+          dx = dx - Math.sign(dx) * this.width;
+        }
+        if (Math.abs(dy) > this.height/2) {
+          dy = dy - Math.sign(dy) * this.height;
+        }
+
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        const cutoffDistance = 3 * particle.radius; // Range of attractive force
+        const overlap = particle.radius + other.radius - distance;
+
+        if (overlap > 0 && distance > 0) {
+          // Move particles away from each other (inelastic collision)
+          // This is critical for MIPS - inelastic collisions cause particles to lose energy
+          // and slow down in crowded regions, which drives phase separation
+          const nx = dx / distance;
+          const ny = dy / distance;
+
+          particle.x += nx * overlap / 2;
+          particle.y += ny * overlap / 2;
+
+          // Move the other particle too to prevent pile-ups
+          other.x -= nx * overlap / 2;
+          other.y -= ny * overlap / 2;
+
+          // Reapply periodic boundary conditions after collision resolution
+          if (particle.x < 0) particle.x += this.width;
+          if (particle.x > this.width) particle.x -= this.width;
+          if (particle.y < 0) particle.y += this.height;
+          if (particle.y > this.height) particle.y -= this.height;
+
+          if (other.x < 0) other.x += this.width;
+          if (other.x > this.width) other.x -= this.width;
+          if (other.y < 0) other.y += this.height;
+          if (other.y > this.height) other.y -= this.height;
+
+          // Particles maintain their orientation during collisions
+          // We only reposition them to prevent overlap, but do not change their direction
+          // This is important for MIPS as particles should keep their persistent motion
+        }
+        // Apply attractive force if particles are within range but not overlapping
+        else if (distance < cutoffDistance && this.attraction > 0) {
+          // Attractive force decreases with distance (like a weak Lennard-Jones potential)
+          const attractionStrength = this.attraction * (1 - distance / cutoffDistance);
+          const nx = dx / distance;
+          const ny = dy / distance;
+
+          // Move particles slightly toward each other
+          particle.x -= nx * attractionStrength * 0.5;
+          particle.y -= ny * attractionStrength * 0.5;
+
+          other.x += nx * attractionStrength * 0.5;
+          other.y += ny * attractionStrength * 0.5;
+
+          // Reapply periodic boundary conditions after attraction
+          if (particle.x < 0) particle.x += this.width;
+          if (particle.x > this.width) particle.x -= this.width;
+          if (particle.y < 0) particle.y += this.height;
+          if (particle.y > this.height) particle.y -= this.height;
+
+          if (other.x < 0) other.x += this.width;
+          if (other.x > this.width) other.x -= this.width;
+          if (other.y < 0) other.y += this.height;
+          if (other.y > this.height) other.y -= this.height;
+        }
+      }
+
+      // Add back to grid after updating
+      this.addToGrid(particle);
+    }
+
+    // Identify clusters every 10 frames to save computation
+    if (Math.random() < 0.1) {
+      this.identifyClusters();
+      this.updateStats();
+    }
+  }
+
+  // Identify clusters of particles using connected component analysis
+  identifyClusters() {
+    // Reset cluster assignments
+    for (let particle of this.particles) {
+      particle.cluster = -1;
+    }
+
+    let clusterID = 0;
+    let clusterSizes = {};
+
+    // Assign clusters
+    for (let i = 0; i < this.particles.length; i++) {
+      const particle = this.particles[i];
+
+      if (particle.cluster === -1) {
+        // Start a new cluster
+        this.depthFirstClusterAssignment(particle, clusterID);
+        clusterSizes[clusterID] = 0;
+        clusterID++;
+      }
+    }
+
+    // Count cluster sizes
+    for (let particle of this.particles) {
+      if (particle.cluster !== -1) {
+        clusterSizes[particle.cluster] = (clusterSizes[particle.cluster] || 0) + 1;
+      }
+    }
+
+    // Find largest cluster
+    let largestClusterSize = 0;
+    for (let id in clusterSizes) {
+      if (clusterSizes[id] > largestClusterSize) {
+        largestClusterSize = clusterSizes[id];
+      }
+    }
+
+    this.clusterCount = clusterID;
+    this.largestClusterSize = largestClusterSize;
+    this.largestClusterFraction = largestClusterSize / this.particles.length;
+  }
+
+  // Recursive depth-first search to assign cluster IDs
+  depthFirstClusterAssignment(particle, clusterID) {
+    particle.cluster = clusterID;
+    const nearbyParticles = this.getNearbyParticles(particle);
+
+    for (let other of nearbyParticles) {
+      if (other.cluster === -1) {
+        // Calculate the shortest distance considering periodic boundaries
+        let dx = particle.x - other.x;
+        let dy = particle.y - other.y;
+
+        // Apply periodic boundary adjustment to find shortest distance
+        if (Math.abs(dx) > this.width/2) {
+          dx = dx - Math.sign(dx) * this.width;
+        }
+        if (Math.abs(dy) > this.height/2) {
+          dy = dy - Math.sign(dy) * this.height;
+        }
+
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        // Use an extended radius for cluster detection when attraction is enabled
+        const clusterRadius = particle.radius + other.radius + (this.attraction * particle.radius);
+
+        if (distance < clusterRadius) {
+          this.depthFirstClusterAssignment(other, clusterID);
+        }
+      }
+    }
+  }
+
+  // Update statistics display
+  updateStats() {
+    if (this.clusterCount !== undefined) {
+      document.getElementById('cluster-count').textContent = this.clusterCount;
+      document.getElementById('largest-cluster').textContent =
+        `${Math.round(this.largestClusterFraction * 100)}%`;
+
+      // Phase separation is typically considered when the largest cluster contains a significant fraction
+      const phaseSeparated = this.largestClusterFraction > 0.5;
+      document.getElementById('phase-separation').textContent = phaseSeparated ? "Yes" : "No";
+      document.getElementById('phase-separation').style.color = phaseSeparated ? "#4CAF50" : "#666";
+    }
+  }
+
+  // Draw all particles
+  draw() {
+    this.ctx.clearRect(0, 0, this.width, this.height);
+
+    // Draw each particle
+    for (let particle of this.particles) {
+      // Draw the main particle
+      this.ctx.beginPath();
+      this.ctx.fillStyle = "#808080";
+      this.ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI);
+      this.ctx.fill();
+
+      // Draw orientation indicator
+      this.ctx.beginPath();
+      this.ctx.moveTo(particle.x, particle.y);
+      this.ctx.lineTo(
+        particle.x + Math.cos(particle.angle) * particle.radius,
+        particle.y + Math.sin(particle.angle) * particle.radius
+      );
+      this.ctx.strokeStyle = "#fff";
+      this.ctx.stroke();
+
+      // Draw periodic images at the boundaries if needed
+      const drawPeriodicImage = (x, y) => {
+        if (x !== particle.x || y !== particle.y) {
+          this.ctx.beginPath();
+          this.ctx.fillStyle = "#808080";
+          this.ctx.arc(x, y, particle.radius, 0, 2 * Math.PI);
+          this.ctx.fill();
+
+          // Draw orientation indicator for periodic image
+          this.ctx.beginPath();
+          this.ctx.moveTo(x, y);
+          this.ctx.lineTo(
+            x + Math.cos(particle.angle) * particle.radius,
+            y + Math.sin(particle.angle) * particle.radius
+          );
+          this.ctx.strokeStyle = "#fff";
+          this.ctx.stroke();
+        }
+      };
+
+      // Check if particle is near the edges and draw its periodic images
+      if (particle.x < particle.radius * 2) {
+        drawPeriodicImage(particle.x + this.width, particle.y);
+      } else if (particle.x > this.width - particle.radius * 2) {
+        drawPeriodicImage(particle.x - this.width, particle.y);
+      }
+
+      if (particle.y < particle.radius * 2) {
+        drawPeriodicImage(particle.x, particle.y + this.height);
+      } else if (particle.y > this.height - particle.radius * 2) {
+        drawPeriodicImage(particle.x, particle.y - this.height);
+      }
+
+      // Draw corner images if needed
+      if ((particle.x < particle.radius * 2 && particle.y < particle.radius * 2) ||
+          (particle.x < particle.radius * 2 && particle.y > this.height - particle.radius * 2) ||
+          (particle.x > this.width - particle.radius * 2 && particle.y < particle.radius * 2) ||
+          (particle.x > this.width - particle.radius * 2 && particle.y > this.height - particle.radius * 2)) {
+
+        if (particle.x < particle.radius * 2 && particle.y < particle.radius * 2) {
+          drawPeriodicImage(particle.x + this.width, particle.y + this.height);
+        } else if (particle.x < particle.radius * 2 && particle.y > this.height - particle.radius * 2) {
+          drawPeriodicImage(particle.x + this.width, particle.y - this.height);
+        } else if (particle.x > this.width - particle.radius * 2 && particle.y < particle.radius * 2) {
+          drawPeriodicImage(particle.x - this.width, particle.y + this.height);
+        } else if (particle.x > this.width - particle.radius * 2 && particle.y > this.height - particle.radius * 2) {
+          drawPeriodicImage(particle.x - this.width, particle.y - this.height);
+        }
+      }
+    }
+  }
+
+  // Animation loop
+  animate() {
+    this.update();
+    this.draw();
+    requestAnimationFrame(this.animate);
+  }
+
+  // Setter methods
+  setFillingFraction(value) {
+    this.fillingFraction = value;
+    this.createParticles();
+  }
+
+  setNoise(value) {
+    this.noise = value;
+  }
+
+  setSpeed(value) {
+    this.speed = value;
+  }
+
+  setAttraction(value) {
+    this.attraction = value;
+  }
+
+  reset() {
+    this.createParticles();
+  }
+
+  togglePause() {
+    this.running = !this.running;
+    return this.running;
+  }
+}
+
+// Initialize simulation on load
+document.addEventListener('DOMContentLoaded', () => {
+  const simulation = new MIPSSimulation('mips-canvas');
+
+  // Connect UI controls
+  const densitySlider = document.getElementById('density');
+  const densityValue = document.getElementById('density-value');
+  densitySlider.addEventListener('input', () => {
+    const value = parseFloat(densitySlider.value);
+    densityValue.textContent = value.toFixed(2);
+    simulation.setFillingFraction(value);
+  });
+
+  const noiseSlider = document.getElementById('noise');
+  const noiseValue = document.getElementById('noise-value');
+  noiseSlider.addEventListener('input', () => {
+    const value = parseFloat(noiseSlider.value);
+    noiseValue.textContent = value.toFixed(2);
+    simulation.setNoise(value);
+  });
+
+  const speedSlider = document.getElementById('speed');
+  const speedValue = document.getElementById('speed-value');
+  speedSlider.addEventListener('input', () => {
+    const value = parseFloat(speedSlider.value);
+    speedValue.textContent = value.toFixed(1);
+    simulation.setSpeed(value);
+  });
+
+  const attractionSlider = document.getElementById('attraction');
+  const attractionValue = document.getElementById('attraction-value');
+  attractionSlider.addEventListener('input', () => {
+    const value = parseFloat(attractionSlider.value);
+    attractionValue.textContent = value.toFixed(2);
+    simulation.setAttraction(value);
+  });
+
+  const resetButton = document.getElementById('reset-sim');
+  resetButton.addEventListener('click', () => {
+    simulation.reset();
+  });
+
+  const toggleButton = document.getElementById('toggle-sim');
+  toggleButton.addEventListener('click', () => {
+    const running = simulation.togglePause();
+    toggleButton.textContent = running ? "Pause" : "Resume";
+  });
+});
+</script>
+<section id="continuum-theory" class="level3">
+<h3 class="anchored" data-anchor-id="continuum-theory">Continuum Theory</h3>
+<p>A more direct understanding of MIPS can also be obtained with the help of continuum theories such as a hydrodynamic approach that couples the density field <span class="math inline">\(\rho\)</span> with a polarization field <span class="math inline">\(\mathbf{P}\)</span>:</p>
+<p><span class="math display">\[\partial_t \rho = -\nabla \cdot \mathbf{J}\]</span> <span class="math display">\[\mathbf{J} = v(\rho)\mathbf{P}\]</span> <span class="math display">\[\partial_t \mathbf{P} = -D_r \mathbf{P} + \text{higher order terms}\]</span></p>
+<p>The density-dependent swim speed <span class="math inline">\(v(\rho)\)</span> explicitly shows the speed-density coupling and creates the feedback loop driving MIPS:</p>
+<p><span class="math display">\[v(\rho) = v_0(1-\rho/\rho_c)\]</span></p>
+<p>Let’s examine the feedback loop that drives MIPS using a simple, intuitive approach. The key physics can be understood through a direct cause-and-effect chain:</p>
+<ol type="1">
+<li><p><strong>Slow-down in dense regions</strong>: Active particles move more slowly in regions of higher density due to more frequent collisions. This is captured by the relation <span class="math inline">\(v(\rho) = v_0(1-\rho/\rho_c)\)</span>, where speed decreases as density increases.</p></li>
+<li><p><strong>Particle accumulation</strong>: When particles move from a low-density to a high-density region, they slow down. This means particles spend more time in dense regions than in dilute ones, naturally leading to further accumulation where density is already high.</p></li>
+<li><p><strong>Positive feedback</strong>: This accumulation further increases the local density, causing even more slowing and even more accumulation - creating a positive feedback loop.</p></li>
+</ol>
+<p>To see how this works mathematically, consider a simple 1D system with a small density gradient. The particle flux is:</p>
+<p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
+<p>Taking the derivative with respect to density:</p>
+<p><span class="math display">\[\frac{dJ}{d\rho} = v_0(1-\rho/\rho_c) - v_0\rho/\rho_c = v_0(1-2\rho/\rho_c)\]</span></p>
+<p>This derivative tells us how the flux changes as density changes. For stable systems, flux should increase with density (particles flow from high to low concentration). But here, when <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, the derivative becomes negative - flux decreases as density increases. This means particles flow from low to high density regions, reinforcing density differences rather than smoothing them out.</p>
+<p>We can directly see this by writing the continuity equation:</p>
+<p><span class="math display">\[\partial_t\rho = -\nabla \cdot J = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho]\]</span></p>
+<p>Expanding this in 1D:</p>
+<p><span class="math display">\[\partial_t\rho = -\frac{\partial}{\partial x}[v_0(1-\rho/\rho_c)\rho]\]</span></p>
+<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial}{\partial x}[\rho - \rho^2/\rho_c]\]</span></p>
+<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{v_0}{\rho_c}\frac{\partial}{\partial x}[\rho^2]\]</span></p>
+<p>The first term is just advection, but the second term can be rewritten as:</p>
+<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{2v_0}{\rho_c}\rho\frac{\partial \rho}{\partial x}\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\partial_t\rho = v_0(2\rho/\rho_c - 1)\frac{\partial \rho}{\partial x}\]</span></p>
+<p>This equation reveals the instability directly. When <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, the coefficient of the gradient term becomes positive, meaning that density increases in the direction of increasing density - exactly the opposite of regular diffusion. This “anti-diffusion” behavior is the mathematical expression of our intuitive feedback loop.</p>
+<p>The critical density for instability is <span class="math inline">\(\rho_{critical} = \rho_c/2\)</span>, which is exactly what more complex analyses using Fourier modes would find. Any small density fluctuation above this threshold will grow rather than decay, leading to phase separation.</p>
+<p>This simple derivation captures the essential physics of MIPS: the feedback between density and motility creates regions where particles effectively move up concentration gradients rather than down, driving spontaneous phase separation even without attractive interactions between particles.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Incorporating Brownian Motion
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To develop a more complete picture of MIPS, we need to incorporate rotational diffusion explicitly. Recall that active particles undergo rotational Brownian motion described by:</p>
+<p><span class="math display">\[\dot{\theta}_i = \sqrt{2D_r} \eta_i(t)\]</span></p>
+<p>where <span class="math inline">\(D_r\)</span> is the rotational diffusion coefficient and <span class="math inline">\(\eta_i(t)\)</span> is Gaussian white noise.</p>
+<p>This rotational diffusion leads to a persistence time <span class="math inline">\(\tau_p = 1/D_r\)</span>, which is the characteristic time over which a particle maintains its direction before randomizing. This timescale critically affects the development of MIPS.</p>
+<p>To incorporate this effect mathematically, we need to extend our continuum model to include both translational and rotational diffusion. Starting from the particle flux:</p>
+<p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
+<p>We add a diffusion term that accounts for both translational diffusion (<span class="math inline">\(D_t\)</span>) and effective diffusion from rotational motion:</p>
+<p><span class="math display">\[J = v_0(1-\rho/\rho_c)\rho - D_\text{eff} \nabla \rho\]</span></p>
+<p>where <span class="math inline">\(D_\text{eff} = D_t + v_0^2/(2dD_r)\)</span> for a <span class="math inline">\(d\)</span>-dimensional system. The second term captures how particles effectively diffuse due to their persistent random motion, with persistence length <span class="math inline">\(l_p = v_0/D_r\)</span>.</p>
+<p>Now our continuity equation becomes:</p>
+<p><span class="math display">\[\partial_t\rho = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho] + \nabla \cdot (D_\text{eff} \nabla \rho)\]</span></p>
+<p>Expanding in 1D:</p>
+<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial}{\partial x}[\rho - \rho^2/\rho_c] + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
+<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{v_0}{\rho_c}\frac{\partial}{\partial x}[\rho^2] + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\partial_t\rho = v_0(2\rho/\rho_c - 1)\frac{\partial \rho}{\partial x} + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
+<p>This equation now contains two competing effects: the “anti-diffusion” term that drives phase separation when <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, and the effective diffusion term that works to homogenize the system. Phase separation occurs when the anti-diffusion overcomes the regularizing effect of diffusion.</p>
+<p>A stability analysis shows that the critical condition for MIPS becomes:</p>
+<p><span class="math display">\[\frac{v_0^2}{D_\text{eff} D_r} &gt; \frac{4\rho_c}{\rho(\rho_c-\rho)}\]</span></p>
+<p>This reveals that MIPS requires a sufficiently large ratio of self-propulsion to diffusion, commonly expressed through the Péclet number Pe = <span class="math inline">\(v_0/(\sigma D_r)\)</span>, where <span class="math inline">\(\sigma\)</span> is the particle size. Specifically, the system phase separates when:</p>
+<ol type="1">
+<li>The density is in the appropriate range: <span class="math inline">\(\rho &lt; \rho_c\)</span></li>
+<li>The Péclet number exceeds a critical value that depends on density</li>
+<li>The rotational diffusion <span class="math inline">\(D_r\)</span> is sufficiently low to allow persistent motion</li>
+</ol>
+<p>When all of these parameters exceed their critical values, the feedback mechanism between density and mobility becomes sufficiently strong to induce phase separation. At high Péclet numbers, particles move persistently along their orientation before randomizing, creating density fluctuations that can trigger the instability. Similarly, when the density surpasses a threshold value, the motility reduction in crowded regions becomes pronounced enough to sustain the positive feedback loop.</p>
+</div>
+</div>
+</div>
+<p>The phase separation behavior is captured in the binodal curve shown in the phase diagram above, which separates the homogeneous phase from the phase-separated region. The system exhibits a critical point where the distinction between phases vanishes, similar to equilibrium phase transitions. However, the critical exponents and scaling behavior of MIPS may belong to different universality classes than equilibrium systems—reflecting the fundamental non-equilibrium nature of active matter. The critical exponents for MIPS include the order parameter exponent <span class="math inline">\(\beta\)</span> (typically <span class="math inline">\(\approx 0.5\)</span> for MIPS), the susceptibility exponent <span class="math inline">\(\gamma\)</span> (often <span class="math inline">\(\approx 1.0\)</span>), the correlation length exponent <span class="math inline">\(\nu\)</span> (measured around <span class="math inline">\(0.5-0.7\)</span>), and the specific heat exponent <span class="math inline">\(\alpha\)</span> (approximately <span class="math inline">\(0.1-0.2\)</span>). These values differ from both the Ising universality class and liquid-gas critical points, highlighting MIPS’s distinct non-equilibrium character.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v_c <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Critical speed</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rho_c <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Critical density</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>speed_range <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>max_density <span class="op">=</span> <span class="fl">0.7</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate binodal curve</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binodal(v, v_c, rho_c, max_density):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> v_c:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.array([rho_c])  <span class="co"># Just critical density below v_c</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate high and low density branches</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        delta <span class="op">=</span> <span class="fl">0.6</span> <span class="op">*</span> np.sqrt((v<span class="op">-</span>v_c)<span class="op">/</span>v_c)  <span class="co"># Simplified model</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        high_density <span class="op">=</span> <span class="bu">min</span>(rho_c <span class="op">+</span> delta, max_density)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        low_density <span class="op">=</span> <span class="bu">max</span>(rho_c <span class="op">-</span> delta, <span class="fl">0.05</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.array([low_density, high_density])  <span class="co"># Return BOTH phases</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot intensity map showing density distribution</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>mesh_v, mesh_rho <span class="op">=</span> np.meshgrid(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    speed_range,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>intensity <span class="op">=</span> np.zeros_like(mesh_v)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(speed_range):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    densities <span class="op">=</span> binodal(v, v_c, rho_c, max_density)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(densities) <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Homogeneous phase</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">0</span>]))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        intensity[idx, i] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Phase separated - fill the coexistence region</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        low_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">0</span>]))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        high_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">1</span>]))</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        intensity[low_idx:high_idx<span class="op">+</span><span class="dv">1</span>, i] <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># Fill the region between branches</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Smooth the intensity for visualization</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot binodal line</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>binodal_points <span class="op">=</span> []</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> speed_range:</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    densities <span class="op">=</span> binodal(v, v_c, rho_c, max_density)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> densities:</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        binodal_points.append([v, d])</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>binodal_points <span class="op">=</span> np.array(binodal_points)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Only plot the high density branch</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>mask_low <span class="op">=</span> binodal_points[:, <span class="dv">1</span>] <span class="op">&lt;=</span> rho_c</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>mask_high <span class="op">=</span> binodal_points[:, <span class="dv">1</span>] <span class="op">&gt;=</span> rho_c</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(binodal_points[mask_high, <span class="dv">0</span>], binodal_points[mask_high, <span class="dv">1</span>], <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'High density'</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>plt.plot(binodal_points[mask_low, <span class="dv">0</span>], binodal_points[mask_low, <span class="dv">1</span>], <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Low density'</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Add critical point</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.plot(v_c, rho_c, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels and title</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'particle speed $v_0$'</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'density $</span><span class="ch">\\</span><span class="st">rho$'</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-phaseplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="b7e00e9a" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture06_files/figure-html/cell-5-output-1.png" width="463" height="342" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Stationary density distribution in MIPS. The plot shows density in the coexistence region as a function of the particle speed v₀. Below a critical speed v_c, the system remains homogeneous. Above v_c, the system separates into dense and dilute phases, with their respective densities following the binodal curve.
+</figcaption>
+</figure>
+</div>
+<p>Several key features become evident from the binodal curve shown above, which separates the homogeneous region from the phase-separated region. These features include:</p>
+<ol type="1">
+<li><p><strong>Critical Point</strong>: At a critical speed <span class="math inline">\(v_c\)</span> and density <span class="math inline">\(\rho_c\)</span>, the system undergoes a continuous phase transition.</p></li>
+<li><p><strong>Binodal Curve</strong>: Above <span class="math inline">\(v_c\)</span>, the system separates into coexisting phases with densities following the binodal branches.</p></li>
+<li><p><strong>Coexistence Region</strong>: Between the binodal branches, the system separates into regions of high and low density.</p></li>
+</ol>
+<p>This behavior parallels liquid-gas phase transitions in equilibrium systems, but with particle speed rather than temperature serving as the control parameter. The key difference is that MIPS arises purely from the feedback between local density and particle mobility, without requiring attractive interactions.</p>
+<section id="number-density-fluctuations-in-equilibrium" class="level4">
+<h4 class="anchored" data-anchor-id="number-density-fluctuations-in-equilibrium">Number density fluctuations in equilibrium</h4>
+<p>In equilibrium systems, number density fluctuations follow a characteristic scaling law that serves as a fundamental signature of thermodynamic equilibrium. This behavior emerges directly from the central limit theorem of statistics. When we observe a subsystem containing an average of <span class="math inline">\(N\)</span> particles, the particles are either statistically independent (in non-interacting systems) or exhibit only short-range correlations. As a result, counting particles in this volume effectively sums many weakly correlated random variables.</p>
+<p>The central limit theorem tells us that such a sum produces fluctuations with a variance that scales linearly with the system size:</p>
+<p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle\]</span></p>
+<p>This means the standard deviation of these fluctuations scales as <span class="math inline">\(\sqrt{\langle N\rangle}\)</span>. When we examine relative fluctuations—the ratio of fluctuation magnitude to the mean—we find they scale as</p>
+<p><span class="math display">\[\delta N/\langle N\rangle \propto 1/\sqrt{\langle N\rangle}\]</span></p>
+<p>This <span class="math inline">\(1/\sqrt{N}\)</span> scaling is universal across equilibrium systems, appearing in ideal gases, liquids, and even interacting solids. It represents one of the most reliable signatures of equilibrium behavior and reflects the absence of long-range correlations that would otherwise amplify fluctuations beyond this scaling.</p>
+</section>
+<section id="number-density-fluctuations-in-mips" class="level4">
+<h4 class="anchored" data-anchor-id="number-density-fluctuations-in-mips">Number density fluctuations in MIPS</h4>
+<p>Active systems exhibiting Motility-Induced Phase Separation (MIPS) demonstrate a profound departure from this equilibrium behavior. In these systems, the self-propulsion of particles creates persistent motion and induces spatial correlations that extend far beyond what’s possible in equilibrium.</p>
+<p>The most striking manifestation of this non-equilibrium nature appears in the density fluctuations. Rather than following the equilibrium <span class="math inline">\(1/\sqrt{N}\)</span> scaling, active systems show “giant number fluctuations” where the variance scales as</p>
+<p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle^{\alpha}\]</span></p>
+<p>with <span class="math inline">\(\alpha &gt; 1\)</span>. This super-linear scaling means that relative fluctuations actually grow with system size rather than diminish.</p>
+<div id="fig-giantnumber" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-giantnumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture06/number1.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-giantnumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters formed by light-activated particles. The number fluctuations <span class="math inline">\(\Delta n\)</span> scale with the average number <span class="math inline">\(\langle n \rangle\)</span> of particles with an exponent <span class="math inline">\(\alpha = 0.9\)</span>, significantly exceeding the equilibrium value of 0.5. Taken rom Palacci, J., Sacanna, S., Steinberg, A. P., Pine, D. J. &amp; Chaikin, P. M. Living Crystals of Light-Activated Colloidal Surfers. Science 339, 936–940 (2013).
+</figcaption>
+</figure>
+</div>
+<p>This anomalous behavior stems from the long-range correlations that activity creates between particle positions and velocities. As particles cluster in MIPS, they don’t distribute randomly but rather organize collectively in response to local density gradients, amplifying density variations instead of smoothing them out.</p>
+<p>This difference in number fluctuation scaling provides researchers with a powerful experimental signature to distinguish active from passive phase separation, even without tracking individual particle trajectories. By measuring how density fluctuations scale with system size, one can immediately identify the non-equilibrium character of active matter systems, revealing one of the clearest manifestations of their departure from equilibrium physics.</p>
+<p>MIPS exemplifies several profound concepts in non-equilibrium statistical mechanics:</p>
+<p><strong>Emergent Thermodynamics</strong>: Despite being driven by non-equilibrium processes, MIPS exhibits phase coexistence reminiscent of equilibrium systems. This suggests the possibility of constructing effective thermodynamic frameworks for active systems—an open question that connects to fundamental postulates of statistical mechanics.</p>
+<p><strong>Entropy Production</strong>: Active systems continuously dissipate energy and produce entropy. Quantifying this entropy production and its relationship to pattern formation addresses foundational questions about irreversibility and the arrow of time.</p>
+<p><strong>Broken Time-Reversal Symmetry</strong>: The equations governing active particles lack time-reversal symmetry, leading to novel dynamical phenomena including odd elasticity, non-reciprocal interactions, and topologically protected states—concepts that parallel developments in quantum many-body physics.</p>
+<p>MIPS provides a conceptual bridge between statistical mechanics and several interdisciplinary fields. Cellular aggregation, bacterial biofilms, and tissue formation involve self-propelled biological entities that can exhibit MIPS-like behavior within the realm of Biological Physics. MIPS concepts help explain the behavior of synthetic active colloids, microswimmers, and other designed active materials in Soft Matter research. Pattern formation in active systems exemplifies how simple rules can generate complex, emergent behaviors—a theme that resonates across physics from condensed matter to cosmology in Complexity Science. Simulating MIPS requires numerical techniques that balance microscopic accuracy with computational efficiency, providing practical experience in scientific computing for those interested in Computational Physics.</p>
+<p>For further reading, consider these foundational papers:</p>
+<ul>
+<li>Cates, M. E., &amp; Tailleur, J. (2015). Motility-induced phase separation. Annual Review of Condensed Matter Physics, 6, 219-244.</li>
+<li>Ramaswamy, S. (2010). The mechanics and statistics of active matter. Annual Review of Condensed Matter Physics, 1, 323-345.</li>
+<li>Fily, Y. &amp; Marchetti, M. C. Athermal Phase Separation of Self-Propelled Particles with No Alignment. Phys. Rev.&nbsp;Lett. 108, 235702 (2012).</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture05/lecture05.html" class="pagination-link" aria-label="Lecture 5">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 5</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture07/lecture07.html" class="pagination-link" aria-label="Lecture 7">
+        <span class="nav-page-text">Lecture 7</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Vicsek Model and Flocking Transition – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture08/lecture08.html" rel="next">
+<link href="../lecture06/lecture06.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture07/lecture07.html">Lecture 7</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vicsek-model-and-flocking-transition" id="toc-vicsek-model-and-flocking-transition" class="nav-link active" data-scroll-target="#vicsek-model-and-flocking-transition">Vicsek Model and Flocking Transition</a>
+  <ul class="collapse">
+  <li><a href="#interactive-vicsek-model-simulation" id="toc-interactive-vicsek-model-simulation" class="nav-link" data-scroll-target="#interactive-vicsek-model-simulation">Interactive Vicsek Model Simulation</a></li>
+  <li><a href="#topological-interactions-in-collective-motion" id="toc-topological-interactions-in-collective-motion" class="nav-link" data-scroll-target="#topological-interactions-in-collective-motion">Topological Interactions in Collective Motion</a></li>
+  <li><a href="#voronoi-based-interactions" id="toc-voronoi-based-interactions" class="nav-link" data-scroll-target="#voronoi-based-interactions">Voronoi-Based Interactions</a></li>
+  <li><a href="#delay-vicsek-model-information-transfer-with-memory" id="toc-delay-vicsek-model-information-transfer-with-memory" class="nav-link" data-scroll-target="#delay-vicsek-model-information-transfer-with-memory">Delay Vicsek Model: Information Transfer with Memory</a></li>
+  </ul></li>
+  <li><a href="#information-propagation-in-active-groups" id="toc-information-propagation-in-active-groups" class="nav-link" data-scroll-target="#information-propagation-in-active-groups">Information Propagation in Active Groups</a>
+  <ul class="collapse">
+  <li><a href="#wave-like-information-transfer-in-starling-flocks" id="toc-wave-like-information-transfer-in-starling-flocks" class="nav-link" data-scroll-target="#wave-like-information-transfer-in-starling-flocks">Wave-like Information Transfer in Starling Flocks</a></li>
+  <li><a href="#the-role-of-behavioral-inertia" id="toc-the-role-of-behavioral-inertia" class="nav-link" data-scroll-target="#the-role-of-behavioral-inertia">The Role of Behavioral Inertia</a></li>
+  <li><a href="#evidence-from-natural-swarms-and-other-systems" id="toc-evidence-from-natural-swarms-and-other-systems" class="nav-link" data-scroll-target="#evidence-from-natural-swarms-and-other-systems">Evidence from Natural Swarms and Other Systems</a></li>
+  <li><a href="#the-speed-order-relationship" id="toc-the-speed-order-relationship" class="nav-link" data-scroll-target="#the-speed-order-relationship">The Speed-Order Relationship</a></li>
+  <li><a href="#functional-benefits-of-wave-like-propagation" id="toc-functional-benefits-of-wave-like-propagation" class="nav-link" data-scroll-target="#functional-benefits-of-wave-like-propagation">Functional Benefits of Wave-Like Propagation</a></li>
+  <li><a href="#applications-and-future-directions" id="toc-applications-and-future-directions" class="nav-link" data-scroll-target="#applications-and-future-directions">Applications and Future Directions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture07/lecture07.html">Lecture 7</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Vicsek Model and Flocking Transition</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="vicsek-model-and-flocking-transition" class="level2">
+<h2 class="anchored" data-anchor-id="vicsek-model-and-flocking-transition">Vicsek Model and Flocking Transition</h2>
+<p>The Vicsek model, introduced in 1995, provides a minimal framework for understanding collective motion in active systems. It was motivated by striking observations of coordinated movement across diverse biological systems, from bird flocks and fish schools to bacterial colonies and insect swarms. These natural systems display remarkable collective behaviors despite the absence of any centralized control mechanism:</p>
+<ul>
+<li><p><strong>Bird flocks</strong>: Starling murmurations demonstrate rapid information propagation, with thousands of birds turning almost simultaneously. High-speed photography has revealed that changes in direction can spread across a flock at speeds faster than single-bird reaction times would allow.</p></li>
+<li><p><strong>Fish schools</strong>: Experimental studies show that fish maintain remarkably consistent distances from neighbors while executing coordinated turns. When startled, information about predator threats propagates as a wave through the school at speeds much higher than individual swimming speeds.</p></li>
+<li><p><strong>Bacterial colonies</strong>: Time-lapse microscopy of bacterial swarms reveals long-range orientational order spanning distances hundreds of times larger than individual bacteria. These colonies can navigate complex environments despite each bacterium having only local sensory capabilities.</p></li>
+<li><p><strong>Locust swarms</strong>: Field studies demonstrate that locusts maintain aligned motion over vast distances despite considerable environmental perturbations, with density-dependent transitions from disordered to ordered movement.</p></li>
+</ul>
+<p>The Vicsek model represents one of the simplest models demonstrating a non-equilibrium phase transition from disordered motion to coherent flocking behavior, and has become a cornerstone of the active matter field.</p>
+<p>The model’s profound impact on the active matter community stems from its demonstration that simple local alignment rules can produce complex collective phenomena without any centralized control. This insight has inspired thousands of subsequent studies, from bacterial colonies and cellular tissues to robotic swarms and synthetic active colloids. The Vicsek model established the paradigm that active systems—those consuming energy to maintain non-equilibrium states—can exhibit fundamentally different physics from their passive counterparts.</p>
+<p>Recent experimental studies have provided crucial insights that both validate and challenge aspects of the Vicsek model. Cavagna et al.&nbsp;(2017) demonstrated the emergence of dynamic scaling laws in natural swarms of midges, establishing that these biological collectives exhibit critical behavior analogous to physical systems near phase transitions. Their groundbreaking analysis revealed that spatio-temporal correlation functions in different swarms can be rescaled using a single characteristic time, which grows with correlation length according to a dynamical critical exponent z ≈ 1. This finding stands in stark contrast to both equilibrium models and simulations of self-propelled particles (including the Vicsek model), which typically yield z ≈ 2. This discrepancy suggests that natural swarms belong to a novel dynamic universality class not captured by existing theoretical frameworks.</p>
+<div id="fig-midges" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-midges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture07/midges.png" class="img-fluid figure-img"></p>
+<figcaption>a, A system of three synchronized high-speed cameras shooting at 170 fps is used to collect videosequences of midge swarms in their natural environment.b, A swarm of approximately 300 midges.c, Close-up of two trajectories within the swarm.</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-midges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>The study provided experimental evidence for non-dissipative modes in the relaxation dynamics of swarms, indicating that previously overlooked inertial effects are essential to describe collective animal motion accurately. Unlike the original Vicsek model, which assumes instantaneous alignment and purely dissipative dynamics, real biological systems appear to incorporate behavioral inertia that fundamentally alters information propagation through the group.</p>
+<p>This finding aligns with research by Attanasi et al.&nbsp;(2014) on information transfer in starling flocks during collective turns. Their empirical observations revealed that direction changes propagate across flocks with a linear dispersion law and negligible attenuation, dramatically minimizing group decoherence. This linear and undamped propagation stands in direct opposition to standard models of collective motion, including the original Vicsek model, which predict diffusive transport of information that would cause significant group fragmentation during rapid maneuvers.</p>
+<p>The authors identified behavioral inertia—the tendency of individuals to resist sudden changes in their state of motion—as the crucial missing ingredient in existing models. By incorporating this inertia into a theoretical framework built on spontaneous symmetry breaking and conservation principles, they successfully reproduced the observed linear propagation. Importantly, their theory predicted that information transfer becomes faster as a group’s orientational order increases, a prediction they confirmed through detailed analysis of empirical data. This suggests that the strong polarization observed in many animal groups may have evolved specifically to enable rapid collective decision-making.</p>
+<p>In this model, self-propelled particles move with constant speed while adjusting their direction based on their neighbors. The update rule is elegantly simple:</p>
+<p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t) \rangle_{j \in \mathcal{N}_i} + \eta \xi_i(t)\]</span></p>
+<p>where <span class="math inline">\(\theta_i\)</span> is the direction of the <span class="math inline">\(i\)</span>-th particle, <span class="math inline">\(\mathcal{N}_i\)</span> represents its neighbors within a radius <span class="math inline">\(R\)</span>, and <span class="math inline">\(\xi_i(t)\)</span> is a random variable uniformly distributed in <span class="math inline">\([-\pi,\pi]\)</span> with noise strength <span class="math inline">\(\eta\)</span>.</p>
+<p>The particles move with position updates:</p>
+<p><span class="math display">\[\mathbf{r}_i(t+1) = \mathbf{r}_i(t) + v_0 (\cos\theta_i(t+1), \sin\theta_i(t+1))\]</span></p>
+<p>The Vicsek model bears striking resemblances to classical equilibrium models in statistical physics, particularly the XY model, while also connecting to the simpler Ising model. Like the two-dimensional XY model, the Vicsek system has continuous rotational symmetry—particles can point in any direction in the plane—and exhibits ordering through alignment interactions. Both models use similar order parameters measuring the degree of collective alignment. However, a crucial difference emerges: while the Mermin-Wagner theorem prohibits long-range order in the 2D equilibrium XY model at finite temperature due to thermal fluctuations, the active Vicsek system can maintain stable ordered states because it operates far from equilibrium through constant energy injection.</p>
+<p>The connection to the Ising model is more conceptual but equally illuminating. Both models involve local alignment interactions leading to global order-disorder transitions, with the key distinction being that Ising spins are discrete (up/down) while Vicsek particles have continuous orientations. In some sense, the Vicsek model can be viewed as a “dynamic Ising model” with continuous spins, constant motion, and broken detailed balance—features that fundamentally alter the nature of the phase transition.</p>
+<p>The key physical insight from the Vicsek model is the emergence of a phase transition controlled by two parameters: the noise strength <span class="math inline">\(\eta\)</span> and the particle density <span class="math inline">\(\rho\)</span>. As noise decreases or density increases, the system transitions from a disordered gas-like state to a coherent flock where particles move collectively in a common direction.</p>
+<div id="fig-vicsek-snapshots" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vicsek-snapshots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture07/vicsek_snapshots.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vicsek-snapshots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— In this figure the velocities of the particles are displayed for varying values of the density and the noise. The actual velocity of a particle is indicated by a small arrow, while their trajectory for the last 20 time steps is shown by a short continuous curve. The number of particles is <span class="math inline">\(N=300\)</span> in each case. (a) <span class="math inline">\(t=0, L=7, \eta=2.0\)</span>. (b) For small densities and noise the particles tend to form groups moving coherently in random directions, here <span class="math inline">\(L=25, \eta=0.1\)</span>. (c) After some time at higher densities and noise <span class="math inline">\((L=7, \eta=2.0)\)</span> the particles move randomly with some correlation. (d) For higher density and small noise ( <span class="math inline">\(L=5, \eta=0.1\)</span> ) the motion becomes ordered. All of our results shown in Figs. 1-3 were obtained from simulations in which <span class="math inline">\(v\)</span> was set to be equal to 0.03. (source: Vicsek, T., Czirók, A., Ben-Jacob, E., Cohen, I. &amp; Shochet, O. Novel type of phase transition in a system of self-driven particles. Phys Rev Lett 75, 1226 (1995).)
+</figcaption>
+</figure>
+</div>
+<p>This transition is typically characterized by the order parameter:</p>
+<p><span class="math display">\[\phi = \frac{1}{Nv_0}\left|\sum_{i=1}^{N} \mathbf{v}_i\right|\]</span></p>
+<p>Which measures the degree of alignment between particle velocities, ranging from 0 (complete disorder) to 1 (perfect alignment).</p>
+<p>The nature of this transition remains an active research topic, with evidence suggesting it may be a first-order transition with unique properties related to long-range correlations and giant number fluctuations. These features distinguish it from equilibrium phase transitions, making it a paradigmatic example of non-equilibrium statistical physics.</p>
+<div id="fig-vicsek-PT" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vicsek-PT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../assets/images/lecture07/vicsek_PT0.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../assets/images/lecture07/vicsek_PT1.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vicsek-PT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— The absolute value of the average velocity (<span class="math inline">\(v_a\)</span>) versus the noise <span class="math inline">\(\eta\)</span> in cells of various sizes for a fixed density <span class="math inline">\(\rho\)</span>. The symbols correspond to <span class="math inline">\(\square\)</span>: <span class="math inline">\(N=40, L=3.1;\)</span> <span class="math inline">\(+: N=100, L=5 ;\)</span> $ : N=400, L=10 ; : N=4000, L=31.6 ; : N=10000, L=50$. How <span class="math inline">\(v_a\)</span> changes if the noise is kept constant and the density is increased (for <span class="math inline">\(L=20\)</span>). Phase transitions in the Vicsek model: (a) order parameter vs.&nbsp;noise strength, and (b) order parameter vs.&nbsp;density. (source: 1.Vicsek, T., Czirók, A., Ben-Jacob, E., Cohen, I. &amp; Shochet, O. Novel type of phase transition in a system of self-driven particles. Phys Rev Lett 75, 1226 (1995).)
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Properties of the Vicsek Model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Minimal ingredients</strong>: Self-propelled particles moving at constant speed with local alignment interactions and noise</li>
+<li><strong>Simple update rules</strong>: Each particle updates its direction to the average of neighboring particles plus random noise</li>
+<li><strong>Control parameters</strong>:
+<ul>
+<li>Noise strength <span class="math inline">\(\eta\)</span> (disrupts alignment)</li>
+<li>Particle density <span class="math inline">\(\rho\)</span> (enhances alignment through more interactions)</li>
+<li>Interaction radius <span class="math inline">\(R\)</span> (determines neighborhood size)</li>
+</ul></li>
+<li><strong>Order parameter</strong>: Normalized average velocity <span class="math inline">\(\phi\)</span> measures global alignment (<span class="math inline">\(0\)</span> = disorder, <span class="math inline">\(1\)</span> = perfect alignment)</li>
+<li><strong>Non-equilibrium phase transition</strong>: Transition from disorder to order as <span class="math inline">\(\eta\)</span> decreases or <span class="math inline">\(\rho\)</span> increases</li>
+<li><strong>Long-range order in 2D</strong>: Unlike equilibrium systems (constrained by Mermin-Wagner theorem), can maintain true long-range order</li>
+<li><strong>Giant number fluctuations</strong>: Exhibits unusually large density variations not seen in equilibrium systems</li>
+<li><strong>Universality class</strong>: Belongs to a distinct non-equilibrium universality class with unique critical exponents</li>
+<li><strong>Applications</strong>: Successfully applied to bird flocks, fish schools, bacterial colonies, cell migrations, and artificial swarms</li>
+</ul>
+</div>
+</div>
+<section id="interactive-vicsek-model-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-vicsek-model-simulation">Interactive Vicsek Model Simulation</h3>
+<p>Below is an interactive simulation of the Vicsek model, demonstrating how local alignment interactions lead to global order. You can adjust key parameters to observe how they affect the emergence of flocking behavior.</p>
+<div id="vicsek-simulation" style="width: 100%; height: 430px; border: 0px solid #ccc; margin-bottom: 30px;">
+  <div id="vicsek-canvas" style="width: 100%; height: 350px;"></div>
+  <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="particle-speed">Speed: <span id="speed-value">4.0</span></label>
+      <input type="range" id="particle-speed" min="1.0" max="10" step="0.1" value="4">
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="interaction-radius">Interaction Radius: <span id="radius-value">50</span></label>
+      <input type="range" id="interaction-radius" min="10" max="100" step="5" value="50">
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="noise-level">Noise (η): <span id="noise-value">1.0</span></label>
+      <input type="range" id="noise-level" min="0" max="5" step="0.1" value="1.0">
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="particle-density">Density (ρ): <span id="density-value">3.0</span></label>
+      <input type="range" id="particle-density" min="0" max="10" step="0.5" value="3">
+    </div>
+    <button id="reset-vicsek" style="align-self: center; height: 30px;">Reset</button>
+  </div>
+  <div style="text-align: center; margin-top: 10px; font-size: 14px; font-weight: bold;">
+    Order Parameter φ: <span id="order-parameter-value" style="color: steelblue;">0.00</span>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// Simulation parameters
+const vicsekWidth = document.getElementById('vicsek-canvas').clientWidth;
+const vicsekHeight = 350;
+let numVicsekParticles = 300;
+// Store the current density value to avoid fluctuations in display
+let currentDensityValue = 3.0;
+
+// Create SVG container
+const vicsekSvg = d3.select("#vicsek-canvas")
+  .append("svg")
+  .attr("width", vicsekWidth)
+  .attr("height", vicsekHeight);
+
+// Add background for better visibility
+vicsekSvg.append("rect")
+  .attr("width", vicsekWidth)
+  .attr("height", vicsekHeight)
+  .attr("fill", "#f8f8f8");
+
+// Initialize particles
+let vicsekParticles = [];
+
+function initializeVicsekParticles() {
+  // Get current density value and convert to particle count
+  const densityValue = parseFloat(d3.select("#particle-density").property("value"));
+  currentDensityValue = densityValue; // Store the value
+  d3.select("#density-value").text(currentDensityValue.toFixed(1)); // Update display once
+
+  numVicsekParticles = Math.round(densityValue * 100); // Map 0-10 density to 0-1000 particles
+
+  vicsekParticles = [];
+  for (let i = 0; i < numVicsekParticles; i++) {
+    // Random position and direction
+    const angle = Math.random() * 2 * Math.PI;
+    vicsekParticles.push({
+      id: i,
+      x: Math.random() * vicsekWidth,
+      y: Math.random() * vicsekHeight,
+      angle: angle,
+      vx: Math.cos(angle),
+      vy: Math.sin(angle)
+    });
+  }
+}
+
+// Create particle elements
+let particleElements;
+
+function createParticleElements() {
+  // Remove existing particles
+  vicsekSvg.selectAll(".particle").remove();
+
+  // Create new particles
+  particleElements = vicsekSvg.selectAll(".particle")
+    .data(vicsekParticles)
+    .enter()
+    .append("g")
+    .attr("class", "particle")
+    .attr("transform", d => `translate(${d.x},${d.y})`);
+
+  // Add line for particles to show direction of motion
+  particleElements.append("line")
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", d => 6 * d.vx)  // Line length in direction of motion
+    .attr("y2", d => 6 * d.vy)
+    .attr("stroke", "steelblue")
+    .attr("stroke-width", 1.5);
+}
+
+function calculateOrderParameter() {
+  // Calculate the order parameter φ = |<v>|/v₀
+  // where <v> is the average velocity vector and v₀ is the particle speed
+  let sumVx = 0;
+  let sumVy = 0;
+
+  vicsekParticles.forEach(particle => {
+    sumVx += particle.vx;
+    sumVy += particle.vy;
+  });
+
+  // Average velocity components
+  const avgVx = sumVx / vicsekParticles.length;
+  const avgVy = sumVy / vicsekParticles.length;
+
+  // Magnitude of average velocity
+  const avgSpeed = Math.sqrt(avgVx * avgVx + avgVy * avgVy);
+
+  // Order parameter (normalized by unit speed since |v| = 1 for each particle)
+  const orderParameter = avgSpeed;
+
+  return orderParameter;
+}
+
+function updateVicsekParticles() {
+  // Get current parameter values
+  const particleSpeed = parseFloat(d3.select("#particle-speed").property("value"));
+  const interactionRadius = parseFloat(d3.select("#interaction-radius").property("value"));
+  const noiseLevel = parseFloat(d3.select("#noise-level").property("value"));
+  const densityValue = parseFloat(d3.select("#particle-density").property("value"));
+
+  // Don't update density display here to prevent fluctuation
+  currentDensityValue = densityValue;
+
+  const targetParticles = Math.round(currentDensityValue * 100);
+
+  // Check if density has changed and reinitialize if needed
+  if (targetParticles !== numVicsekParticles) {
+    numVicsekParticles = targetParticles;
+    initializeVicsekParticles();
+    createParticleElements();
+    return; // Skip this update cycle to avoid issues
+  }
+
+  // Update each particle according to Vicsek model
+  vicsekParticles.forEach(particle => {
+    // Find neighbors within interaction radius
+    const neighbors = vicsekParticles.filter(other => {
+      if (other.id === particle.id) return false;
+
+      // Calculate distance with periodic boundary conditions
+      let dx = Math.abs(other.x - particle.x);
+      let dy = Math.abs(other.y - particle.y);
+
+      // Account for periodic boundaries
+      if (dx > vicsekWidth / 2) dx = vicsekWidth - dx;
+      if (dy > vicsekHeight / 2) dy = vicsekHeight - dy;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      return distance < interactionRadius;
+    });
+
+    if (neighbors.length > 0) {
+      // Calculate average direction of neighbors
+      let avgSin = 0;
+      let avgCos = 0;
+
+      neighbors.forEach(neighbor => {
+        avgSin += Math.sin(neighbor.angle);
+        avgCos += Math.cos(neighbor.angle);
+      });
+
+      avgSin /= neighbors.length;
+      avgCos /= neighbors.length;
+
+      // New angle is the average angle plus noise
+      let newAngle = Math.atan2(avgSin, avgCos);
+
+      // Add noise - consistent with original Vicsek paper scaling
+      // η ranges from 0 to 5, with noise applied as η * ξ where ξ ∈ [-π, π]
+      newAngle += (Math.random() - 0.5) * 2 * Math.PI * (noiseLevel / 5);
+
+      // Update angle and velocity
+      particle.angle = newAngle;
+      particle.vx = Math.cos(newAngle);
+      particle.vy = Math.sin(newAngle);
+    }
+
+    // Update position
+    particle.x += particle.vx * particleSpeed;
+    particle.y += particle.vy * particleSpeed;
+
+    // Periodic boundary conditions
+    if (particle.x < 0) particle.x += vicsekWidth;
+    if (particle.x > vicsekWidth) particle.x -= vicsekWidth;
+    if (particle.y < 0) particle.y += vicsekHeight;
+    if (particle.y > vicsekHeight) particle.y -= vicsekHeight;
+  });
+
+  // Calculate and display order parameter
+  const orderParameter = calculateOrderParameter();
+  d3.select("#order-parameter-value").text(orderParameter.toFixed(3));
+
+  // Update visualization - position and direction
+  particleElements.attr("transform", d => `translate(${d.x},${d.y})`)
+    .select("line")
+    .attr("x2", d => 6 * d.vx)
+    .attr("y2", d => 6 * d.vy);
+}
+
+// Initialize and start simulation
+initializeVicsekParticles();
+createParticleElements();
+
+let vicsekTimer = d3.interval(() => {
+  updateVicsekParticles();
+}, 30);
+
+// Reset button handler
+d3.select("#reset-vicsek").on("click", () => {
+  vicsekTimer.stop();
+  initializeVicsekParticles();
+  createParticleElements();
+  vicsekTimer = d3.interval(() => {
+    updateVicsekParticles();
+  }, 30);
+});
+
+// Draw interaction radius indicator
+const radiusIndicator = vicsekSvg.append("circle")
+  .attr("cx", 60)
+  .attr("cy", 60)
+  .attr("r", 50)
+  .attr("fill", "none")
+  .attr("stroke", "rgba(70, 130, 180, 0.4)")
+  .attr("stroke-width", 1)
+  .attr("stroke-dasharray", "5,5");
+
+// Add event handlers for slider value updates to prevent fluctuation
+d3.select("#particle-speed").on("input", function() {
+  const value = parseFloat(this.value);
+  d3.select("#speed-value").text(value.toFixed(1));
+});
+
+d3.select("#interaction-radius").on("input", function() {
+  const value = parseFloat(this.value);
+  d3.select("#radius-value").text(Math.round(value));
+  radiusIndicator.attr("r", value);
+});
+
+d3.select("#noise-level").on("input", function() {
+  const value = parseFloat(this.value);
+  d3.select("#noise-value").text(value.toFixed(1));
+});
+
+d3.select("#particle-density").on("input", function() {
+  const value = parseFloat(this.value);
+  d3.select("#density-value").text(value.toFixed(1));
+});
+</script>
+<p>This simulation demonstrates the core principles of the Vicsek model:</p>
+<ol type="1">
+<li><p><strong>Local Alignment</strong>: Each particle adjusts its direction to align with neighbors within the interaction radius.</p></li>
+<li><p><strong>Noise Influence</strong>: Random noise disrupts perfect alignment, mimicking individual variation or environmental disturbances.</p></li>
+<li><p><strong>Phase Transition</strong>: By adjusting the parameters, you can observe a transition from disordered motion (high noise, small radius) to coordinated flocking (low noise, large radius).</p></li>
+<li><p><strong>Emergent Behavior</strong>: The global ordering emerges spontaneously from purely local interactions, without any centralized control.</p></li>
+</ol>
+<p>Try different parameter combinations to explore how these factors affect the collective dynamics. For instance, increasing the noise while keeping other parameters constant will eventually break down the ordered flocking state, illustrating the noise-induced phase transition that made the Vicsek model so influential in the field of active matter.</p>
+<p>The nature of the order-disorder transition in the Vicsek model has been the subject of significant debate in the scientific community. In their original 1995 paper, Vicsek and colleagues characterized the transition as continuous (second-order), with the order parameter scaling as <span class="math inline">\((\eta_c-\eta)^\beta\)</span> with <span class="math inline">\(\beta \approx 0.45\)</span>. This classification aligns with many traditional continuous phase transitions in equilibrium statistical physics, where the order parameter grows continuously from zero as the control parameter crosses a critical threshold.</p>
+<p>Continuous phase transitions are characterized by several key features that the Vicsek model appears to share:</p>
+<ol type="1">
+<li><p><strong>Scale-free correlations</strong>: Near the critical point, correlation lengths diverge, leading to scale-invariant behavior where fluctuations occur at all length scales. This property is evidenced in the Vicsek model by the emergence of clusters of aligned particles at all scales near the transition.</p></li>
+<li><p><strong>Critical exponents</strong>: The behavior near the transition can be described by power laws with characteristic critical exponents. The original Vicsek model revealed an order parameter exponent <span class="math inline">\(\beta \approx 0.45\)</span>, which differs from known equilibrium universality classes, suggesting a novel universality class specific to active systems.</p></li>
+<li><p><strong>Universality</strong>: The values of these exponents are expected to be universal, depending only on fundamental properties like symmetry and dimensionality rather than microscopic details. Recent work by Jentsch and Lee (2024) has proposed that the Vicsek model indeed represents a novel universality class with distinct critical exponents that have been confirmed through both theoretical analysis and simulations.</p></li>
+<li><p><strong>Dynamic scaling</strong>: Time-dependent correlation functions exhibit scaling properties near the critical point, as demonstrated by Cavagna et al.&nbsp;(2017) in natural swarms, though with important differences from the Vicsek model predictions.</p></li>
+</ol>
+<p>However, subsequent studies by Chaté and collaborators (2008) challenged this view, presenting evidence that the transition might actually be first-order (discontinuous) under certain conditions. Their detailed numerical analyses revealed that the apparent continuous nature of the transition might be an artifact of finite-size effects and simulation protocols. This controversy has led to extensive investigations of how factors such as boundary conditions, system size, and update rules affect the observed transition.</p>
+<p>Recent research by Solon, Chaté, and Tailleur (2015) has offered a unifying perspective by framing the Vicsek transition as analogous to a liquid-gas transition rather than a simple order-disorder one. In this view, the system undergoes microphase separation, leading to traveling bands of high-density ordered regions surrounded by a disordered gas phase. This interpretation helps explain the apparent discontinuity while connecting to the original observations of scaling behavior.</p>
+<p>Remarkably, the detailed nature of the transition depends critically on fluctuations in the system, which select between different possible inhomogeneous patterns. This highlights a fundamental feature of active matter: the essential role of nonequilibrium fluctuations in determining macroscopic behavior, a feature without parallel in equilibrium systems undergoing continuous phase transitions.</p>
+</section>
+<section id="topological-interactions-in-collective-motion" class="level3">
+<h3 class="anchored" data-anchor-id="topological-interactions-in-collective-motion">Topological Interactions in Collective Motion</h3>
+<p>The original Vicsek model uses metric interactions, where particles align with neighbors within a fixed radius. However, studies of starling flocks by Ballerini et al.&nbsp;(2008) revealed that birds interact with a fixed number of neighbors rather than all individuals within a certain distance. This topological interaction scheme has profound implications for collective behavior.</p>
+<p>In topological Vicsek models, each particle interacts with its k nearest neighbors regardless of their distance. The update rule becomes:</p>
+<p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t) \rangle_{j \in \mathcal{K}_i} + \eta \xi_i(t)\]</span></p>
+<p>where <span class="math inline">\(\mathcal{K}_i\)</span> represents the k nearest neighbors of particle i.</p>
+<p>This seemingly subtle change produces several significant effects:</p>
+<ol type="1">
+<li><p><strong>Scale-free correlation</strong>: Topological interactions allow correlation lengths to scale with group size, maintaining cohesion across varying densities.</p></li>
+<li><p><strong>Robustness to density fluctuations</strong>: The system can sustain coherent motion even when local density varies dramatically.</p></li>
+<li><p><strong>Enhanced information transfer</strong>: Information propagates more efficiently through topologically connected networks compared to metric ones.</p></li>
+</ol>
+<p>High-speed tracking experiments of starling flocks found that birds consistently interact with their 6-7 nearest neighbors, regardless of flock density. This topological interaction rule appears optimized for both robust cohesion and rapid information transfer.</p>
+</section>
+<section id="voronoi-based-interactions" class="level3">
+<h3 class="anchored" data-anchor-id="voronoi-based-interactions">Voronoi-Based Interactions</h3>
+<p>A refinement of topological interactions comes through Voronoi tessellation, where space is partitioned into regions closest to each particle. In the Voronoi Vicsek model, particles interact with their Voronoi neighbors—those sharing a boundary in the tessellation.</p>
+<div id="fig-voronoi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-voronoi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture07/voronoi.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voronoi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Voronoi tessellation applied to a system of particles. Each cell contains exactly one particle and represents the region of space closest to that particle. Particles sharing a cell boundary are considered neighbors in Voronoi-based interaction models. Voronoi tessellation divides space based on proximity to particles. Each cell contains points closer to its central particle than to any other particle.
+</figcaption>
+</figure>
+</div>
+<p>The key advantage is biological realism: a Voronoi diagram naturally identifies which neighbors are directly “visible” to each individual, closely matching how visual animals like birds or fish perceive their surroundings.</p>
+<p>The Voronoi approach gives:</p>
+<p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t) \rangle_{j \in \mathcal{V}_i} + \eta \xi_i(t)\]</span></p>
+<p>where <span class="math inline">\(\mathcal{V}_i\)</span> represents the Voronoi neighbors of particle i.</p>
+<p>Simulations show that Voronoi interactions produce realistic features observed in animal groups:</p>
+<ul>
+<li>Dynamic, responsive local structure that adapts to environmental challenges</li>
+<li>Anisotropic interaction regions that prioritize individuals in the direction of motion</li>
+<li>More efficient information propagation compared to fixed-radius interactions</li>
+</ul>
+<p>Recent work by Bastien and Romanczuk (2020) showed that Voronoi-based models better replicate the emergent properties of fish schools, particularly the characteristic “milling” behavior where groups form rotating torus patterns.</p>
+<p>The Voronoi framework also provides natural extensions to include visual occlusion effects, where individuals can only interact with neighbors they can see—a constraint believed to be important in the self-organization of dense biological collectives.</p>
+</section>
+<section id="delay-vicsek-model-information-transfer-with-memory" class="level3">
+<h3 class="anchored" data-anchor-id="delay-vicsek-model-information-transfer-with-memory">Delay Vicsek Model: Information Transfer with Memory</h3>
+<p>Recent empirical studies revealing linear wave propagation in starling flocks highlight a key limitation of the standard Vicsek model: it assumes that particles respond instantaneously to the orientation of their neighbors. However, real biological agents—whether birds, fish, or cells—can’t react immediately due to sensory processing time, neural delays, and mechanical constraints of their bodies. This limitation has motivated the development of delay Vicsek models, where particles adjust their orientation based on the state of their neighbors at some time in the past.</p>
+<p>The delay Vicsek model modifies the standard update rule to incorporate this temporal lag:</p>
+<p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t-\tau) \rangle_{j \in \mathcal{N}_i} + \eta \xi_i(t)\]</span></p>
+<p>where <span class="math inline">\(\tau\)</span> represents the time delay. This seemingly simple modification produces profound changes in the collective dynamics:</p>
+<ol type="1">
+<li><p><strong>Wave-like information propagation</strong>: With appropriate delay times, perturbations propagate through the system as waves rather than diffusively, matching the linear propagation observed in natural flocks.</p></li>
+<li><p><strong>Emergence of oscillatory states</strong>: The system can develop spatiotemporal patterns like traveling waves, oscillations, and even chaotic states not seen in the standard model.</p></li>
+<li><p><strong>Enhanced stability in some regimes</strong>: Counterintuitively, moderate time delays can sometimes stabilize ordered motion by dampening overreactions to fluctuations.</p></li>
+</ol>
+<p>The role of delay becomes particularly important when considering how flocks respond to rapid environmental changes like predator attacks. Simulations by Mishra et al.&nbsp;(2012) showed that the delay-induced wave-like propagation allows information about threats to spread through a flock up to 20 times faster than would be possible through sequential neighbor-to-neighbor transmission.</p>
+<!-- :::{#fig-delay-vicsek}
+![](/assets/images/lecture07/delay_vicsek.png){width=70%}
+
+Comparison of information propagation in (a) standard Vicsek model showing diffusive spreading and (b) delay Vicsek model exhibiting wave-like propagation. The colors represent the time at which particles change their direction after a perturbation is introduced at the center. Notice how in the delay model, the information front moves at nearly constant speed (linear relationship between distance and time).
+::: -->
+<p>Experimental validation comes from studies like those by Calovi et al.&nbsp;(2018), who analyzed trajectory data from schooling fish and found evidence of memory effects in their alignment behavior. They showed that fish respond not just to their neighbors’ current positions and orientations, but to an effective “anticipated” position based on past movement. This anticipation mechanism effectively implements a negative delay (prediction rather than reaction), which further enhances the school’s ability to maintain cohesion during rapid maneuvers.</p>
+<p>Theoretically, the delay Vicsek model provides a critical link between microscopic interaction rules and macroscopic wave propagation. When properly formulated with inertial effects (resistance to orientation changes), the model produces a linear dispersion relation for small perturbations:</p>
+<p><span class="math display">\[\omega \approx c_s q + i\gamma q^2\]</span></p>
+<p>where <span class="math inline">\(c_s\)</span> is the propagation speed and <span class="math inline">\(\gamma\)</span> is a damping coefficient. This matches the observed dynamics of starling flocks far better than the purely diffusive propagation (<span class="math inline">\(\omega \sim iq^2\)</span>) predicted by the standard Vicsek model.</p>
+<p>Current research is exploring how heterogeneous delays (different response times for different individuals) affect collective dynamics, and how natural systems might exploit these delay effects to optimize information transfer while maintaining robust coordination in noisy environments.</p>
+</section>
+</section>
+<section id="information-propagation-in-active-groups" class="level2">
+<h2 class="anchored" data-anchor-id="information-propagation-in-active-groups">Information Propagation in Active Groups</h2>
+<p>Understanding how information flows through active matter systems provides crucial insights into their collective behavior and response to perturbations. A fundamental question is: how do changes in motion propagate through a flock or swarm, allowing the group to respond coherently to environmental stimuli or threats?</p>
+<p>In standard models of collective behavior, like the Vicsek model we discussed earlier, information transfer is typically predicted to be diffusive. To understand why this diffusion equation arises, we need to examine what happens when small disturbances propagate through the system.</p>
+<p>When we linearize the Vicsek model around a homogeneously ordered state (where all particles are moving in roughly the same direction), we’re essentially looking at how small deviations from perfect alignment evolve over time. In the ordered phase, each particle adjusts its direction based on the average direction of its neighbors plus some noise.</p>
+<p>The key insight is that this alignment process resembles a random walk in orientation space. When a particle’s orientation differs slightly from its neighbors, it tends to adjust back toward the average, but imperfectly due to noise. This process is mathematically analogous to a particle undergoing Brownian motion, which is the classic example of diffusion.</p>
+<p>The mathematical formulation yields a diffusion equation for the propagation of orientation fluctuations:</p>
+<p><span class="math display">\[\frac{\partial \phi}{\partial t} = D \nabla^2 \phi\]</span></p>
+<p>where <span class="math inline">\(\phi\)</span> represents the orientation angle and <span class="math inline">\(D\)</span> is a diffusion constant. This diffusion equation has a characteristic dispersion relation:</p>
+<p><span class="math display">\[\omega(q) \sim iq^2\]</span></p>
+<p>where <span class="math inline">\(\omega\)</span> is the frequency and <span class="math inline">\(q\)</span> is the wavevector. In physical terms, this means that information about direction changes would spread through the group as a diffusive process, where the distance covered scales with time as <span class="math inline">\(x \sim \sqrt{t}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mathematical Derivation of the Dispersion Relation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To find the dispersion relation, we can analyze how small perturbations propagate through the system. For a diffusion equation:</p>
+<p><span class="math display">\[\frac{\partial \phi}{\partial t} = D \nabla^2 \phi\]</span></p>
+<p>Let’s consider a plane wave solution of the form:</p>
+<p><span class="math display">\[\phi(\mathbf{r},t) = \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)}\]</span></p>
+<p>Substituting this into the diffusion equation:</p>
+<p><span class="math display">\[-i\omega \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)} = -D q^2 \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)}\]</span></p>
+<p>Simplifying:</p>
+<p><span class="math display">\[\omega = iDq^2\]</span></p>
+<p>This is the dispersion relation for diffusive processes. The imaginary coefficient indicates that these waves are damped rather than propagating, with the amplitude decaying as <span class="math inline">\(e^{-Dq^2t}\)</span>. Longer wavelengths (smaller <span class="math inline">\(q\)</span>) decay more slowly than shorter wavelengths.</p>
+</div>
+</div>
+</div>
+<p>The diffusive nature of information transfer poses a serious problem for biological groups: during rapid maneuvers, like avoiding a predator, diffusion would cause significant decoherence—different parts of the flock would receive the information at vastly different times, potentially fragmenting the group. This is especially problematic for large flocks, where diffusion would be far too slow to maintain cohesion during quick turns.</p>
+<section id="wave-like-information-transfer-in-starling-flocks" class="level3">
+<h3 class="anchored" data-anchor-id="wave-like-information-transfer-in-starling-flocks">Wave-like Information Transfer in Starling Flocks</h3>
+<p>High-resolution tracking experiments of starling flocks by Attanasi et al.&nbsp;(2014) revealed a fundamentally different mechanism of information propagation. Using a system of three synchronized high-speed cameras recording at 170 frames per second (see <a href="#fig-midges" class="quarto-xref">Figure&nbsp;1</a>), they captured the three-dimensional trajectories of individual birds within flocks of up to 3,000 starlings during natural turning events.</p>
+<div id="fig-starling-turns" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-starling-turns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture07/starling_turn_propagation.png" class="img-fluid figure-img"></p>
+<figcaption>Left: 3D reconstruction of a turning flock of starlings, with each point representing a bird and colors indicating time progression (blue→yellow). Right: Angular velocity propagation through the flock, showing the linear spatial-temporal relationship.</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-starling-turns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Experimental evidence of linear wave propagation in starling flocks. (source: Attanasi, A. et al.&nbsp;Information transfer and behavioural inertia in starling flocks. Nature Physics 10, 691–696 (2014))
+</figcaption>
+</figure>
+</div>
+<p>Their analysis revealed that direction changes propagate linearly in time (rather than diffusively) and with negligible damping. When one bird initiates a turn, this directional change spreads through the flock as a wave, with a nearly constant speed of propagation. The experimental data showed a clear linear relationship between the distance from the initiation point and the time at which birds responded, contradicting the quadratic relationship expected from diffusive models.</p>
+<p>The researchers measured propagation speeds of 20-40 meters per second—remarkably faster than the flight speed of individual birds (about 10 m/s). This high-speed propagation allows information to reach all flock members almost simultaneously, enabling the dramatic, seemingly choreographed turns observed in starling murmurations.</p>
+</section>
+<section id="the-role-of-behavioral-inertia" class="level3">
+<h3 class="anchored" data-anchor-id="the-role-of-behavioral-inertia">The Role of Behavioral Inertia</h3>
+<p>To explain these observations, Attanasi and colleagues developed a theoretical framework based on three key physical concepts:</p>
+<ol type="1">
+<li><p><strong>Behavioral inertia</strong>: Unlike the assumption in most models that individuals can instantly adjust their direction, real birds exhibit resistance to sudden changes in their state of motion. This inertial effect fundamentally alters the equations of motion.</p></li>
+<li><p><strong>Social interactions</strong>: Birds align their motion with neighbors, creating a coupling between nearby individuals.</p></li>
+<li><p><strong>Conservation laws arising from symmetry</strong>: The rotational invariance of the system (a gauge symmetry) leads to a conservation law via Noether’s theorem. When combined with behavioral inertia, this produces wave-like rather than diffusive propagation.</p></li>
+</ol>
+<p>These elements lead to an equation of motion resembling a wave equation rather than a diffusion equation:</p>
+<p><span class="math display">\[\frac{\partial^2 \phi}{\partial t^2} = c^2 \nabla^2 \phi\]</span></p>
+<p>This supports wave-like propagation of information with a linear relationship between distance and time, allowing even large flocks to turn coherently.</p>
+<p>Mathematically, they introduced a two-dimensional order parameter <span class="math inline">\(\phi_i\)</span>, representing the angle between bird <span class="math inline">\(i\)</span>’s direction of motion and that of the flock. In the highly ordered regime where <span class="math inline">\(\phi_i \ll 1\)</span>, they linearized the dynamics.</p>
+<p>With behavioral inertia included, the system’s dynamics is governed by D’Alembert’s wave equation rather than the diffusion equation:</p>
+<p><span class="math display">\[\frac{\partial^2 \phi}{\partial t^2} - c_s^2 \nabla^2 \phi = 0\]</span></p>
+<p>This wave equation has a linear dispersion relation:</p>
+<p><span class="math display">\[\omega(q) = c_s q\]</span></p>
+<p>This means that information travels linearly with time (x = c_s t), much faster than diffusive propagation would allow. This explains the observed linear propagation of turning information through the flock.</p>
+</section>
+<section id="evidence-from-natural-swarms-and-other-systems" class="level3">
+<h3 class="anchored" data-anchor-id="evidence-from-natural-swarms-and-other-systems">Evidence from Natural Swarms and Other Systems</h3>
+<p>Complementary evidence for non-diffusive dynamics comes from studies of natural midge swarms. Cavagna et al.&nbsp;(2017) analyzed the spatio-temporal correlation functions in midge swarms and found that different swarms can be rescaled using a single characteristic time that grows with correlation length according to a dynamical critical exponent z ≈ 1, rather than z ≈ 2 expected for diffusive processes.</p>
+<div id="fig-midge-correlation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-midge-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture07/midge_correlations.png" class="img-fluid figure-img"></p>
+<figcaption>Correlation function collapse in natural midge swarms, showing evidence of non-diffusive dynamic scaling.</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-midge-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Rescaled correlation functions from different midge swarms collapsing onto a single curve, revealing a dynamic critical exponent z ≈ 1, consistent with non-diffusive information transfer. (source: Cavagna, A. et al.&nbsp;Physics Reports 728, 1-62 (2018))
+</figcaption>
+</figure>
+</div>
+<p>Similar wave-like propagation has been observed in fish schools. Rosenthal et al.&nbsp;(2015) documented that startled golden shiners (Notemigonus crysoleucas) generate a wave of behavioral change that propagates through the school at a speed of approximately 15 body lengths per second—much faster than would be predicted by nearest-neighbor reaction time models. This behavioral wave allows the entire school to respond to a threat almost simultaneously, dramatically improving collective escape success.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spatiotemporal Correlation Functions in Collective Motion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The behavior of spatiotemporal correlation functions reveals the underlying physics of information transfer in collective systems:</p>
+<p><strong>Correlation Function Definition:</strong> <span class="math display">\[C(r,t) = \langle \delta\mathbf{v}(\mathbf{r}+\mathbf{r}',t+t') \cdot \delta\mathbf{v}(\mathbf{r}',t') \rangle\]</span></p>
+<p>where <span class="math inline">\(\delta\mathbf{v}\)</span> represents velocity fluctuations around the mean.</p>
+<p><strong>Dynamical Scaling:</strong> For systems with critical behavior, the correlation function follows a scaling form: <span class="math display">\[C(r,t) = r^{-(d-2+\eta)}f(t/r^z)\]</span></p>
+<p>The dynamical critical exponent <span class="math inline">\(z\)</span> determines how information propagation scales with distance:</p>
+<ul>
+<li><span class="math inline">\(z \approx 2\)</span>: Diffusive propagation (standard models)</li>
+<li><span class="math inline">\(z \approx 1\)</span>: Linear wave propagation (observed in bird flocks)</li>
+</ul>
+<p><strong>Experimental Evidence:</strong> In midge swarms, different-sized groups collapse onto a single curve when time is rescaled by <span class="math inline">\(t/r^z\)</span> with <span class="math inline">\(z \approx 1\)</span>, providing strong evidence for non-diffusive dynamics that enables rapid collective response.</p>
+</div>
+</div>
+</section>
+<section id="the-speed-order-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="the-speed-order-relationship">The Speed-Order Relationship</h3>
+<p>A key prediction of the wave-propagation theory is that the speed of information transfer should increase with the group’s orientational order. Attanasi and colleagues confirmed this prediction by analyzing turning events in different flocks, finding that the propagation speed <span class="math inline">\(c_s\)</span> increases with the polarization <span class="math inline">\(\Phi\)</span> of the flock.</p>
+<div id="fig-speed-order" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-speed-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture07/speed_order_relationship.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speed-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Experimentally measured relationship between propagation speed and polarization in starling flocks, showing that more ordered flocks transmit information faster.Each point represents a different turning event. (source: Attanasi, A. et al.&nbsp;Nature Physics 10, 691–696 (2014))
+</figcaption>
+</figure>
+</div>
+<p>This relationship has profound implications for understanding the functional benefits of alignment in animal groups. The high degree of polarization commonly observed in fish schools and bird flocks may have evolved specifically to enable rapid information transfer, allowing coordinated responses to environmental challenges.</p>
+</section>
+<section id="functional-benefits-of-wave-like-propagation" class="level3">
+<h3 class="anchored" data-anchor-id="functional-benefits-of-wave-like-propagation">Functional Benefits of Wave-Like Propagation</h3>
+<p>The linear, undamped propagation allows flocks to execute coherent turns without fragmentation, as information about direction changes reaches all members with minimal delay. The turning dynamics represents what physicists call “second sound”—propagating waves of orientation rather than density, analogous to phenomena observed in superfluids and crystalline solids.</p>
+<p>This mechanism explains how starling flocks maintain their remarkable cohesion during complex aerial maneuvers. Their study reveals that biological collectives have evolved mechanisms that effectively overcome the limitations of diffusive information transfer, enabling rapid and coordinated responses essential for survival.</p>
+<!-- :::{#fig-equal-radius}
+![Equal-radius turning in starling flocks, showing how birds maintain their relative positions during turns.](/assets/images/lecture07/equal_radius_turning.png)
+
+Equal-radius turning in starling flocks minimizes relative position changes during maneuvers, reducing collision risk. (source: Pomeroy, H. & Heppner, F. The Auk 109, 256-267 (1992))
+:::
+
+The equal-radius turning that results from this propagation mechanism has clear biological advantages:
+
+1. It maintains nearly constant speed throughout the flock, conserving energy during maneuvers
+2. It preserves the relative positions of individuals, minimizing collision risks during rapid turns
+3. It keeps the flock's shape relatively stable, maintaining the sensory network topology -->
+</section>
+<section id="applications-and-future-directions" class="level3">
+<h3 class="anchored" data-anchor-id="applications-and-future-directions">Applications and Future Directions</h3>
+<p>These findings highlight how active biological systems can achieve robust collective behavior through mechanisms that incorporate memory effects (behavioral inertia) and leverage fundamental principles of symmetry and conservation. The mathematical framework bridges statistical physics, information theory, and collective behavior, showing how local interactions with inertial effects produce the coherent global coordination observed in natural flocks.</p>
+<p>Recent experimental work by Bonnet et al.&nbsp;(2020) on hybrid systems—where autonomous robots interact with living fish schools—has demonstrated the possibility of injecting information through controlled perturbations. By programming a robotic fish with specific behavioral rules including appropriate behavioral inertia, they successfully influenced the collective motion of live zebrafish schools, steering their direction and even inducing consensus changes.</p>
+<div id="fig-robot-fish" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-robot-fish-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture07/robot_fish_interaction.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robot-fish-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8— A robotic fish designed to interact with and influence the collective behavior of real fish schools. Biohybrid systems combining robotic agents with living collectives allow experimental manipulation of information flow. (source: Bonnet, F. et al.&nbsp;Science Robotics 5, eabd8668 (2020))
+</figcaption>
+</figure>
+</div>
+<p>These hybrid systems offer promising avenues for both testing theoretical models of information propagation and developing applications for guiding collective behavior through minimal interventions. Understanding the wave-like nature of information transfer could enable more effective crowd management systems, wildlife conservation strategies, and even targeted manipulation of biological collectives for ecological applications.</p>
+<p>Current research continues to explore how behavioral inertia interacts with other collective mechanisms like leadership dynamics, selective attention, and variable interaction networks to create the remarkably robust yet responsive collective behavior observed across diverse animal groups in nature.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture06/lecture06.html" class="pagination-link" aria-label="Lecture 6">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 6</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture08/lecture08.html" class="pagination-link" aria-label="Lecture 8">
+        <span class="nav-page-text">Lecture 8</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

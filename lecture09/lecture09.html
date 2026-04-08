@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Animal Collective Behavior – Active Matter Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture10/lecture10.html" rel="next">
+<link href="../lecture08/lecture08.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Active Matter Physics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture09/lecture09.html">Lecture 9</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part I</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Active Matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture01/lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture02/lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture04/lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#animal-collective-behavior-and-biological-swarms" id="toc-animal-collective-behavior-and-biological-swarms" class="nav-link active" data-scroll-target="#animal-collective-behavior-and-biological-swarms">Animal Collective Behavior and Biological Swarms</a>
+  <ul class="collapse">
+  <li><a href="#bird-flocks-starling-murmurations" id="toc-bird-flocks-starling-murmurations" class="nav-link" data-scroll-target="#bird-flocks-starling-murmurations">Bird Flocks: Starling Murmurations</a></li>
+  </ul></li>
+  <li><a href="#quantitative-analysis-of-collective-motion" id="toc-quantitative-analysis-of-collective-motion" class="nav-link" data-scroll-target="#quantitative-analysis-of-collective-motion">Quantitative Analysis of Collective Motion</a>
+  <ul class="collapse">
+  <li><a href="#order-parameters-and-correlation-functions" id="toc-order-parameters-and-correlation-functions" class="nav-link" data-scroll-target="#order-parameters-and-correlation-functions">Order Parameters and Correlation Functions</a></li>
+  <li><a href="#python-simulation-velocity-correlations-in-the-vicsek-model" id="toc-python-simulation-velocity-correlations-in-the-vicsek-model" class="nav-link" data-scroll-target="#python-simulation-velocity-correlations-in-the-vicsek-model">Python Simulation: Velocity Correlations in the Vicsek Model</a></li>
+  <li><a href="#maximum-entropy-models-and-critical-behavior" id="toc-maximum-entropy-models-and-critical-behavior" class="nav-link" data-scroll-target="#maximum-entropy-models-and-critical-behavior">Maximum Entropy Models and Critical Behavior</a></li>
+  <li><a href="#topological-vs-metric-interactions" id="toc-topological-vs-metric-interactions" class="nav-link" data-scroll-target="#topological-vs-metric-interactions">Topological vs Metric Interactions</a></li>
+  <li><a href="#information-propagation-speed-and-sound-modes" id="toc-information-propagation-speed-and-sound-modes" class="nav-link" data-scroll-target="#information-propagation-speed-and-sound-modes">Information Propagation Speed and Sound Modes</a></li>
+  <li><a href="#fish-schools-experimental-systems" id="toc-fish-schools-experimental-systems" class="nav-link" data-scroll-target="#fish-schools-experimental-systems">Fish Schools: Experimental Systems</a></li>
+  <li><a href="#insect-swarms-locusts" id="toc-insect-swarms-locusts" class="nav-link" data-scroll-target="#insect-swarms-locusts">Insect Swarms: Locusts</a></li>
+  <li><a href="#insect-swarms-ants" id="toc-insect-swarms-ants" class="nav-link" data-scroll-target="#insect-swarms-ants">Insect Swarms: Ants</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture09/lecture09.html">Lecture 9</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Animal Collective Behavior</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="animal-collective-behavior-and-biological-swarms" class="level2">
+<h2 class="anchored" data-anchor-id="animal-collective-behavior-and-biological-swarms">Animal Collective Behavior and Biological Swarms</h2>
+<p>Collective motion is one of the most spectacular manifestations of coordinated behavior in nature. From bird flocks to fish schools, insect swarms to bacterial colonies, the synchronized movement of multiple individuals without centralized control is a ubiquitous phenomenon across biological scales.</p>
+<p>Biological swarms represent natural examples of self-organized collective behavior that has evolved over millions of years. They demonstrate how simple local interaction rules can give rise to complex global patterns, making them perfect examples of emergent phenomena.</p>
+<p>The study of biological swarms offers multiple benefits:</p>
+<ul>
+<li>It deepens our understanding of fundamental biological processes</li>
+<li>It provides inspiration for engineered systems like robot swarms</li>
+<li>It offers insights applicable to diverse fields including traffic management, crowd control, and network theory</li>
+</ul>
+<!-- ### Theoretical Context
+
+We've previously discussed these theoretical frameworks that attempt to capture the essence of collective behavior:
+
+::: {.panel-tabset}
+## The Vicsek Model
+**The Vicsek model** introduces a simple alignment-based mechanism where each particle updates its direction based on the average direction of its neighbors, plus some noise. As shown in Vicsek et al. (1995), this minimal model demonstrates a phase transition from disordered to ordered motion as either noise decreases or density increases.
+
+## The Toner-Tu Model
+**The Toner-Tu model** extends the principles of the Vicsek model into a hydrodynamic theory, describing flocking as a kind of "fluid" with long-range order. Toner and Tu (1998) showed mathematically how local alignment interactions can maintain global order even in two dimensions, challenging conventional wisdom from equilibrium statistical physics.
+
+## Active Nematics
+**Active nematics** describe systems where elongated self-propelled particles align their axes (rather than their directions) through steric interactions or other mechanisms. Unlike the polar order in the Vicsek model, nematic order is apolar, with particles aligned along the same axis but potentially moving in opposite directions. As detailed by Doostmohammadi et al. (2018), active nematics are characterized by distinctive topological defects—singularities in the orientation field—that drive complex dynamics and pattern formation. This framework is particularly relevant for understanding bacterial colonies, cellular tissues, and other biological systems composed of elongated active units.
+
+## MIPS
+**MIPS (Motility-Induced Phase Separation)** describes how self-propelled particles can spontaneously separate into dense and dilute phases purely due to their active motion, without requiring attractive forces. This phenomenon, detailed in Cates and Tailleur (2015), has particular relevance for understanding clustering in biological systems.
+:::
+
+We'll examine how well these theoretical frameworks capture the behavior of real biological systems, focusing on experimental observations and their theoretical interpretations. -->
+<section id="bird-flocks-starling-murmurations" class="level3">
+<h3 class="anchored" data-anchor-id="bird-flocks-starling-murmurations">Bird Flocks: Starling Murmurations</h3>
+<p>Starling murmurations represent one of nature’s most breathtaking displays of collective behavior. These aerial performances, involving thousands to hundreds of thousands of birds, showcase remarkable coordination as the flock changes shape, splits, and merges while maintaining cohesion.</p>
+<p>The spectacular patterns formed by starling flocks are particularly visible at dusk when large numbers gather before roosting. The rapid changes in direction propagate across the flock in wave-like patterns that seem to flow like a liquid, creating mesmerizing, ever-changing shapes against the sky.</p>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dedVszDI9aE?mute=1" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<p>For excellent visual representations of starling murmurations, see the work of Cavagna et al.&nbsp;(2010), which presents time-lapse photography of murmurations with velocity field overlays, demonstrating the coordination of movement across thousands of individuals.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Starlings: Experimental Observations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Starlings: Connection to Theory</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>The STARFLAG (Starlings in Flight) project, led by researchers including Cavagna, Giardina, and others, revolutionized our understanding of bird flocks through rigorous quantitative analysis. Using multiple high-speed cameras calibrated to reconstruct three-dimensional positions of individual birds within flocks of thousands, they made several groundbreaking discoveries:</p>
+<p>The team found that correlations in velocity fluctuations extend throughout the entire flock, regardless of its size—a phenomenon called scale-free correlations. This finding, detailed in Cavagna et al.&nbsp;(2010, PNAS), suggests that flocks behave as critical systems poised at a phase transition, allowing information to propagate rapidly throughout the group. Their research demonstrates correlation functions that exhibit this scale-free property.</p>
+<p>Another key discovery was that birds interact based on topological rather than metric distance. Each bird coordinates with a fixed number of neighbors (typically 6-7) regardless of their physical distance, rather than with all neighbors within a certain radius. This finding, published in Ballerini et al.&nbsp;(2008, PNAS), explains how flocks maintain cohesion even when changing density during maneuvers. Their study clearly illustrates this topological interaction network.</p>
+<p>Information transfer within flocks occurs remarkably fast, with directional changes propagating across hundreds of meters in less than a second. This allows starlings to respond collectively to predator attacks with near-instantaneous coordination. Attanasi et al.&nbsp;(2014, Nature Physics) documented this phenomenon, showing in their analysis how information waves propagate through the flock at speeds faster than what would be predicted by nearest-neighbor interactions alone.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>When comparing starling flocks to the Vicsek model, we find significant similarities in the basic alignment mechanism—both real birds and simulated particles tend to align their direction of motion with neighbors. However, real starlings use topological rather than metric interactions, a critical difference that affects how the system behaves, particularly during density changes.</p>
+<p>Bialek et al.&nbsp;(2012, PNAS) showed that the directional correlation functions observed in real flocks resemble those found in critical systems, suggesting that flocks operate near phase transitions that maximize their response to external perturbations like predator attacks. Their results illustrate how the maximum entropy model derived from real flock data exhibits critical behavior.</p>
+<p>Models incorporating topological interactions show much better agreement with empirical data. Ginelli and Chaté (2010, Physical Review Letters) demonstrated that topological Vicsek-type models reproduce the scale-free correlations observed in real flocks, as shown in their research, which directly compares correlation lengths in metric versus topological models.</p>
+<p>The information propagation observed in starling flocks is wave-like, similar to the predictions from Toner-Tu theory. Attanasi et al.&nbsp;(2014) measured the speed of information transfer through flocks during turning events, finding propagation speeds consistent with the sound-like modes predicted by the hydrodynamic theory.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quantitative-analysis-of-collective-motion" class="level2">
+<h2 class="anchored" data-anchor-id="quantitative-analysis-of-collective-motion">Quantitative Analysis of Collective Motion</h2>
+<section id="order-parameters-and-correlation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="order-parameters-and-correlation-functions">Order Parameters and Correlation Functions</h3>
+<p>To quantitatively characterize collective motion, we need mathematical measures that capture the degree of organization in a system. The most fundamental measure is the <strong>polarization order parameter</strong>, defined as:</p>
+<p><span class="math display">\[\Phi = \frac{1}{N}\left|\sum_{i=1}^{N} \frac{\mathbf{v}_i}{|\mathbf{v}_i|}\right|\]</span></p>
+<p>where <span class="math inline">\(\mathbf{v}_i\)</span> is the velocity of particle <span class="math inline">\(i\)</span> and <span class="math inline">\(N\)</span> is the total number of particles. This parameter ranges from <span class="math inline">\(\Phi = 0\)</span> (completely disordered, random directions) to <span class="math inline">\(\Phi = 1\)</span> (perfectly aligned, all particles moving in the same direction). It provides a global measure of collective alignment.</p>
+<p>Beyond global measures, local correlations reveal how coordinated motion propagates through a group. The <strong>velocity correlation function</strong> measures how velocity fluctuations at one location correlate with those at another:</p>
+<p><span class="math display">\[C(r) = \frac{\langle \delta\mathbf{v}_i \cdot \delta\mathbf{v}_j \rangle_{|r_{ij}|=r}}{\langle |\delta\mathbf{v}|^2 \rangle}\]</span></p>
+<p>where <span class="math inline">\(\delta\mathbf{v}_i = \mathbf{v}_i - \langle \mathbf{v} \rangle\)</span> is the velocity deviation from the average, and the average is taken over all pairs at distance <span class="math inline">\(r\)</span> apart. When <span class="math inline">\(C(r) &gt; 0\)</span>, particles at distance <span class="math inline">\(r\)</span> tend to move in similar directions (positively correlated); when <span class="math inline">\(C(r) &lt; 0\)</span>, they tend to move oppositely.</p>
+<p>The STARFLAG experiments revealed a remarkable finding: in real bird flocks, the correlation function exhibits <strong>scale-free behavior</strong>:</p>
+<p><span class="math display">\[C(r) = f(r/L)\]</span></p>
+<p>where <span class="math inline">\(L\)</span> is the linear size of the flock. This scaling means that the correlation length (the distance over which correlations remain significant) grows with the system size. In mathematical terms, <span class="math inline">\(\xi \sim L\)</span>, indicating that correlations do not saturate as flocks grow larger. This is a hallmark of systems near critical points, and it suggests that flocks operate at the boundary between ordered and disordered phases, maximizing their responsiveness to external perturbations.</p>
+<p>In contrast, most finite systems exhibit a correlation length <span class="math inline">\(\xi\)</span> that saturates at a fixed distance, independent of system size. The scale-free behavior in flocks implies that information can propagate across the entire group, enabling rapid collective responses to threats or opportunities.</p>
+</section>
+<section id="python-simulation-velocity-correlations-in-the-vicsek-model" class="level3">
+<h3 class="anchored" data-anchor-id="python-simulation-velocity-correlations-in-the-vicsek-model">Python Simulation: Velocity Correlations in the Vicsek Model</h3>
+<p>The following code implements a 2D Vicsek model and computes the velocity correlation function across a range of noise levels, demonstrating the transition to scale-free correlations near the critical point:</p>
+<div id="cell-fig-vicsek-correlations" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> pdist, squareform</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vicsek model parameters</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">500</span>  <span class="co"># number of particles</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10.0</span>  <span class="co"># box size (periodic boundary conditions)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># speed</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># interaction radius</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># time step</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>T_equil <span class="op">=</span> <span class="dv">100</span>  <span class="co"># equilibration time</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>T_measure <span class="op">=</span> <span class="dv">100</span>  <span class="co"># measurement time</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>noise_levels <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">4.0</span>, <span class="dv">15</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vicsek_step(pos, vel, noise, L, R, v0):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform one Vicsek update step"""</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(pos)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute pairwise distances (with periodic boundaries)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dpos <span class="op">=</span> pos[:, np.newaxis, :] <span class="op">-</span> pos[np.newaxis, :, :]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    dpos <span class="op">=</span> np.where(np.<span class="bu">abs</span>(dpos) <span class="op">&gt;</span> L<span class="op">/</span><span class="dv">2</span>, L <span class="op">-</span> np.<span class="bu">abs</span>(dpos), np.<span class="bu">abs</span>(dpos))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    dist <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(dpos<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find neighbors (including self)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> dist <span class="op">&lt;</span> R</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update velocity: average angle of neighbors plus noise</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    angle_vel <span class="op">=</span> np.arctan2(vel[:, <span class="dv">1</span>], vel[:, <span class="dv">0</span>])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        neighbor_angles <span class="op">=</span> angle_vel[neighbors[i]]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        avg_angle <span class="op">=</span> np.arctan2(</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            np.mean(np.sin(neighbor_angles)),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            np.mean(np.cos(neighbor_angles))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        new_angle <span class="op">=</span> avg_angle <span class="op">+</span> (np.random.rand() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> noise</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        vel[i] <span class="op">=</span> v0 <span class="op">*</span> np.array([np.cos(new_angle), np.sin(new_angle)])</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update position</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> pos <span class="op">+</span> vel <span class="op">*</span> dt</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Periodic boundary conditions</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> pos <span class="op">%</span> L</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pos, vel</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize arrays for storing results</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>order_param <span class="op">=</span> np.zeros(<span class="bu">len</span>(noise_levels))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>corr_funcs <span class="op">=</span> []</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, noise <span class="kw">in</span> <span class="bu">enumerate</span>(noise_levels):</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize positions uniformly, velocities isotropically</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> np.random.rand(N, <span class="dv">2</span>) <span class="op">*</span> L</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    angle <span class="op">=</span> np.random.rand(N) <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    vel <span class="op">=</span> v0 <span class="op">*</span> np.array([np.cos(angle), np.sin(angle)]).T</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Equilibration</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(T_equil):</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        pos, vel <span class="op">=</span> vicsek_step(pos, vel, noise, L, R, v0)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Measurement</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    all_correlations <span class="op">=</span> []</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T_measure):</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        pos, vel <span class="op">=</span> vicsek_step(pos, vel, noise, L, R, v0)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute order parameter</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        mean_vel <span class="op">=</span> np.mean(vel, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        order <span class="op">=</span> np.linalg.norm(mean_vel) <span class="op">/</span> v0</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>        order_param[idx] <span class="op">+=</span> order <span class="op">/</span> T_measure</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute velocity correlation function</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Subtract mean velocity</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>        vel_fluct <span class="op">=</span> vel <span class="op">-</span> np.mean(vel, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute pairwise distances</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        dpos <span class="op">=</span> pos[:, np.newaxis, :] <span class="op">-</span> pos[np.newaxis, :, :]</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        dpos <span class="op">=</span> np.where(np.<span class="bu">abs</span>(dpos) <span class="op">&gt;</span> L<span class="op">/</span><span class="dv">2</span>, L <span class="op">-</span> np.<span class="bu">abs</span>(dpos), np.<span class="bu">abs</span>(dpos))</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        dist_sq <span class="op">=</span> np.<span class="bu">sum</span>(dpos<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        dist <span class="op">=</span> np.sqrt(dist_sq)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute velocity dot products</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        vel_dot <span class="op">=</span> np.<span class="bu">sum</span>(vel_fluct[:, np.newaxis, :] <span class="op">*</span> vel_fluct[np.newaxis, :, :], axis<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Bin by distance</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        r_bins <span class="op">=</span> np.linspace(<span class="dv">0</span>, L<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.1</span>, <span class="dv">30</span>)</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(r_bins)<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>            mask <span class="op">=</span> (dist <span class="op">&gt;=</span> r_bins[i]) <span class="op">&amp;</span> (dist <span class="op">&lt;</span> r_bins[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.<span class="bu">sum</span>(mask) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Normalize by velocity variance</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>                var_vel <span class="op">=</span> np.mean(vel_fluct<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>                corr <span class="op">=</span> np.mean(vel_dot[mask]) <span class="op">/</span> var_vel <span class="cf">if</span> var_vel <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>                all_correlations.append((np.mean([r_bins[i], r_bins[i<span class="op">+</span><span class="dv">1</span>]]), corr))</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average correlations over time and bin by distance</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> all_correlations:</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        all_correlations <span class="op">=</span> np.array(all_correlations)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        unique_r <span class="op">=</span> np.unique(all_correlations[:, <span class="dv">0</span>])</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        corr_by_r <span class="op">=</span> []</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> r <span class="kw">in</span> unique_r:</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>            corr_by_r.append(np.mean(all_correlations[np.<span class="bu">abs</span>(all_correlations[:, <span class="dv">0</span>] <span class="op">-</span> r) <span class="op">&lt;</span> <span class="fl">0.01</span>, <span class="dv">1</span>]))</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>        corr_funcs.append(np.array(corr_by_r))</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plots</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>))</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Order parameter vs noise</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(noise_levels, order_param, <span class="st">'o-'</span>, color<span class="op">=</span><span class="st">'#1f77b4'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(x<span class="op">=</span><span class="fl">1.0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'Critical noise'</span>)</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="vs">r'Noise </span><span class="dv">$</span><span class="er">\</span><span class="vs">eta</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="vs">r'Order parameter </span><span class="dv">$</span><span class="er">\</span><span class="vs">Phi</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Phase Transition in Vicsek Model'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Correlation functions</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>colors_corr <span class="op">=</span> plt.cm.viridis(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>selected_indices <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">14</span>]  <span class="co"># Sample a few noise levels</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> plot_idx, noise_idx <span class="kw">in</span> <span class="bu">enumerate</span>(selected_indices):</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> noise_idx <span class="op">&lt;</span> <span class="bu">len</span>(corr_funcs) <span class="kw">and</span> <span class="bu">len</span>(corr_funcs[noise_idx]) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>        r_centers <span class="op">=</span> np.linspace(<span class="fl">0.2</span>, L<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.1</span>, <span class="bu">len</span>(corr_funcs[noise_idx]))</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>].plot(r_centers, corr_funcs[noise_idx], <span class="st">'o-'</span>,</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span>colors_corr[plot_idx],</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>                    label<span class="op">=</span><span class="ss">f'η = </span><span class="sc">{</span>noise_levels[noise_idx]<span class="sc">:.2f}</span><span class="ss">'</span>,</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>                    linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="vs">r'Distance </span><span class="dv">$</span><span class="vs">r</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">in units of </span><span class="dv">$</span><span class="vs">L</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="vs">r'Velocity correlation </span><span class="dv">$</span><span class="vs">C</span><span class="kw">(</span><span class="vs">r</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Velocity Correlations'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'vicsek_correlations.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Order parameter at η=0: {order_param[0]:.3f}")</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Order parameter at η=2.0: {order_param[np.argmin(np.abs(noise_levels - 2.0))]:.3f}")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-vicsek-correlations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vicsek-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture09_files/figure-html/fig-vicsek-correlations-output-1.png" width="755" height="322" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vicsek-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Velocity correlation functions in the Vicsek model. Left: Order parameter Φ versus noise η, showing the phase transition. Right: Velocity correlation function C(r) for different noise levels, demonstrating scale-free correlations near the critical noise ηc ≈ 1.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This simulation demonstrates two key features:</p>
+<ol type="1">
+<li><p><strong>Phase Transition</strong>: As noise increases, the system transitions from an ordered state (<span class="math inline">\(\Phi \approx 1\)</span>) to a disordered state (<span class="math inline">\(\Phi \approx 0\)</span>). The critical noise is approximately <span class="math inline">\(\eta_c \approx 1\)</span>.</p></li>
+<li><p><strong>Correlations at Different Phases</strong>: At low noise (ordered phase), correlations decay slowly, extending across the entire system. Near the critical point, the correlation length is longest, allowing information to propagate farthest. At high noise (disordered phase), correlations decay rapidly over short distances.</p></li>
+</ol>
+</section>
+<section id="maximum-entropy-models-and-critical-behavior" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-entropy-models-and-critical-behavior">Maximum Entropy Models and Critical Behavior</h3>
+<p>Bialek et al.&nbsp;(2012) introduced a powerful framework for understanding collective motion: the <strong>maximum entropy principle</strong>. Given observed correlations in a real flock, what is the least-biased probability distribution consistent with those observations?</p>
+<p>For a system where each particle has a direction (unit vector) <span class="math inline">\(\mathbf{s}_i = \mathbf{v}_i/|\mathbf{v}_i|\)</span>, the maximum entropy distribution with pairwise constraints takes the form of a <strong>Boltzmann distribution</strong>:</p>
+<p><span class="math display">\[P(\{\mathbf{s}_i\}) = \frac{1}{Z}\exp\left(\sum_{i&lt;j} J_{ij} \mathbf{s}_i \cdot \mathbf{s}_j + \sum_i \mathbf{h}_i \cdot \mathbf{s}_i\right)\]</span></p>
+<p>where: - <span class="math inline">\(J_{ij}\)</span> are coupling constants representing the strength of pairwise interactions (analogous to Ising model couplings) - <span class="math inline">\(\mathbf{h}_i\)</span> are external field terms (like magnetic fields in magnetism) - <span class="math inline">\(Z\)</span> is the partition function ensuring normalization - The model reproduces observed single-particle statistics (via <span class="math inline">\(\mathbf{h}_i\)</span>) and pairwise correlations (via <span class="math inline">\(J_{ij}\)</span>)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Derivation: Maximum Entropy Principle
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The maximum entropy principle states that among all probability distributions consistent with known constraints (like measured correlations), we should choose the one that maximizes entropy <span class="math inline">\(S = -\sum_x P(x) \ln P(x)\)</span>.</p>
+<p><strong>Constraints:</strong> 1. Normalization: <span class="math inline">\(\sum_{\{\mathbf{s}_i\}} P(\{\mathbf{s}_i\}) = 1\)</span> 2. Single-particle statistics: <span class="math inline">\(\langle \mathbf{s}_i \rangle = \mathbf{m}_i\)</span> (measured) 3. Pairwise statistics: <span class="math inline">\(\langle \mathbf{s}_i \mathbf{s}_j \rangle = C_{ij}\)</span> (measured correlations)</p>
+<p>Using the method of Lagrange multipliers:</p>
+<p><span class="math display">\[\mathcal{L} = S + \lambda_0 \left(1 - \sum P\right) + \sum_i \lambda_i (\mathbf{m}_i - \langle \mathbf{s}_i \rangle) + \sum_{i&lt;j} \Lambda_{ij} (C_{ij} - \langle \mathbf{s}_i \mathbf{s}_j \rangle)\]</span></p>
+<p>Maximizing yields the Boltzmann form with <span class="math inline">\(\mathbf{h}_i = \lambda_i\)</span> and <span class="math inline">\(J_{ij}\)</span> related to <span class="math inline">\(\Lambda_{ij}\)</span>.</p>
+</div>
+</div>
+</div>
+<p>A crucial finding: <strong>real flocks operate near critical points</strong> where the effective temperature (noise level) equals the critical temperature. This means flocks sit at the boundary between ordered and disordered phases, maximizing their susceptibility to perturbations. A small change (like a predator attack) can propagate instantaneously through the entire group because the system is poised at criticality.</p>
+<p>This is not a coincidence—evolution has tuned biological systems to operate at critical points where information can propagate fastest and the system is most responsive.</p>
+</section>
+<section id="topological-vs-metric-interactions" class="level3">
+<h3 class="anchored" data-anchor-id="topological-vs-metric-interactions">Topological vs Metric Interactions</h3>
+<p>A crucial distinction revealed by experiments is how particles or birds define their “neighborhood” for interaction purposes:</p>
+<p><strong>Metric interactions</strong> (distance-based): <span class="math display">\[\text{Neighbors of } i = \{j : |\mathbf{r}_i - \mathbf{r}_j| &lt; R\}\]</span> Each particle interacts with all others within a fixed radius <span class="math inline">\(R\)</span>.</p>
+<p><strong>Topological interactions</strong> (graph-based): <span class="math display">\[\text{Neighbors of } i = \{k \text{ nearest particles to } i\}\]</span> Each particle interacts with exactly <span class="math inline">\(k\)</span> nearest neighbors regardless of distance.</p>
+<p>The STARFLAG experiments (Ballerini et al.&nbsp;2008) demonstrated that starlings use topological interactions with approximately <span class="math inline">\(k \approx 6-7\)</span> neighbors per bird. Similarly, Couzin et al.&nbsp;(2002) showed that fish use topological interactions. This has profound implications:</p>
+<ul>
+<li><strong>During density changes</strong>: With metric interactions, the neighborhood size changes, potentially destabilizing the group. With topological interactions, the group structure remains stable.</li>
+<li><strong>Information propagation</strong>: Topological interaction networks are more robust to spatial density variations.</li>
+</ul>
+<p>Neighbors can be rigorously defined using <strong>Voronoi tessellations</strong>. For a point set in 2D, the Voronoi cell of particle <span class="math inline">\(i\)</span> is the region of space closer to <span class="math inline">\(i\)</span> than to any other particle. Particles whose Voronoi cells share an edge or vertex are considered topological neighbors (first-order Voronoi neighbors).</p>
+<div id="cell-fig-topological-metric" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> Voronoi, voronoi_plot_2d</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random point set with non-uniform density</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.random.rand(N, <span class="dv">2</span>) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a denser cluster on one side</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dense_points <span class="op">=</span> np.random.rand(<span class="dv">25</span>, <span class="dv">2</span>) <span class="op">*</span> [<span class="dv">3</span>, <span class="dv">10</span>] <span class="op">+</span> [<span class="fl">0.5</span>, <span class="dv">0</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.vstack([pos, dense_points])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.2</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Metric neighborhood</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>metric_radius <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.scatter(pos[:, <span class="dv">0</span>], pos[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'#1f77b4'</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight one particle and its metric neighbors</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>focal_idx <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>focal_pos <span class="op">=</span> pos[focal_idx]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(focal_pos[<span class="dv">0</span>], focal_pos[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">120</span>, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'Focal particle'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw metric radius circle</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle(focal_pos, metric_radius, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'blue'</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                    linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="ss">f'Metric radius R=</span><span class="sc">{</span>metric_radius<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Find and highlight metric neighbors</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>dist_to_focal <span class="op">=</span> np.linalg.norm(pos <span class="op">-</span> focal_pos, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>metric_neighbors <span class="op">=</span> np.where((dist_to_focal <span class="op">&lt;</span> metric_radius) <span class="op">&amp;</span> (dist_to_focal <span class="op">&gt;</span> <span class="dv">0</span>))[<span class="dv">0</span>]</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax.scatter(pos[metric_neighbors, <span class="dv">0</span>], pos[metric_neighbors, <span class="dv">1</span>],</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>          s<span class="op">=</span><span class="dv">60</span>, color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'Neighbors (n=</span><span class="sc">{</span><span class="bu">len</span>(metric_neighbors)<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Metric Interactions</span><span class="ch">\n</span><span class="st">(Fixed Radius)'</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax.tick_params(labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Middle panel: Topological neighborhood (k-NN)</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>ax.scatter(pos[:, <span class="dv">0</span>], pos[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'#1f77b4'</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>ax.scatter(focal_pos[<span class="dv">0</span>], focal_pos[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">120</span>, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'Focal particle'</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Find k nearest neighbors</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> np.linalg.norm(pos <span class="op">-</span> focal_pos, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>knn_indices <span class="op">=</span> np.argsort(distances)[<span class="dv">1</span>:k<span class="op">+</span><span class="dv">1</span>]  <span class="co"># Skip self</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>ax.scatter(pos[knn_indices, <span class="dv">0</span>], pos[knn_indices, <span class="dv">1</span>],</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>          s<span class="op">=</span><span class="dv">60</span>, color<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss"> nearest neighbors'</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw lines from focal to neighbors</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nn_idx <span class="kw">in</span> knn_indices:</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    ax.plot([focal_pos[<span class="dv">0</span>], pos[nn_idx, <span class="dv">0</span>]], [focal_pos[<span class="dv">1</span>], pos[nn_idx, <span class="dv">1</span>]],</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>           <span class="st">'g-'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Topological Interactions</span><span class="ch">\n</span><span class="st">(k-Nearest Neighbors)'</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>ax.tick_params(labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Voronoi tessellation</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>]</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>ax.scatter(pos[:, <span class="dv">0</span>], pos[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">60</span>, color<span class="op">=</span><span class="st">'#1f77b4'</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute Voronoi diagram (with bounded region)</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    vor <span class="op">=</span> Voronoi(pos)</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot Voronoi edges</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> simplex <span class="kw">in</span> vor.ridge_vertices:</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        simplex <span class="op">=</span> np.asarray(simplex)</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">all</span>(simplex <span class="op">&gt;=</span> <span class="dv">0</span>):</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>            ax.plot(vor.vertices[simplex, <span class="dv">0</span>], vor.vertices[simplex, <span class="dv">1</span>], <span class="st">'k-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Highlight focal particle's Voronoi cell</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    focal_region <span class="op">=</span> vor.point_region[focal_idx]</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    region_vertices <span class="op">=</span> vor.regions[focal_region]</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(region_vertices) <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> np.<span class="bu">all</span>(np.asarray(region_vertices) <span class="op">&gt;=</span> <span class="dv">0</span>):</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>        region_coords <span class="op">=</span> vor.vertices[region_vertices]</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>        ax.fill(region_coords[:, <span class="dv">0</span>], region_coords[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    ax.scatter(focal_pos[<span class="dv">0</span>], focal_pos[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'Focal particle'</span>)</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Voronoi computation</span><span class="ch">\n</span><span class="st">error (boundary effects)'</span>,</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>           ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Voronoi Tessellation</span><span class="ch">\n</span><span class="st">(Topological Neighbors)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'topological_metric_comparison.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Metric neighbors at radius {metric_radius}: {len(metric_neighbors)}")</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Topological neighbors (k={k}): {len(knn_indices)}")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-topological-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-topological-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture09_files/figure-html/fig-topological-metric-output-1.png" width="684" height="249" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-topological-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Comparison of metric (distance-based) and topological (k-nearest neighbor) interaction networks. The metric radius (blue circle) captures different numbers of neighbors as density changes. The topological network (red lines) always connects to the k nearest neighbors, providing robustness to density variations.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This comparison illustrates why topological interactions are crucial for biological collectives:</p>
+<ul>
+<li><strong>Stability across density changes</strong>: The metric neighborhood varies with local density (3 neighbors in sparse region, 8+ in dense cluster). The topological neighborhood is constant (<span class="math inline">\(k=6\)</span>).</li>
+<li><strong>Robustness</strong>: Organisms need predictable interaction rules. Topological interactions provide this stability.</li>
+<li><strong>Evolutionary origin</strong>: In visually-oriented animals, the <span class="math inline">\(k\)</span> nearest neighbors correspond to the number of individuals visible in the visual field given typical inter-individual spacing.</li>
+</ul>
+</section>
+<section id="information-propagation-speed-and-sound-modes" class="level3">
+<h3 class="anchored" data-anchor-id="information-propagation-speed-and-sound-modes">Information Propagation Speed and Sound Modes</h3>
+<p>In the ordered phase of collective motion, directional changes propagate as <strong>waves</strong> through the group—similar to sound waves in fluids. This was predicted by <strong>Toner-Tu theory</strong> (1998) and subsequently measured experimentally in starling flocks.</p>
+<p>The Toner-Tu theory describes flocking as a novel hydrodynamic state characterized by a dispersion relation:</p>
+<p><span class="math display">\[\omega(k) = c_s k + O(k^2)\]</span></p>
+<p>where <span class="math inline">\(\omega\)</span> is frequency, <span class="math inline">\(k\)</span> is wavenumber, and <span class="math inline">\(c_s\)</span> is the <strong>sound speed</strong> (also called the propagation speed). This linear dispersion is analogous to sound propagation in ordinary fluids, though arising from completely different physics (alignment interactions rather than pressure waves).</p>
+<p><strong>Experimental measurements</strong> (Attanasi et al.&nbsp;2014, Nature Physics): - Propagation speed in starling flocks: <span class="math inline">\(c_s \approx 20-40\)</span> m/s - Individual bird speed: <span class="math inline">\(v_0 \approx 10-15\)</span> m/s - Individual reaction time to nearest neighbor: <span class="math inline">\(\tau \approx 50-100\)</span> ms</p>
+<p>The key insight: the collective propagation speed (<span class="math inline">\(c_s\)</span>) is <strong>faster than what nearest-neighbor interactions alone would predict</strong>: <span class="math display">\[c_s &gt; v_0 \implies \text{non-local information transfer}\]</span></p>
+<p>This occurs because in critical systems, correlations extend far beyond nearest neighbors, allowing each bird to “feel” perturbations from distant neighbors. The system responds collectively rather than through a chain of local interactions.</p>
+<p>The measured sound speed is consistent with: <span class="math display">\[c_s \sim v_0 \sqrt{\text{(correlation length scale)}}\]</span></p>
+<p>indicating that the correlation length—determined by the proximity to criticality—directly controls how fast information propagates through the collective.</p>
+<hr>
+</section>
+<section id="fish-schools-experimental-systems" class="level3">
+<h3 class="anchored" data-anchor-id="fish-schools-experimental-systems">Fish Schools: Experimental Systems</h3>
+<p>Fish schools offer another striking example of collective motion, with some species forming schools comprising millions of individuals that move as a coordinated unit. These schools can rapidly change direction, split and reform, and create complex three-dimensional structures in response to environmental cues or predators.</p>
+<p>In laboratory settings, researchers have created controlled environments to study schooling behavior quantitatively. Large tanks with overhead cameras track individual and group movements, while controlled stimuli such as simulated predators or food sources can be introduced to test response patterns.</p>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y-5ffl5_7AI?mute=1" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<p>For stunning visualizations of fish schooling behavior, see the videos in Tunstrøm et al.&nbsp;(2013, PLOS Computational Biology), which provide dynamic footage of golden shiners exhibiting various collective states (milling, swarming, and schooling). These videos are available in their supplementary materials and highlight the coordinated nature of fish movements even during rapid directional changes and transitions between states.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Fish: Experimental Observations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Fish: Quantitative Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Fish: Connection to Theory</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Studies on various fish species have revealed the fundamental mechanisms underlying schooling behavior. Extensive research on golden shiners (Notemigonus crysoleucas) by Katz et al.&nbsp;(2011) used automated tracking systems to analyze the movement patterns of individuals within schools. They identified three primary interaction rules governing collective motion: short-range repulsion to avoid collisions, intermediate-range alignment with neighbors’ directions, and longer-range attraction to maintain group cohesion. For excellent video demonstrations of these principles, see the Collective Dynamics Group at Princeton University (https://cdg.princeton.edu/research/) and the Couzin Lab at Max Planck Institute (https://collectivebehaviour.com/research/), which offer numerous videos of experimental setups similar to those used in Katz’s research.</p>
+<div id="fig-katz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-katz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture09/Katz.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-katz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Two-fish configurations. (A) Diagram showing how a focal fish’s coordinate system is used to measure a neighbor’s relative position and heading. The focal fish’s acceleration is decomposed into speeding and turning components. (B) Probability distribution of finding the neighboring fish at different positions relative to the focal fish. Contours show 10%, 50%, and 90% probability levels. (C and D) Maps showing how a neighbor’s position affects the focal fish’s speeding and turning responses, respectively. In speeding forces, positive values indicate acceleration; in turning forces, positive values indicate right turns. Distances in body lengths [BL] and time in seconds [s]. Analysis excluded fish near boundaries or moving slowly. (see Katz et al.&nbsp;(2011))
+</figcaption>
+</figure>
+</div>
+<p>Fish schools also respond collectively to environmental gradients. Berdahl et al.&nbsp;(2013, Science) demonstrated that golden shiners navigate light gradients more effectively as a group than as individuals, showing a form of emergent collective sensing. Their Figure 3 shows how schooling enhances gradient-tracking ability across different group sizes, with a clear diagram of performance improvement as group size increases.</p>
+<p>The sensory mechanisms enabling schooling include both the lateral line system (detecting water pressure changes) and vision. Partridge and Pitcher (1980, Journal of Comparative Physiology) conducted pioneering experiments selectively disabling these sensory systems, showing that both contribute to different aspects of schooling behavior. Their paper illustrates how sensory impairment affects different components of schooling behavior.</p>
+<p>Leadership in fish schools emerges dynamically based on information possession rather than from a fixed hierarchy. Strandburg-Peshkin et al.&nbsp;(2013, PNAS) showed that individuals with information about food location temporarily lead groups, with leadership shifting as information distributes. Their Figure 2 provides network diagrams showing how leadership networks reconfigure during these transitions.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Golden shiners have been extensively studied by Strandburg-Peshkin et al.&nbsp;(2013), who used high-resolution tracking to examine how visual field restrictions influence interaction networks within schools. They found that fish primarily respond to neighbors within their visual field, creating asymmetric interaction networks that nonetheless maintain group cohesion. Their Figure 3 provides a detailed visualization of these visual interaction networks, showing how spatial position relative to a fish’s heading affects its influence.</p>
+<p>During predator evasion, information cascades through the group, creating what researchers call “escape waves.” Rosenthal et al.&nbsp;(2015, PNAS) documented this phenomenon, showing how startle responses propagate through schools with increasing speed as they travel. Their analysis provides space-time diagrams illustrating these cascades, with clear visualization of how information propagation accelerates through the group.</p>
+<p>Zebrafish larvae demonstrate fascinating transitions between different collective states. Tunstrøm et al.&nbsp;(2013, PLOS Computational Biology) observed three distinct patterns of organization: schooling (polarized, directional movement), milling (rotating around an empty core), and disordered swarming. Their study shows these distinct states with velocity field overlays, while their observations provide a phase diagram showing transitions between states as a function of group size and tank size.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>The Vicsek model has proven remarkably effective at capturing certain aspects of fish schooling behavior. The transitions between ordered and disordered motion observed in real fish schools closely resemble the phase transitions in the Vicsek model as noise parameters change. Gautrais et al.&nbsp;(2012, PLOS Computational Biology) demonstrated this correspondence, with their research showing a comparative phase diagram between model predictions and actual fish behavior data.</p>
+<p>When boundary conditions are incorporated into Vicsek-type models, they can reproduce the milling behavior frequently observed in confined fish schools. Tunstrøm et al.&nbsp;(2013) successfully reproduced the schooling-milling-swarming transitions seen in real fish using a modified Vicsek model with boundary interactions. Their work provides side-by-side comparisons of experimental observations and simulation results, showing striking similarities in pattern formation.</p>
+<p>Real fish exploit hydrodynamic effects in ways that go beyond simple Vicsek-like models. Fish swimming in diamond-shaped formations reduce drag by capturing vortices shed by fish ahead of them. Marras et al.&nbsp;(2015, Nature Communications) quantified these energy-saving effects, with their results showing flow visualization around fish in different positions within a school and the corresponding energy expenditure measurements.</p>
+<p>Toner-Tu theory extensions that incorporate fluid dynamics interactions better match the experimental data on fish schools. Hemelrijk et al.&nbsp;(2015, Interface Focus) showed how hydrodynamic effects influence school structure, with their research illustrating how vortex capture leads to the specific spacing patterns observed in real schools.</p>
+<p>Some clustering behavior in fish shows remarkable similarities to MIPS. Filella et al.&nbsp;(2018, Physical Review Letters) demonstrated density-dependent motility in certain fish species that leads to spontaneous clustering even without explicit attraction forces. Their study shows the density profiles in these clusters, closely matching predictions from MIPS theory.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="insect-swarms-locusts" class="level3">
+<h3 class="anchored" data-anchor-id="insect-swarms-locusts">Insect Swarms: Locusts</h3>
+<p>Locust swarms represent one of the most dramatic examples of collective motion with significant ecological and economic impact. During outbreaks, desert locusts (Schistocerca gregaria) can form swarms covering hundreds of square kilometers and containing billions of individuals, all moving in coordinated fashion across vast distances.</p>
+<p>These massive swarms exhibit striking directional alignment, with all individuals traveling in approximately the same direction while maintaining a dense, cohesive group structure. The transition from solitary to swarming behavior in locusts represents a remarkable example of a density-dependent phase transition in biological systems.</p>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ACHjoh6diho?mute=1" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<p>For impressive visualization of locust collective motion, see the work of Buhl et al.&nbsp;(2006, Science), which presents time-lapse photography of locusts marching in aligned groups, alongside plots of their directional order parameters changing with density.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Locusts: Experimental Observations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Locusts: Connection to Theory</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Laboratory studies by Buhl et al.&nbsp;(2006) used ring-shaped arenas to analyze locust movement patterns quantitatively. By confining locusts to an annular track, researchers could precisely control density while measuring directional order over extended periods. They discovered that locusts exhibit spontaneous direction switching, with the entire group occasionally reversing direction in a highly coordinated manner. The frequency of these switches decreases as density increases, eventually leading to stable unidirectional movement at high densities.</p>
+<p>A key finding from these experiments was that the order parameter (a measure of directional alignment) depends strongly on density, with a critical transition point where the system shifts from disordered to ordered movement. Buhl’s research provides a clear diagram showing this relationship between density and order parameter, with a sharp transition region that closely resembles predictions from statistical physics models.</p>
+<p>Field observations of locust swarms reveal massive directional migration covering hundreds of kilometers, with remarkable persistence in direction despite encountering diverse terrain and obstacles. Sword et al.&nbsp;(2010, Behavioral Ecology) documented these migration patterns using remote sensing and ground observations. Their study shows satellite tracking data of swarm movements over multiple days, demonstrating the extraordinary coherence of direction at landscape scales.</p>
+<p>Perhaps most fascinating is the density-dependent phase transition from solitary to gregarious behavior in locusts. This behavioral phase change involves morphological, physiological, and behavioral modifications triggered by increased population density. Rogers et al.&nbsp;(2014, Advances in Insect Physiology) documented these changes, with their work illustrating how serotonin levels correlate with behavioral transitions across different density conditions.</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>The Vicsek model finds perhaps its most direct biological application in locust collective motion. The density-dependent order parameter observed in locust experiments matches the predictions of the Vicsek model with remarkable precision. Buhl et al.&nbsp;(2006) directly compared their experimental data with simulations, showing in their results how both systems exhibit similar phase transitions with increasing density.</p>
+<p>Bistability and direction switching observed in both the model and experiments further strengthen this connection. Yates et al.&nbsp;(2009, PNAS) developed a modified Vicsek model that accurately reproduces the spontaneous direction switching seen in locust groups, with decreasing switch frequency as density increases. Their research provides a bifurcation diagram showing the transition from bistable to monostable dynamics in both real locusts and the model system.</p>
+<p>Interestingly, cannibalism appears to be a driving force behind directional alignment in locusts. Bazazi et al.&nbsp;(2008, Current Biology) demonstrated that locusts move forward to avoid being eaten from behind by conspecifics, creating a directional bias that amplifies through the group. Their study shows experimental results where artificial reduction of cannibalistic behavior (through blocking mandibles) significantly reduces group alignment.</p>
+<p>Models incorporating pursuit-escape dynamics better match experimental data than pure alignment models. Romanczuk et al.&nbsp;(2009, Physical Review Letters) developed an “escape-pursuit” model specifically for locusts that reproduces observed collective dynamics. Their work provides phase diagrams comparing standard Vicsek dynamics with pursuit-driven alignment, showing how the latter better matches the abrupt transitions observed in real locust groups.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="insect-swarms-ants" class="level3">
+<h3 class="anchored" data-anchor-id="insect-swarms-ants">Insect Swarms: Ants</h3>
+<p>Ant colonies demonstrate collective motion patterns distinct from those seen in other systems, primarily through their formation of trail networks. Rather than aligning directly with each other like birds or fish, ants coordinate through indirect interactions mediated by pheromone deposition on the environment.</p>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3Rup3EdA0kw?mute=1" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<p>This pheromone-based system creates self-reinforcing pathways where initial random exploration leads to optimal transport networks through positive feedback. Frequently used trails receive more pheromone, attracting more ants, while less-used paths fade as pheromones evaporate, eventually converging on efficient solutions to complex problems.</p>
+<p>For visual representation of ant trail formation, see the research by Perna et al.&nbsp;(2012, Journal of the Royal Society Interface), which shows time-lapse photography of trail development alongside pheromone concentration maps reconstructed from ant traffic patterns.</p>
+<div style="text-align: center;">
+<video width="560" height="315" controls="">
+<source src="../assets/movies/lecture09/Video_S1.mov" type="video/quicktime">
+Your browser does not support the video tag. </video>
+</div>
+<p>The theoretical connection to collective motion differs from direct alignment models like Vicsek. Ant systems are better modeled as active Brownian particles with trail interactions, where individuals modify their environment, which in turn influences subsequent behavior. This creates a memory effect absent in Vicsek-type models.</p>
+<p>Deneubourg et al.&nbsp;(1989, Journal of Theoretical Biology) provided the classic “double bridge” experiment demonstrating how this simple mechanism leads to collective decision-making. Their work shows the experimental setup and results, where the colony collectively selects the shorter of two paths through pheromone amplification.</p>
+<p>These distinct interaction mechanisms highlight how different biological systems have evolved various strategies for collective coordination, all achieving robust group behavior through different means. Reid et al.&nbsp;(2015, PNAS) compared different collective decision-making mechanisms across species, with their study providing a comparative diagram of direct versus indirect coordination systems.</p>
+<section id="cellular-systems-bacterial-colonies" class="level3">
+<h3 class="anchored" data-anchor-id="cellular-systems-bacterial-colonies">Cellular Systems: Bacterial Colonies</h3>
+<p>At the microscopic scale, bacterial colonies provide fascinating examples of collective motion with important connections to theoretical models. Dense bacterial suspensions can self-organize into complex dynamic patterns including jets, vortices, and turbulent-like flows despite the simplicity of the individual cells.</p>
+<p>These patterns emerge from the interplay between cell motility, cell shape, and environmental factors, creating rich collective dynamics that have become an important model system in active matter physics. The small size and rapid reproduction of bacteria make them ideal for controlled experiments on collective motion.</p>
+<p>For striking visualizations of bacterial collective motion, see the research by Zhang et al.&nbsp;(2010, PNAS), which shows time-lapse microscopy of B. subtilis colonies with velocity field overlays, revealing the flow patterns that emerge spontaneously in these active suspensions.</p>
+<div style="text-align: center;">
+<video width="560" height="315" controls="">
+<source src="../assets/movies/lecture09/sm02.mov" type="video/quicktime">
+Your browser does not support the video tag. </video>
+<p>
+<em>Collective motion observed under the density condition of N=718. The field of view is 90 × 90 μm2.</em> Source: <a href="https://www.pnas.org/doi/10.1073/pnas.1001651107">PNAS</a>
+</p>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Bacteria: Experimental Observations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Bacteria: Connection to Theory</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Bacillus subtilis has been extensively studied by Zhang et al.&nbsp;(2010) and Peruani et al.&nbsp;(2012, Physical Review Letters), who documented how high-density bacterial suspensions form dynamic patterns of jets and vortices. Using microscopy and particle tracking, they observed that these rod-shaped bacteria align their bodies due to physical constraints (nematic alignment) rather than actively seeking to match their neighbors’ directions.</p>
+<p>At high densities, B. subtilis suspensions develop turbulent-like flows with characteristic swirling patterns and jets spanning multiple cell lengths. Chen et al.&nbsp;(2017, PNAS) characterized these flows quantitatively, showing in their analysis how the statistical properties of bacterial turbulence differ from conventional fluid turbulence, with distinct energy spectra and correlation functions.</p>
+<p>Escherichia coli exhibits different collective dynamics based on its run-and-tumble motion pattern. Berg’s classic work characterized the individual movement strategy, while Di Leonardo et al.&nbsp;(2010, PNAS) examined how these movements lead to collective behavior. Their research demonstrates how run-and-tumble statistics change in dense populations, leading to effective long-range interactions through the fluid.</p>
+<p>Chemotaxis—the directed movement toward or away from chemical gradients—strongly influences bacterial collective behavior. Park et al.&nbsp;(2003, Science) showed how E. coli populations form complex patterns when responding to self-generated nutrient gradients. Their results provide time-series images of pattern formation dependent on nutrient concentration, with accompanying diagrams explaining the feedback mechanisms responsible.</p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Active nematic models better describe rod-shaped bacteria than Vicsek-type models that assume polar alignment. This is because elongated bacteria primarily align their bodies (axes) without necessarily matching their direction of movement. Doostmohammadi et al.&nbsp;(2018, Nature Communications) demonstrated this connection, with their work comparing experimental observations of bacterial suspensions with active nematic simulations, showing remarkable similarities in defect formation and dynamics.</p>
+<p>These bacterial systems exhibit topological defects—singularities in the orientation field—that are predicted by active nematic theory. Kawaguchi et al.&nbsp;(2017, Nature) directly observed these defects in bacterial colonies and showed how they influence colony dynamics. Their study shows microscopy images of +1/2 and -1/2 defects in bacterial colonies alongside theoretical predictions of defect structure.</p>
+<p>MIPS (Motility-Induced Phase Separation) manifests clearly in active systems. Buttinoni et al.&nbsp;(2013, Physical Review Letters) demonstrated how density-dependent motility leads to spontaneous clustering even without explicit attraction in synthetic self-propelled Janus particles. Their research shows experimental measurements of density profiles in these active colloid clusters alongside predictions from MIPS theory, highlighting the quantitative agreement between theory and observation. Similar phenomena have been observed in bacterial systems by Theurkauff et al.&nbsp;(2012, Physical Review Letters).</p>
+<p>Models incorporating quorum sensing—bacteria’s ability to detect local population density through chemical signals—successfully capture complex clustering behaviors. Liu et al.&nbsp;(2019, Physical Review Letters) developed models combining MIPS with quorum sensing, with their results showing phase diagrams of different collective states as functions of sensing parameters and motility.</p>
+</div>
+</div>
+</div>
+<section id="cross-species-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="cross-species-comparison">Cross-Species Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 30%">
+<col style="width: 28%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System</th>
+<th>Interaction Type</th>
+<th>Order Parameter</th>
+<th>Match to Theory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Birds</td>
+<td>Topological alignment</td>
+<td>Polarization</td>
+<td>Vicsek + topological</td>
+</tr>
+<tr class="even">
+<td>Fish</td>
+<td>Visual alignment + hydrodynamics</td>
+<td>Polarization, milling</td>
+<td>Vicsek + boundaries</td>
+</tr>
+<tr class="odd">
+<td>Locusts</td>
+<td>Cannibalistic pursuit</td>
+<td>Polarization</td>
+<td>Vicsek + pursuit</td>
+</tr>
+<tr class="even">
+<td>Bacteria</td>
+<td>Nematic alignment</td>
+<td>Nematic order</td>
+<td>Active nematics, MIPS</td>
+</tr>
+</tbody>
+</table>
+<p>For visual comparisons across different collective systems, see the comprehensive work of Vicsek &amp; Zafeiris (2012, Physics Reports), which provides side-by-side images of different biological systems alongside their velocity field reconstructions, highlighting similarities and differences in pattern formation.</p>
+</section>
+<section id="universal-features" class="level3">
+<h3 class="anchored" data-anchor-id="universal-features">Universal Features</h3>
+<p>Despite the remarkable diversity in biological collective systems, several universal features emerge across different organisms and scales:</p>
+<p>• <strong>Phase transitions</strong> between ordered and disordered states occur in virtually all collective systems. These transitions typically depend on density, noise, and interaction strength (Vicsek &amp; Zafeiris, 2012).</p>
+<p>• <strong>Density-dependent behavior</strong> is universal, with critical densities required for ordered motion to emerge. Similar density thresholds appear in locusts (Buhl et al., 2006), fish (Tunstrøm et al., 2013), and bacteria (Zhang et al., 2010).</p>
+<p>• <strong>Scale-free correlations</strong> in ordered states appear repeatedly across systems, demonstrated in bird flocks by Cavagna et al.&nbsp;(2010) and in fish schools by Herbert-Read et al.&nbsp;(2011, PNAS, “Inferring the rules of interaction of shoaling fish”).</p>
+<p>• <strong>Self-organized criticality</strong>, where systems naturally evolve toward critical points that maximize response capacity, has been observed in multiple collective systems, including starling flocks (Bialek et al., 2012).</p>
+<p>• <strong>Rapid information transfer</strong> across collectives enables quick responses to environmental changes or threats, as measured in bird flocks (Attanasi et al., 2014) and fish schools (Rosenthal et al., 2015).</p>
+</section>
+<section id="theoretical-insights-from-experiments" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-insights-from-experiments">Theoretical Insights from Experiments</h3>
+<p>Experimental observations have led to important refinements of theoretical models:</p>
+<p><strong>Vicsek model refinements</strong> have emerged directly from biological observations. The discovery of topological versus metric interactions in birds by Ballerini et al.&nbsp;(2008) led to improved models that better capture real flocking dynamics. Their research compares simulations using metric and topological interactions, showing how the latter maintains cohesion under density variations that cause metric-based flocks to fragment.</p>
+<p>The importance of boundary conditions became apparent through studies of fish schools in confined environments. Tunstrøm et al.&nbsp;(2013) demonstrated how boundaries influence the formation of milling patterns, with their study showing experimental and simulated milling patterns under different confinement conditions.</p>
+<p>Environmental gradients significantly influence collective motion in ways not captured by the original Vicsek framework. Berdahl et al.&nbsp;(2013) showed how light gradients affect fish schooling, leading to models incorporating taxis alongside alignment. Their work compares pure alignment models with those incorporating environmental responses.</p>
+<p><strong>Toner-Tu theory validation</strong> has come from careful measurements of information propagation in flocks. Attanasi et al.&nbsp;(2014) measured the speed of turning waves in starling flocks, finding values consistent with the “sound modes” predicted by Toner-Tu hydrodynamics. Their results show experimental measurements alongside theoretical predictions.</p>
+<p>The sound-like propagation of perturbations predicted by Toner-Tu theory has been directly observed in both bird flocks and fish schools. These linear response measurements, detailed in Cavagna et al.&nbsp;(2015, Physical Review Letters), provide strong support for the hydrodynamic approach to flocking. Their analysis shows the dispersion relation of information waves measured experimentally.</p>
+<p>Long-range order in 2D systems, which defies the Mermin-Wagner theorem for equilibrium systems, has been confirmed in biological collectives. Toner-Tu theory correctly predicted this phenomenon, and experiments with bird flocks by Attanasi et al.&nbsp;(2014) confirmed it quantitatively. Their study shows order parameter measurements over different length scales.</p>
+<p><strong>MIPS observations</strong> in active systems have provided direct experimental validation of this theoretical concept. Buttinoni et al.&nbsp;(2013) showed density profiles in self-propelled colloidal particle clusters that quantitatively match MIPS predictions. Their work shows these profiles alongside theoretical curves. In bacterial systems, similar phenomena have been observed by Sokolov et al.&nbsp;(2018, Physical Review X).</p>
+<p>Density-dependent phase separation appears across scales from cellular to animal systems. Liu et al.&nbsp;(2019) demonstrated how this principle applies to systems from bacteria to locusts, with their research providing comparative phase diagrams across different biological systems.</p>
+<p>The role of persistence in determining phase behavior, a key prediction of MIPS theory, has been confirmed experimentally. Persistence refers to how long individuals maintain their direction before changing, and Peruani et al.&nbsp;(2012) showed how this parameter influences collective states in bacterial systems. Their analysis maps experimental results onto theoretical phase diagrams parameterized by density and persistence.</p>
+</section>
+<section id="methodology-tracking-collective-motion" class="level3">
+<h3 class="anchored" data-anchor-id="methodology-tracking-collective-motion">Methodology: Tracking Collective Motion</h3>
+<p>Modern research on collective behavior relies on sophisticated tracking and analysis techniques:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">2D Tracking</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">3D Reconstruction</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Data Analysis</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p><strong>2D tracking</strong> employs computer vision algorithms to follow individuals in video recordings. The widely used method of Particle Image Velocimetry (PIV) analyzes the movement of texture in images rather than tracking individuals, providing velocity fields even when individual identification is challenging. For detailed explanation of these methods, see the work of Delcourt et al.&nbsp;(2013, Behavioral Research Methods), which illustrates different tracking approaches with their respective advantages and limitations.</p>
+<p>Optical flow methods derive velocity fields from image sequences without requiring individual tracking. These techniques, detailed in Dell et al.&nbsp;(2014, Journal of Experimental Biology), are particularly useful for dense groups where individual identification is difficult. Their research demonstrates how optical flow reconstructs velocity fields from blurry or complex imagery.</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p><strong>3D reconstruction</strong> techniques have revolutionized the study of aerial and aquatic collectives. Multiple camera setups using calibrated cameras allow triangulation of positions in three-dimensional space. Attanasi et al.&nbsp;(2015, Nature Methods) describe the STARFLAG system for 3D reconstruction of bird flocks, with their study illustrating the camera arrangement and reconstruction process.</p>
+<p>Stereoscopic imaging uses principles similar to human depth perception to extract 3D information. Strandburg-Peshkin et al.&nbsp;(2013) employed this approach for fish schools, with their research showing the experimental setup and resulting 3D trajectories.</p>
+<p>Light field cameras, which capture both intensity and directional information about light rays, offer promising new approaches for 3D tracking. Morimoto et al.&nbsp;(2018, PLOS ONE) demonstrated this technique for tracking insects, with their results showing depth reconstruction from single-camera light field data.</p>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p><strong>Data analysis</strong> techniques extract meaningful patterns from tracking data. Correlation functions quantify how the movement of one individual relates to others at various distances, revealing the extent of coordinated behavior. Cavagna et al.&nbsp;(2010) used these functions to discover scale-free correlations in starling flocks, with their work showing how correlation length scales with group size.</p>
+</div>
+</div>
+</div>
+<p>Order parameters provide quantitative measures of alignment or organization within groups. The most common is polarization, measuring how aligned individuals’ directions are, but other parameters capture different aspects of organization. Tunstrøm et al.&nbsp;(2013) defined parameters for different collective states (polarization, rotation, disorder), with their analysis showing how these parameters change during transitions between states.</p>
+<p>Network analysis of interactions reveals the social structure underlying collective movement. Rather than assuming all individuals interact equally with neighbors, this approach identifies who influences whom and how this network evolves over time. Strandburg-Peshkin et al.&nbsp;(2013) applied this to fish schools, with their study showing leadership networks during collective decision-making.</p>
+</section>
+<section id="current-challenges" class="level3">
+<h3 class="anchored" data-anchor-id="current-challenges">Current Challenges</h3>
+<p>Despite significant progress, several challenges remain in understanding biological collective behavior:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Heterogeneity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Multiple Interaction Mechanisms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Environmental Coupling</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">Multi-scale Dynamics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false">Transient Dynamics</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p><strong>Heterogeneity</strong> in real biological systems complicates theoretical treatment. Unlike identical particles in models, real animals vary in size, behavior, motivation, and information possession. Incorporating this variation without losing theoretical tractability remains difficult. For a detailed discussion of individual variation effects, see Jolles et al.&nbsp;(2017, Current Opinion in Behavioral Sciences), whose research illustrates how different types of heterogeneity affect collective outcomes.</p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p><strong>Multiple interaction mechanisms</strong> operate simultaneously in natural systems. Real animals use various sensory channels and respond to different aspects of neighbors’ behavior, creating multi-layered interaction networks. Strandburg-Peshkin et al.&nbsp;(2013) demonstrated how visual and lateral line information combine in fish schooling, with their research showing the effects of selectively blocking different sensory channels.</p>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<p><strong>Environmental coupling</strong> significantly influences collective behavior, with groups responding to gradients, obstacles, and boundaries in complex ways. Models that integrate environmental factors without becoming unwieldy present a significant challenge. Berdahl et al.&nbsp;(2013) addressed this for light-responsive fish schools, with their work showing how environmental gradients shape collective motion.</p>
+</div>
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
+<p><strong>Multi-scale dynamics</strong> link individual sensing to emergent group behavior through intermediate scales of local coordination. Understanding these cross-scale interactions requires integrating neuroscience, biomechanics, and statistical physics. Sumpter et al.&nbsp;(2012, Interface Focus) discuss this challenge, with their analysis illustrating the connections between neural, individual, and collective scales.</p>
+</div>
+<div id="tabset-6-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-5-tab">
+<p><strong>Transient dynamics</strong> often contain critical information about system properties, yet most studies focus on steady-state behavior. The transitions between different collective states may reveal more about underlying mechanisms than the states themselves. For methodological approaches to studying transitions, see the work of Romensky et al.&nbsp;(2014, Journal of the Royal Society Interface), which illustrates techniques for detecting and analyzing transient collective states.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="future-directions" class="level3">
+<h3 class="anchored" data-anchor-id="future-directions">Future Directions</h3>
+<p>The field of biological collective behavior continues to evolve through interdisciplinary collaboration. Several promising directions include:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Multi-scale models</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Machine learning approaches</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Evolutionary perspectives</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false">Hybrid systems</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false">Applications</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p><strong>Multi-scale models</strong> that integrate individual behavior, local interactions, and global patterns provide a more complete understanding of how collective behavior emerges and functions. Sumpter’s hierarchical modeling approach (2006, Interface) offers a framework for this integration, with his research illustrating connections between scales of organization.</p>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p><strong>Machine learning approaches</strong> increasingly extract interaction rules directly from empirical data without imposing predetermined structures. Heras et al.&nbsp;(2019, Scientific Reports) demonstrated how neural networks can infer interaction rules from trajectory data, with their results comparing model-free and model-based predictions of collective dynamics.</p>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p><strong>Evolutionary perspectives</strong> explore why particular collective strategies evolved in different lineages. By examining the adaptive advantages of different coordination mechanisms, researchers gain insight into the functional significance of observed patterns. Ioannou’s review (2017, Trends in Ecology and Evolution) addresses this topic, with their study showing how different selective pressures lead to distinct collective strategies.</p>
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
+<p><strong>Hybrid systems</strong> combining biological and artificial agents offer new experimental approaches. By introducing programmed robots into animal groups, researchers can precisely test hypotheses about interaction rules. Bonnet et al.&nbsp;(2018, Science Robotics) pioneered this approach with fish-inspired robots, with their findings showing how robot-fish interactions reveal social mechanisms.</p>
+</div>
+<div id="tabset-7-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-5-tab">
+<p><strong>Applications</strong> of insights from biological collectives continue to expand into diverse fields. From swarm robotics to understanding human crowds, principles derived from animal groups find practical use. Hamann’s book (2018, “Swarm Robotics: A Formal Approach”) discusses these applications, with their work showing the transfer of biological principles to engineered systems.</p>
+</div>
+</div>
+</div>
+<p>Biological collective behavior shows remarkable diversity but also universal features across systems as different as bird flocks, fish schools, insect swarms, and bacterial colonies.</p>
+<p>Simple theoretical models like Vicsek, Toner-Tu, and MIPS capture key aspects of these systems but require specific extensions to match the complexities of real biological collectives. These extensions—incorporating topological interactions, environmental responses, and system-specific behavioral rules—have significantly advanced our understanding.</p>
+<p>Experimental observations continue to provide crucial insights for theory development, with increasingly sophisticated tracking and analysis methods revealing previously hidden aspects of collective dynamics.</p>
+<p>The field exemplifies successful interdisciplinary collaboration, bringing together biology, physics, computer science, and mathematics to understand one of nature’s most spectacular phenomena.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+References
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Vicsek, T., &amp; Zafeiris, A. (2012). Collective motion. Physics Reports, 517(3-4), 71-140.</li>
+<li>Cavagna, A., et al.&nbsp;(2010). Scale-free correlations in starling flocks. PNAS, 107(26), 11865-11870.</li>
+<li>Ballerini, M., et al.&nbsp;(2008). Interaction ruling animal collective behavior depends on topological rather than metric distance. PNAS, 105(4), 1232-1237.</li>
+<li>Attanasi, A., et al.&nbsp;(2014). Information transfer and behavioural inertia in starling flocks. Nature Physics, 10(9), 691-696.</li>
+<li>Bialek, W., et al.&nbsp;(2012). Statistical mechanics for natural flocks of birds. PNAS, 109(13), 4786-4791.</li>
+<li>Herbert-Read, J.E., et al.&nbsp;(2011). Inferring the rules of interaction of shoaling fish. PNAS, 108(46), 18726-18731.</li>
+<li>Katz, Y., et al.&nbsp;(2011). Inferring the structure and dynamics of interactions in schooling fish. PNAS, 108(46), 18720-18725.</li>
+<li>Tunstrøm, K., et al.&nbsp;(2013). Collective states, multistability and transitional behavior in schooling fish. PLOS Computational Biology, 9(2), e1002915.</li>
+<li>Strandburg-Peshkin, A., et al.&nbsp;(2013). Visual sensory networks and effective information transfer in animal groups. Current Biology, 23(17), R709-R711.</li>
+<li>Berdahl, A., et al.&nbsp;(2013). Emergent sensing of complex environments by mobile animal groups. Science, 339(6119), 574-576.</li>
+<li>Gautrais, J., et al.&nbsp;(2012). Deciphering interactions in moving animal groups. PLOS Computational Biology, 8(9), e1002678.</li>
+<li>Buhl, J., et al.&nbsp;(2006). From disorder to order in marching locusts. Science, 312(5778), 1402-1406.</li>
+<li>Bazazi, S., et al.&nbsp;(2008). Collective motion and cannibalism in locust migratory bands. Current Biology, 18(10), 735-739.</li>
+<li>Yates, C.A., et al.&nbsp;(2009). Inherent noise can facilitate coherence in collective swarm motion. PNAS, 106(14), 5464-5469.</li>
+<li>Perna, A., et al.&nbsp;(2012). Individual rules for trail pattern formation in Argentine ants (Linepithema humile). PLOS Computational Biology, 8(7), e1002592.</li>
+<li>Zhang, H.P., et al.&nbsp;(2010). Collective motion and density fluctuations in bacterial colonies. PNAS, 107(31), 13626-13630.</li>
+<li>Peruani, F., et al.&nbsp;(2012). Collective motion and nonequilibrium cluster formation in colonies of gliding bacteria. Physical Review Letters, 108(9), 098102.</li>
+<li>Buttinoni, I., et al.&nbsp;(2013). Dynamical clustering and phase separation in suspensions of self-propelled colloidal particles. Physical Review Letters, 110(23), 238301.</li>
+<li>Theurkauff, I., et al.&nbsp;(2012). Dynamic clustering in active colloidal suspensions with chemical signaling. Physical Review Letters, 108(26), 268303.</li>
+<li>Sokolov, A., et al.&nbsp;(2018). Emergence of radial tree of bend stripes in active nematics. Physical Review X, 8(3), 031053.</li>
+<li>Cates, M.E., &amp; Tailleur, J. (2015). Motility-induced phase separation. Annual Review of Condensed Matter Physics, 6(1), 219-244.</li>
+<li>Doostmohammadi, A., et al.&nbsp;(2018). Active nematics. Nature Communications, 9(1), 3246.</li>
+<li>Sumpter, D.J.T. (2006). The principles of collective animal behaviour. Philosophical Transactions of the Royal Society B, 361(1465), 5-22.</li>
+<li>Rosenthal, S.B., Twomey, C.R., Hartnett, A.T., Wu, H.S., &amp; Couzin, I.D. (2015). Revealing the hidden networks of interaction in mobile animal groups. Proceedings of the National Academy of Sciences, 112(15), 4690-4695.</li>
+<li>Park, S., Wolanin, P.M., Yuzbashyan, E.A., Silberzan, P., Stock, J.B., &amp; Austin, R.H. (2003). Motion to form a quorum. Science, 301(5630), 188.</li>
+</ol>
+</div>
+</div>
+</div>
+<!-- ## Discussion Questions
+
+1. How might different sensory mechanisms (vision, lateral line, chemical detection) influence the emergent patterns in collective behavior across different species? Consider both the similarities and differences between birds, fish, and insects.
+
+2. The Vicsek model provides a simplified framework for understanding collective motion, but real biological systems show greater complexity. What are the most significant limitations of the Vicsek model, and how might it be extended to better capture biological reality?
+
+3. Information transfer appears to be faster in biological collectives than would be predicted by nearest-neighbor interactions alone. What mechanisms might explain this rapid propagation of information, and how do they relate to Toner-Tu theory?
+
+4. Many experimental systems show transitions between different collective states (e.g., milling, polarized schooling, swarming). How do these phase transitions in biological systems compare with those observed in physical systems? Are there fundamental differences?
+
+5. How does the study of collective behavior in natural systems inform the design of artificial swarms (e.g., robot swarms, traffic management systems)? What principles transfer most directly, and where do the applications diverge from biological inspiration?
+
+6. MIPS (Motility-Induced Phase Separation) appears in bacterial systems but may also explain aspects of animal aggregation. Discuss the evidence for MIPS across different biological scales and what this suggests about universal principles in active matter.
+
+7. Boundary conditions strongly influence collective behavior in experimental settings. How might the artificial boundaries used in laboratory studies affect our understanding of natural collective behavior, and how can we account for these effects?
+
+8. Considering the various experimental systems we've discussed, which biological collective seems most suitable as a model system for testing theoretical predictions, and why? -->
+
+
+</section>
+</section></section></section></main></div>
+
+
+
+
+
+ <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/AM26\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture08/lecture08.html" class="pagination-link" aria-label="Lecture 8">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 8</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture10/lecture10.html" class="pagination-link" aria-label="Lecture 10">
+        <span class="nav-page-text">Lecture 10</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+ <!-- /content -->
+
+
+
+
+</body></html>
