@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -234,11 +269,10 @@ window.Quarto = {
   <li><a href="#brownian-motion-and-the-langevin-equation" id="toc-brownian-motion-and-the-langevin-equation" class="nav-link" data-scroll-target="#brownian-motion-and-the-langevin-equation">Brownian motion and the Langevin equation</a></li>
   <li><a href="#fluctuation-dissipation-relation-fdt" id="toc-fluctuation-dissipation-relation-fdt" class="nav-link" data-scroll-target="#fluctuation-dissipation-relation-fdt">Fluctuation dissipation relation (FDT)</a></li>
   </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <li><a href="#detecting-non-equilibrium-behavior" id="toc-detecting-non-equilibrium-behavior" class="nav-link" data-scroll-target="#detecting-non-equilibrium-behavior">Detecting non-equilibrium behavior</a>
   <ul class="collapse">
-  <li><a href="#two-brownian-particles-with-non-uniform-temperatures" id="toc-two-brownian-particles-with-non-uniform-temperatures" class="nav-link" data-scroll-target="#two-brownian-particles-with-non-uniform-temperatures">Two Brownian particles with non-uniform temperatures</a></li>
-  <li><a href="#chlamydomonas-swimming" id="toc-chlamydomonas-swimming" class="nav-link" data-scroll-target="#chlamydomonas-swimming">Chlamydomonas Swimming</a></li>
-  <li><a href="#primary-cilia-in-epithelial-cells" id="toc-primary-cilia-in-epithelial-cells" class="nav-link" data-scroll-target="#primary-cilia-in-epithelial-cells">Primary cilia in epithelial cells</a></li>
+  <li><a href="#fdt-violation" id="toc-fdt-violation" class="nav-link" data-scroll-target="#fdt-violation">FDT violation</a></li>
+  <li><a href="#broken-detailed-balance" id="toc-broken-detailed-balance" class="nav-link" data-scroll-target="#broken-detailed-balance">Broken detailed balance</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -293,7 +327,8 @@ What is a microstate?
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A <strong>microstate</strong> is a complete specification of the instantaneous state of every particle in the system. For a classical system of <span class="math inline">\(N\)</span> particles, a microstate is defined by all <span class="math inline">\(3N\)</span> positions <span class="math inline">\(\mathbf{q} = (\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_N)\)</span> and all <span class="math inline">\(3N\)</span> momenta <span class="math inline">\(\mathbf{p} = (\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_N)\)</span>, giving a single point <span class="math inline">\(\Gamma = \{\mathbf{q}, \mathbf{p}\}\)</span> in <span class="math inline">\(6N\)</span>-dimensional <strong>phase space</strong>.</p>
-<p>In contrast, a <strong>macrostate</strong> is characterized by a few macroscopic observables (e.g.&nbsp;temperature, pressure, volume). Many distinct microstates can correspond to the same macrostate — the number of such microstates is directly related to the entropy of that macrostate via the Boltzmann relation <span class="math inline">\(S = k_B \ln \Omega\)</span>.</p>
+<p>As a simple illustration, consider 4 coins. Each specific sequence of heads and tails – say HHTH – is a microstate. The macrostate “3 heads” does not specify <em>which</em> coins show heads, so it is realized by 4 distinct microstates: HHHT, HHTH, HTHH, and THHH. The macrostate “2 heads” has even more microstates (6), making it the most probable outcome – a combinatorial fact that foreshadows the role of entropy.</p>
+<p>In contrast, a <strong>macrostate</strong> is characterized by a few macroscopic observables (e.g.&nbsp;temperature, pressure, volume). Many distinct microstates can correspond to the same macrostate – the number of such microstates is directly related to the entropy of that macrostate via the Boltzmann relation <span class="math inline">\(S = k_B \ln \Omega\)</span>.</p>
 </div>
 </div>
 </div>
@@ -350,7 +385,7 @@ Figure&nbsp;1: Perrin’s sedimentation experiments. The exponential decay in th
 </section>
 <section id="free-energy-and-thermodynamic-potentials" class="level3">
 <h3 class="anchored" data-anchor-id="free-energy-and-thermodynamic-potentials">Free energy and thermodynamic potentials</h3>
-<p>The Helmholtz free energy is a thermodynamic potential that determines the maximum useful work obtainable from a closed system at constant temperature and volume. Named after German physicist Hermann von Helmholtz, it represents the amount of energy available to do non-expansion work. The Helmholtz free energy is particularly relevant in statistical mechanics because it serves as the fundamental bridge between microscopic properties (encoded in the partition function) and macroscopic thermodynamic behavior. For systems in the canonical ensemble—where the number of particles, volume, and temperature are fixed—the Helmholtz free energy provides the appropriate thermodynamic potential whose minimum determines the equilibrium state.</p>
+<p>The Helmholtz free energy is a thermodynamic potential that determines the maximum useful work obtainable from a closed system at constant temperature and volume. Named after German physicist Hermann von Helmholtz, it represents the amount of energy available to do non-expansion work. The Helmholtz free energy is particularly relevant in statistical mechanics because it serves as the fundamental bridge between microscopic properties (encoded in the partition function) and macroscopic thermodynamic behavior. For systems in the canonical ensemble – where the number of particles, volume, and temperature are fixed – the Helmholtz free energy provides the appropriate thermodynamic potential whose minimum determines the equilibrium state.</p>
 <p>The Helmholtz free energy <span class="math inline">\(F\)</span> is related to the partition function by:</p>
 <p><span class="math display">\[F = -k_B T \ln Z = -k_B T \ln \left(\frac{1}{h^{3N}N!}\int e^{-\beta H(\Gamma)} d\Gamma\right)\]</span></p>
 <p>where the normalization factor <span class="math inline">\(\frac{1}{h^{3N}N!}\)</span> ensures proper dimensionless units in the partition function, with <span class="math inline">\(h\)</span> being Planck’s constant and <span class="math inline">\(N\)</span> the number of particles.</p>
@@ -411,15 +446,37 @@ Figure&nbsp;2: Sketch of a colloidal particle trapped in the focus of a microsco
 </div>
 </section>
 <section id="ergodicity-and-detailed-balance" class="level3">
-<h3 class="anchored">Ergodicity and detailed balance</h3>
-<p>A key assumption in equilibrium statistical mechanics is ergodicity—the equivalence between time averages and ensemble averages:</p>
+<h3 class="anchored" data-anchor-id="ergodicity-and-detailed-balance">Ergodicity and detailed balance</h3>
+<p>A key assumption in equilibrium statistical mechanics is ergodicity – the equivalence between time averages and ensemble averages:</p>
 <p><span class="math display">\[\langle A \rangle_{\text{time}} = \lim_{T\to\infty} \frac{1}{T} \int_0^T A(t) dt = \langle A \rangle_{\text{ensemble}}\]</span></p>
 <p>In practical terms, ergodicity means that if you observe a single system for a sufficiently long time, it will eventually visit all microscopic states consistent with its macroscopic constraints, allowing time averages to equal ensemble averages. Active matter systems often violate ergodicity by persistently exploring only a subset of the available phase space due to their self-propulsion mechanisms. This has profound implications for both experimental measurements and theoretical descriptions of active systems.</p>
-<p>Equilibrium dynamics satisfies detailed balance, a microscopic time-reversal symmetry condition. For transitions between states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> with rates <span class="math inline">\(W_{i\to j}\)</span> and <span class="math inline">\(W_{j\to i}\)</span>:</p>
+<p>Equilibrium dynamics satisfies <strong>detailed balance</strong>, a microscopic time-reversal symmetry condition that ensures there are no net probability currents between any pair of states.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deriving the detailed balance condition
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In a stationary state, the probability of each state is constant in time. One way to guarantee this is to require that the probability flux between <em>every pair</em> of states vanishes individually – not just in aggregate. For states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> with transition rates <span class="math inline">\(W_{i\to j}\)</span> and <span class="math inline">\(W_{j\to i}\)</span>, this pairwise balance reads:</p>
+<p><span class="math display">\[P_i^{\text{eq}}\, W_{i\to j} = P_j^{\text{eq}}\, W_{j\to i}\]</span></p>
+<p>The left side is the probability flow from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>; the right side is the reverse flow. Setting them equal ensures zero net current on every link. Rearranging gives the ratio of transition rates:</p>
+<p><span class="math display">\[\frac{W_{i\to j}}{W_{j\to i}} = \frac{P_j^{\text{eq}}}{P_i^{\text{eq}}}\]</span></p>
+<p>Now substituting the Boltzmann distribution <span class="math inline">\(P_i^{\text{eq}} \propto e^{-\beta E_i}\)</span>:</p>
+<p><span class="math display">\[\frac{W_{i\to j}}{W_{j\to i}} = \frac{e^{-\beta E_j}}{e^{-\beta E_i}} = e^{-\beta(E_j - E_i)}\]</span></p>
+<p>This is the detailed balance condition: the ratio of forward to reverse transition rates is fixed by the energy difference between the two states. Note that detailed balance is a <em>stronger</em> requirement than stationarity – a stationary distribution can also be maintained by cyclic probability currents that cancel globally but not pairwise. Such cyclic currents are precisely what appears in non-equilibrium active systems.</p>
+</div>
+</div>
+</div>
+<p>For transitions between states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> with rates <span class="math inline">\(W_{i\to j}\)</span> and <span class="math inline">\(W_{j\to i}\)</span>, the detailed balance condition requires:</p>
 <p><span class="math display">\[\frac{W_{i\to j}}{W_{j\to i}} = \frac{P_j^{\text{eq}}}{P_i^{\text{eq}}} = e^{-\beta(E_j-E_i)}\]</span></p>
-<p>Detailed balance ensures that there are no net probability currents in equilibrium.</p>
 <section id="application-to-sedimentation" class="level4">
-<h4 class="anchored">Application to Sedimentation</h4>
+<h4 class="anchored" data-anchor-id="application-to-sedimentation">Application to Sedimentation</h4>
 <p>In the sedimentation example, we can apply detailed balance to particles moving between different heights in a gravitational field. Consider transitions between heights <span class="math inline">\(h_i\)</span> and <span class="math inline">\(h_j\)</span>:</p>
 <ul>
 <li>The equilibrium probability to find a particle at height <span class="math inline">\(h\)</span> is <span class="math inline">\(P(h) \propto e^{-\beta mgh}\)</span></li>
@@ -428,11 +485,21 @@ Figure&nbsp;2: Sketch of a colloidal particle trapped in the focus of a microsco
 <p>By detailed balance, the transition rates must satisfy:</p>
 <p><span class="math display">\[\frac{W_{h_i \to h_j}}{W_{h_j \to h_i}} = \frac{e^{-\beta mgh_j}}{e^{-\beta mgh_i}} = e^{-\beta mg(h_j-h_i)}\]</span></p>
 <p>This reveals that upward transitions (against gravity) are exponentially suppressed compared to downward transitions. If we observe the system over time, we would see particles moving both up and down, but with precisely balanced rates that maintain the exponential density profile.</p>
-<p>This balance has profound implications for trajectory reversibility. In equilibrium systems, detailed balance ensures that for any specific trajectory <span class="math inline">\(\gamma\)</span> a particle takes from height <span class="math inline">\(h_i\)</span> to <span class="math inline">\(h_j\)</span> over a time interval <span class="math inline">\([0,t]\)</span>, the time-reversed trajectory <span class="math inline">\(\bar{\gamma}\)</span> (the same path followed backward in time) from <span class="math inline">\(h_j\)</span> to <span class="math inline">\(h_i\)</span> occurs with a probability that differs only by the Boltzmann factor:</p>
-<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{-\beta mg(h_j-h_i)}\]</span></p>
-<p>This microscopic reversibility means that if we filmed the motion of an equilibrium system and played the recording backward, the reversed motion would be statistically indistinguishable from the forward motion (when properly weighted by the equilibrium probabilities). For particles in sedimentation, this time-reversal symmetry ensures that no systematic currents exist in the steady state—particles may diffuse up and down, but any apparent “uphill” motion is precisely balanced by “downhill” motion, maintaining the exponential density profile without net circulation in phase space.</p>
+</section>
+<section id="from-detailed-balance-to-trajectory-reversibility" class="level4">
+<h4 class="anchored" data-anchor-id="from-detailed-balance-to-trajectory-reversibility">From detailed balance to trajectory reversibility</h4>
+<p>Detailed balance constrains individual transitions, but it also has a powerful consequence for entire trajectories. To see how, consider a particle that visits a sequence of heights <span class="math inline">\(h_0 \to h_1 \to h_2 \to \cdots \to h_n\)</span> over successive time steps. The probability of this forward trajectory is proportional to the product of the individual transition rates:</p>
+<p><span class="math display">\[P[\gamma] \propto P^{\text{eq}}(h_0)\, W_{h_0 \to h_1}\, W_{h_1 \to h_2}\, \cdots\, W_{h_{n-1} \to h_n}\]</span></p>
+<p>The time-reversed trajectory <span class="math inline">\(\bar{\gamma}\)</span> follows the same sequence of heights in reverse order, <span class="math inline">\(h_n \to h_{n-1} \to \cdots \to h_0\)</span>, with probability:</p>
+<p><span class="math display">\[P[\bar{\gamma}] \propto P^{\text{eq}}(h_n)\, W_{h_n \to h_{n-1}}\, W_{h_{n-1} \to h_{n-2}}\, \cdots\, W_{h_1 \to h_0}\]</span></p>
+<p>Taking the ratio, each consecutive pair of rates satisfies detailed balance, so:</p>
+<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = \frac{P^{\text{eq}}(h_0)}{P^{\text{eq}}(h_n)} \prod_{k=0}^{n-1} \frac{W_{h_k \to h_{k+1}}}{W_{h_{k+1} \to h_k}}\]</span></p>
+<p>By detailed balance, each factor in the product equals <span class="math inline">\(P^{\text{eq}}(h_{k+1})/P^{\text{eq}}(h_k)\)</span>. These factors telescope:</p>
+<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = \frac{P^{\text{eq}}(h_0)}{P^{\text{eq}}(h_n)} \cdot \frac{P^{\text{eq}}(h_n)}{P^{\text{eq}}(h_0)} = 1\]</span></p>
+<p>This is a remarkable result: in equilibrium, every trajectory and its time-reverse are equally probable. If we filmed a sedimenting particle and played the recording backward, the reversed motion would be statistically indistinguishable from the forward motion. No systematic currents exist in the steady state – particles diffuse up and down, but any apparent “uphill” motion is precisely balanced by “downhill” motion, with no net circulation in phase space.</p>
+<p>Note that the telescoping cancellation only works because detailed balance holds for <em>every</em> pair of states. If even a single link carries a net current (as happens in active systems), the product no longer collapses and time-reversal symmetry is broken – forward and backward trajectories acquire different weights, producing the probability flux loops we will encounter later.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -441,28 +508,25 @@ Connecting to Fluctuation Theorems
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The relationship between detailed balance, trajectory reversibility, and sedimentation connects directly to fluctuation theorems, which provide a broader framework for understanding non-equilibrium systems:</p>
+<p>The trajectory reversibility derived above – <span class="math inline">\(P[\gamma]/P[\bar{\gamma}] = 1\)</span> in equilibrium – is a special case of more general fluctuation theorems that apply even to non-equilibrium systems. These theorems quantify the probability of observing trajectories that appear to violate the second law of thermodynamics.</p>
 <section id="connection-to-fluctuation-theorems" class="level4">
 <h4 class="anchored" data-anchor-id="connection-to-fluctuation-theorems">Connection to Fluctuation Theorems</h4>
-<p>The trajectory reversibility we described for equilibrium systems (where <span class="math inline">\(\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{-\beta mg(h_j-h_i)}\)</span>) is actually a special case of more general fluctuation theorems that apply even to non-equilibrium systems. These theorems quantify the probability of observing trajectories that appear to violate the second law of thermodynamics.</p>
-<p>For the sedimentation example, the key connections are:</p>
 <ol type="1">
-<li><p><strong>Crooks Fluctuation Theorem</strong>: This relates the probability of forward and reverse trajectories to the entropy production:</p>
-<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{\beta(W-\Delta F)} = e^{\Delta S_{tot}/k_B}\]</span></p>
-<p>Where <span class="math inline">\(W\)</span> is the work done, <span class="math inline">\(\Delta F\)</span> is the free energy difference, and <span class="math inline">\(\Delta S_{tot}\)</span> is the total entropy production.</p></li>
-<li><p><strong>Equilibrium Special Case</strong>: When detailed balance is satisfied (as in passive sedimentation), <span class="math inline">\(W = \Delta F = mg(h_j-h_i)\)</span> and <span class="math inline">\(\Delta S_{tot} = 0\)</span>, recovering our earlier result.</p></li>
-<li><p><strong>Active Systems</strong>: For active particles in sedimentation, we have additional work from active forces, leading to:</p>
-<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{\beta mg(h_j-h_i) + \Delta S_{act}/k_B}\]</span></p>
-<p>Where <span class="math inline">\(\Delta S_{act} &gt; 0\)</span> is the entropy production due to activity.</p></li>
+<li><p><strong>Crooks Fluctuation Theorem</strong>: For a system driven out of equilibrium, the ratio of forward to reverse trajectory probabilities is related to the total entropy production:</p>
+<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{\Delta S_{\text{tot}}/k_B}\]</span></p></li>
+<li><p><strong>Equilibrium Special Case</strong>: When detailed balance holds, there is no net entropy production (<span class="math inline">\(\Delta S_{\text{tot}} = 0\)</span>), and we recover <span class="math inline">\(P[\gamma]/P[\bar{\gamma}] = 1\)</span> as derived above.</p></li>
+<li><p><strong>Active Systems</strong>: For active particles, self-propulsion injects energy and produces entropy at a rate <span class="math inline">\(\dot{S}_{\text{act}} &gt; 0\)</span>, so:</p>
+<p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = e^{\Delta S_{\text{act}}/k_B} &gt; 1\]</span></p>
+<p>Forward trajectories (aligned with the active driving) become more probable than their time-reverses, breaking the symmetry that characterizes equilibrium.</p></li>
 </ol>
 </section>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -471,20 +535,12 @@ Master Equation Formulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Detailed balance can be elegantly formulated in terms of a master equation, which provides a powerful framework for understanding the time evolution of probability distributions.The master equation describes how the probability <span class="math inline">\(P_i(t)\)</span> of finding the system in state <span class="math inline">\(i\)</span> evolves over time:</p>
+<p>Detailed balance can be elegantly formulated in terms of a master equation, which provides a powerful framework for understanding the time evolution of probability distributions. The master equation describes how the probability <span class="math inline">\(P_i(t)\)</span> of finding the system in state <span class="math inline">\(i\)</span> evolves over time:</p>
 <p><span class="math display">\[\frac{dP_i(t)}{dt} = \sum_j [W_{j \to i} P_j(t) - W_{i \to j} P_i(t)]\]</span></p>
 <p>where <span class="math inline">\(W_{j→i}\)</span> is the transition rate from state <span class="math inline">\(j\)</span> to state <span class="math inline">\(i\)</span>.</p>
 <p>The first term represents probability flowing into state <span class="math inline">\(i\)</span> from all other states <span class="math inline">\(j\)</span>, while the second term represents probability flowing out of state <span class="math inline">\(i\)</span> to all other states <span class="math inline">\(j\)</span>.</p>
-<section id="detailed-balance-as-a-stronger-condition" class="level4">
-<h4 class="anchored" data-anchor-id="detailed-balance-as-a-stronger-condition">Detailed Balance as a Stronger Condition</h4>
-<p>At steady state, the left-hand side of the master equation equals zero, meaning:</p>
-<p><span class="math display">\[\sum_j [W_{j \to i} P_j - W_{i \to j} P_i] = 0\]</span></p>
-<p>However, detailed balance imposes a much stronger condition - that each term in this sum must individually equal zero:</p>
-<p><span class="math display">\[W_{j \to i} P_j^{eq} = W_{i \to j} P_i^{eq} \quad \text{for all pairs } i,j\]</span></p>
-<p>This is equivalent to requiring that the net probability current between any two states vanishes at equilibrium.</p>
-</section>
 <section id="application-to-sedimentation-1" class="level4">
 <h4 class="anchored" data-anchor-id="application-to-sedimentation-1">Application to Sedimentation</h4>
 <p>For sedimentation, we can discretize the height into levels <span class="math inline">\({h_i}\)</span>. The master equation becomes:</p>
@@ -497,30 +553,15 @@ Master Equation Formulation
 <p><span class="math display">\[\frac{W_{h_i \to h_j}}{W_{h_j \to h_i}} = \frac{e^{-\beta mgh_j}}{e^{-\beta mgh_i}} = e^{-\beta mg(h_j-h_i)}\]</span></p>
 <p>This recovers our previous expression for detailed balance in sedimentation.</p>
 </section>
-<section id="violation-in-active-systems" class="level2">
-<h2 class="anchored" data-anchor-id="violation-in-active-systems">Violation in Active Systems</h2>
+<section id="violation-in-active-systems" class="level4">
+<h4 class="anchored" data-anchor-id="violation-in-active-systems">Violation in Active Systems</h4>
 <p>For active particles, we would have additional terms in the master equation representing the active motion. The condition above would no longer be satisfied, and instead, we would find:</p>
 <p><span class="math display">\[W_{h_j \to h_i}^{act} P^{ss}(h_j) \neq W_{h_i \to h_j}^{act} P^{ss}(h_i)\]</span></p>
-<p>where <span class="math inline">\(P^ss\)</span> denotes the non-equilibrium steady state distribution.</p>
+<p>where <span class="math inline">\(P^{ss}\)</span> denotes the non-equilibrium steady state distribution.</p>
 </section>
 </div>
 </div>
 </div>
-<!--
-### Phase space and Liouville's theorem
-
-For classical systems with positions $\mathbf{q}$ and momenta $\mathbf{p}$, the phase space distribution function $\rho(\mathbf{q},\mathbf{p},t)$ evolves according to Liouville's equation:
-
-$$\frac{\partial \rho}{\partial t} = -\{\rho, H\}$$
-
-where $\{\cdot,\cdot\}$ denotes the Poisson bracket and $H$ is the Hamiltonian. At equilibrium, $\rho$ is time-independent and given by:
-
-$$\rho_{\text{eq}}(\mathbf{q},\mathbf{p}) = \frac{1}{Z} e^{-\beta H(\mathbf{q},\mathbf{p})}$$
-
-Liouville's theorem states that the phase space density behaves like an incompressible fluid - it cannot be created or destroyed, only redistributed. In active systems, this fundamental conservation law is violated because the microscopic dynamics cannot be derived from a Hamiltonian. Instead, active systems require modified descriptions that account for energy injection and dissipation at the particle level.
-
-From a practical perspective, this means that we need to extend our theoretical frameworks beyond Hamiltonian mechanics when studying active matter. Statistical field theories, stochastic thermodynamics, and kinetic theories have all been adapted and extended to describe the phase space evolution of active systems.
--->
 </section>
 </section>
 <section id="brownian-motion-and-the-langevin-equation" class="level3">
@@ -535,7 +576,7 @@ From a practical perspective, this means that we need to extend our theoretical 
 <p>where <span class="math inline">\(v_0\)</span> represents the swimming speed and <span class="math inline">\(\mathbf{n}(t)\)</span> is a unit vector undergoing rotational diffusion. This seemingly simple modification profoundly transforms the physics, leading to enhanced diffusion, boundary accumulation, and novel collective behaviors unlike anything seen in passive systems.</p>
 <p>In many situations relevant to colloidal systems and active matter, inertial effects can be neglected, leading to the overdamped limit of the Langevin equation:</p>
 <p><span class="math display">\[\gamma\frac{dx}{dt} = -\frac{dU(x)}{dx} + \xi(t)\]</span></p>
-<p>This overdamped approximation accurately describes microscopic active systems such as bacterial suspensions, catalytic Janus particles, and colloidal rollers. In these systems, the Reynolds number is extremely low (typically <span class="math inline">\(10^-5\)</span> to <span class="math inline">\(10^-2\)</span>), meaning viscous forces dominate over inertial forces. Consequently, particles stop moving almost instantaneously when propulsion ceases—a counterintuitive behavior compared to our macroscopic experience where objects continue moving due to inertia.</p>
+<p>This overdamped approximation accurately describes microscopic active systems such as bacterial suspensions, catalytic Janus particles, and colloidal rollers. In these systems, the Reynolds number is extremely low (typically <span class="math inline">\(10^{-5}\)</span> to <span class="math inline">\(10^{-2}\)</span>), meaning viscous forces dominate over inertial forces. Consequently, particles stop moving almost instantaneously when propulsion ceases – a counterintuitive behavior compared to our macroscopic experience where objects continue moving due to inertia.</p>
 <p>The Langevin framework will serve as our starting point for understanding how active systems systematically violate equilibrium principles. As we explore further, we’ll see that active matter requires expanding our theoretical tools beyond equilibrium statistical mechanics to account for the continuous energy input that drives these fascinating systems far from equilibrium.</p>
 </section>
 <section id="fluctuation-dissipation-relation-fdt" class="level3">
@@ -548,11 +589,12 @@ From a practical perspective, this means that we need to extend our theoretical 
 <p>Mathematically, the FDT is often most elegantly expressed in frequency space:</p>
 <p><span class="math display">\[\chi''(\omega) = \frac{\omega}{2k_B T}S(\omega)\]</span></p>
 <p>where <span class="math inline">\(\chi''(\omega)\)</span> is the imaginary part of the frequency-dependent susceptibility (describing the dissipative response to perturbations), and <span class="math inline">\(S(\omega)\)</span> is the power spectral density of the equilibrium fluctuations.</p>
-<p>Alternatively, using the full complex susceptibility:</p>
+<p>This relation can be derived from a more general time-domain form. The full complex susceptibility <span class="math inline">\(\chi(\omega)\)</span> is the one-sided Fourier transform of the autocorrelation function:</p>
 <p><span class="math display">\[\chi(\omega) = \frac{1}{k_B T}\int_0^{\infty} C(t)e^{i\omega t}dt\]</span></p>
-<p>The FDT tells us that for systems in thermal equilibrium, these two behaviors are directly linked through temperature. This means we can learn how a system will respond to an external force simply by observing how it naturally fluctuates when left alone—a profound connection that becomes particularly transparent in the frequency domain.</p>
+<p>Taking the imaginary part of <span class="math inline">\(\chi(\omega)\)</span> and using the Wiener-Khinchin theorem (<span class="math inline">\(S(\omega)\)</span> is the full Fourier transform of <span class="math inline">\(C(t)\)</span>) recovers the compact form above. The frequency-domain version is often more useful experimentally, since both <span class="math inline">\(S(\omega)\)</span> and <span class="math inline">\(\chi''(\omega)\)</span> can be measured independently and compared directly.</p>
+<p>The FDT tells us that for systems in thermal equilibrium, fluctuations and response are linked through temperature. This means we can learn how a system will respond to an external force simply by observing how it naturally fluctuates when left alone.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -561,7 +603,7 @@ Trapped Brownian particle
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Consider a microscopic particle trapped in an optical tweezer (essentially a harmonic potential created by focused laser light). The particle jiggles around randomly due to collisions with surrounding fluid molecules - these are its natural thermal fluctuations.</p>
 <p>The FDT tells us that by simply measuring how much this particle naturally jiggles (its position fluctuations), we can predict exactly how far it would move if we applied a small external force to it.</p>
@@ -574,6 +616,70 @@ Trapped Brownian particle
 <li><span class="math inline">\(\xi(t)\)</span> is thermal noise from random molecular collisions</li>
 <li><span class="math inline">\(F_{ext}(t)\)</span> is any external force we might apply</li>
 </ul>
+<p>The following simulation shows a typical trajectory of such a particle (with <span class="math inline">\(F_{ext} = 0\)</span>). The particle fluctuates around the trap center, with excursions whose magnitude is set by the ratio <span class="math inline">\(k_B T / k\)</span> and whose correlation time is <span class="math inline">\(\tau_k = \gamma/k\)</span>.</p>
+<div id="cell-fig-trapped-trajectory" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>kBT <span class="op">=</span> <span class="fl">4.114e-3</span>   <span class="co"># pN * µm at T = 300 K</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">1.0</span>           <span class="co"># trap stiffness in pN/µm</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">10.0</span>      <span class="co"># friction coefficient in pN·s/µm</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tau_k <span class="op">=</span> gamma <span class="op">/</span> k  <span class="co"># relaxation time in s</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span>         <span class="co"># time step in s</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">50000</span>         <span class="co"># number of steps</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(N) <span class="op">*</span> dt</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros(N)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>noise_amp <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> gamma <span class="op">*</span> kBT <span class="op">*</span> dt)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> x[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (<span class="op">-</span>k <span class="op">*</span> x[i<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> gamma) <span class="op">*</span> dt <span class="op">+</span> (noise_amp <span class="op">/</span> gamma) <span class="op">*</span> np.random.randn()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sigma_eq <span class="op">=</span> np.sqrt(kBT <span class="op">/</span> k)  <span class="co"># equilibrium standard deviation</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                                gridspec_kw<span class="op">=</span>{<span class="st">'height_ratios'</span>: [<span class="dv">3</span>, <span class="dv">1</span>], <span class="st">'hspace'</span>: <span class="fl">0.35</span>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Top: trajectory</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, x, lw<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'C0'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax1.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax1.fill_between(t, <span class="op">-</span>sigma_eq, sigma_eq, alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span><span class="st">'C0'</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                  label<span class="op">=</span><span class="vs">rf'</span><span class="dv">$</span><span class="er">\</span><span class="vs">pm</span><span class="dv">\s</span><span class="vs">qrt</span><span class="ch">{{</span><span class="vs">k_B T/k</span><span class="ch">}}</span><span class="dv">$</span><span class="vs"> = </span><span class="dv">$</span><span class="er">\</span><span class="vs">pm</span><span class="dv">$</span><span class="sc">{</span>sigma_eq<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="vs"> nm'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Position $x$ (µm)'</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="dv">0</span>, t[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#ax1.set_title('Trajectory of a trapped Brownian particle')</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Bottom: potential</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>x_pot <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">200</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> k <span class="op">*</span> x_pot<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax2.plot(x_pot <span class="op">*</span> <span class="fl">1e3</span>, U, <span class="st">'C1'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Position $x$ (nm)'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">U</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pN·µm</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#ax2.set_title('Trapping potential')</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-trapped-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trapped-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture02_files/figure-html/fig-trapped-trajectory-output-1.png" width="453" height="430" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trapped-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Simulated trajectory of a Brownian particle in a harmonic trap. Top: position <span class="math inline">\(x(t)\)</span> as a function of time showing thermal fluctuations around the trap center. The shaded band marks <span class="math inline">\(\pm\sqrt{k_B T/k}\)</span>, the equilibrium standard deviation. Bottom: the corresponding harmonic potential <span class="math inline">\(U(x) = \frac{1}{2}kx^2\)</span>, illustrating the confinement. Parameters: <span class="math inline">\(k = 1\)</span> pN/µm, <span class="math inline">\(\gamma = 10\)</span> pN·s/µm, <span class="math inline">\(T = 300\)</span> K.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>The FDT connects two important quantities:</p>
 <ol type="1">
 <li>The <strong>position autocorrelation function</strong> <span class="math inline">\(C(t-t')\)</span>, which tells us how the particle’s random motions are correlated across time:</li>
@@ -591,39 +697,105 @@ Trapped Brownian particle
 <p>The FDT directly relates these quantities through temperature:</p>
 <p><span class="math display">\[\chi(t-t') = -\frac{1}{k_B T}\frac{d}{dt}C(t-t') \quad \text{for } t &gt; t'\]</span></p>
 <p>This equation embodies the profound insight that the same microscopic mechanisms responsible for dissipation (friction) also generate fluctuations, with temperature determining their relative strength.</p>
+<section id="power-spectral-density" class="level4">
+<h4 class="anchored" data-anchor-id="power-spectral-density">Power spectral density</h4>
+<p>The FDT becomes especially transparent in the frequency domain. The <strong>power spectral density</strong> (PSD) <span class="math inline">\(S(\omega)\)</span> is defined as the Fourier transform of the autocorrelation function (Wiener-Khinchin theorem):</p>
+<p><span class="math display">\[S(\omega) = \int_{-\infty}^{\infty} C(\tau)\, e^{i\omega\tau}\, d\tau\]</span></p>
+<p>For our trapped particle with <span class="math inline">\(C(\tau) = \frac{k_B T}{k} e^{-|{\tau}|/\tau_k}\)</span>, where <span class="math inline">\(\tau_k = \gamma/k\)</span> is the relaxation time, the Fourier transform gives a <strong>Lorentzian</strong> PSD:</p>
+<p><span class="math display">\[S(\omega) = \frac{2 k_B T}{\gamma} \frac{1}{\omega_k^2 + \omega^2}\]</span></p>
+<p>where <span class="math inline">\(\omega_k = k/\gamma\)</span> is the corner (angular) frequency. This Lorentzian shape has two characteristic regimes:</p>
+<ul>
+<li><strong>Low frequencies</strong> (<span class="math inline">\(\omega \ll \omega_k\)</span>): <span class="math inline">\(S(\omega) \approx \frac{2 k_B T}{k^2/\gamma}\)</span> – a flat plateau. The trap confines the particle, so long-time fluctuations are bounded.</li>
+<li><strong>High frequencies</strong> (<span class="math inline">\(\omega \gg \omega_k\)</span>): <span class="math inline">\(S(\omega) \approx \frac{2 k_B T}{\gamma \omega^2}\)</span> – the spectrum falls off as <span class="math inline">\(1/\omega^2\)</span>. At short times, the particle diffuses freely and doesn’t feel the trap yet.</li>
+</ul>
+<p>The corner frequency <span class="math inline">\(f_k = \omega_k / 2\pi = k/(2\pi\gamma)\)</span> marks the crossover between these regimes and directly encodes the ratio of trap stiffness to friction.</p>
+<div id="cell-fig-psd-trapped" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kBT <span class="op">=</span> <span class="fl">4.114e-3</span>  <span class="co"># pN * µm at T = 300 K</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">1.0</span>         <span class="co"># trap stiffness in pN/µm</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">10.0</span>    <span class="co"># friction coefficient in pN·s/µm</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>omega_k <span class="op">=</span> k <span class="op">/</span> gamma  <span class="co"># corner angular frequency</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>f_k <span class="op">=</span> omega_k <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi)  <span class="co"># corner frequency in Hz</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency array</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1000</span>)  <span class="co"># Hz</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Lorentzian PSD</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> kBT <span class="op">/</span> gamma) <span class="op">/</span> (omega_k<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> omega<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Asymptotes</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>S_low <span class="op">=</span> np.full_like(f, <span class="dv">2</span> <span class="op">*</span> kBT <span class="op">*</span> gamma <span class="op">/</span> k<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>S_high <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> kBT <span class="op">/</span> (gamma <span class="op">*</span> omega<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, S, <span class="st">'C0'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="vs">S</span><span class="kw">(</span><span class="vs">f</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">Lorentzian</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, S_low, <span class="st">'C2--'</span>, lw<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="vs">r'plateau </span><span class="dv">$</span><span class="er">\</span><span class="vs">propto f</span><span class="dv">^</span><span class="vs">0</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, S_high, <span class="st">'C3--'</span>, lw<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="vs">r'decay </span><span class="dv">$</span><span class="er">\</span><span class="vs">propto 1/f</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ax.axvline(f_k, color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">rf'</span><span class="dv">$</span><span class="vs">f_k = </span><span class="sc">{</span>f_k<span class="sc">:.4f}</span><span class="dv">$</span><span class="vs"> Hz'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Frequency $f$ (Hz)'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'PSD </span><span class="dv">$</span><span class="vs">S</span><span class="kw">(</span><span class="vs">f</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">µm</span><span class="dv">$^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">/Hz</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(f[<span class="dv">0</span>], f[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(S[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.3</span>, S[<span class="dv">0</span>] <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.set_title('Power spectral density of a trapped Brownian particle')</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-psd-trapped" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-psd-trapped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture02_files/figure-html/fig-psd-trapped-output-1.png" width="562" height="370" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-psd-trapped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Power spectral density of a trapped Brownian particle. The Lorentzian spectrum (blue) transitions from a flat plateau at low frequencies to a <span class="math inline">\(1/f^2\)</span> decay at high frequencies. The corner frequency <span class="math inline">\(f_k = k/(2\pi\gamma)\)</span> (dashed line) marks the crossover. Parameters: <span class="math inline">\(k = 1\)</span> pN/µm, <span class="math inline">\(\gamma = 10\)</span> pN·s/µm, <span class="math inline">\(T = 300\)</span> K.
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<p>The FDT is a powerful tool in equilibrium systems, but it breaks down in active matter. In active systems, energy is continuously injected at the microscopic level through self-propulsion mechanisms. This additional energy input means that fluctuations can be much larger than what would be predicted from the system’s response properties using the equilibrium FDT.</p>
-<p>The violation of the FDT in active systems provides a quantitative measure of how far these systems operate from equilibrium, making it a valuable tool for characterizing active matter.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>In the FDT violation experiments discussed below, the key diagnostic is to compare the measured PSD <span class="math inline">\(S(\omega)\)</span> with the prediction from the independently measured response <span class="math inline">\(\chi''(\omega)\)</span> via <span class="math inline">\(S(\omega) = 2 k_B T\, \chi''(\omega)/\omega\)</span>. In equilibrium, the two agree. In active systems, the measured <span class="math inline">\(S(\omega)\)</span> exceeds this prediction – the excess spectral power is a direct, frequency-resolved fingerprint of the non-equilibrium energy input.</p>
+</section>
 </div>
-<div class="callout-title-container flex-fill">
-Experimental evidence for FDT violation in living systems
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Two landmark experiments directly demonstrated FDT violation in biological active matter by independently measuring fluctuations and response, then showing that the equilibrium relationship between them breaks down.</p>
-<p><strong>Actin–myosin cytoskeletal networks</strong> — <a href="https://doi.org/10.1126/science.1134404">Mizuno et al.&nbsp;(Science, 2007)</a> reconstituted a minimal cytoskeletal network from purified actin filaments, cross-linkers, and myosin II motor proteins. Using optical-tweezer microrheology, they simultaneously measured (i) the spontaneous fluctuations of embedded probe particles and (ii) the mechanical response of the network to small applied forces. In the absence of ATP (no motor activity), the FDT was satisfied — the fluctuation spectrum and the response function were related exactly as predicted by equilibrium theory. Upon adding ATP, myosin motors began generating contractile stresses, and the fluctuation spectrum exceeded the equilibrium prediction by up to two orders of magnitude at low frequencies, while the mechanical response function remained largely unchanged. This dramatic excess of fluctuations over what the response would predict is a direct, quantitative signature of FDT violation driven by molecular motor activity.</p>
-<p><strong>Hair bundle oscillations in the inner ear</strong> — <a href="https://doi.org/10.1073/pnas.251530598">Martin, Hudspeth &amp; Bhatt (PNAS, 2001)</a> studied the mechanosensitive hair bundles of bullfrog saccular hair cells, which oscillate spontaneously due to an active process powered by ATP hydrolysis. By comparing the power spectrum of spontaneous bundle oscillations with the bundle’s linear mechanical response to small stimuli, they demonstrated a clear violation of the FDT. To quantify the departure from equilibrium, they introduced an <em>effective temperature</em> <span class="math inline">\(T_{\text{eff}}(\omega)\)</span> defined through the ratio of the fluctuation spectrum to the response:</p>
+<p>The FDT is a powerful tool in equilibrium systems, but it breaks down in active matter. In active systems, energy is continuously injected at the microscopic level through self-propulsion mechanisms. This additional energy input means that fluctuations can be much larger than what would be predicted from the system’s response properties using the equilibrium FDT. How can we detect and quantify such departures from equilibrium? Two complementary strategies have emerged: measuring FDT violation directly, and detecting broken detailed balance through probability flux loops in phase space.</p>
+</section>
+</section>
+<section id="detecting-non-equilibrium-behavior" class="level2">
+<h2 class="anchored" data-anchor-id="detecting-non-equilibrium-behavior">Detecting non-equilibrium behavior</h2>
+<section id="fdt-violation" class="level3">
+<h3 class="anchored" data-anchor-id="fdt-violation">FDT violation</h3>
+<p>One powerful diagnostic is to independently measure both the spontaneous fluctuations and the mechanical response of a system, then check whether the equilibrium FDT relates them correctly. Any discrepancy reveals hidden energy input, even when the system superficially resembles a thermal one.</p>
+<p><strong>Actin–myosin cytoskeletal networks</strong> – <a href="https://doi.org/10.1126/science.1134404">Mizuno et al.&nbsp;(Science, 2007)</a> reconstituted a minimal cytoskeletal network from purified actin filaments, cross-linkers, and myosin II motor proteins. Using optical-tweezer microrheology, they simultaneously measured (i) the spontaneous fluctuations of embedded probe particles and (ii) the mechanical response of the network to small applied forces. In the absence of ATP (no motor activity), the FDT was satisfied – the fluctuation spectrum and the response function were related exactly as predicted by equilibrium theory. Upon adding ATP, myosin motors began generating contractile stresses, and the fluctuation spectrum exceeded the equilibrium prediction by up to two orders of magnitude at low frequencies, while the mechanical response function remained largely unchanged. This dramatic excess of fluctuations over what the response would predict is a direct, quantitative signature of FDT violation driven by molecular motor activity.</p>
+<div id="fig-actin-myosin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-actin-myosin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/lecture02/Schmidt_Fig1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-actin-myosin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Left: Schematic of the reconstituted actin–myosin network. Myosin II minifilaments (white) bind to and exert forces on cross-linked actin filaments (red), driven by ATP hydrolysis. Center and right: Phase-contrast microscopy images of the network with embedded probe particles used for microrheology measurements. Scale bars: 10 µm. Adapted from <a href="https://doi.org/10.1126/science.1134404">Mizuno et al.&nbsp;(Science, 2007)</a>.
+</figcaption>
+</figure>
+</div>
+<p><strong>Hair bundle oscillations in the inner ear</strong> – <a href="https://doi.org/10.1073/pnas.251530598">Martin, Hudspeth &amp; Bhatt (PNAS, 2001)</a> studied the mechanosensitive hair bundles of bullfrog saccular hair cells, which oscillate spontaneously due to an active process powered by ATP hydrolysis. By comparing the power spectrum of spontaneous bundle oscillations with the bundle’s linear mechanical response to small stimuli, they demonstrated a clear violation of the FDT. To quantify the departure from equilibrium, they introduced an <em>effective temperature</em> <span class="math inline">\(T_{\text{eff}}(\omega)\)</span> defined through the ratio of the fluctuation spectrum to the response:</p>
 <p><span class="math display">\[T_{\text{eff}}(\omega) = \frac{\omega S(\omega)}{2k_B \chi''(\omega)}\]</span></p>
-<p>At equilibrium, <span class="math inline">\(T_{\text{eff}}(\omega) = T\)</span> for all frequencies. Instead, they found that <span class="math inline">\(T_{\text{eff}}\)</span> diverged near the bundle’s characteristic oscillation frequency (~8 Hz), exceeding the bath temperature by several orders of magnitude — a striking signature of energy injection by the active process at a specific frequency scale.</p>
-<p>These experiments illustrate a general strategy for detecting non-equilibrium activity: measure both fluctuations and response independently, and check whether the FDT holds. Any discrepancy reveals hidden energy input, even when the system superficially resembles a thermal one.</p>
-</div>
-</div>
-</div>
+<p>At equilibrium, <span class="math inline">\(T_{\text{eff}}(\omega) = T\)</span> for all frequencies. Instead, they found that <span class="math inline">\(T_{\text{eff}}\)</span> diverged near the bundle’s characteristic oscillation frequency (~8 Hz), exceeding the bath temperature by several orders of magnitude – a striking signature of energy injection by the active process at a specific frequency scale.</p>
 </section>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<section id="two-brownian-particles-with-non-uniform-temperatures" class="level3">
-<h3 class="anchored" data-anchor-id="two-brownian-particles-with-non-uniform-temperatures">Two Brownian particles with non-uniform temperatures</h3>
-<p>To concretely illustrate how equilibrium concepts apply to coupled systems and how they break down when thermal equilibrium is violated, let’s consider a simple model: two Brownian particles connected by springs, with different temperatures.</p>
+<section id="broken-detailed-balance" class="level3">
+<h3 class="anchored" data-anchor-id="broken-detailed-balance">Broken detailed balance</h3>
+<p>A complementary approach does not require measuring a response function at all. Instead, one tracks the system’s trajectory through a coarse-grained phase space (CGPS) and looks for net probability currents – directed cyclic flows that violate detailed balance. In equilibrium, transitions between any two states are pairwise-balanced; persistent flux loops are the hallmark of a non-equilibrium steady state. The following examples, all drawn from <a href="https://doi.org/10.1126/science.aac8167">Battle et al.&nbsp;(Science, 2016)</a>, illustrate this strategy across different biological and model systems.</p>
+<section id="two-brownian-particles-with-non-uniform-temperatures" class="level4">
+<h4 class="anchored" data-anchor-id="two-brownian-particles-with-non-uniform-temperatures">Two Brownian particles with non-uniform temperatures</h4>
+<p>To concretely illustrate how equilibrium concepts break down when thermal equilibrium is violated, consider a simple model: two Brownian particles connected by springs, with different temperatures.</p>
 <p>Consider the following system:</p>
 <ul>
 <li>Two Brownian particles with positions <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span></li>
@@ -640,28 +812,187 @@ Experimental evidence for FDT violation in living systems
 <p>When <span class="math inline">\(T_1 = T_2\)</span>, this system is in thermal equilibrium, and the probability distribution for the positions follows the Boltzmann distribution:</p>
 <p><span class="math display">\[P(x_1, x_2) \propto \exp\left(-\frac{1}{k_B T}[k_1 x_1^2/2 + k_2(x_1-x_2)^2/2 + k_3 x_2^2/2]\right)\]</span></p>
 <p>However, when <span class="math inline">\(T_1 \neq T_2\)</span>, the system is driven out of equilibrium, leading to a non-Boltzmann stationary distribution. The correlation between <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> encodes information about the non-equilibrium nature of the system.</p>
+<p>The following simulation reproduces the key result of <a href="https://doi.org/10.1126/science.aac8167">Battle et al.&nbsp;(Science, 2016)</a>: when the two particles are at different temperatures, persistent probability currents appear in the <span class="math inline">\((x_1, x_2)\)</span> phase space, directly revealing broken detailed balance. Compare the simulation output with the published figure below.</p>
+<div id="cell-fig-two-particle-sim" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> solve_continuous_lyapunov</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Parameters ──</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>k1, k2, k3 <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>gamma1, gamma2 <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">1.0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>kBT1 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>kBT2_neq <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> kBT1</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>kBT2_eq <span class="op">=</span> kBT1</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Drift matrix: dx/dt = A x + noise</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># gamma1 dx1/dt = -(k1+k2) x1 + k2 x2</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># gamma2 dx2/dt = k2 x1 - (k2+k3) x2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="op">-</span>(k1 <span class="op">+</span> k2) <span class="op">/</span> gamma1,  k2 <span class="op">/</span> gamma1],</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>              [ k2 <span class="op">/</span> gamma2,         <span class="op">-</span>(k2 <span class="op">+</span> k3) <span class="op">/</span> gamma2]])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analytical_flux(kBT1, kBT2):</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the exact stationary distribution and probability current</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">    for the linear system from the Fokker-Planck equation.</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">    The stationary P is Gaussian with covariance Sigma from the</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Lyapunov equation: A Sigma + Sigma A^T + 2D = 0.</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">    The probability current is J(x) = Q x P(x), where Q = A + D Sigma^{-1}.</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">    In equilibrium Q = 0; out of equilibrium Q is antisymmetric,</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">    giving a pure rotational current.</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> np.array([[kBT1 <span class="op">/</span> gamma1, <span class="dv">0</span>],</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                  [<span class="dv">0</span>,              kBT2 <span class="op">/</span> gamma2]])</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solve Lyapunov equation: A Sigma + Sigma A^T = -2D</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    Sigma <span class="op">=</span> solve_continuous_lyapunov(A, <span class="op">-</span><span class="dv">2</span> <span class="op">*</span> D)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    Sigma_inv <span class="op">=</span> np.linalg.inv(Sigma)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current matrix: J(x) = Q x P(x)</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> A <span class="op">+</span> D <span class="op">@</span> Sigma_inv</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Sigma, Sigma_inv, Q</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Simulation for time series ──</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.005</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">500_000</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>N_discard <span class="op">=</span> <span class="dv">10_000</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate(kBT1, kBT2, N, dt):</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> np.zeros(N)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    x2 <span class="op">=</span> np.zeros(N)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    s1 <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> kBT1 <span class="op">*</span> dt <span class="op">/</span> gamma1)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> kBT2 <span class="op">*</span> dt <span class="op">/</span> gamma2)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.randn(<span class="dv">2</span>, N <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N):</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        f1 <span class="op">=</span> <span class="op">-</span>(k1 <span class="op">+</span> k2) <span class="op">*</span> x1[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> k2 <span class="op">*</span> x2[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>        f2 <span class="op">=</span> k2 <span class="op">*</span> x1[i<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> (k2 <span class="op">+</span> k3) <span class="op">*</span> x2[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>        x1[i] <span class="op">=</span> x1[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (f1 <span class="op">/</span> gamma1) <span class="op">*</span> dt <span class="op">+</span> s1 <span class="op">*</span> rng[<span class="dv">0</span>, i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        x2[i] <span class="op">=</span> x2[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (f2 <span class="op">/</span> gamma2) <span class="op">*</span> dt <span class="op">+</span> s2 <span class="op">*</span> rng[<span class="dv">1</span>, i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x1[N_discard:], x2[N_discard:]</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>x1_neq, x2_neq <span class="op">=</span> simulate(kBT1, kBT2_neq, N, dt)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Analytical solutions ──</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>Sigma_neq, Sinv_neq, Q_neq <span class="op">=</span> analytical_flux(kBT1, kBT2_neq)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>Sigma_eq,  Sinv_eq,  Q_eq  <span class="op">=</span> analytical_flux(kBT1, kBT2_eq)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Figure ──</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">3</span>),</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>                          gridspec_kw<span class="op">=</span>{<span class="st">'wspace'</span>: <span class="fl">0.4</span>})</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># (a) Time series</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>t_plot <span class="op">=</span> np.arange(<span class="bu">len</span>(x1_neq)) <span class="op">*</span> dt</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>t_max <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>mask_t <span class="op">=</span> t_plot <span class="op">&lt;</span> t_max</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t_plot[mask_t], x1_neq[mask_t], lw<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="st">'$x_1$'</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t_plot[mask_t], x2_neq[mask_t], lw<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'C3'</span>, label<span class="op">=</span><span class="st">'$x_2$'</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Time (a.u.)'</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Position'</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">a</span><span class="kw">)</span><span class="vs"> Trajectories </span><span class="kw">(</span><span class="dv">$</span><span class="vs">T_2 = 1</span><span class="dv">.</span><span class="vs">5</span><span class="ch">\,</span><span class="vs">T_1</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_flux_map(ax, Sigma, Sinv, Q, title):</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Grid spanning ±3 sigma in each direction</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    s1 <span class="op">=</span> np.sqrt(Sigma[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> np.sqrt(Sigma[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    lim1, lim2 <span class="op">=</span> <span class="fl">3.5</span> <span class="op">*</span> s1, <span class="fl">3.5</span> <span class="op">*</span> s2</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    x1g <span class="op">=</span> np.linspace(<span class="op">-</span>lim1, lim1, <span class="dv">200</span>)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    x2g <span class="op">=</span> np.linspace(<span class="op">-</span>lim2, lim2, <span class="dv">200</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    X1, X2 <span class="op">=</span> np.meshgrid(x1g, x2g)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exact Gaussian probability density</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    det <span class="op">=</span> np.linalg.det(Sigma)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> np.stack([X1, X2], axis<span class="op">=-</span><span class="dv">1</span>)  <span class="co"># shape (200, 200, 2)</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    exponent <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> np.einsum(<span class="st">'...i,ij,...j'</span>, pos, Sinv, pos)</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.exp(exponent) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.sqrt(det))</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exact probability current: J(x) = Q x P(x)</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># J1 = (Q[0,0]*x1 + Q[0,1]*x2) * P</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="co"># J2 = (Q[1,0]*x1 + Q[1,1]*x2) * P</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    J1 <span class="op">=</span> (Q[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">*</span> X1 <span class="op">+</span> Q[<span class="dv">0</span>, <span class="dv">1</span>] <span class="op">*</span> X2) <span class="op">*</span> P</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    J2 <span class="op">=</span> (Q[<span class="dv">1</span>, <span class="dv">0</span>] <span class="op">*</span> X1 <span class="op">+</span> Q[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">*</span> X2) <span class="op">*</span> P</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot probability density</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax.pcolormesh(x1g, x2g, P, cmap<span class="op">=</span><span class="st">'hot'</span>, shading<span class="op">=</span><span class="st">'auto'</span>)</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Overlay flux arrows on a coarser grid</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>    skip <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>    Xs, Ys <span class="op">=</span> X1[::skip, ::skip], X2[::skip, ::skip]</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>    J1s, J2s <span class="op">=</span> J1[::skip, ::skip], J2[::skip, ::skip]</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>    mag <span class="op">=</span> np.sqrt(J1s<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> J2s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>    mag_max <span class="op">=</span> np.<span class="bu">max</span>(mag)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mag_max <span class="op">&gt;</span> <span class="fl">1e-10</span>:</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>        ax.quiver(Xs, Ys, J1s, J2s, color<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.9</span>,</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>                  scale<span class="op">=</span>mag_max <span class="op">*</span> <span class="dv">20</span>, width<span class="op">=</span><span class="fl">0.005</span>,</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>                  headwidth<span class="op">=</span><span class="dv">4</span>, headlength<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Equilibrium: show tiny random-looking arrows to indicate ~zero flux</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>        ax.quiver(Xs, Ys, J1s, J2s, color<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>                  scale<span class="op">=</span><span class="fl">1e-6</span>, width<span class="op">=</span><span class="fl">0.003</span>,</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>                  headwidth<span class="op">=</span><span class="dv">3</span>, headlength<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'$x_1$'</span>)</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'$x_2$'</span>)</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span>lim1, lim1)</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span>lim2, lim2)</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>    <span class="co">#plt.colorbar(im, ax=ax, shrink=0.8, label='$P(x_1, x_2)$')</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="co"># (b) Non-equilibrium</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>plot_flux_map(axes[<span class="dv">1</span>], Sigma_neq, Sinv_neq, Q_neq,</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>              <span class="vs">r'</span><span class="kw">(</span><span class="vs">b</span><span class="kw">)</span><span class="vs"> </span><span class="dv">$</span><span class="vs">T_2 = 1</span><span class="dv">.</span><span class="vs">5</span><span class="ch">\,</span><span class="vs">T_1</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">non-equilibrium</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="co"># (c) Equilibrium</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>plot_flux_map(axes[<span class="dv">2</span>], Sigma_eq, Sinv_eq, Q_eq,</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>              <span class="vs">r'</span><span class="kw">(</span><span class="vs">c</span><span class="kw">)</span><span class="vs"> </span><span class="dv">$</span><span class="vs">T_2 = T_1</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">equilibrium</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-two-particle-sim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-two-particle-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture02_files/figure-html/fig-two-particle-sim-output-1.png" width="677" height="303" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-particle-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Two coupled Brownian particles. (a) Simulated time series of <span class="math inline">\(x_1\)</span> (blue, <span class="math inline">\(T_1\)</span>) and <span class="math inline">\(x_2\)</span> (red, <span class="math inline">\(T_2 = 1.5\,T_1\)</span>). (b) Stationary probability distribution (color) and exact probability current (white arrows) for <span class="math inline">\(T_2 = 1.5\,T_1\)</span>: the rotational flux reveals broken detailed balance. (c) Same for <span class="math inline">\(T_2 = T_1\)</span> (equilibrium): the current vanishes everywhere. Parameters: <span class="math inline">\(k_1 = k_2 = k_3 = 1\)</span>, <span class="math inline">\(\gamma_1 = \gamma_2 = 1\)</span>, <span class="math inline">\(k_B T_1 = 1\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Compare the simulation above with the published result from Battle et al.:</p>
 <div id="fig-heat-transfer" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-heat-transfer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/images/lecture02/heat_transfer.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heat-transfer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Brownian-dynamics simulation of 1D bead-spring model. (A) Model schematic. (B) Time series of the bead positions for T2 = 1.5T1 and equal spring constants. See figs. S4 and S5 for the general case (18). (C and D) Probability distribution (color) and flux map (white arrows) in CGPS spanned by x1 and x2 for the simulation in panel B (C) and for a simulation with T2 = T1 (D). Translucent disks represent a 2s confidence interval for fluxes. <a href="https://www.science.org/doi/epdf/10.1126/science.aac8167">source</a>
+Figure&nbsp;7: Brownian-dynamics simulation of 1D bead-spring model from <a href="https://doi.org/10.1126/science.aac8167">Battle et al.&nbsp;(Science, 2016)</a>. (A) Model schematic. (B) Time series of the bead positions for <span class="math inline">\(T_2 = 1.5\,T_1\)</span> and equal spring constants. (C) Probability distribution (color) and flux map (white arrows) for <span class="math inline">\(T_2 = 1.5\,T_1\)</span>, showing rotational probability currents. (D) Same for <span class="math inline">\(T_2 = T_1\)</span> (equilibrium), with no systematic flux.
 </figcaption>
 </figure>
 </div>
-<p>In this non-equilibrium scenario, energy flows from the hotter to the colder particle, driving the system away from equilibrium. The stationary state represents a balance between this energy flow and dissipation, rather than a state of maximum entropy as in equilibrium systems. The detailed balance condition is violated, and the system exhibits persistent probability currents in phase space - a hallmark of non-equilibrium behavior.</p>
+<p>In the non-equilibrium case (<span class="math inline">\(T_2 \neq T_1\)</span>), energy flows from the hotter to the colder particle, driving the system away from equilibrium. The probability flux maps reveal persistent rotational currents in the <span class="math inline">\((x_1, x_2)\)</span> phase space – a direct visualization of broken detailed balance. In contrast, the equilibrium case (<span class="math inline">\(T_2 = T_1\)</span>) shows no systematic flux, consistent with detailed balance. The stationary state in the non-equilibrium case represents a balance between this energy flow and dissipation, rather than a state of maximum entropy as in equilibrium systems.</p>
 </section>
-<section id="chlamydomonas-swimming" class="level3">
-<h3 class="anchored" data-anchor-id="chlamydomonas-swimming">Chlamydomonas Swimming</h3>
-<p>The violation of detailed balance is perhaps the most direct signature of non-equilibrium behavior in active matter. The microalgae Chlamydomonas Reinhardtii provides an exemplary demonstration of this principle.</p>
+<section id="chlamydomonas-swimming" class="level4">
+<h4 class="anchored" data-anchor-id="chlamydomonas-swimming">Chlamydomonas Swimming</h4>
+<p>The microalgae Chlamydomonas Reinhardtii provides a striking demonstration of broken detailed balance in a living system.</p>
 <div id="fig-chlamydomonas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chlamydomonas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/images/lecture02/clamy_image.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chlamydomonas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Light microscopy image of Chlamydomonas Reinhardtii, a single-celled green alga with two flagella used for swimming and sensing. <a href="https://en.wikipedia.org/wiki/Chlamydomonas">source</a>
+Figure&nbsp;8: Light microscopy image of Chlamydomonas Reinhardtii, a single-celled green alga with two flagella used for swimming and sensing. <a href="https://en.wikipedia.org/wiki/Chlamydomonas">source</a>
 </figcaption>
 </figure>
 </div>
@@ -674,7 +1005,7 @@ Figure&nbsp;4: Light microscopy image of Chlamydomonas Reinhardtii, a single-cel
 <img src="../assets/images/lecture02/clamy.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clamy2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Detailed balance and actively beating Chlamydomonas flagella. (A) In thermodynamic equilibrium, transitions between microscopic states are pairwise-balanced, precluding net flux among states. (B) Nonequilibrium steady states can break detailed balance and exhibit flux loops. (C) Snapshots separated by 24 (orange-yellow), 7, and 10 ms in an isolated Chlamydomonas flagellum’s beat cycle (movie S1). Arrows on the central circle indicate the direction of time. Color corresponds to position in (E). (D) The first three bending modes for a freely suspended flexible rod. (E) A three-dimensional (3D) probability flux map of flagellar dynamics in the CGPS spanned by the first three modes <a href="https://www.science.org/doi/epdf/10.1126/science.aac8167">source</a>.
+Figure&nbsp;9: Detailed balance and actively beating Chlamydomonas flagella. (A) In thermodynamic equilibrium, transitions between microscopic states are pairwise-balanced, precluding net flux among states. (B) Nonequilibrium steady states can break detailed balance and exhibit flux loops. (C) Snapshots separated by 24 (orange-yellow), 7, and 10 ms in an isolated Chlamydomonas flagellum’s beat cycle (movie S1). Arrows on the central circle indicate the direction of time. Color corresponds to position in (E). (D) The first three bending modes for a freely suspended flexible rod. (E) A three-dimensional (3D) probability flux map of flagellar dynamics in the CGPS spanned by the first three modes <a href="https://www.science.org/doi/epdf/10.1126/science.aac8167">source</a>.
 </figcaption>
 </figure>
 </div>
@@ -685,14 +1016,14 @@ Figure&nbsp;5: Detailed balance and actively beating Chlamydomonas flagella. (A)
 <img src="../assets/images/lecture02/clamy_flow.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clamy3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: (F and G) Probability distribution (color) and flux map (white arrows) of flagellar dynamics in CGPS spanned by first and second modes (F), and first and third modes (G). The white legend indicates the flux scale. <a href="https://www.science.org/doi/epdf/10.1126/science.aac8167">source</a>
+Figure&nbsp;10: (F and G) Probability distribution (color) and flux map (white arrows) of flagellar dynamics in CGPS spanned by first and second modes (F), and first and third modes (G). The white legend indicates the flux scale. <a href="https://www.science.org/doi/epdf/10.1126/science.aac8167">source</a>
 </figcaption>
 </figure>
 </div>
 <p>These probability flux loops are fundamental to biological function, enabling directed motion and mechanical work that would be thermodynamically prohibited under equilibrium constraints. Similar non-equilibrium dynamics appear in many biological systems, from molecular motors and cell migration to collective tissue behaviors, where energy consumption drives the system away from equilibrium to perform essential biological functions.</p>
 </section>
-<section id="primary-cilia-in-epithelial-cells" class="level3">
-<h3 class="anchored" data-anchor-id="primary-cilia-in-epithelial-cells">Primary cilia in epithelial cells</h3>
+<section id="primary-cilia-in-epithelial-cells" class="level4">
+<h4 class="anchored" data-anchor-id="primary-cilia-in-epithelial-cells">Primary cilia in epithelial cells</h4>
 <p>Primary cilia represent another biological system that exhibits non-equilibrium dynamics, but in a more subtle manner than the flagella of Chlamydomonas. These hairlike organelles project from many eukaryotic cells and transduce mechanical and chemical stimuli into intracellular signals. Unlike flagella, primary cilia often lack the dynein machinery necessary for active beating, causing them to fluctuate in what appears to be a random manner.</p>
 <p>When analyzed in the phase space defined by their deflection angle and curvature, primary cilia of MDCK (Madin-Darby canine kidney) epithelial cells reveal clockwise circulation patterns in their probability flux maps. These patterns indicate broken detailed balance, providing direct evidence of non-equilibrium dynamics in these seemingly passive structures. The statistical significance of these flux loops can be quantified, confirming that these cilia indeed operate far from equilibrium despite their apparently random motion.</p>
 <div id="fig-mdck-cilia" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -701,12 +1032,13 @@ Figure&nbsp;6: (F and G) Probability distribution (color) and flux map (white ar
 <img src="../assets/images/lecture02/MDCK_cilia.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mdck-cilia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Left: Schematic of primary cilium and anchoring of the basal body in the cell cortex with angle q and curvature, k, defined positive as shown. Right: Snapshots of cilium, from differential interference contrast microscopy, taken at time points marked in (B). Scale bar: 2 mm.
+Figure&nbsp;11: Left: Schematic of primary cilium and anchoring of the basal body in the cell cortex with angle q and curvature, k, defined positive as shown. Right: Snapshots of cilium, from differential interference contrast microscopy, taken at time points marked in (B). Scale bar: 2 mm.
 </figcaption>
 </figure>
 </div>
 
 
+</section>
 </section>
 </section>
 
