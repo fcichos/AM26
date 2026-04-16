@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture03/lecture03.html" rel="next">
 <link href="../lecture01/lecture01.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -249,6 +250,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture03/lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -267,7 +274,7 @@ window.Quarto = {
   <li><a href="#free-energy-and-thermodynamic-potentials" id="toc-free-energy-and-thermodynamic-potentials" class="nav-link" data-scroll-target="#free-energy-and-thermodynamic-potentials">Free energy and thermodynamic potentials</a></li>
   <li><a href="#ergodicity-and-detailed-balance" id="toc-ergodicity-and-detailed-balance" class="nav-link" data-scroll-target="#ergodicity-and-detailed-balance">Ergodicity and detailed balance</a></li>
   <li><a href="#brownian-motion-and-the-langevin-equation" id="toc-brownian-motion-and-the-langevin-equation" class="nav-link" data-scroll-target="#brownian-motion-and-the-langevin-equation">Brownian motion and the Langevin equation</a></li>
-  <li><a href="#fluctuation-dissipation-relation-fdt" id="toc-fluctuation-dissipation-relation-fdt" class="nav-link" data-scroll-target="#fluctuation-dissipation-relation-fdt">Fluctuation dissipation relation (FDT)</a></li>
+  <li><a href="#fluctuation-dissipation-relation-fdt" id="toc-fluctuation-dissipation-relation-fdt" class="nav-link" data-scroll-target="#fluctuation-dissipation-relation-fdt">Fluctuation-dissipation relation (FDT)</a></li>
   </ul></li>
   <li><a href="#detecting-non-equilibrium-behavior" id="toc-detecting-non-equilibrium-behavior" class="nav-link" data-scroll-target="#detecting-non-equilibrium-behavior">Detecting non-equilibrium behavior</a>
   <ul class="collapse">
@@ -496,10 +503,34 @@ Deriving the detailed balance condition
 <p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = \frac{P^{\text{eq}}(h_0)}{P^{\text{eq}}(h_n)} \prod_{k=0}^{n-1} \frac{W_{h_k \to h_{k+1}}}{W_{h_{k+1} \to h_k}}\]</span></p>
 <p>By detailed balance, each factor in the product equals <span class="math inline">\(P^{\text{eq}}(h_{k+1})/P^{\text{eq}}(h_k)\)</span>. These factors telescope:</p>
 <p><span class="math display">\[\frac{P[\gamma]}{P[\bar{\gamma}]} = \frac{P^{\text{eq}}(h_0)}{P^{\text{eq}}(h_n)} \cdot \frac{P^{\text{eq}}(h_n)}{P^{\text{eq}}(h_0)} = 1\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How the telescoping works
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Detailed balance gives us <span class="math inline">\(P^{\text{eq}}(h_k) W_{h_k \to h_{k+1}} = P^{\text{eq}}(h_{k+1}) W_{h_{k+1} \to h_k}\)</span>, which rearranges to:</p>
+<p><span class="math display">\[\frac{W_{h_k \to h_{k+1}}}{W_{h_{k+1} \to h_k}} = \frac{P^{\text{eq}}(h_{k+1})}{P^{\text{eq}}(h_k)}\]</span></p>
+<p>Writing out the product explicitly (here for <span class="math inline">\(n=3\)</span>):</p>
+<p><span class="math display">\[\prod_{k=0}^{2} \frac{P^{\text{eq}}(h_{k+1})}{P^{\text{eq}}(h_k)} = \frac{P^{\text{eq}}(h_1)}{P^{\text{eq}}(h_0)} \cdot \frac{P^{\text{eq}}(h_2)}{P^{\text{eq}}(h_1)} \cdot \frac{P^{\text{eq}}(h_3)}{P^{\text{eq}}(h_2)}\]</span></p>
+<p>Each numerator cancels with the denominator of the next factor – <span class="math inline">\(P^{\text{eq}}(h_1)\)</span> in the first numerator cancels with <span class="math inline">\(P^{\text{eq}}(h_1)\)</span> in the second denominator, and so on. All intermediate terms vanish, leaving only the first denominator and last numerator:</p>
+<p><span class="math display">\[= \frac{P^{\text{eq}}(h_n)}{P^{\text{eq}}(h_0)}\]</span></p>
+<p>Plugging back into the full ratio, the prefactor <span class="math inline">\(P^{\text{eq}}(h_0)/P^{\text{eq}}(h_n)\)</span> exactly cancels the surviving boundary terms:</p>
+<p><span class="math display">\[\frac{P^{\text{eq}}(h_0)}{P^{\text{eq}}(h_n)} \cdot \frac{P^{\text{eq}}(h_n)}{P^{\text{eq}}(h_0)} = 1\]</span></p>
+<p>This is the multiplicative analogue of a telescoping sum <span class="math inline">\(\sum (a_{k+1} - a_k) = a_n - a_0\)</span> – a chain of ratios where neighboring terms cancel pairwise, leaving only the endpoints.</p>
+</div>
+</div>
+</div>
 <p>This is a remarkable result: in equilibrium, every trajectory and its time-reverse are equally probable. If we filmed a sedimenting particle and played the recording backward, the reversed motion would be statistically indistinguishable from the forward motion. No systematic currents exist in the steady state – particles diffuse up and down, but any apparent “uphill” motion is precisely balanced by “downhill” motion, with no net circulation in phase space.</p>
 <p>Note that the telescoping cancellation only works because detailed balance holds for <em>every</em> pair of states. If even a single link carries a net current (as happens in active systems), the product no longer collapses and time-reversal symmetry is broken – forward and backward trajectories acquire different weights, producing the probability flux loops we will encounter later.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -508,7 +539,7 @@ Connecting to Fluctuation Theorems
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The trajectory reversibility derived above – <span class="math inline">\(P[\gamma]/P[\bar{\gamma}] = 1\)</span> in equilibrium – is a special case of more general fluctuation theorems that apply even to non-equilibrium systems. These theorems quantify the probability of observing trajectories that appear to violate the second law of thermodynamics.</p>
 <section id="connection-to-fluctuation-theorems" class="level4">
@@ -526,7 +557,7 @@ Connecting to Fluctuation Theorems
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -535,7 +566,7 @@ Master Equation Formulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Detailed balance can be elegantly formulated in terms of a master equation, which provides a powerful framework for understanding the time evolution of probability distributions. The master equation describes how the probability <span class="math inline">\(P_i(t)\)</span> of finding the system in state <span class="math inline">\(i\)</span> evolves over time:</p>
 <p><span class="math display">\[\frac{dP_i(t)}{dt} = \sum_j [W_{j \to i} P_j(t) - W_{i \to j} P_i(t)]\]</span></p>
@@ -566,57 +597,39 @@ Master Equation Formulation
 </section>
 <section id="brownian-motion-and-the-langevin-equation" class="level3">
 <h3 class="anchored" data-anchor-id="brownian-motion-and-the-langevin-equation">Brownian motion and the Langevin equation</h3>
-<p>Brownian motion provides a simple yet powerful model for understanding thermal fluctuations. The Langevin equation describes the motion of a Brownian particle:</p>
-<p><span class="math display">\[m\frac{d^2x}{dt^2} = -\gamma\frac{dx}{dt} - \frac{dU(x)}{dx} + \xi(t)\]</span></p>
+<p>Brownian motion provides a simple yet powerful model for understanding thermal fluctuations. In colloidal and biological systems the Reynolds number is extremely low (typically <span class="math inline">\(10^{-5}\)</span> to <span class="math inline">\(10^{-2}\)</span>), so viscous forces dominate over inertia and particles stop moving almost instantaneously when driving ceases. This leads to the <strong>overdamped Langevin equation</strong>, the natural starting point for active matter physics:</p>
+<p><span class="math display">\[\gamma\frac{dx}{dt} = -\frac{dU(x)}{dx} + \xi(t)\]</span></p>
 <p>where <span class="math inline">\(\gamma\)</span> is the friction coefficient, <span class="math inline">\(U(x)\)</span> is the potential energy, and <span class="math inline">\(\xi(t)\)</span> is Gaussian white noise with:</p>
 <p><span class="math display">\[\langle\xi(t)\rangle = 0, \quad \langle\xi(t)\xi(t')\rangle = 2\gamma k_B T \delta(t-t')\]</span></p>
-<p>The noise amplitude is related to the friction coefficient through the fluctuation-dissipation relation, a consequence of thermal equilibrium. This relation embodies a deep physical principle: the same microscopic processes that cause energy dissipation (friction) also generate fluctuations (noise), with temperature determining their relative strength.</p>
-<p>Understanding the Langevin equation is crucial as it serves as a conceptual bridge between equilibrium and non-equilibrium physics. When modeling active particles, we extend this framework by adding a self-propulsion term. The simplest model of an active Brownian particle (ABP) incorporates a propulsion force of constant magnitude but with a direction that changes through rotational diffusion:</p>
-<p><span class="math display">\[\gamma\frac{d\mathbf{r}}{dt} = -\nabla U(\mathbf{r}) + \gamma v_0 \mathbf{n}(t) + \boldsymbol{\xi}(t)\]</span></p>
-<p>where <span class="math inline">\(v_0\)</span> represents the swimming speed and <span class="math inline">\(\mathbf{n}(t)\)</span> is a unit vector undergoing rotational diffusion. This seemingly simple modification profoundly transforms the physics, leading to enhanced diffusion, boundary accumulation, and novel collective behaviors unlike anything seen in passive systems.</p>
-<p>In many situations relevant to colloidal systems and active matter, inertial effects can be neglected, leading to the overdamped limit of the Langevin equation:</p>
-<p><span class="math display">\[\gamma\frac{dx}{dt} = -\frac{dU(x)}{dx} + \xi(t)\]</span></p>
-<p>This overdamped approximation accurately describes microscopic active systems such as bacterial suspensions, catalytic Janus particles, and colloidal rollers. In these systems, the Reynolds number is extremely low (typically <span class="math inline">\(10^{-5}\)</span> to <span class="math inline">\(10^{-2}\)</span>), meaning viscous forces dominate over inertial forces. Consequently, particles stop moving almost instantaneously when propulsion ceases – a counterintuitive behavior compared to our macroscopic experience where objects continue moving due to inertia.</p>
-<p>The Langevin framework will serve as our starting point for understanding how active systems systematically violate equilibrium principles. As we explore further, we’ll see that active matter requires expanding our theoretical tools beyond equilibrium statistical mechanics to account for the continuous energy input that drives these fascinating systems far from equilibrium.</p>
-</section>
-<section id="fluctuation-dissipation-relation-fdt" class="level3">
-<h3 class="anchored" data-anchor-id="fluctuation-dissipation-relation-fdt">Fluctuation dissipation relation (FDT)</h3>
-<p>The Fluctuation-Dissipation Theorem (FDT) is a cornerstone principle in equilibrium statistical mechanics that connects two seemingly different phenomena:</p>
-<ol type="1">
-<li>The random thermal fluctuations that naturally occur in a system at equilibrium</li>
-<li>How that same system responds when deliberately disturbed by an external force</li>
-</ol>
-<p>Mathematically, the FDT is often most elegantly expressed in frequency space:</p>
-<p><span class="math display">\[\chi''(\omega) = \frac{\omega}{2k_B T}S(\omega)\]</span></p>
-<p>where <span class="math inline">\(\chi''(\omega)\)</span> is the imaginary part of the frequency-dependent susceptibility (describing the dissipative response to perturbations), and <span class="math inline">\(S(\omega)\)</span> is the power spectral density of the equilibrium fluctuations.</p>
-<p>This relation can be derived from a more general time-domain form. The full complex susceptibility <span class="math inline">\(\chi(\omega)\)</span> is the one-sided Fourier transform of the autocorrelation function:</p>
-<p><span class="math display">\[\chi(\omega) = \frac{1}{k_B T}\int_0^{\infty} C(t)e^{i\omega t}dt\]</span></p>
-<p>Taking the imaginary part of <span class="math inline">\(\chi(\omega)\)</span> and using the Wiener-Khinchin theorem (<span class="math inline">\(S(\omega)\)</span> is the full Fourier transform of <span class="math inline">\(C(t)\)</span>) recovers the compact form above. The frequency-domain version is often more useful experimentally, since both <span class="math inline">\(S(\omega)\)</span> and <span class="math inline">\(\chi''(\omega)\)</span> can be measured independently and compared directly.</p>
-<p>The FDT tells us that for systems in thermal equilibrium, fluctuations and response are linked through temperature. This means we can learn how a system will respond to an external force simply by observing how it naturally fluctuates when left alone.</p>
+<p>The noise amplitude is tied to the friction coefficient – the same microscopic collisions that cause energy dissipation also generate fluctuations, with temperature setting their relative strength. This connection between noise and friction is a first hint of the fluctuation-dissipation relation we will formalize below.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Trapped Brownian particle
+Full inertial Langevin equation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Consider a microscopic particle trapped in an optical tweezer (essentially a harmonic potential created by focused laser light). The particle jiggles around randomly due to collisions with surrounding fluid molecules - these are its natural thermal fluctuations.</p>
-<p>The FDT tells us that by simply measuring how much this particle naturally jiggles (its position fluctuations), we can predict exactly how far it would move if we applied a small external force to it.</p>
-<p>Let’s examine this for a colloidal particle in a one-dimensional harmonic trap, described by the overdamped Langevin equation:</p>
+<p>When inertial effects matter (larger particles, shorter timescales), the full Langevin equation retains the acceleration term:</p>
+<p><span class="math display">\[m\frac{d^2x}{dt^2} = -\gamma\frac{dx}{dt} - \frac{dU(x)}{dx} + \xi(t)\]</span></p>
+<p>The overdamped limit is recovered when the momentum relaxation time <span class="math inline">\(m/\gamma\)</span> is much shorter than all other timescales of interest, so that the left-hand side can be set to zero.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="fluctuation-dissipation-relation-fdt" class="level3">
+<h3 class="anchored" data-anchor-id="fluctuation-dissipation-relation-fdt">Fluctuation-dissipation relation (FDT)</h3>
+<p>The Fluctuation-Dissipation Theorem (FDT) connects two seemingly different phenomena: the random thermal fluctuations that naturally occur in a system at equilibrium, and how that same system responds when deliberately disturbed by an external force. To see concretely what this means, consider a trapped Brownian particle.</p>
+<section id="trapped-brownian-particle" class="level4">
+<h4 class="anchored" data-anchor-id="trapped-brownian-particle">Trapped Brownian particle</h4>
+<p>A microscopic particle in an optical tweezer (a harmonic potential created by focused laser light) jiggles around randomly due to collisions with surrounding fluid molecules. The FDT tells us that by simply measuring how much this particle naturally jiggles, we can predict exactly how far it would move if we applied a small external force.</p>
+<p>The overdamped Langevin equation for a colloidal particle in a one-dimensional harmonic trap reads:</p>
 <p><span class="math display">\[\gamma \frac{dx}{dt} = -kx + \xi(t) + F_{ext}(t)\]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(\gamma\)</span> is the friction coefficient (resistance to motion)</li>
-<li><span class="math inline">\(k\)</span> is the trap stiffness (strength of the restoring force)</li>
-<li><span class="math inline">\(\xi(t)\)</span> is thermal noise from random molecular collisions</li>
-<li><span class="math inline">\(F_{ext}(t)\)</span> is any external force we might apply</li>
-</ul>
-<p>The following simulation shows a typical trajectory of such a particle (with <span class="math inline">\(F_{ext} = 0\)</span>). The particle fluctuates around the trap center, with excursions whose magnitude is set by the ratio <span class="math inline">\(k_B T / k\)</span> and whose correlation time is <span class="math inline">\(\tau_k = \gamma/k\)</span>.</p>
+<p>where <span class="math inline">\(k\)</span> is the trap stiffness and <span class="math inline">\(F_{ext}(t)\)</span> is any external force we might apply. The following simulation shows a typical trajectory (with <span class="math inline">\(F_{ext} = 0\)</span>). The particle fluctuates around the trap center, with excursions whose magnitude is set by <span class="math inline">\(k_B T / k\)</span> and whose correlation time is <span class="math inline">\(\tau_k = \gamma/k\)</span>.</p>
 <div id="cell-fig-trapped-trajectory" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -655,17 +668,15 @@ Trapped Brownian particle
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Position $x$ (µm)'</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="dv">0</span>, t[<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#ax1.set_title('Trajectory of a trapped Brownian particle')</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Bottom: potential</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>x_pot <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">200</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> k <span class="op">*</span> x_pot<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax2.plot(x_pot <span class="op">*</span> <span class="fl">1e3</span>, U, <span class="st">'C1'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Position $x$ (nm)'</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">U</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pN·µm</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#ax2.set_title('Trapping potential')</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Bottom: potential</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>x_pot <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">4</span> <span class="op">*</span> sigma_eq, <span class="dv">200</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> k <span class="op">*</span> x_pot<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>ax2.plot(x_pot <span class="op">*</span> <span class="fl">1e3</span>, U, <span class="st">'C1'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Position $x$ (nm)'</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">U</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pN·µm</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-trapped-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -680,28 +691,25 @@ Figure&nbsp;3: Simulated trajectory of a Brownian particle in a harmonic trap. T
 </div>
 </div>
 </div>
-<p>The FDT connects two important quantities:</p>
+<p>The FDT connects two quantities measurable from this system:</p>
 <ol type="1">
 <li>The <strong>position autocorrelation function</strong> <span class="math inline">\(C(t-t')\)</span>, which tells us how the particle’s random motions are correlated across time:</li>
 </ol>
-<p><span class="math display">\[C(t-t') = \langle x(t)x(t') \rangle - \langle x(t) \rangle \langle x(t') \rangle\]</span></p>
-<p>In equilibrium with no external force, this equals:</p>
-<p><span class="math display">\[C(t-t') = \frac{k_B T}{k}e^{-\frac{k}{\gamma}|t-t'|}\]</span></p>
+<p><span class="math display">\[C(t-t') = \langle x(t)x(t') \rangle - \langle x(t) \rangle \langle x(t') \rangle = \frac{k_B T}{k}e^{-\frac{k}{\gamma}|t-t'|}\]</span></p>
 <ol start="2" type="1">
 <li>The <strong>response function</strong> <span class="math inline">\(\chi(t-t')\)</span>, which measures how the particle’s position responds to a small external force:</li>
 </ol>
-<p><span class="math display">\[\chi(t-t') = \frac{\delta \langle x(t) \rangle}{\delta F_{ext}(t')}\]</span></p>
-<p>For our harmonic trap:</p>
-<p><span class="math display">\[\chi(t-t') = \frac{1}{\gamma}e^{-\frac{k}{\gamma}(t-t')} \Theta(t-t')\]</span></p>
-<p>where <span class="math inline">\(\Theta(t-t')\)</span> is the Heaviside step function (ensuring causality - the system can’t respond before the force is applied).</p>
+<p><span class="math display">\[\chi(t-t') = \frac{\delta \langle x(t) \rangle}{\delta F_{ext}(t')} = \frac{1}{\gamma}e^{-\frac{k}{\gamma}(t-t')} \Theta(t-t')\]</span></p>
+<p>where <span class="math inline">\(\Theta(t-t')\)</span> is the Heaviside step function (ensuring causality – the system cannot respond before the force is applied).</p>
 <p>The FDT directly relates these quantities through temperature:</p>
 <p><span class="math display">\[\chi(t-t') = -\frac{1}{k_B T}\frac{d}{dt}C(t-t') \quad \text{for } t &gt; t'\]</span></p>
-<p>This equation embodies the profound insight that the same microscopic mechanisms responsible for dissipation (friction) also generate fluctuations, with temperature determining their relative strength.</p>
+<p>Both quantities share the same exponential kernel <span class="math inline">\(e^{-k(t-t')/\gamma}\)</span> – one describes spontaneous fluctuations, the other describes the driven response, and temperature is the only bridge between them.</p>
+</section>
 <section id="power-spectral-density" class="level4">
 <h4 class="anchored" data-anchor-id="power-spectral-density">Power spectral density</h4>
 <p>The FDT becomes especially transparent in the frequency domain. The <strong>power spectral density</strong> (PSD) <span class="math inline">\(S(\omega)\)</span> is defined as the Fourier transform of the autocorrelation function (Wiener-Khinchin theorem):</p>
 <p><span class="math display">\[S(\omega) = \int_{-\infty}^{\infty} C(\tau)\, e^{i\omega\tau}\, d\tau\]</span></p>
-<p>For our trapped particle with <span class="math inline">\(C(\tau) = \frac{k_B T}{k} e^{-|{\tau}|/\tau_k}\)</span>, where <span class="math inline">\(\tau_k = \gamma/k\)</span> is the relaxation time, the Fourier transform gives a <strong>Lorentzian</strong> PSD:</p>
+<p>For our trapped particle with <span class="math inline">\(C(\tau) = \frac{k_B T}{k} e^{-|{\tau}|/\tau_k}\)</span>, the Fourier transform gives a <strong>Lorentzian</strong> PSD:</p>
 <p><span class="math display">\[S(\omega) = \frac{2 k_B T}{\gamma} \frac{1}{\omega_k^2 + \omega^2}\]</span></p>
 <p>where <span class="math inline">\(\omega_k = k/\gamma\)</span> is the corner (angular) frequency. This Lorentzian shape has two characteristic regimes:</p>
 <ul>
@@ -745,9 +753,8 @@ Figure&nbsp;3: Simulated trajectory of a Brownian particle in a harmonic trap. T
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(f[<span class="dv">0</span>], f[<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(S[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.3</span>, S[<span class="dv">0</span>] <span class="op">*</span> <span class="dv">3</span>)</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.set_title('Power spectral density of a trapped Brownian particle')</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-psd-trapped" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -762,12 +769,34 @@ Figure&nbsp;4: Power spectral density of a trapped Brownian particle. The Lorent
 </div>
 </div>
 </div>
-<p>In the FDT violation experiments discussed below, the key diagnostic is to compare the measured PSD <span class="math inline">\(S(\omega)\)</span> with the prediction from the independently measured response <span class="math inline">\(\chi''(\omega)\)</span> via <span class="math inline">\(S(\omega) = 2 k_B T\, \chi''(\omega)/\omega\)</span>. In equilibrium, the two agree. In active systems, the measured <span class="math inline">\(S(\omega)\)</span> exceeds this prediction – the excess spectral power is a direct, frequency-resolved fingerprint of the non-equilibrium energy input.</p>
 </section>
+<section id="the-general-fdt" class="level4">
+<h4 class="anchored" data-anchor-id="the-general-fdt">The general FDT</h4>
+<p>The trapped particle illustrates a general principle. For any system in thermal equilibrium, the FDT relates the power spectral density of spontaneous fluctuations to the dissipative part of the response:</p>
+<p><span class="math display">\[\chi''(\omega) = \frac{\omega}{2k_B T}S(\omega)\]</span></p>
+<p>where <span class="math inline">\(\chi''(\omega)\)</span> is the imaginary part of the frequency-dependent susceptibility. This frequency-domain form is particularly useful experimentally, since both <span class="math inline">\(S(\omega)\)</span> and <span class="math inline">\(\chi''(\omega)\)</span> can be measured independently and compared directly. In the FDT violation experiments discussed below, the key diagnostic is precisely this comparison: in equilibrium the two agree, while in active systems the measured <span class="math inline">\(S(\omega)\)</span> exceeds the prediction from <span class="math inline">\(\chi''(\omega)\)</span> – the excess spectral power is a direct, frequency-resolved fingerprint of non-equilibrium energy input.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deriving the general FDT from the time-domain form
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The general FDT in the time domain reads:</p>
+<p><span class="math display">\[\chi(t-t') = -\frac{1}{k_B T}\frac{d}{dt}C(t-t') \quad \text{for } t &gt; t'\]</span></p>
+<p>The full complex susceptibility <span class="math inline">\(\chi(\omega)\)</span> is the one-sided Fourier transform of this response function:</p>
+<p><span class="math display">\[\chi(\omega) = \frac{1}{k_B T}\int_0^{\infty} C(t)e^{i\omega t}dt\]</span></p>
+<p>Taking the imaginary part of <span class="math inline">\(\chi(\omega)\)</span> and using the Wiener-Khinchin theorem (<span class="math inline">\(S(\omega)\)</span> is the full Fourier transform of <span class="math inline">\(C(t)\)</span>) recovers the compact frequency-domain form <span class="math inline">\(\chi''(\omega) = \frac{\omega}{2k_B T}S(\omega)\)</span>.</p>
 </div>
 </div>
 </div>
 <p>The FDT is a powerful tool in equilibrium systems, but it breaks down in active matter. In active systems, energy is continuously injected at the microscopic level through self-propulsion mechanisms. This additional energy input means that fluctuations can be much larger than what would be predicted from the system’s response properties using the equilibrium FDT. How can we detect and quantify such departures from equilibrium? Two complementary strategies have emerged: measuring FDT violation directly, and detecting broken detailed balance through probability flux loops in phase space.</p>
+</section>
 </section>
 </section>
 <section id="detecting-non-equilibrium-behavior" class="level2">
@@ -1449,6 +1478,9 @@ Figure&nbsp;11: Left: Schematic of primary cilium and anchoring of the basal bod
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../lecture03/lecture03.html" class="pagination-link" aria-label="Lecture 3">
+        <span class="nav-page-text">Lecture 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
