@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -271,7 +236,11 @@ window.Quarto = {
   <li><a href="#run-and-tumble-particles-rtps" id="toc-run-and-tumble-particles-rtps" class="nav-link" data-scroll-target="#run-and-tumble-particles-rtps">Run-and-Tumble Particles (RTPs)</a>
   <ul class="collapse">
   <li><a href="#d-run-and-tumble-with-sedimentation" id="toc-d-run-and-tumble-with-sedimentation" class="nav-link" data-scroll-target="#d-run-and-tumble-with-sedimentation">1D Run-and-Tumble with Sedimentation</a></li>
+  <li><a href="#rtp-in-a-harmonic-potential" id="toc-rtp-in-a-harmonic-potential" class="nav-link" data-scroll-target="#rtp-in-a-harmonic-potential">RTP in a Harmonic Potential</a></li>
   <li><a href="#mathematical-formulation-in-higher-dimensions" id="toc-mathematical-formulation-in-higher-dimensions" class="nav-link" data-scroll-target="#mathematical-formulation-in-higher-dimensions">Mathematical Formulation in Higher Dimensions</a></li>
+  <li><a href="#velocity-autocorrelation-function" id="toc-velocity-autocorrelation-function" class="nav-link" data-scroll-target="#velocity-autocorrelation-function">Velocity Autocorrelation Function</a></li>
+  <li><a href="#mean-square-displacement" id="toc-mean-square-displacement" class="nav-link" data-scroll-target="#mean-square-displacement">Mean Square Displacement</a></li>
+  <li><a href="#run-length-distribution" id="toc-run-length-distribution" class="nav-link" data-scroll-target="#run-length-distribution">Run-length Distribution</a></li>
   <li><a href="#connection-to-abps" id="toc-connection-to-abps" class="nav-link" data-scroll-target="#connection-to-abps">Connection to ABPs</a></li>
   <li><a href="#non-equilibrium-aspects" id="toc-non-equilibrium-aspects" class="nav-link" data-scroll-target="#non-equilibrium-aspects">Non-equilibrium Aspects</a></li>
   </ul></li>
@@ -279,10 +248,12 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#mathematical-formulation" id="toc-mathematical-formulation" class="nav-link" data-scroll-target="#mathematical-formulation">Mathematical Formulation</a></li>
   <li><a href="#mean-displacement" id="toc-mean-displacement" class="nav-link" data-scroll-target="#mean-displacement">Mean Displacement</a></li>
-  <li><a href="#mean-square-displacement" id="toc-mean-square-displacement" class="nav-link" data-scroll-target="#mean-square-displacement">Mean Square Displacement</a></li>
+  <li><a href="#velocity-autocorrelation-function-1" id="toc-velocity-autocorrelation-function-1" class="nav-link" data-scroll-target="#velocity-autocorrelation-function-1">Velocity Autocorrelation Function</a></li>
+  <li><a href="#mean-square-displacement-1" id="toc-mean-square-displacement-1" class="nav-link" data-scroll-target="#mean-square-displacement-1">Mean Square Displacement</a></li>
   <li><a href="#probability-distribution" id="toc-probability-distribution" class="nav-link" data-scroll-target="#probability-distribution">Probability Distribution</a></li>
   <li><a href="#time-reversal-symmetry-breaking" id="toc-time-reversal-symmetry-breaking" class="nav-link" data-scroll-target="#time-reversal-symmetry-breaking">Time Reversal Symmetry Breaking</a></li>
   <li><a href="#fdt-violation" id="toc-fdt-violation" class="nav-link" data-scroll-target="#fdt-violation">FDT Violation</a></li>
+  <li><a href="#unifying-picture-exponential-vacf" id="toc-unifying-picture-exponential-vacf" class="nav-link" data-scroll-target="#unifying-picture-exponential-vacf">Unifying picture: exponential VACF</a></li>
   <li><a href="#taxonomy-of-active-particle-models" id="toc-taxonomy-of-active-particle-models" class="nav-link" data-scroll-target="#taxonomy-of-active-particle-models">Taxonomy of Active Particle Models</a></li>
   </ul></li>
   </ul>
@@ -384,20 +355,7 @@ Note
 <p><span class="math display">\[\frac{\partial P}{\partial x} = 0\]</span></p>
 <p>This gives a uniform density distribution:</p>
 <p><span class="math display">\[P(x) = \text{constant}\]</span></p>
-<p>Interestingly, spatial variation in tumble rate alone (<span class="math inline">\(\lambda(x)\)</span>) cannot create population gradients when the swimming speed is constant. However, in bacterial chemotaxis, the tumble rate depends not just on position but also on the bacterium’s orientation relative to the chemical gradient: <span class="math inline">\(\lambda(\mathbf{r}, \mathbf{n}) = \lambda_0(1 - \mathbf{n} \cdot \nabla c(\mathbf{r})/|\nabla c(\mathbf{r})|)\)</span>. This directional dependence allows bacteria to effectively navigate chemical landscapes, creating population gradients despite constant swimming speed. (see for example <a href="https://www.pnas.org/doi/10.1073/pnas.1816315116">1</a>)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Chemotaxis
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Chemotaxis is the directed movement of organisms in response to chemical gradients in their environment. This behavior allows cells to move toward favorable chemical conditions (positive chemotaxis) or away from harmful ones (negative chemotaxis). In bacteria like E. coli, chemotaxis works through a biased random walk: rather than directly sensing gradient directions, bacteria adjust their tumbling frequency based on whether they’re moving toward or away from attractive chemicals. This elegant mechanism enables even simple single-celled organisms to effectively navigate complex chemical landscapes without sophisticated sensory apparatus.</p>
-</div>
-</div>
+<p>Interestingly, spatial variation in tumble rate alone (<span class="math inline">\(\lambda(x)\)</span>) cannot create population gradients when the swimming speed is constant. Real bacterial chemotaxis escapes this constraint because the tumble rate depends not just on position but also on the bacterium’s orientation relative to the chemical gradient – <span class="math inline">\(\lambda(\mathbf{r}, \mathbf{n}) = \lambda_0(1 - \mathbf{n} \cdot \nabla c(\mathbf{r})/|\nabla c(\mathbf{r})|)\)</span> – breaking the symmetry between forward and backward runs. We return to chemotaxis in a later lecture, where we will see how temporal memory in the E. coli signaling cascade allows gradient sensing despite this uniform-density result. (see for example <a href="https://www.pnas.org/doi/10.1073/pnas.1816315116">1</a>)</p>
 <ol start="2" type="1">
 <li><strong>Position-dependent speed, constant tumble rate</strong>: When the swimming speed depends on position <span class="math inline">\(v_0(x)\)</span> while the tumble rate <span class="math inline">\(\lambda\)</span> remains constant, we can find the steady-state density distribution by setting <span class="math inline">\(J(x) = 0\)</span> (no flux condition) and solving:</li>
 </ol>
@@ -427,35 +385,6 @@ Chemotaxis
 <p><span class="math display">\[T_\mathrm{eff} = \frac{v_0^2-(mg/\gamma)^2}{2\lambda k_B}\]</span></p>
 <p>which is not the temperature of the surrounding medium. This effective temperature accounts for the active motion of the particle and its interaction with the surrounding medium.</p>
 <div id="cell-fig-sedimentation" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)  <span class="co"># height above surface</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v_sed <span class="op">=</span> <span class="dv">1</span>                    <span class="co"># sedimentation velocity mg/γ</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>lambda_tumble <span class="op">=</span> <span class="fl">0.6</span>            <span class="co"># tumble rate</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Three different active velocities</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>v0_values <span class="op">=</span> [<span class="fl">1.01</span>, <span class="dv">2</span>, <span class="dv">3</span>]       <span class="co"># self-propulsion speeds</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate density profiles</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v0 <span class="kw">in</span> v0_values:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate sedimentation length</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (v0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> v_sed<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> lambda_tumble <span class="op">*</span> v_sed)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    density <span class="op">=</span> np.exp(<span class="op">-</span>x <span class="op">/</span> delta)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    density <span class="op">=</span> density <span class="op">/</span> density[<span class="dv">0</span>]</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, density, <span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f'$v_0 = </span><span class="sc">{</span>v0<span class="sc">}</span><span class="ss">$'</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'height $z$'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$P(x)/P(0)$'</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-sedimentation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -470,6 +399,58 @@ Figure&nbsp;2— Sedimentation profiles for three different activity levels. As 
 </div>
 </div>
 </section>
+</section>
+<section id="rtp-in-a-harmonic-potential" class="level3">
+<h3 class="anchored" data-anchor-id="rtp-in-a-harmonic-potential">RTP in a Harmonic Potential</h3>
+<p>Sedimentation showed that active particles can be assigned an effective temperature – the exponential density profile looks Boltzmann-like, just with <span class="math inline">\(T_\text{eff}\)</span> replacing <span class="math inline">\(T\)</span>. A harmonic potential reveals exactly where this picture breaks down.</p>
+<p>For a 1D RTP with speed <span class="math inline">\(\pm v_0\)</span> and tumble rate <span class="math inline">\(\lambda\)</span> in a harmonic potential <span class="math inline">\(U(x) = \frac{1}{2}kx^2\)</span> (restoring force <span class="math inline">\(-kx\)</span>, mobility <span class="math inline">\(1/\gamma\)</span>), the particle experiences a net force <span class="math inline">\(\mp kx/\gamma\)</span> alongside its self-propulsion. The key length scale is the <strong>turning point</strong></p>
+<p><span class="math display">\[x_0 = \frac{v_0}{\omega}, \qquad \omega = \frac{k}{\gamma}\]</span></p>
+<p>at which the harmonic restoring force exactly cancels the active drive. The particle cannot escape beyond <span class="math inline">\(|x| &gt; x_0\)</span>, so the distribution is strictly confined to <span class="math inline">\([-x_0, x_0]\)</span>.</p>
+<p>The exact steady-state distribution is:</p>
+<p><span class="math display">\[P(x) \propto \left(x_0^2 - x^2\right)^{\lambda/\omega - 1}, \qquad |x| \leq x_0\]</span></p>
+<p>The exponent <span class="math inline">\(\lambda/\omega - 1\)</span> controls the shape entirely:</p>
+<ul>
+<li><span class="math inline">\(\lambda &gt; \omega\)</span> (fast tumbling, weak activity): exponent positive, distribution peaks at centre – approaches Gaussian as <span class="math inline">\(\lambda/\omega \to \infty\)</span></li>
+<li><span class="math inline">\(\lambda = \omega\)</span>: exponent zero, uniform distribution</li>
+<li><span class="math inline">\(\lambda &lt; \omega\)</span> (slow tumbling, strong activity): exponent negative, distribution diverges at the edges – particles pile up near the turning points</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Derivation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In steady state the probability currents for the <span class="math inline">\(\pm\)</span> populations separately satisfy:</p>
+<p><span class="math display">\[\frac{d}{dx}\left[(v_0 - \omega x)P_+\right] = -\lambda P_+ + \lambda P_-\]</span> <span class="math display">\[\frac{d}{dx}\left[(-v_0 - \omega x)P_-\right] = \lambda P_+ - \lambda P_-\]</span></p>
+<p>By symmetry <span class="math inline">\(P_-(x) = P_+(-x)\)</span>, so <span class="math inline">\(P(x) = P_+(x) + P_-(-x)\)</span> is symmetric. Adding the two equations and imposing zero net current at the boundaries gives a first-order ODE for <span class="math inline">\(P_+(x)\)</span>:</p>
+<p><span class="math display">\[\frac{dP_+}{dx} = \frac{\lambda - \omega}{v_0 - \omega x} P_+\]</span></p>
+<p>which integrates to <span class="math inline">\(P_+(x) \propto (x_0 - x)^{\lambda/\omega - 1}\)</span>. Combining with the symmetric <span class="math inline">\(P_-\)</span> yields:</p>
+<p><span class="math display">\[P(x) \propto (x_0^2 - x^2)^{\lambda/\omega - 1}\]</span></p>
+<p>For an equilibrium Brownian particle in the same potential the distribution would be <span class="math inline">\(P^{\text{eq}}(x) \propto e^{-\beta k x^2/2}\)</span> – a Gaussian. The RTP distribution has a completely different functional form and cannot be written as a Boltzmann factor at any temperature, demonstrating that active particles are not simply “hot” equilibrium particles.</p>
+</div>
+</div>
+</div>
+<div id="cell-fig-rtp-harmonic" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-rtp-harmonic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rtp-harmonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture03_files/figure-html/fig-rtp-harmonic-output-1.png" width="573" height="456" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rtp-harmonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Steady-state density of a 1D RTP in a harmonic potential for three values of <span class="math inline">\(\lambda/\omega\)</span>. For fast tumbling (<span class="math inline">\(\lambda/\omega &gt; 1\)</span>) the distribution is centre-peaked and Gaussian-like. At <span class="math inline">\(\lambda = \omega\)</span> it is uniform. For slow tumbling (<span class="math inline">\(\lambda/\omega &lt; 1\)</span>) particles accumulate near the turning points <span class="math inline">\(\pm x_0\)</span>, a non-equilibrium effect with no equilibrium counterpart. The dashed grey curve shows the equilibrium Boltzmann distribution (<span class="math inline">\(T_\text{eff} = v_0^2/(2\lambda k_B)\)</span>) for comparison.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The edge-peaked distribution for <span class="math inline">\(\lambda &lt; \omega\)</span> is a hallmark of strong activity – it has no equilibrium analogue and cannot be reproduced by any choice of effective temperature. This directly shows that the effective temperature introduced in the sedimentation section is at best an approximation valid in the weak-activity or fast-tumbling limit.</p>
 </section>
 <section id="mathematical-formulation-in-higher-dimensions" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-formulation-in-higher-dimensions">Mathematical Formulation in Higher Dimensions</h3>
@@ -490,79 +471,107 @@ Figure&nbsp;2— Sedimentation profiles for three different activity levels. As 
 <li>In 3D: The new direction is uniformly distributed on the unit sphere, typically generated by choosing <span class="math inline">\(\phi\)</span> uniformly from <span class="math inline">\([0, 2\pi)\)</span> and <span class="math inline">\(\cos\theta\)</span> uniformly from <span class="math inline">\([-1, 1]\)</span></li>
 </ul>
 <p>This uniform reorientation distribution is a key feature that distinguishes run-and-tumble motion from other active particle models. For some biological swimmers, variations of this distribution may be more appropriate - for example, some bacteria exhibit a “persistence” in their tumbling, where the new direction maintains some correlation with the previous direction. Other organisms might show “run-and-reverse” behavior, where the new orientation is preferentially opposite to the previous one. These variations can be modeled by modifying the reorientation distribution accordingly.</p>
-<div id="cell-fig-run-tumble-2d" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for run-and-tumble motion</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> <span class="fl">1.0</span>            <span class="co"># speed (constant)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lambda_tumble <span class="op">=</span> <span class="fl">0.4</span>  <span class="co"># tumble rate</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>total_time <span class="op">=</span> <span class="dv">50</span>      <span class="co"># total simulation time</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.1</span>            <span class="co"># time step</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to generate a single run-and-tumble trajectory</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_run_tumble_2d(v0, lambda_tumble, total_time, dt, seed<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> seed <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        np.random.seed(seed)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Number of time steps</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    n_steps <span class="op">=</span> <span class="bu">int</span>(total_time <span class="op">/</span> dt)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize arrays for position and orientation</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set random initial orientation</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    theta[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.random.random()</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simulate run-and-tumble motion</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if tumble occurs (Poisson process)</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.random() <span class="op">&lt;</span> lambda_tumble <span class="op">*</span> dt:</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># New random orientation</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            theta[i] <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.random.random()</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Keep same orientation</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            theta[i] <span class="op">=</span> theta[i<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update position</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        x[i] <span class="op">=</span> x[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v0 <span class="op">*</span> np.cos(theta[i]) <span class="op">*</span> dt</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        y[i] <span class="op">=</span> y[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v0 <span class="op">*</span> np.sin(theta[i]) <span class="op">*</span> dt</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, y</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">10</span>, <span class="dv">10</span>))</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate and plot 10 trajectories</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> simulate_run_tumble_2d(v0, lambda_tumble, total_time, dt, seed<span class="op">=</span>i)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, y, <span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Add marker for starting point</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="dv">0</span>, <span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">15</span>, <span class="dv">15</span>)</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">15</span>, <span class="dv">15</span>)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
-Ignoring fixed y limits to fulfill fixed data aspect with adjustable data limits.</code></pre>
-</div>
+<div id="cell-fig-run-tumble-2d" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-run-tumble-2d" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-tumble-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture03_files/figure-html/fig-run-tumble-2d-output-2.png" width="576" height="569" class="figure-img">
+<img src="lecture03_files/figure-html/fig-run-tumble-2d-output-1.png" width="576" height="577" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-run-tumble-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— Ten trajectories of run-and-tumble particles in 2D, each starting from the origin. The particles move with constant speed v₀ = 1 and randomly change direction according to a Poisson process with rate λ = 0.1.
+Figure&nbsp;4— Ten trajectories of run-and-tumble particles in 2D, each starting from the origin. The particles move with constant speed v₀ = 1 and randomly change direction according to a Poisson process with rate λ = 0.1.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="velocity-autocorrelation-function" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-autocorrelation-function">Velocity Autocorrelation Function</h3>
+<p>The most fundamental dynamical quantity characterizing an RTP is the <strong>velocity autocorrelation function</strong> (VACF):</p>
+<p><span class="math display">\[C_v(t) = \langle \mathbf{v}(t) \cdot \mathbf{v}(0) \rangle = v_0^2\, e^{-\lambda t}\]</span></p>
+<p>The decay is purely exponential with rate <span class="math inline">\(\lambda\)</span>, reflecting the memoryless (Poisson) tumbling process. The persistence time <span class="math inline">\(\tau = 1/\lambda\)</span> is the time over which the particle’s direction remains correlated – for <span class="math inline">\(t \ll \tau\)</span> the particle moves ballistically, for <span class="math inline">\(t \gg \tau\)</span> successive displacements are uncorrelated and diffusive behavior emerges.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deriving the VACF
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Consider a particle with velocity <span class="math inline">\(\mathbf{v}(0) = v_0\,\mathbf{n}(0)\)</span> at <span class="math inline">\(t=0\)</span>. After a time <span class="math inline">\(t\)</span>, two mutually exclusive cases apply:</p>
+<ul>
+<li><strong>No tumble has occurred</strong> (probability <span class="math inline">\(e^{-\lambda t}\)</span>): the orientation is unchanged, so <span class="math inline">\(\mathbf{n}(t) = \mathbf{n}(0)\)</span> and <span class="math inline">\(\mathbf{v}(t)\cdot\mathbf{v}(0) = v_0^2\)</span>.</li>
+<li><strong>At least one tumble has occurred</strong> (probability <span class="math inline">\(1 - e^{-\lambda t}\)</span>): the final orientation is drawn uniformly from the unit circle, so <span class="math inline">\(\langle\mathbf{n}(t)\cdot\mathbf{n}(0)\rangle = 0\)</span>.</li>
+</ul>
+<p>Combining both cases:</p>
+<p><span class="math display">\[C_v(t) = v_0^2\,e^{-\lambda t}\cdot 1 + (1-e^{-\lambda t})\cdot 0 = v_0^2\,e^{-\lambda t}\]</span></p>
+<p>Note that this argument holds for any number of tumbles after the first: once a single tumble resets the orientation uniformly, all subsequent orientations are also uncorrelated with <span class="math inline">\(\mathbf{n}(0)\)</span>.</p>
+</div>
+</div>
+</div>
+<p>The VACF connects directly to the effective diffusion coefficient via the <strong>Green-Kubo relation</strong>:</p>
+<p><span class="math display">\[D_{\text{eff}} = \frac{1}{d}\int_0^\infty C_v(t)\,dt = \frac{1}{d}\int_0^\infty v_0^2\,e^{-\lambda t}\,dt = \frac{v_0^2}{d\lambda}\]</span></p>
+<p>In 2D (<span class="math inline">\(d=2\)</span>) this gives <span class="math inline">\(D_{\text{eff}} = v_0^2/(2\lambda)\)</span>, which is precisely the active contribution to the long-time MSD derived below.</p>
+<div id="cell-fig-vacf-rtp" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-vacf-rtp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vacf-rtp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture03_files/figure-html/fig-vacf-rtp-output-1.png" width="573" height="400" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vacf-rtp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Velocity autocorrelation function of an RTP. The simulated VACF (blue, averaged over 500 particles) decays exponentially and agrees with the theoretical prediction <span class="math inline">\(C_v(t) = v_0^2 e^{-\lambda t}\)</span> (orange dashed). The persistence time <span class="math inline">\(1/\lambda\)</span> is marked by the grey dotted line. Parameters: <span class="math inline">\(v_0=1\)</span>, <span class="math inline">\(\lambda=0.4\)</span>, <span class="math inline">\(dt=0.05\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mean-square-displacement" class="level3">
+<h3 class="anchored" data-anchor-id="mean-square-displacement">Mean Square Displacement</h3>
+<p>The MSD of an RTP has the same mathematical structure as the ABP result. In 2D with thermal diffusion, it reads:</p>
+<p><span class="math display">\[\langle|\mathbf{r}(t) - \mathbf{r}(0)|^2\rangle = 4D_t t + \frac{2v_0^2}{\lambda^2}(\lambda t - 1 + e^{-\lambda t})\]</span></p>
+<p>where <span class="math inline">\(D_t = k_BT/\gamma\)</span> is the thermal translational diffusion coefficient. The three regimes mirror those of ABPs:</p>
+<ol type="1">
+<li><strong>Short times</strong> (<span class="math inline">\(t \ll 1/\lambda\)</span>): expanding the exponential gives <span class="math inline">\(\langle r^2\rangle \approx 4D_t t + v_0^2 t^2\)</span>, a mix of thermal diffusion and ballistic motion.</li>
+<li><strong>Intermediate times</strong> (<span class="math inline">\(t \ll 1/\lambda\)</span>, Pe <span class="math inline">\(\gg 1\)</span>): the ballistic term dominates, <span class="math inline">\(\langle r^2\rangle \approx v_0^2 t^2\)</span>.</li>
+<li><strong>Long times</strong> (<span class="math inline">\(t \gg 1/\lambda\)</span>): the particle undergoes enhanced diffusion with <span class="math inline">\(D_{\text{eff}} = D_t + v_0^2/(2\lambda)\)</span> (in 2D).</li>
+</ol>
+<p>The key difference from ABPs is that the orientation is randomized by discrete tumbling events (rate <span class="math inline">\(\lambda\)</span>) rather than continuous rotational diffusion (<span class="math inline">\(D_r\)</span>). In 2D these two mechanisms produce identical MSD curves when <span class="math inline">\(\lambda = D_r\)</span>, which is the origin of the RTP–ABP equivalence explored in the next section.</p>
+<div id="cell-fig-msd-rtp" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-msd-rtp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-msd-rtp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture03_files/figure-html/fig-msd-rtp-output-1.png" width="570" height="452" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-msd-rtp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Mean square displacement of a run-and-tumble particle (blue) with reference scalings (dashed). At short times (<span class="math inline">\(t \ll 1/\lambda\)</span>) the MSD is a mix of thermal (<span class="math inline">\(\sim t\)</span>, black) and ballistic (<span class="math inline">\(\sim t^2\)</span>, red) contributions. At intermediate times ballistic motion dominates. At long times (<span class="math inline">\(t \gg 1/\lambda\)</span>, marked by the grey line) the MSD crosses over to enhanced diffusion (green) with <span class="math inline">\(D_{\text{eff}} = D_t + v_0^2/(2\lambda)\)</span>. Parameters: <span class="math inline">\(v_0=5\)</span>, <span class="math inline">\(\lambda=0.2\)</span>, <span class="math inline">\(D_t=1\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="run-length-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="run-length-distribution">Run-length Distribution</h3>
+<p>A single hallmark of Poisson-process tumbling is that the duration of each run – the time between successive tumbling events – is exponentially distributed:</p>
+<p><span class="math display">\[P(\tau) = \lambda\, e^{-\lambda \tau}, \qquad \langle\tau\rangle = \frac{1}{\lambda}\]</span></p>
+<p>This exponential distribution is the signature of memoryless tumbling: the probability of a tumble in the next <span class="math inline">\(dt\)</span> is always <span class="math inline">\(\lambda\, dt\)</span>, regardless of how long the current run has already lasted. Deviations from this distribution in real bacteria (e.g.&nbsp;a peaked distribution of run lengths) would indicate memory or adaptation in the tumbling mechanism.</p>
+<div id="cell-fig-run-length" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-run-length" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-run-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture03_files/figure-html/fig-run-length-output-1.png" width="576" height="457" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-run-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Distribution of run lengths extracted from a long simulated RTP trajectory (bars) compared to the theoretical exponential <span class="math inline">\(P(\tau) = \lambda e^{-\lambda\tau}\)</span> (line). The mean run time <span class="math inline">\(1/\lambda\)</span> is marked by the dashed vertical line.
 </figcaption>
 </figure>
 </div>
@@ -595,27 +604,35 @@ Figure&nbsp;3— Ten trajectories of run-and-tumble particles in 2D, each starti
 <video src="../assets/movies/lecture03/JP_Fe_wf_2_81_slm075_292_video.mov" class="img-fluid" controls=""><a href="../assets/movies/lecture03/JP_Fe_wf_2_81_slm075_292_video.mov">Video</a></video>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-janus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Janus particles performing active Brownian motion. These synthetic microswimmers have two distinct faces with different chemical or physical properties, causing them to self-propel through an asymmetric interaction with their environment while undergoing rotational diffusion. The movie contains not only ABP motion but some additional driving force. (Movie by Lisa Rohde, MONA group.)
+Figure&nbsp;8— Janus particles performing active Brownian motion. These synthetic microswimmers have two distinct faces with different chemical or physical properties, causing them to self-propel through an asymmetric interaction with their environment while undergoing rotational diffusion. The movie contains not only ABP motion but some additional driving force. (Movie by Lisa Rohde, MONA group.)
 </figcaption>
 </figure>
 </div>
 <section id="mathematical-formulation" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h3>
-<p>To understand Active Brownian Particles, we should start from the general underdamped Langevin equation for Brownian motion:</p>
-<p><span class="math display">\[m\frac{d^2\mathbf{r}}{dt^2} = \underbrace{-\gamma\frac{d\mathbf{r}}{dt}}_{\text{sink}} - \nabla U(\mathbf{r}) + \underbrace{\boldsymbol{\xi}(t)}_{\text{source}}\]</span></p>
-<p>Here, <span class="math inline">\(\mathbf{r}=(x,y)\)</span> is the particle position, <span class="math inline">\(m\)</span> is the particle mass, and the left side represents inertial forces. On the right side we have a dissipative friction term with coefficient <span class="math inline">\(\gamma\)</span> that removes energy from the system, a conservative force from the potential <span class="math inline">\(U(\mathbf{r})\)</span>, and a thermal noise term <span class="math inline">\(\boldsymbol{\xi}(t)\)</span> that injects energy into the particle motion. The thermal translational noise <span class="math inline">\(\boldsymbol{\xi}(t)\)</span> has zero mean (<span class="math inline">\(\langle\boldsymbol{\xi}(t)\rangle = 0\)</span>) and correlations <span class="math inline">\(\langle\xi_i(t)\xi_j(t')\rangle = 2\gamma k_B T \delta_{ij}\delta(t-t')\)</span>, following the fluctuation-dissipation theorem.</p>
-<p>The energy dissipation rate due to friction is given by <span class="math inline">\(P_{diss} = \gamma|\mathbf{v}|^2\)</span>, where <span class="math inline">\(\mathbf{v}=\frac{d\mathbf{r}}{dt}\)</span> is the particle velocity. In equilibrium, the average energy dissipation rate per degree of freedom is <span class="math inline">\(\langle P_{diss} \rangle = \frac{2\gamma k_B T}{m}\)</span>. Meanwhile, the energy injection rate from thermal fluctuations can be calculated from the work done by the random force: <span class="math inline">\(P_{inj} = \boldsymbol{\xi}(t) \cdot \mathbf{v}\)</span>.</p>
-<p>To determine the average injected power, we need to evaluate <span class="math inline">\(\langle \boldsymbol{\xi}(t) \cdot \mathbf{v} \rangle\)</span>. This requires examining the correlation between the noise and velocity, which isn’t immediately obvious since both are stochastic quantities. We can solve this by considering the Langevin equation in the stationary state. From the equipartition theorem, we know that <span class="math inline">\(\langle mv^2 \rangle = k_B T\)</span> per degree of freedom, which means <span class="math inline">\(\langle v^2 \rangle = \frac{k_B T}{m}\)</span>.</p>
-<p>The instantaneous velocity can be formally expressed using the Green’s function solution of the Langevin equation:</p>
-<p><span class="math display">\[\mathbf{v}(t) = \frac{1}{\gamma}\int_{-\infty}^{t} \boldsymbol{\xi}(t') e^{-(t-t')/\tau_p} dt'\]</span></p>
-<p>where <span class="math inline">\(\tau_p = m/\gamma\)</span> is the momentum relaxation time. Using this expression and the noise correlation function <span class="math inline">\(\langle \xi_i(t) \xi_j(t') \rangle = 2\gamma k_B T \delta_{ij}\delta(t-t')\)</span>, we can calculate:</p>
-<p><span class="math display">\[\begin{eqnarray}
-\langle \boldsymbol{\xi}(t) \cdot \mathbf{v}(t) \rangle &amp;= \frac{1}{\gamma}\sum_i\int_{-\infty}^{t} \langle \xi_i(t)\xi_i(t') \rangle e^{-(t-t')/\tau_p} dt' \\
-&amp;= \frac{2\gamma k_B T}{\gamma} \int_{-\infty}^{t} \delta(t-t') e^{-(t-t')/\tau_p} dt' = \frac{2\gamma k_B T}{m} \tau_p = \frac{2\gamma k_B T}{m}
-\end{eqnarray}\]</span></p>
-<p>Thus, the average energy injection rate per degree of freedom is <span class="math inline">\(\langle P_{inj} \rangle = \frac{2\gamma k_B T}{m}\)</span>. The equality between injection and dissipation rates ensures detailed balance in equilibrium systems, maintaining a consistent average kinetic energy of <span class="math inline">\(\frac{k_B T}{2}\)</span> per degree of freedom in accordance with the equipartition theorem.</p>
-<p>For microscopic particles in a viscous medium, the inertial term becomes negligible (mass effects disappear on timescales <span class="math inline">\(t \gg m/\gamma\)</span>), leading to the overdamped limit.</p>
-<p>In an ABP, we add a non-equilibrium self-propulsion force, resulting in these overdamped Langevin equations:</p>
+<p>An ABP is described by two coupled overdamped Langevin equations:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+From the inertial to the overdamped Langevin equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Starting from the full inertial Langevin equation:</p>
+<p><span class="math display">\[m\frac{d^2\mathbf{r}}{dt^2} = \underbrace{-\gamma\frac{d\mathbf{r}}{dt}}_{\text{dissipation}} - \nabla U(\mathbf{r}) + \underbrace{\boldsymbol{\xi}(t)}_{\text{fluctuations}}\]</span></p>
+<p>with <span class="math inline">\(\langle\xi_i(t)\xi_j(t')\rangle = 2\gamma k_B T \delta_{ij}\delta(t-t')\)</span>, one can show that in equilibrium the energy injection rate from noise exactly balances the dissipation rate. The velocity follows from the Green’s function solution:</p>
+<p><span class="math display">\[\mathbf{v}(t) = \frac{1}{\gamma}\int_{-\infty}^{t} \boldsymbol{\xi}(t')\, e^{-(t-t')/\tau_p}\, dt', \qquad \tau_p = m/\gamma\]</span></p>
+<p>Using the noise correlator, <span class="math inline">\(\langle\boldsymbol{\xi}(t)\cdot\mathbf{v}(t)\rangle = 2\gamma k_BT/m\)</span>, which equals the dissipation rate <span class="math inline">\(\langle\gamma|\mathbf{v}|^2\rangle = 2\gamma k_BT/m\)</span> – detailed balance is satisfied and each degree of freedom carries <span class="math inline">\(k_BT/2\)</span> of kinetic energy.</p>
+<p>For colloidal particles at low Reynolds number, inertia is negligible on timescales <span class="math inline">\(t \gg m/\gamma\)</span>, and the equation reduces to the overdamped form used throughout this lecture.</p>
+</div>
+</div>
+</div>
+<p>In an ABP, a non-equilibrium self-propulsion force is added to the overdamped equation:</p>
 <p><span class="math display">\[\gamma\frac{d\mathbf{r}}{dt} = \gamma v_0 \mathbf{n}(t) - \nabla U(\mathbf{r}) + \boldsymbol{\xi}(t)\]</span></p>
 <p><span class="math display">\[\frac{d\theta}{dt} = \eta(t)\]</span></p>
 <p>The first equation describes the particle’s translational motion, where <span class="math inline">\(v_0\)</span> is the self-propulsion speed and <span class="math inline">\(\mathbf{n}(t) = (\cos\theta(t), \sin\theta(t))\)</span> is a unit vector pointing in the direction of self-propulsion.</p>
@@ -629,7 +646,7 @@ Figure&nbsp;4— Janus particles performing active Brownian motion. These synthe
 <p><span class="math display">\[\langle y(t) \rangle = 0\]</span></p>
 <p>The mean displacement in the y-direction averages to zero due to the symmetry of rotational diffusion. The x-component shows an initial ballistic growth that saturates at the persistence length scale <span class="math inline">\(l_p=v_0/D_r\)</span> for times much larger than the rotational diffusion time <span class="math inline">\(\tau_r=1/D_r\)</span>. This persistence length represents the typical distance traveled before the particle’s direction is randomized.</p>
 <p>Unlike equilibrium Brownian motion where the mean displacement is zero in all directions, the ABP’s mean displacement reflects the persistence of its self-propulsion. As <span class="math inline">\(t \to \infty\)</span>, the orientation becomes fully randomized, and any further displacement averages to zero, resulting in the saturation of the mean displacement to a finite value.</p>
-<div id="cell-fig-traj1" class="cell" data-execution_count="4">
+<div id="cell-fig-traj1" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-traj1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -637,15 +654,58 @@ Figure&nbsp;4— Janus particles performing active Brownian motion. These synthe
 <img src="lecture03_files/figure-html/fig-traj1-output-1.png" width="692" height="339" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traj1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5— Trajectories of a particle (R=1 µm) starting at the origin with an initial orientation <span class="math inline">\(\theta=0\)</span>. Left: passive Brownian particle (<span class="math inline">\(v=0\)</span> µm/s). Right: Active Brownian Particle (<span class="math inline">\(v=10\)</span> µm/s). (<span class="math inline">\(\tau_r=6 s\)</span>.)
+Figure&nbsp;9— Trajectories of a particle (R=1 µm) starting at the origin with an initial orientation <span class="math inline">\(\theta=0\)</span>. Left: passive Brownian particle (<span class="math inline">\(v=0\)</span> µm/s). Right: Active Brownian Particle (<span class="math inline">\(v=10\)</span> µm/s). (<span class="math inline">\(\tau_r=6 s\)</span>.)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="mean-square-displacement" class="level3">
-<h3 class="anchored" data-anchor-id="mean-square-displacement">Mean Square Displacement</h3>
+<section id="velocity-autocorrelation-function-1" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-autocorrelation-function-1">Velocity Autocorrelation Function</h3>
+<p>For an ABP the orientation <span class="math inline">\(\theta(t)\)</span> undergoes continuous rotational diffusion, so the VACF takes the same exponential form as for RTPs but with <span class="math inline">\(D_r\)</span> replacing <span class="math inline">\(\lambda\)</span>:</p>
+<p><span class="math display">\[C_v(t) = \langle \mathbf{v}(t) \cdot \mathbf{v}(0) \rangle = v_0^2\, e^{-D_r t}\]</span></p>
+<p>The persistence time is <span class="math inline">\(\tau_r = 1/D_r\)</span> and the effective diffusion coefficient follows from the Green-Kubo relation:</p>
+<p><span class="math display">\[D_{\text{eff}} = \frac{1}{d}\int_0^\infty C_v(t)\,dt = \frac{v_0^2}{d\,D_r}\]</span></p>
+<p>giving <span class="math inline">\(D_{\text{eff}} = v_0^2/(2D_r)\)</span> in 2D, the active contribution to the long-time MSD.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deriving the ABP VACF
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The orientation angle <span class="math inline">\(\theta(t)\)</span> evolves as <span class="math inline">\(d\theta/dt = \eta(t)\)</span> with <span class="math inline">\(\langle\eta(t)\eta(t')\rangle = 2D_r\delta(t-t')\)</span>, so the angle increment <span class="math inline">\(\Delta\theta = \theta(t) - \theta(0)\)</span> is a Gaussian random variable with zero mean and variance <span class="math inline">\(\langle(\Delta\theta)^2\rangle = 2D_r t\)</span>.</p>
+<p>The dot product of orientation vectors is:</p>
+<p><span class="math display">\[\langle\mathbf{n}(t)\cdot\mathbf{n}(0)\rangle = \langle\cos\Delta\theta\rangle = \mathrm{Re}\langle e^{i\Delta\theta}\rangle\]</span></p>
+<p>For a zero-mean Gaussian with variance <span class="math inline">\(\sigma^2\)</span>, the characteristic function gives <span class="math inline">\(\langle e^{i\Delta\theta}\rangle = e^{-\sigma^2/2} = e^{-D_r t}\)</span>, so:</p>
+<p><span class="math display">\[C_v(t) = v_0^2\langle\mathbf{n}(t)\cdot\mathbf{n}(0)\rangle = v_0^2\, e^{-D_r t}\]</span></p>
+<p>The key contrast with RTPs: here the orientation diffuses continuously through the angle space, whereas for RTPs it jumps to a completely new random angle at discrete Poisson-distributed times. Both mechanisms produce exponential decay of the VACF, which is why the two models share the same long-time diffusion coefficient when <span class="math inline">\(D_r = \lambda\)</span> (in 2D).</p>
+</div>
+</div>
+</div>
+<div id="cell-fig-vacf-abp" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div id="fig-vacf-abp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vacf-abp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture03_files/figure-html/fig-vacf-abp-output-1.png" width="573" height="400" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vacf-abp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10— Velocity autocorrelation function of an ABP. The simulated VACF (blue, averaged over 500 particles) decays exponentially and agrees with the theoretical prediction <span class="math inline">\(C_v(t) = v_0^2 e^{-D_r t}\)</span> (orange dashed). The persistence time <span class="math inline">\(\tau_r = 1/D_r\)</span> is marked by the grey dotted line. Parameters: <span class="math inline">\(v_0=1\)</span>, <span class="math inline">\(D_r=0.4\)</span>, <span class="math inline">\(dt=0.05\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mean-square-displacement-1" class="level3">
+<h3 class="anchored" data-anchor-id="mean-square-displacement-1">Mean Square Displacement</h3>
 <p>The mean square displacement (MSD) of an ABP reveals a rich multi-regime behavior that can be analyzed from the full expression:</p>
 <p><span class="math display">\[\langle|\mathbf{r}(t) - \mathbf{r}(0)|^2\rangle = 4D_t t + \frac{2v_0^2}{D_r^2}(D_r t - 1 + e^{-D_r t})\]</span></p>
 <p>where <span class="math inline">\(D_t = k_BT/\gamma\)</span> is the thermal translational diffusion coefficient.</p>
@@ -670,53 +730,7 @@ Figure&nbsp;5— Trajectories of a particle (R=1 µm) starting at the origin wit
 <p>For sufficiently long times, the constant term becomes negligible, resulting in diffusive motion with an enhanced effective diffusion coefficient:</p>
 <p><span class="math display">\[D_{\text{eff}} = D_t + \frac{v_0^2}{2dD_r}\]</span></p>
 <p>where <span class="math inline">\(d\)</span> is the dimensionality. This enhanced diffusion coefficient represents a key signature of the system’s non-equilibrium nature and cannot be explained by equilibrium statistical mechanics.</p>
-<div id="cell-fig-msd" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>D_t <span class="op">=</span> <span class="fl">1.0</span>      <span class="co"># thermal translational diffusion coefficient</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v_0 <span class="op">=</span> <span class="fl">5.0</span>      <span class="co"># self-propulsion speed</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>D_r <span class="op">=</span> <span class="fl">0.2</span>      <span class="co"># rotational diffusion coefficient</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tau_r <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>D_r  <span class="co"># rotational diffusion time</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate theoretical MSD</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> msd_theory(t, D_t, v_0, D_r):</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Theoretical mean square displacement for active Brownian particles"""</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span><span class="op">*</span>D_t<span class="op">*</span>t <span class="op">+</span> (<span class="dv">2</span><span class="op">*</span>v_0<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(D_r<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(D_r<span class="op">*</span>t <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>D_r<span class="op">*</span>t))</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Time range spanning multiple regimes</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1000</span>)  <span class="co"># from 0.01 to 100</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>msd <span class="op">=</span> msd_theory(t, D_t, v_0, D_r)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate effective diffusion coefficient</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>D_eff <span class="op">=</span> D_t <span class="op">+</span> v_0<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>D_r)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot MSD on log-log scale</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.loglog(t, msd, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'MSD of ABP'</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Add reference lines for different scaling regimes</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>t_ref <span class="op">=</span> np.array([<span class="fl">0.05</span>, <span class="dv">50</span>])</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.loglog(t_ref, <span class="dv">4</span><span class="op">*</span>D_t<span class="op">*</span>t_ref, <span class="st">'k--'</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$\s</span><span class="vs">im 4D_t t</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">thermal diffusion</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.loglog(t_ref, v_0<span class="op">**</span><span class="dv">2</span><span class="op">*</span>t_ref<span class="op">**</span><span class="dv">2</span>, <span class="st">'r--'</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$\s</span><span class="vs">im v_0</span><span class="dv">^</span><span class="vs">2 t</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">ballistic</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.loglog(t_ref, <span class="dv">4</span><span class="op">*</span>D_eff<span class="op">*</span>t_ref, <span class="st">'g--'</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$\s</span><span class="vs">im 4D_{eff}t</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">enhanced diffusion</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add vertical line at rotational diffusion time</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>tau_r, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au_r = 1/D_r</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the three regimes</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.annotate("Short-time regime", xy=(0.02, 0.3), xytext=(0.02, 0.3), fontsize=9)</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.annotate("Intermediate-time regime", xy=(0.5, 10), xytext=(0.5, 10), fontsize=9)</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.annotate("Long-time regime", xy=(10, 200), xytext=(10, 200), fontsize=9)</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'Time </span><span class="dv">$</span><span class="vs">t</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'MSD </span><span class="dv">$</span><span class="er">\</span><span class="vs">langle</span><span class="cf">|</span><span class="dv">\m</span><span class="vs">athbf{r}</span><span class="kw">(</span><span class="vs">t</span><span class="kw">)</span><span class="vs"> - </span><span class="dv">\m</span><span class="vs">athbf{r}</span><span class="kw">(</span><span class="vs">0</span><span class="kw">)</span><span class="cf">|</span><span class="dv">^</span><span class="vs">2</span><span class="ch">\r</span><span class="vs">angle</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div id="cell-fig-msd" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div id="fig-msd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -724,7 +738,7 @@ Figure&nbsp;5— Trajectories of a particle (R=1 µm) starting at the origin wit
 <img src="lecture03_files/figure-html/fig-msd-output-1.png" width="570" height="452" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-msd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6— Mean square displacement (MSD) of an active Brownian particle showing three distinct regimes. At short times (<span class="math inline">\(t \ll \tau_r\)</span>), a combination of diffusive and ballistic motion is observed. At intermediate times, ballistic motion dominates (<span class="math inline">\(\text{MSD} \sim t^2\)</span>). At long times (<span class="math inline">\(t \gg \tau_r\)</span>), enhanced diffusion emerges with an effective diffusion coefficient larger than the thermal value.
+Figure&nbsp;11— Mean square displacement (MSD) of an active Brownian particle showing three distinct regimes. At short times (<span class="math inline">\(t \ll \tau_r\)</span>), a combination of diffusive and ballistic motion is observed. At intermediate times, ballistic motion dominates (<span class="math inline">\(\text{MSD} \sim t^2\)</span>). At long times (<span class="math inline">\(t \gg \tau_r\)</span>), enhanced diffusion emerges with an effective diffusion coefficient larger than the thermal value.
 </figcaption>
 </figure>
 </div>
@@ -748,7 +762,7 @@ Figure&nbsp;6— Mean square displacement (MSD) of an active Brownian particle s
 <img src="../assets/images/lecture03/JP_TRS.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7— Janus particles exhibit physical asymmetry, with different properties on their two faces. This structural asymmetry leads to directional self-propulsion and breaking of time-reversal symmetry. The asymmetric design of Janus particles (e.g., with one catalytic hemisphere) creates directed motion that fundamentally breaks time-reversal symmetry. Under time reversal, the particle would appear to move against its catalytic face—a physically impossible scenario that illustrates the non-equilibrium nature of active particles.
+Figure&nbsp;12— Janus particles exhibit physical asymmetry, with different properties on their two faces. This structural asymmetry leads to directional self-propulsion and breaking of time-reversal symmetry. The asymmetric design of Janus particles (e.g., with one catalytic hemisphere) creates directed motion that fundamentally breaks time-reversal symmetry. Under time reversal, the particle would appear to move against its catalytic face—a physically impossible scenario that illustrates the non-equilibrium nature of active particles.
 </figcaption>
 </figure>
 </div>
@@ -760,6 +774,50 @@ Figure&nbsp;7— Janus particles exhibit physical asymmetry, with different prop
 <p>The violation of the FDT can be quantified by introducing an effective temperature:</p>
 <p><span class="math display">\[T_{\text{eff}} = T\left(1 + \frac{v_0^2}{2D_tD_r}\right)\]</span></p>
 <p>This effective temperature is higher than the bath temperature, reflecting the enhanced fluctuations due to activity.</p>
+</section>
+<section id="unifying-picture-exponential-vacf" class="level3">
+<h3 class="anchored" data-anchor-id="unifying-picture-exponential-vacf">Unifying picture: exponential VACF</h3>
+<p>Despite their different microscopic mechanisms, RTPs, ABPs, and a third widely-used model – <strong>Active Ornstein-Uhlenbeck Particles (AOUPs)</strong> – all share the same exponential VACF:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 30%">
+<col style="width: 16%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Mechanism</th>
+<th>VACF</th>
+<th>Decay rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RTP</td>
+<td>discrete tumbles (Poisson rate <span class="math inline">\(\lambda\)</span>)</td>
+<td><span class="math inline">\(v_0^2\,e^{-\lambda t}\)</span></td>
+<td><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>ABP</td>
+<td>continuous rotational diffusion</td>
+<td><span class="math inline">\(v_0^2\,e^{-D_r t}\)</span></td>
+<td><span class="math inline">\(D_r\)</span></td>
+</tr>
+<tr class="odd">
+<td>AOUP</td>
+<td>self-propulsion modelled as Ornstein-Uhlenbeck noise</td>
+<td><span class="math inline">\(\frac{v_0^2}{\tau}\,e^{-t/\tau}\)</span></td>
+<td><span class="math inline">\(1/\tau\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In an AOUP the orientation vector is replaced entirely by a stochastic velocity <span class="math inline">\(\mathbf{u}(t)\)</span> that itself obeys a Langevin equation:</p>
+<p><span class="math display">\[\tau\frac{d\mathbf{u}}{dt} = -\mathbf{u} + \sqrt{2v_0^2/\tau}\,\boldsymbol{\xi}(t)\]</span></p>
+<p>so the self-propulsion is “colored noise” with persistence time <span class="math inline">\(\tau\)</span> rather than a unit vector undergoing diffusion. This makes AOUPs analytically more tractable – many calculations that require approximations for ABPs are exact for AOUPs – at the cost of losing the explicit orientation degree of freedom.</p>
+<p>The three models are more unified than they appear. AOUPs emerge as the limiting case of ABPs when <span class="math inline">\(D_r \to \infty\)</span> and <span class="math inline">\(v_0 \to \infty\)</span> with <span class="math inline">\(v_0^2/D_r\)</span> held fixed: the orientation randomizes so fast that only its integrated effect (colored noise) survives. In that limit <span class="math inline">\(\tau = 1/D_r\)</span> and the VACF amplitudes match. Similarly, RTPs and ABPs become equivalent at long times when <span class="math inline">\(\lambda = D_r\)</span> (in 2D), as we noted earlier. The exponential VACF – and the Green-Kubo diffusion coefficient <span class="math inline">\(D_{\text{eff}} = \int_0^\infty C_v(t)\,dt/d\)</span> – is therefore the common thread running through all three models.</p>
 </section>
 <section id="taxonomy-of-active-particle-models" class="level3">
 <h3 class="anchored" data-anchor-id="taxonomy-of-active-particle-models">Taxonomy of Active Particle Models</h3>
