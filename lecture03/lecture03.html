@@ -623,12 +623,22 @@ From the inertial to the overdamped Langevin equation
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Starting from the full inertial Langevin equation:</p>
-<p><span class="math display">\[m\frac{d^2\mathbf{r}}{dt^2} = \underbrace{-\gamma\frac{d\mathbf{r}}{dt}}_{\text{dissipation}} - \nabla U(\mathbf{r}) + \underbrace{\boldsymbol{\xi}(t)}_{\text{fluctuations}}\]</span></p>
-<p>with <span class="math inline">\(\langle\xi_i(t)\xi_j(t')\rangle = 2\gamma k_B T \delta_{ij}\delta(t-t')\)</span>, one can show that in equilibrium the energy injection rate from noise exactly balances the dissipation rate. The velocity follows from the Green’s function solution:</p>
-<p><span class="math display">\[\mathbf{v}(t) = \frac{1}{\gamma}\int_{-\infty}^{t} \boldsymbol{\xi}(t')\, e^{-(t-t')/\tau_p}\, dt', \qquad \tau_p = m/\gamma\]</span></p>
-<p>Using the noise correlator, <span class="math inline">\(\langle\boldsymbol{\xi}(t)\cdot\mathbf{v}(t)\rangle = 2\gamma k_BT/m\)</span>, which equals the dissipation rate <span class="math inline">\(\langle\gamma|\mathbf{v}|^2\rangle = 2\gamma k_BT/m\)</span> – detailed balance is satisfied and each degree of freedom carries <span class="math inline">\(k_BT/2\)</span> of kinetic energy.</p>
-<p>For colloidal particles at low Reynolds number, inertia is negligible on timescales <span class="math inline">\(t \gg m/\gamma\)</span>, and the equation reduces to the overdamped form used throughout this lecture.</p>
+<p>Starting from the full inertial Langevin equation for a free particle (<span class="math inline">\(U=0\)</span>):</p>
+<p><span class="math display">\[m\dot{\mathbf{v}} = -\gamma\mathbf{v} + \boldsymbol{\xi}(t)\]</span></p>
+<p><strong>Why the noise amplitude is fixed by temperature.</strong> The noise amplitude <span class="math inline">\(D\)</span> in <span class="math inline">\(\langle\xi_i(t)\xi_j(t')\rangle = 2D\,\delta_{ij}\delta(t-t')\)</span> is not a free parameter – it is fixed by requiring the Langevin equation to be consistent with the equipartition theorem. Multiplying through by <span class="math inline">\(\mathbf{v}\)</span> and averaging in steady state (<span class="math inline">\(d\langle v^2\rangle/dt = 0\)</span>):</p>
+<p><span class="math display">\[0 = -\gamma\langle|\mathbf{v}|^2\rangle + \langle\boldsymbol{\xi}\cdot\mathbf{v}\rangle\]</span></p>
+<p>The cross-correlation <span class="math inline">\(\langle\boldsymbol{\xi}(t)\cdot\mathbf{v}(t)\rangle\)</span> is evaluated using the Green’s function solution of the Langevin equation:</p>
+<p><span class="math display">\[\mathbf{v}(t) = \frac{1}{m}\int_{-\infty}^{t} \boldsymbol{\xi}(t')\, e^{-(t-t')/\tau_p}\, dt', \qquad \tau_p = \frac{m}{\gamma}\]</span></p>
+<p>Substituting and using the noise correlator:</p>
+<p><span class="math display">\[\langle\boldsymbol{\xi}(t)\cdot\mathbf{v}(t)\rangle = \frac{1}{m}\sum_i\int_{-\infty}^{t}\langle\xi_i(t)\xi_i(t')\rangle e^{-(t-t')/\tau_p}dt' = \frac{2dD}{m}\int_0^\infty \delta(s)\,e^{-s/\tau_p}ds = \frac{dD}{m}\]</span></p>
+<p>where <span class="math inline">\(d\)</span> is the number of spatial dimensions and we used <span class="math inline">\(\int_0^\infty\delta(s)ds = 1/2\)</span>. The steady-state balance then gives:</p>
+<p><span class="math display">\[\gamma\langle|\mathbf{v}|^2\rangle = \frac{dD}{m}\]</span></p>
+<p>Equipartition requires <span class="math inline">\(\langle\frac{1}{2}m|\mathbf{v}|^2\rangle = \frac{d}{2}k_BT\)</span>, i.e.&nbsp;<span class="math inline">\(\langle|\mathbf{v}|^2\rangle = dk_BT/m\)</span>. Substituting:</p>
+<p><span class="math display">\[\gamma \frac{dk_BT}{m} = \frac{dD}{m} \implies D = \gamma k_BT\]</span></p>
+<p>so the noise correlator must be <span class="math inline">\(\langle\xi_i(t)\xi_j(t')\rangle = 2\gamma k_BT\,\delta_{ij}\delta(t-t')\)</span>. The friction coefficient <span class="math inline">\(\gamma\)</span> and the noise amplitude are not independent – they are set by the same microscopic collisions with the solvent, with temperature as the proportionality constant. This is the content of the fluctuation-dissipation theorem at the level of the Langevin equation.</p>
+<p><strong>The overdamped limit.</strong> For colloidal particles at low Reynolds number, the momentum relaxation time <span class="math inline">\(\tau_p = m/\gamma\)</span> is extremely short (nanoseconds for a micron-sized sphere in water). On timescales <span class="math inline">\(t \gg \tau_p\)</span> the inertial term <span class="math inline">\(m\dot{\mathbf{v}}\)</span> is negligible and the equation reduces to:</p>
+<p><span class="math display">\[\gamma\frac{d\mathbf{r}}{dt} = -\nabla U(\mathbf{r}) + \boldsymbol{\xi}(t)\]</span></p>
+<p>which is the overdamped form used throughout this lecture. The noise correlator is unchanged; only inertia is dropped.</p>
 </div>
 </div>
 </div>
