@@ -362,7 +362,11 @@ Note
 <p><span class="math display">\[-\frac{v_0^2(x)}{2\lambda}\frac{\partial P}{\partial x} - \frac{v_0(x)P}{2\lambda}\frac{dv_0(x)}{dx} = 0\]</span></p>
 <p>This simplifies to:</p>
 <p><span class="math display">\[\frac{\partial P}{\partial x} = -\frac{1}{v_0(x)}\frac{dv_0(x)}{dx}P\]</span></p>
-<p>The solution gives the steady-state density distribution:</p>
+<p>This is a separable first-order ODE. Separating variables:</p>
+<p><span class="math display">\[\frac{dP}{P} = -\frac{1}{v_0(x)}\frac{dv_0(x)}{dx}\,dx = -\frac{dv_0}{v_0}\]</span></p>
+<p>where we recognised that <span class="math inline">\((1/v_0)\,dv_0/dx\,\,dx = dv_0/v_0 = d(\ln v_0)\)</span>. Integrating both sides:</p>
+<p><span class="math display">\[\ln P = -\ln v_0(x) + \text{const}\]</span></p>
+<p>which, after exponentiating, gives the steady-state density distribution:</p>
 <p><span class="math display">\[P(x) \propto \frac{1}{v_0(x)}\]</span></p>
 <p>This reveals that bacteria naturally accumulate in regions of lower swimming speed. Looking at the effective drift velocity <span class="math inline">\(V_{\text{eff}}(x) = -\frac{v_0(x)}{2\lambda}\frac{dv_0(x)}{dx} = -\frac{1}{4\lambda}\frac{d(v_0^2(x))}{dx}\)</span>, we see bacteria will move toward regions where swimming speed decreases. This provides a mechanism for chemotaxis without directly modulating the tumbling rate. In fact this overwrites the detailed balance equation we obtained earlier for equilibrium.</p>
 </section>
