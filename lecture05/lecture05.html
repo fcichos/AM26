@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture06/lecture06.html" rel="next">
+<link href="../lecture04/lecture04.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -129,7 +166,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Continuum Theories of Active Matter</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture05/lecture05.html">Lecture 5</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -225,6 +262,35 @@ window.Quarto = {
  <span class="menu-text">Lecture 4</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -249,7 +315,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture01/lecture01.html">Introduction to Active Matter</a></li><li class="breadcrumb-item"><a href="../lecture05/lecture05.html">Lecture 5</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Continuum Theories of Active Matter</h1>
 </div>
@@ -275,6 +341,82 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="from-boundary-conditions-to-surface-actuation">From Boundary Conditions to Surface Actuation</h4>
 <p>The squirmer model extends the fundamental solutions of Stokes equations to active surfaces by replacing the complex dynamics of cilia or flagella with an effective slip velocity at the swimmer’s surface. Instead of modeling individual beating appendages, we consider a spherical body with a prescribed tangential velocity at its surface that mimics the net effect of the propulsion mechanism.</p>
 <div id="cell-fig-squirmer-tangential" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>,figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># radius of sphere</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>B1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># first mode coefficient</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>B2 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># second mode coefficient (zero for neutral squirmer)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate points along the circle</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">20</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> a <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> a <span class="op">*</span> np.sin(theta)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate tangential velocity at each point</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>u_theta <span class="op">=</span> B1 <span class="op">*</span> np.sin(theta) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>theta)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate components of tangential velocity</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>u_x <span class="op">=</span> <span class="op">-</span>u_theta <span class="op">*</span> np.sin(theta)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>u_y <span class="op">=</span> u_theta <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the circle representing the squirmer</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].add_patch(circle)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the tangential velocities as arrows</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].quiver(x, y, u_x, u_y, color<span class="op">=</span><span class="st">'black'</span>, scale<span class="op">=</span><span class="dv">5</span>, width<span class="op">=</span><span class="fl">0.005</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow to indicate swimming direction</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.02</span>, head_width<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot properties</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>B1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># first mode coefficient</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>B2 <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span>  <span class="co"># second mode coefficient (zero for neutral squirmer)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate points along the circle</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">20</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> a <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> a <span class="op">*</span> np.sin(theta)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate tangential velocity at each point</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>u_theta <span class="op">=</span> B1 <span class="op">*</span> np.sin(theta) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>theta)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate components of tangential velocity</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>u_x <span class="op">=</span> <span class="op">-</span>u_theta <span class="op">*</span> np.sin(theta)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>u_y <span class="op">=</span> u_theta <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>circle1 <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].add_patch(circle1)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the tangential velocities as arrows</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].quiver(x, y, u_x, u_y, color<span class="op">=</span><span class="st">'black'</span>, scale<span class="op">=</span><span class="dv">10</span>, width<span class="op">=</span><span class="fl">0.005</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow to indicate swimming direction</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.02</span>, head_width<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot properties</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-squirmer-tangential" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -367,6 +509,76 @@ u_\theta(a, \theta)=B_1 \sin \theta+\frac{1}{2} B_2 \sin 2 \theta
 </tbody>
 </table>
 <div id="cell-fig-squirmer-types" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with three subplots for different squirmer types</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid for velocity field</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate R (distance from origin) and θ (polar angle)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Theta <span class="op">=</span> np.arctan2(Y, X)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for squirmer</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># radius of squirmer</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>B1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># first mode coefficient (determines swimming speed)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate flow fields for different squirmer types</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, beta, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    axes,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span><span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">5</span>],</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Pusher (β = -5)"</span>, <span class="st">"Neutral (β = 0)"</span>, <span class="st">"Puller (β = 5)"</span>]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># B2 coefficient based on beta</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    B2 <span class="op">=</span> beta <span class="op">*</span> np.<span class="bu">abs</span>(B1)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set up arrays for velocity components</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    u_r <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    u_theta <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Avoid singularity inside the particle</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> R <span class="op">&gt;</span> a</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate squirmer flow field components using first two modes</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Radial component</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    u_r[mask] <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> B1 <span class="op">*</span> np.cos(Theta[mask]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                ((a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">4</span>) <span class="op">-</span> (a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>np.cos(Theta[mask])<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tangential component</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    u_theta[mask] <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span>) <span class="op">*</span> B1 <span class="op">*</span> np.sin(Theta[mask]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                    (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">4</span>) <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R[mask]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>Theta[mask])</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert from polar to Cartesian components</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> u_r <span class="op">*</span> np.cos(Theta) <span class="op">-</span> u_theta <span class="op">*</span> np.sin(Theta)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> u_r <span class="op">*</span> np.sin(Theta) <span class="op">+</span> u_theta <span class="op">*</span> np.cos(Theta)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw the squirmer as a circle</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(circle)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot velocity field as streamlines</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    ax.streamplot(X, Y, u, v, density<span class="op">=</span><span class="fl">1.2</span>, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, arrowsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add arrow to indicate swimming direction</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    ax.arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.08</span>, head_width<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>             head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set plot properties</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'x'</span>, labelpad<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="op">==</span> axes[<span class="dv">0</span>]:</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">'y'</span>, labelpad<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(pad<span class="op">=</span><span class="fl">0.2</span>, w_pad<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-squirmer-types" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -392,6 +604,24 @@ Figure&nbsp;2— Flow fields generated by different types of squirmers. Left to 
 <p>The connection to the force dipole approximation we discussed earlier becomes clear in the far field (at distances <span class="math inline">\(r \gg a\)</span>), where the squirmer’s flow field is dominated by the <span class="math inline">\(B_2\)</span> mode and can be approximated by:</p>
 <p><span class="math display">\[\mathbf{u}(\mathbf{r}) \approx \frac{B_2 a^2}{4r^2}(3(\mathbf{e}\cdot\hat{\mathbf{r}})^2-1)\hat{\mathbf{r}}\]</span></p>
 <p>This expression directly corresponds to the stresslet flow field we derived earlier, with the stresslet strength <span class="math inline">\(S\)</span> proportional to <span class="math inline">\(B_2 a^2\)</span>. The sign of <span class="math inline">\(B_2\)</span> determines whether the squirmer acts as a pusher (<span class="math inline">\(B_2 &lt; 0\)</span>) or puller (<span class="math inline">\(B_2 &gt; 0\)</span>), creating the characteristic force dipole field that dominates long-range hydrodynamic interactions.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Swimming Efficiency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Knowing a swimmer’s speed is not the same as knowing how efficiently it achieves that speed. Lighthill (1952) proposed a hydrodynamic efficiency that compares the power needed to drag an equivalent passive sphere at speed <span class="math inline">\(U\)</span> against the total viscous power the swimmer actually dissipates:</p>
+<p><span class="math display">\[\eta_L = \frac{6\pi\mu a U^2}{P_\text{total}}\]</span></p>
+<p>Because passive dragging is the most power-efficient mode of translation in Stokes flow, <span class="math inline">\(\eta_L \leq 1\)</span> always. In practice, biological microswimmers achieve values in the range <span class="math inline">\(10^{-3}\)</span> to <span class="math inline">\(10^{-2}\)</span>, a reflection of the unavoidable cost of generating directed motion through irreversible fluid deformation at low Reynolds number.</p>
+<p>For the squirmer, the swimming speed <span class="math inline">\(U = \tfrac{2}{3}B_1\)</span> is set entirely by the first mode. The stresslet mode <span class="math inline">\(B_2\)</span> contributes to viscous dissipation without advancing the swimmer, so any finite <span class="math inline">\(|\beta| = |B_2/B_1| &gt; 0\)</span> reduces efficiency relative to the neutral squirmer. Pushers and pullers are therefore inherently less efficient than a neutral squirmer moving at the same speed.</p>
+<p>This reveals a tradeoff at the heart of microswimmer design. The stresslet field that enables long-range hydrodynamic communication between swimmers comes at an efficiency cost: the same <span class="math inline">\(B_2\)</span> mode that creates the pusher or puller flow signature is precisely the term that wastes energy. Since the stresslet strength also sets the scale of the active stress tensor <span class="math inline">\(\boldsymbol{\sigma}^\text{act} \propto B_2\)</span>, high active stress and low Lighthill efficiency go hand in hand in dense active suspensions, a point we return to when discussing the mechanical properties of active materials.</p>
+<p>For synthetic phoretic swimmers such as Janus particles, the energy budget must be treated differently because propulsion draws on chemical free energy rather than direct mechanical actuation. Sabass and Seifert (Phys. Rev.&nbsp;Lett. 105, 218103, 2010; J. Chem. Phys. 2012) developed an efficiency framework for surface-driven motion using irreversible linear thermodynamics, accounting for both the viscous dissipation and the chemical energy consumed in maintaining the solute gradient. Two results from this analysis are particularly instructive. First, there is a universal upper bound of <span class="math inline">\(\eta = 1/2\)</span> on efficiency at maximum power for surface-driven swimmers, regardless of the specific phoretic mechanism. Second, a general scaling relation shows that appreciable efficiency is only possible when the swimmer size <span class="math inline">\(a\)</span> is comparable to or smaller than the range <span class="math inline">\(\lambda\)</span> of the surface interaction: <span class="math inline">\(\eta \sim (a/\lambda)^{-2}\)</span> in the large-swimmer limit. This means nanoswimmers can in principle outperform microswimmers in efficiency, reversing the intuition one might carry over from macroscopic propulsion. The analysis also identifies a “reaction-induced concentration distortion” – a coupling between the spatial distribution of reactivity on the swimmer surface and the resulting solute concentration field – that significantly modifies the swimming speed and must be accounted for in a consistent energy balance.</p>
+</div>
+</div>
 </section>
 <section id="applications-and-examples" class="level4">
 <h4 class="anchored" data-anchor-id="applications-and-examples">Applications and Examples</h4>
@@ -427,6 +657,162 @@ Figure&nbsp;4— In-plane flow field around a <span class="math inline">\(\phi =
 <p><strong>Swimmer-Wall Interactions</strong>:</p>
 <p>When a microswimmer approaches a solid boundary, its hydrodynamic flow field interacts with the boundary, leading to effective forces and torques on the swimmer. For a dipolar swimmer with orientation vector <span class="math inline">\(\mathbf{e}\)</span> at distance <span class="math inline">\(h\)</span> from a flat no-slip wall, the interaction can be analyzed using the method of images.</p>
 <div id="cell-fig-squirmer-image-systems" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with two subplots</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Common parameters for squirmers</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.3</span>  <span class="co"># radius of squirmer</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>B1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># first mode coefficient (determines swimming speed)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># separation distance between swimmers (perpendicular to swimming direction)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid for velocity field</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Centers of the two squirmers</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>center1 <span class="op">=</span> np.array([<span class="dv">0</span>, d<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>center2 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="op">-</span>d<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate distance from each grid point to each squirmer center</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>R1 <span class="op">=</span> np.sqrt((X<span class="op">-</span>center1[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y<span class="op">-</span>center1[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>Theta1 <span class="op">=</span> np.arctan2(Y<span class="op">-</span>center1[<span class="dv">1</span>], X<span class="op">-</span>center1[<span class="dv">0</span>])</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> np.sqrt((X<span class="op">-</span>center2[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y<span class="op">-</span>center2[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>Theta2 <span class="op">=</span> np.arctan2(Y<span class="op">-</span>center2[<span class="dv">1</span>], X<span class="op">-</span>center2[<span class="dv">0</span>])</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Masks for regions outside the squirmers</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>mask1 <span class="op">=</span> R1 <span class="op">&gt;</span> a</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>mask2 <span class="op">=</span> R2 <span class="op">&gt;</span> a</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for PUSHERS (β = -5)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span>  <span class="co"># squirmer parameter (β = -5 for strong pusher)</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>B2 <span class="op">=</span> beta <span class="op">*</span> np.<span class="bu">abs</span>(B1)  <span class="co"># second mode coefficient</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize velocity components</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate velocity field from first pusher</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>u_r1 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>u_r1[mask1] <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> B1 <span class="op">*</span> np.cos(Theta1[mask1]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>             ((a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">4</span>) <span class="op">-</span> (a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>np.cos(Theta1[mask1])<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>u_theta1 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>u_theta1[mask1] <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span>) <span class="op">*</span> B1 <span class="op">*</span> np.sin(Theta1[mask1]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">4</span>) <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>Theta1[mask1])</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>u1 <span class="op">=</span> u_r1 <span class="op">*</span> np.cos(Theta1) <span class="op">-</span> u_theta1 <span class="op">*</span> np.sin(Theta1)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> u_r1 <span class="op">*</span> np.sin(Theta1) <span class="op">+</span> u_theta1 <span class="op">*</span> np.cos(Theta1)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>u1[mask1] <span class="op">+=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> B1</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate velocity field from image pusher (same type, same direction: satisfies u_y=0 at wall)</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>u_r2 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>u_r2[mask2] <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> B1 <span class="op">*</span> np.cos(Theta2[mask2]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>             ((a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">4</span>) <span class="op">-</span> (a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>np.cos(Theta2[mask2])<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>u_theta2 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>u_theta2[mask2] <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span>) <span class="op">*</span> B1 <span class="op">*</span> np.sin(Theta2[mask2]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">4</span>) <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>Theta2[mask2])</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>u2 <span class="op">=</span> u_r2 <span class="op">*</span> np.cos(Theta2) <span class="op">-</span> u_theta2 <span class="op">*</span> np.sin(Theta2)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> u_r2 <span class="op">*</span> np.sin(Theta2) <span class="op">+</span> u_theta2 <span class="op">*</span> np.cos(Theta2)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>u2[mask2] <span class="op">+=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> B1</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined velocity field for pushers</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>u_pushers <span class="op">=</span> u1 <span class="op">+</span> u2</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>v_pushers <span class="op">=</span> v1 <span class="op">+</span> v2</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>speed_pushers <span class="op">=</span> np.sqrt(u_pushers<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> v_pushers<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot pushers</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> ax1.pcolormesh(X, Y, np.log(speed_pushers), cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>circle1_1 <span class="op">=</span> plt.Circle(center1, a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>circle1_2 <span class="op">=</span> plt.Circle(center2, a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax1.add_patch(circle1_1)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax1.add_patch(circle1_2)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>lw1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> speed_pushers <span class="op">/</span> speed_pushers.<span class="bu">max</span>()</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>ax1.streamplot(X, Y, u_pushers, v_pushers, density<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span>lw1, arrowsize<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax1.arrow(center1[<span class="dv">0</span>], center1[<span class="dv">1</span>], <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.05</span>, head_width<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.15</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax1.arrow(center2[<span class="dv">0</span>], center2[<span class="dv">1</span>], <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.05</span>, head_width<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.15</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax1.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'w'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>ax1.text(<span class="fl">3.2</span>, <span class="fl">0.0</span>, <span class="st">"Wall"</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>ax1.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Pushers (β = -5)'</span>)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for PULLERS (β = 5)</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">5.0</span>  <span class="co"># squirmer parameter (β = 5 for strong puller)</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>B2 <span class="op">=</span> beta <span class="op">*</span> np.<span class="bu">abs</span>(B1)  <span class="co"># second mode coefficient</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize velocity components</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate velocity field from first puller</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>u_r1 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>u_r1[mask1] <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> B1 <span class="op">*</span> np.cos(Theta1[mask1]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>             ((a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">4</span>) <span class="op">-</span> (a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>np.cos(Theta1[mask1])<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>u_theta1 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>u_theta1[mask1] <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span>) <span class="op">*</span> B1 <span class="op">*</span> np.sin(Theta1[mask1]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">4</span>) <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R1[mask1]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>Theta1[mask1])</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>u1 <span class="op">=</span> u_r1 <span class="op">*</span> np.cos(Theta1) <span class="op">-</span> u_theta1 <span class="op">*</span> np.sin(Theta1)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> u_r1 <span class="op">*</span> np.sin(Theta1) <span class="op">+</span> u_theta1 <span class="op">*</span> np.cos(Theta1)</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>u1[mask1] <span class="op">+=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> B1</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate velocity field from image puller (same type, same direction: satisfies u_y=0 at wall)</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>u_r2 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>u_r2[mask2] <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> B1 <span class="op">*</span> np.cos(Theta2[mask2]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>             ((a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">4</span>) <span class="op">-</span> (a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>np.cos(Theta2[mask2])<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>u_theta2 <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>u_theta2[mask2] <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> ((a<span class="op">**</span><span class="dv">3</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span>) <span class="op">*</span> B1 <span class="op">*</span> np.sin(Theta2[mask2]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">4</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">4</span>) <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>(a<span class="op">**</span><span class="dv">2</span><span class="op">/</span>R2[mask2]<span class="op">**</span><span class="dv">2</span>)) <span class="op">*</span> B2 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>Theta2[mask2])</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>u2 <span class="op">=</span> u_r2 <span class="op">*</span> np.cos(Theta2) <span class="op">-</span> u_theta2 <span class="op">*</span> np.sin(Theta2)</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> u_r2 <span class="op">*</span> np.sin(Theta2) <span class="op">+</span> u_theta2 <span class="op">*</span> np.cos(Theta2)</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>u2[mask2] <span class="op">+=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> B1</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined velocity field for pullers</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>u_pullers <span class="op">=</span> u1 <span class="op">+</span> u2</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>v_pullers <span class="op">=</span> v1 <span class="op">+</span> v2</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>speed_pullers <span class="op">=</span> np.sqrt(u_pullers<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> v_pullers<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot pullers</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> ax2.pcolormesh(X, Y, np.log(speed_pullers), cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>circle2_1 <span class="op">=</span> plt.Circle(center1, a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>circle2_2 <span class="op">=</span> plt.Circle(center2, a, fill<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>ax2.add_patch(circle2_1)</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>ax2.add_patch(circle2_2)</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>lw2 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> speed_pullers <span class="op">/</span> speed_pullers.<span class="bu">max</span>()</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>ax2.streamplot(X, Y, u_pullers, v_pullers, density<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span>lw2, arrowsize<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>ax2.arrow(center1[<span class="dv">0</span>], center1[<span class="dv">1</span>], <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.05</span>, head_width<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.15</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>ax2.arrow(center2[<span class="dv">0</span>], center2[<span class="dv">1</span>], <span class="fl">0.4</span>, <span class="dv">0</span>, width<span class="op">=</span><span class="fl">0.05</span>, head_width<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>         head_length<span class="op">=</span><span class="fl">0.15</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'w'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>ax2.text(<span class="fl">3.2</span>, <span class="fl">0.0</span>, <span class="st">"Wall"</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>ax2.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Pullers (β = 5)'</span>)</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-squirmer-image-systems" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -448,7 +834,7 @@ Figure&nbsp;5— Flow fields generated by two squirmers separated perpendicular 
 </ol>
 <p>The flow field at the swimmer’s position due to its image is:</p>
 <p><span class="math display">\[\mathbf{u}_{image}(\mathbf{r}_{swimmer}) \approx\frac{S}{8\pi\eta}\frac{3(\mathbf{e}\cdot\mathbf{n}-1)^2}{(2h)^2}\mathbf{n} + \text{higher order terms}\]</span></p>
-<p>where <span class="math inline">\(\eta\)</span> is the fluid viscosity and <span class="math inline">\(2h\)</span> is the distance between the swimmer and its image. This means pushers (<span class="math inline">\(S&gt;0\)</span>) experience a flow field pointing towards the wall, while pullers (<span class="math inline">\(S&gt;0\)</span>) experience a flow field pointing away from the wall.</p>
+<p>where <span class="math inline">\(\eta\)</span> is the fluid viscosity and <span class="math inline">\(2h\)</span> is the distance between the swimmer and its image. This means pushers (<span class="math inline">\(S&lt;0\)</span>, extensile) experience a flow field from the image pointing towards the wall – they are attracted to it – while pullers (<span class="math inline">\(S&gt;0\)</span>, contractile) experience a flow field pointing away from the wall and are repelled.</p>
 <p>The superposition of a force dipole with its image dipole to simulate the wall is rendering the flow field components normal to the wall zero, yet the tangential components are not. One could term that slip boundary conditions. The correct hydrodynamics at a wall with no-slip boundary conditions is, nevertheless, up to a factor of <span class="math inline">\(2/3\)</span> the same.</p>
 <p>The image system also generates a flow field with rotational components that create a torque on the swimmer:</p>
 <p><span class="math display">\[\boldsymbol{\omega}_{image}(\mathbf{r}_{swimmer}) \approx -\frac{3S}{64\pi\eta h^3}[(\mathbf{e}\cdot\mathbf{n})(\mathbf{e}\times\mathbf{n})]\]</span></p>
@@ -1046,6 +1432,18 @@ Figure&nbsp;10— Active nematic turbulence in experimental and numerical system
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture04/lecture04.html" class="pagination-link" aria-label="Lecture 4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 4</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture06/lecture06.html" class="pagination-link" aria-label="Lecture 6">
+        <span class="nav-page-text">Lecture 6</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

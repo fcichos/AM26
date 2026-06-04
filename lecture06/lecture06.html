@@ -65,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture07/lecture07.html" rel="next">
+<link href="../lecture05/lecture05.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -164,7 +166,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Phase Transitions and Motility-Induced Phase Separation</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Lecture 6</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,6 +262,35 @@ window.Quarto = {
  <span class="menu-text">Lecture 4</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture05/lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Emergent Phenomena and Phase Behavior</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture06/lecture06.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture07/lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 7</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -294,7 +325,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Lecture 6</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Phase Transitions and Motility-Induced Phase Separation</h1>
 </div>
@@ -344,10 +375,11 @@ Figure&nbsp;1— Ehrenfest classification of phase transitions. First-order tran
 <p>where the first term <span class="math inline">\(\frac{1}{2}(\nabla\phi)^2\)</span> represents the energy cost of spatial variations in the order parameter. This gradient term penalizes rapid changes in <span class="math inline">\(\phi\)</span>, reflecting the energetic cost of creating interfaces between different phases. Without this term, the system would fragment into microscopic domains; its presence ensures physically reasonable domain sizes and interface profiles.</p>
 <p>The potential <span class="math inline">\(V(\phi)\)</span> is typically expanded as a power series:</p>
 <p><span class="math display">\[V(\phi) = r\phi^2 + u\phi^4 + \ldots\]</span></p>
+<p>(Note: some texts write this as <span class="math inline">\(\frac{1}{2}r\phi^2 + \frac{1}{4}u\phi^4\)</span>; both conventions are in use, and the critical behavior is identical. The minima below <span class="math inline">\(T_c\)</span> sit at <span class="math inline">\(\phi = \pm\sqrt{-r/(2u)}\)</span> with the convention used here.)</p>
 <p>These even power terms naturally appear in systems with up-down symmetry. For example, in ferromagnets, flipping all spins (<span class="math inline">\(\phi \to -\phi\)</span>) shouldn’t change the energy. Similarly, in liquid-gas transitions, the potential depends on density fluctuations symmetrically around the critical density.</p>
 <p>For systems without this symmetry, odd power terms can appear:</p>
-<p><span class="math display">\[V(\phi) = r\phi^2 - h\phi + u\phi^3 + v\phi^4 + \ldots\]</span></p>
-<p>This occurs in ferromagnets under external magnetic fields (the <span class="math inline">\(h\phi\)</span> term) or in systems near a first-order phase transition (the <span class="math inline">\(u\phi^3\)</span> term), such as certain structural or metamagnetic transitions.</p>
+<p><span class="math display">\[V(\phi) = r\phi^2 - h\phi + w\phi^3 + v\phi^4 + \ldots\]</span></p>
+<p>This occurs in ferromagnets under external magnetic fields (the <span class="math inline">\(h\phi\)</span> term) or in systems near a first-order phase transition (the <span class="math inline">\(w\phi^3\)</span> term with <span class="math inline">\(v &gt; 0\)</span>), such as certain structural or metamagnetic transitions. A cubic term combined with a positive quartic coefficient generically drives the transition first-order by tilting one minimum below the other before <span class="math inline">\(r\)</span> reaches zero.</p>
 <p>What makes this formulation powerful is how the parameter <span class="math inline">\(r\)</span> varies with temperature: <span class="math inline">\(r \propto (T-T_c)\)</span>. When temperature exceeds the critical temperature (<span class="math inline">\(T &gt; T_c\)</span>), the free energy minimum occurs at <span class="math inline">\(\phi = 0\)</span>, corresponding to the disordered phase. Below the critical temperature (<span class="math inline">\(T &lt; T_c\)</span>), the minima shift to non-zero values of <span class="math inline">\(\phi\)</span>, representing the ordered phase.</p>
 <details class="code-fold">
 <summary>Code</summary>
@@ -403,7 +435,7 @@ Figure&nbsp;1— Ehrenfest classification of phase transitions. First-order tran
 <div id="fig-landau-potential" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-landau-potential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="a2dfea6c" class="cell" data-execution_count="2">
+<div id="cb555557" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -422,12 +454,12 @@ Figure&nbsp;2— Potential <span class="math inline">\(V(\phi)\)</span> in the L
 <p><span class="math display">\[-\nabla^2\phi + \frac{\partial V}{\partial \phi} = 0\]</span></p>
 <p>Near the critical point, the system exhibits remarkable scaling behaviors that define its critical properties. Let’s explore these key behaviors in more detail:</p>
 <ol type="1">
-<li><p><strong>Correlation Length (ξ)</strong>: This measures how far the influence of one microscopic variable extends to others. Mathematically, it can be calculated from the spatial correlation function <span class="math inline">\(G(r) = \langle \phi(0) \phi(r) \rangle - \langle \phi \rangle^2\)</span>, which typically decays exponentially as <span class="math inline">\(G(r) \sim e^{-r/\xi}\)</span> away from the critical point. Near the critical point, it diverges according to <span class="math inline">\(\xi \sim |T-T_c|^{-\nu}\)</span>, meaning fluctuations become correlated over macroscopic distances.</p></li>
-<li><p><strong>Order Parameter (φ)</strong>: This quantity distinguishes between phases - like magnetization in magnets or density difference in fluids. It scales as <span class="math inline">\(\phi \sim |T-T_c|^{\beta}\)</span> below Tc, gradually vanishing as temperature approaches the critical point.</p></li>
-<li><p><strong>Susceptibility (χ)</strong>: This measures how responsive the system is to external fields (like magnetic susceptibility). It diverges as <span class="math inline">\(\chi \sim |T-T_c|^{-\gamma}\)</span>, indicating the system becomes extremely sensitive to small perturbations.</p></li>
-<li><p><strong>Specific Heat (C)</strong>: This thermodynamic quantity shows how much energy is needed to raise the temperature, scaling as <span class="math inline">\(C \sim |T-T_c|^{-\alpha}\)</span>.</p></li>
+<li><p><strong>Correlation Length (<span class="math inline">\(\xi\)</span>)</strong>: This measures how far the influence of one microscopic variable extends to others. Mathematically, it can be calculated from the spatial correlation function <span class="math inline">\(G(r) = \langle \phi(0) \phi(r) \rangle - \langle \phi \rangle^2\)</span>, which typically decays exponentially as <span class="math inline">\(G(r) \sim e^{-r/\xi}\)</span> away from the critical point. Near the critical point, it diverges according to <span class="math inline">\(\xi \sim |T-T_c|^{-\nu}\)</span>, meaning fluctuations become correlated over macroscopic distances.</p></li>
+<li><p><strong>Order Parameter (<span class="math inline">\(\phi\)</span>)</strong>: This quantity distinguishes between phases - like magnetization in magnets or density difference in fluids. It scales as <span class="math inline">\(\phi \sim |T-T_c|^{\beta}\)</span> below <span class="math inline">\(T_c\)</span>, gradually vanishing as temperature approaches the critical point.</p></li>
+<li><p><strong>Susceptibility (<span class="math inline">\(\chi\)</span>)</strong>: This measures how responsive the system is to external fields (like magnetic susceptibility). It diverges as <span class="math inline">\(\chi \sim |T-T_c|^{-\gamma}\)</span>, indicating the system becomes extremely sensitive to small perturbations.</p></li>
+<li><p><strong>Specific Heat (<span class="math inline">\(C\)</span>)</strong>: This thermodynamic quantity shows how much energy is needed to raise the temperature, scaling as <span class="math inline">\(C \sim |T-T_c|^{-\alpha}\)</span>.</p></li>
 </ol>
-<p>These power laws are characterized by critical exponents (α, β, γ, ν) that aren’t independent but satisfy scaling relations such as <span class="math inline">\(\alpha + 2\beta + \gamma = 2\)</span> and <span class="math inline">\(\nu d = 2 - \alpha\)</span> (where d is the spatial dimension). These relations emerge from the fundamental scaling properties of the free energy and reflect the underlying physics of how fluctuations propagate through the system at criticality.</p>
+<p>These power laws are characterized by critical exponents (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(\nu\)</span>) that aren’t independent but satisfy scaling relations such as <span class="math inline">\(\alpha + 2\beta + \gamma = 2\)</span> and the hyperscaling relation <span class="math inline">\(\nu d = 2 - \alpha\)</span> (where <span class="math inline">\(d\)</span> is the spatial dimension). These relations emerge from the fundamental scaling properties of the free energy. Note that the hyperscaling relation <span class="math inline">\(\nu d = 2 - \alpha\)</span> holds only below the upper critical dimension <span class="math inline">\(d_c\)</span> (for the Ising universality class, <span class="math inline">\(d_c = 4\)</span>); above <span class="math inline">\(d_c\)</span> mean-field theory applies and hyperscaling breaks down.</p>
 </section>
 <section id="universality" class="level3">
 <h3 class="anchored" data-anchor-id="universality">Universality</h3>
@@ -440,11 +472,11 @@ Figure&nbsp;2— Potential <span class="math inline">\(V(\phi)\)</span> in the L
 <p>Where <span class="math inline">\(\sigma_i = \pm 1\)</span> represents a spin at site <span class="math inline">\(i\)</span>, <span class="math inline">\(J\)</span> is the coupling constant, and <span class="math inline">\(h\)</span> is an external field. The model describes a ferromagnetic transition with order parameter <span class="math inline">\(M = \frac{1}{N}\sum_i \sigma_i\)</span> (the magnetization).</p>
 <p>The Ising model has been realized experimentally in various magnetic systems:</p>
 <ul>
-<li>Fe<span class="math inline">\(_2\)</span> compounds demonstrate critical behavior closely matching 3D Ising model predictions</li>
+<li>Uniaxial ferromagnets such as DyAlO<span class="math inline">\(_3\)</span> demonstrate critical behavior closely matching 3D Ising model predictions</li>
 <li>Thin films of ferromagnetic materials often exhibit 2D Ising behavior</li>
 <li>CoNb<span class="math inline">\(_2\)</span>O<span class="math inline">\(_6\)</span> (cobalt niobate) provides a rare example of a 1D Ising system</li>
 </ul>
-<p>The 2D Ising model was solved analytically by Onsager, revealing a critical temperature <span class="math inline">\(T_c = \frac{2J}{k_B\ln(1+\sqrt{2})}\)</span> and critical exponents: <span class="math inline">\(\alpha = 0\)</span>, <span class="math inline">\(\beta = 1/8\)</span>, <span class="math inline">\(\gamma = 7/4\)</span>, and <span class="math inline">\(\nu = 1\)</span>.</p>
+<p>The 2D Ising model was solved analytically by Onsager, revealing a critical temperature <span class="math inline">\(T_c = \frac{2J}{k_B\ln(1+\sqrt{2})}\)</span> and critical exponents: <span class="math inline">\(\beta = 1/8\)</span>, <span class="math inline">\(\gamma = 7/4\)</span>, and <span class="math inline">\(\nu = 1\)</span>. The specific heat exponent is <span class="math inline">\(\alpha = 0\)</span>, but this does not mean the specific heat is finite at <span class="math inline">\(T_c\)</span>; instead it signals a logarithmic divergence <span class="math inline">\(C \sim \ln|T-T_c|\)</span>, qualitatively different from the power-law divergence (<span class="math inline">\(\alpha &gt; 0\)</span>) or the jump discontinuity (<span class="math inline">\(\alpha = 0\)</span> in mean-field theory).</p>
 <div id="cell-fig-ising" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1466,7 +1498,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="continuum-theory" class="level3">
 <h3 class="anchored" data-anchor-id="continuum-theory">Continuum Theory</h3>
 <p>A more direct understanding of MIPS can also be obtained with the help of continuum theories such as a hydrodynamic approach that couples the density field <span class="math inline">\(\rho\)</span> with a polarization field <span class="math inline">\(\mathbf{P}\)</span>:</p>
-<p><span class="math display">\[\partial_t \rho = -\nabla \cdot \mathbf{J}\]</span> <span class="math display">\[\mathbf{J} = v(\rho)\mathbf{P}\]</span> <span class="math display">\[\partial_t \mathbf{P} = -D_r \mathbf{P} + \text{higher order terms}\]</span></p>
+<p><span class="math display">\[\partial_t \rho = -\nabla \cdot \mathbf{J}\]</span> <span class="math display">\[\mathbf{J} = v(\rho)\mathbf{P} - D_t\nabla\rho\]</span> <span class="math display">\[\partial_t \mathbf{P} = -D_r \mathbf{P} - \frac{1}{d}\nabla\bigl[v(\rho)\rho\bigr] + \text{higher order terms}\]</span></p>
+<p>Here <span class="math inline">\(\mathbf{P}\)</span> is the polarization density (the coarse-grained mean orientation field), and the diffusive term <span class="math inline">\(-D_t\nabla\rho\)</span> in the flux accounts for translational Brownian motion. The density-gradient term <span class="math inline">\(-\frac{1}{d}\nabla[v(\rho)\rho]\)</span> in the polarization equation is essential: it couples the local swim speed to density gradients and is the term responsible for the MIPS instability.</p>
 <p>The density-dependent swim speed <span class="math inline">\(v(\rho)\)</span> explicitly shows the speed-density coupling and creates the feedback loop driving MIPS:</p>
 <p><span class="math display">\[v(\rho) = v_0(1-\rho/\rho_c)\]</span></p>
 <p>Let’s examine the feedback loop that drives MIPS using a simple, intuitive approach. The key physics can be understood through a direct cause-and-effect chain:</p>
@@ -1479,7 +1512,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
 <p>Taking the derivative with respect to density:</p>
 <p><span class="math display">\[\frac{dJ}{d\rho} = v_0(1-\rho/\rho_c) - v_0\rho/\rho_c = v_0(1-2\rho/\rho_c)\]</span></p>
-<p>This derivative tells us how the flux changes as density changes. For stable systems, flux should increase with density (particles flow from high to low concentration). But here, when <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, the derivative becomes negative - flux decreases as density increases. This means particles flow from low to high density regions, reinforcing density differences rather than smoothing them out.</p>
+<p>This derivative is the effective advection speed for density perturbations. When <span class="math inline">\(dJ/d\rho &gt; 0\)</span> (low density, <span class="math inline">\(\rho &lt; \rho_c/2\)</span>), a local density increase raises the outward flux, so the excess density is carried away – the perturbation decays, and the system is stable. When <span class="math inline">\(dJ/d\rho &lt; 0\)</span> (high density, <span class="math inline">\(\rho &gt; \rho_c/2\)</span>), a local density increase reduces the outward flux, so particles accumulate further rather than dispersing. This is the hallmark of instability: density perturbations grow rather than relax, because the active flux effectively acts as a negative diffusivity.</p>
 <p>We can directly see this by writing the continuity equation:</p>
 <p><span class="math display">\[\partial_t\rho = -\nabla \cdot J = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho]\]</span></p>
 <p>Expanding this in 1D:</p>
@@ -1513,7 +1546,7 @@ Incorporating Brownian Motion
 <p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
 <p>We add a diffusion term that accounts for both translational diffusion (<span class="math inline">\(D_t\)</span>) and effective diffusion from rotational motion:</p>
 <p><span class="math display">\[J = v_0(1-\rho/\rho_c)\rho - D_\text{eff} \nabla \rho\]</span></p>
-<p>where <span class="math inline">\(D_\text{eff} = D_t + v_0^2/(2dD_r)\)</span> for a <span class="math inline">\(d\)</span>-dimensional system. The second term captures how particles effectively diffuse due to their persistent random motion, with persistence length <span class="math inline">\(l_p = v_0/D_r\)</span>.</p>
+<p>where <span class="math inline">\(D_\text{eff} = D_t + v_0^2/(2dD_r)\)</span> for a <span class="math inline">\(d\)</span>-dimensional system. The second term captures how particles effectively diffuse due to their persistent random motion, with persistence length <span class="math inline">\(l_p = v_0\tau_p\)</span>. The persistence time is <span class="math inline">\(\tau_p = 1/D_r\)</span> in 2D (where the orientational correlation decays as <span class="math inline">\(e^{-D_r t}\)</span>) and <span class="math inline">\(\tau_p = 1/(2D_r)\)</span> in 3D, so the formula for <span class="math inline">\(D_\text{eff}\)</span> already absorbs the correct <span class="math inline">\(d\)</span>-dependence.</p>
 <p>Now our continuity equation becomes:</p>
 <p><span class="math display">\[\partial_t\rho = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho] + \nabla \cdot (D_\text{eff} \nabla \rho)\]</span></p>
 <p>Expanding in 1D:</p>
@@ -1534,7 +1567,7 @@ Incorporating Brownian Motion
 </div>
 </div>
 </div>
-<p>The phase separation behavior is captured in the binodal curve shown in the phase diagram above, which separates the homogeneous phase from the phase-separated region. The system exhibits a critical point where the distinction between phases vanishes, similar to equilibrium phase transitions. However, the critical exponents and scaling behavior of MIPS may belong to different universality classes than equilibrium systems—reflecting the fundamental non-equilibrium nature of active matter. The critical exponents for MIPS include the order parameter exponent <span class="math inline">\(\beta\)</span> (typically <span class="math inline">\(\approx 0.5\)</span> for MIPS), the susceptibility exponent <span class="math inline">\(\gamma\)</span> (often <span class="math inline">\(\approx 1.0\)</span>), the correlation length exponent <span class="math inline">\(\nu\)</span> (measured around <span class="math inline">\(0.5-0.7\)</span>), and the specific heat exponent <span class="math inline">\(\alpha\)</span> (approximately <span class="math inline">\(0.1-0.2\)</span>). These values differ from both the Ising universality class and liquid-gas critical points, highlighting MIPS’s distinct non-equilibrium character.</p>
+<p>The phase separation behavior is captured in the binodal curve shown in the phase diagram above, which separates the homogeneous phase from the phase-separated region. The system exhibits a critical point where the distinction between phases vanishes, similar to equilibrium phase transitions. The universality class of the MIPS critical point is an open and actively debated question. Several numerical studies find exponents close to mean-field values (<span class="math inline">\(\beta \approx 0.5\)</span>, <span class="math inline">\(\gamma \approx 1.0\)</span>, <span class="math inline">\(\nu \approx 0.5\)</span>), while others report Ising-like exponents in two dimensions. The difficulty is that finite-size effects and slow dynamics near the critical point make it hard to extract reliable exponents from simulations or experiments, and it remains unclear whether MIPS belongs to the Ising universality class, a new non-equilibrium class, or displays effective mean-field behavior due to long-ranged fluctuations. What is certain is that MIPS is a non-equilibrium phase transition driven by activity rather than thermodynamic interactions.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v_c <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Critical speed</span></span>
@@ -1604,7 +1637,7 @@ Incorporating Brownian Motion
 <div id="fig-phaseplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="8f3b5e95" class="cell" data-execution_count="4">
+<div id="357d0c10" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1639,15 +1672,15 @@ Figure&nbsp;6— Stationary density distribution in MIPS. The plot shows density
 <h4 class="anchored" data-anchor-id="number-density-fluctuations-in-mips">Number density fluctuations in MIPS</h4>
 <p>Active systems exhibiting Motility-Induced Phase Separation (MIPS) demonstrate a profound departure from this equilibrium behavior. In these systems, the self-propulsion of particles creates persistent motion and induces spatial correlations that extend far beyond what’s possible in equilibrium.</p>
 <p>The most striking manifestation of this non-equilibrium nature appears in the density fluctuations. Rather than following the equilibrium <span class="math inline">\(1/\sqrt{N}\)</span> scaling, active systems show “giant number fluctuations” where the variance scales as</p>
-<p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle^{\alpha}\]</span></p>
-<p>with <span class="math inline">\(\alpha &gt; 1\)</span>. This super-linear scaling means that relative fluctuations actually grow with system size rather than diminish.</p>
+<p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle^{a}\]</span></p>
+<p>with <span class="math inline">\(a &gt; 1\)</span>. This super-linear scaling means that relative fluctuations actually grow with system size rather than diminish.</p>
 <div id="fig-giantnumber" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-giantnumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/images/lecture06/number1.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-giantnumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters formed by light-activated particles. The number fluctuations <span class="math inline">\(\Delta n\)</span> scale with the average number <span class="math inline">\(\langle n \rangle\)</span> of particles with an exponent <span class="math inline">\(\alpha = 0.9\)</span>, significantly exceeding the equilibrium value of 0.5. Taken rom Palacci, J., Sacanna, S., Steinberg, A. P., Pine, D. J. &amp; Chaikin, P. M. Living Crystals of Light-Activated Colloidal Surfers. Science 339, 936–940 (2013).
+Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters formed by light-activated particles. The standard deviation of number fluctuations <span class="math inline">\(\Delta n\)</span> scales with the average number <span class="math inline">\(\langle n \rangle\)</span> of particles as <span class="math inline">\(\Delta n \propto \langle n \rangle^{a}\)</span> with <span class="math inline">\(a = 0.9\)</span>, significantly exceeding the equilibrium value <span class="math inline">\(a = 0.5\)</span> (the <span class="math inline">\(\sqrt{N}\)</span> scaling from the central limit theorem). Taken rom Palacci, J., Sacanna, S., Steinberg, A. P., Pine, D. J. &amp; Chaikin, P. M. Living Crystals of Light-Activated Colloidal Surfers. Science 339, 936–940 (2013).
 </figcaption>
 </figure>
 </div>
@@ -2070,6 +2103,18 @@ Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture05/lecture05.html" class="pagination-link" aria-label="Lecture 5">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 5</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture07/lecture07.html" class="pagination-link" aria-label="Lecture 7">
+        <span class="nav-page-text">Lecture 7</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
