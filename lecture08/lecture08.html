@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture07/lecture07.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -129,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Toner-Tu Model and Active Nematics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture08/lecture08.html">Lecture 8</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -254,6 +255,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 7</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -288,7 +295,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture08/lecture08.html">Lecture 8</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Toner-Tu Model and Active Nematics</h1>
 </div>
@@ -309,7 +316,7 @@ window.Quarto = {
 
 <section id="toner-tu-model-for-flocking" class="level2">
 <h2 class="anchored" data-anchor-id="toner-tu-model-for-flocking">Toner-Tu Model for Flocking</h2>
-<p>The Toner-Tu model describes the collective motion of self-propelled particles that exhibit polar order, such as birds in flocks, fish in schools, or migrating cells. Unlike nematic systems (which we will discuss below), where particles have head-tail symmetry, flocking systems display clear polar order—particles have distinct front and back ends and move preferentially in the direction they are pointing. Developed by John Toner and Yuhai Tu in 1995, this continuum theory provides a hydrodynamic framework for understanding collective motion in active systems far from equilibrium.</p>
+<p>The Toner-Tu model describes the collective motion of self-propelled particles that exhibit polar order, such as birds in flocks, fish in schools, or migrating cells. Unlike nematic systems (which we will discuss below), where particles have head-tail symmetry, flocking systems display clear polar order – particles have distinct front and back ends and move preferentially in the direction they are pointing. Developed by John Toner and Yuhai Tu in 1995, this continuum theory provides a hydrodynamic framework for understanding collective motion in active systems far from equilibrium.</p>
 <p>The model extends the microscopic Vicsek model, where particles move at constant speed and align their direction with nearby neighbors while experiencing random noise. What distinguishes the Toner-Tu approach is its focus on emergent, macroscopic behavior through coarse-grained hydrodynamic equations, analogous to how fluid dynamics describes collective molecular motion without tracking individual molecules.</p>
 <p>The Toner-Tu model tracks two essential hydrodynamic fields:</p>
 <ol type="1">
@@ -318,33 +325,32 @@ window.Quarto = {
 </ol>
 <p>The complete hydrodynamic equations are:</p>
 <p><span class="math display">\[\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0\]</span></p>
-<p>This first equation is the continuity equation expressing particle number conservation—particles can neither be created nor destroyed, only redistributed. <span class="math display">\[
+<p>This first equation is the continuity equation expressing particle number conservation – particles can neither be created nor destroyed, only redistributed. <span class="math display">\[
 \begin{aligned}
 \frac{\partial \mathbf{v}}{\partial t} + \lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v} + \lambda_2 (\nabla \cdot \mathbf{v})\mathbf{v} + \lambda_3 \nabla(|\mathbf{v}|^2) &amp;= \\
 &amp;\alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v} - \nabla P \\
-&amp;+ D_L \nabla(\nabla \cdot \mathbf{v}) + D_T \nabla^2 \mathbf{v} \\
-&amp;+ D_2(\mathbf{v}\cdot\nabla)^2\mathbf{v} + \mathbf{f}
+&amp;+ D_L \nabla(\nabla \cdot \mathbf{v}) + D_T \nabla^2 \mathbf{v} + \mathbf{f}
 \end{aligned}
 \]</span></p>
 <p>The simplified version of this equation, which still captures the essential physics, is:</p>
 <p><span class="math display">\[\frac{\partial \mathbf{v}}{\partial t} + \lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v} = \alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v} - \nabla P + D \nabla^2 \mathbf{v} + \mathbf{f}\]</span></p>
 <p>Each term in this equation has a specific physical meaning:</p>
 <ul>
-<li><p><span class="math inline">\(\alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v}\)</span>: This is the self-propulsion term that drives the system to a preferred speed <span class="math inline">\(v_0 = \sqrt{\alpha/\beta}\)</span> when <span class="math inline">\(\alpha &gt; 0\)</span>. It’s analogous to setting a “cruise control” for the flock, preventing particles from stopping or accelerating indefinitely.</p></li>
-<li><p><span class="math inline">\(\lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v}\)</span>: This nonlinear advection term describes how velocity propagates itself spatially—similar to how turning behavior spreads through a bird flock. Unlike in fluid dynamics where <span class="math inline">\(\lambda_1 = 1\)</span>, in flocking systems this coefficient can differ from unity due to the absence of Galilean invariance.</p></li>
-<li><p><span class="math inline">\(\nabla P\)</span>: This pressure gradient term pushes particles from high-density to low-density regions, preventing overcrowding. In the full model, P depends on both density (<span class="math inline">\(\rho\)</span>) and speed (<span class="math inline">\(|\mathbf{v}|\)</span>).</p></li>
+<li><p><span class="math inline">\(\alpha \mathbf{v} - \beta |\mathbf{v}|^2 \mathbf{v}\)</span>: This is the self-propulsion term that drives the system to a preferred speed <span class="math inline">\(v_0 = \sqrt{\alpha/\beta}\)</span> when <span class="math inline">\(\alpha &gt; 0\)</span>. It acts like a “cruise control” because the two terms balance each other to stabilize the speed: when <span class="math inline">\(|\mathbf{v}| &lt; v_0\)</span>, the linear term <span class="math inline">\(\alpha \mathbf{v}\)</span> dominates and accelerates the particle; when <span class="math inline">\(|\mathbf{v}| &gt; v_0\)</span>, the cubic damping term <span class="math inline">\(-\beta |\mathbf{v}|^2 \mathbf{v}\)</span> dominates and slows it down. The only stable fixed point of <span class="math inline">\(\dot{\mathbf{v}} = \alpha\mathbf{v} - \beta|\mathbf{v}|^2\mathbf{v}\)</span> (in the absence of other terms) is <span class="math inline">\(|\mathbf{v}| = v_0\)</span>, so any deviation in speed is automatically corrected, preventing particles from stopping or accelerating indefinitely. Note that this term only fixes the <em>magnitude</em> of the velocity, not its direction – the direction is set by the interplay of alignment, pressure, and noise.</p></li>
+<li><p><span class="math inline">\(\lambda_1 (\mathbf{v} \cdot \nabla)\mathbf{v}\)</span>: This nonlinear advection term describes how velocity propagates itself spatially – similar to how turning behavior spreads through a bird flock. Unlike in fluid dynamics where <span class="math inline">\(\lambda_1 = 1\)</span>, in flocking systems this coefficient can differ from unity due to the absence of Galilean invariance.</p></li>
+<li><p><span class="math inline">\(\nabla P\)</span>: This pressure gradient term pushes particles from high-density to low-density regions, preventing overcrowding. In the full model the pressure is expanded about the mean density, <span class="math inline">\(P(\rho) = P_0 + \sigma_1(\rho - \rho_0) + \ldots\)</span>, so that to leading order <span class="math inline">\(\nabla P \approx \sigma_1 \nabla\rho\)</span> and the term provides a restoring force against density inhomogeneities. This density coupling is what gives rise to the propagating density waves discussed below.</p></li>
 <li><p><span class="math inline">\(D \nabla^2 \mathbf{v}\)</span>: This diffusion term smooths out sharp velocity gradients, representing how neighboring particles align with each other. In the complete model, diffusion can be anisotropic with different coefficients for longitudinal (<span class="math inline">\(D_L\)</span>) and transverse (<span class="math inline">\(D_T\)</span>) components.</p></li>
-<li><p><span class="math inline">\(\mathbf{f}\)</span>: This represents random noise—unpredictable movements due to individual decisions, environmental factors, or other stochastic influences. The noise has specific statistical properties crucial for the model’s behavior.</p></li>
+<li><p><span class="math inline">\(\mathbf{f}\)</span>: This represents random noise – unpredictable movements due to individual decisions, environmental factors, or other stochastic influences. The noise has specific statistical properties crucial for the model’s behavior.</p></li>
 </ul>
 <p>What makes flocking systems remarkable is their ability to maintain long-range orientational order in two dimensions, even in the presence of noise. This contradicts the Mermin-Wagner theorem, which states that continuous symmetries cannot be spontaneously broken in equilibrium systems with short-range interactions in dimensions d ≤ 2. Flocks evade this limitation because they are inherently nonequilibrium systems that continuously consume energy to maintain their ordered state.</p>
 <p>The Toner-Tu model predicts several distinctive signatures that experimentalists can look for:</p>
 <ol type="1">
-<li><p><strong>Giant number fluctuations</strong>: In equilibrium systems, the standard deviation of particle number scales as √N with the average number N. In flocks, these fluctuations scale as N^α where α &gt; 1/2, leading to much larger density variations than expected in equilibrium systems.</p></li>
+<li><p><strong>Giant number fluctuations</strong>: In equilibrium systems, the standard deviation of particle number scales as <span class="math inline">\(\sqrt{N}\)</span> with the average number <span class="math inline">\(N\)</span>. In flocks, these fluctuations scale as <span class="math inline">\(N^\alpha\)</span> where <span class="math inline">\(\alpha &gt; 1/2\)</span>, leading to much larger density variations than expected in equilibrium systems.</p></li>
 <li><p><strong>Self-organized flows</strong>: The system spontaneously develops coherent flow patterns such as traveling bands, vortices, or asters that persist over long time scales.</p></li>
-<li><p><strong>Anomalous sound propagation</strong>: Disturbances propagate through the flock with different speeds depending on their direction relative to the flock’s motion—longitudinal sound waves travel faster than transverse ones, unlike in simple fluids.</p></li>
+<li><p><strong>Anomalous sound propagation</strong>: Coupled density and velocity disturbances propagate as two sound modes whose speeds <span class="math inline">\(c_\pm(\theta)\)</span> depend on the angle <span class="math inline">\(\theta\)</span> between the propagation direction and the direction of mean motion. Unlike the single isotropic sound speed of a simple fluid, these modes are strongly anisotropic, a direct consequence of the broken rotational symmetry of the moving flock.</p></li>
 <li><p><strong>Robust long-range order</strong>: The system maintains its coherent motion across length scales that grow with system size, even in two dimensions where thermal equilibrium systems would become disordered.</p></li>
 </ol>
-<p>These predicted behaviors have been confirmed in diverse experimental systems—from bacterial colonies like E. coli swarming on agar surfaces to epithelial cell sheets migrating during wound healing, and even in synthetic active matter systems like vibrated granular rods or light-activated colloidal particles. The remarkable success of this relatively simple hydrodynamic model in describing such varied systems demonstrates the universality of the physics governing collective motion in active systems.</p>
+<p>These predicted behaviors have been confirmed in diverse experimental systems – from bacterial colonies like <span class="math inline">\(E.\ coli\)</span> swarming on agar surfaces to epithelial cell sheets migrating during wound healing, and even in synthetic active matter systems like vibrated granular rods or light-activated colloidal particles. The remarkable success of this relatively simple hydrodynamic model in describing such varied systems demonstrates the universality of the physics governing collective motion in active systems.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -366,7 +372,7 @@ Key Properties of the Toner-Tu Model
 </div>
 <section id="interactive-simulation-of-the-toner-tu-model" class="level3">
 <h3 class="anchored" data-anchor-id="interactive-simulation-of-the-toner-tu-model">Interactive Simulation of the Toner-Tu Model</h3>
-<p>Below is an interactive simulation that demonstrates the key features of the Toner-Tu model described above. This simulation visualizes how the hydrodynamic equations translate into collective motion with long-range order, allowing you to explore how different parameters affect the system’s behavior.</p>
+<p>Below is an interactive simulation that demonstrates the key features of the Toner-Tu model described above. Rather than solving the continuum equations directly, it is an agent-based simulation in which each particle is updated with the Toner-Tu terms applied at the particle level (self-propulsion, alignment to the local mean direction acting as the diffusion/elastic term, a pressure response to density gradients, and noise). This is the microscopic dynamics whose coarse-grained behavior the Toner-Tu equations describe, and it lets you explore how different parameters affect the emergent collective motion and long-range order.</p>
 <div id="toner-tu-simulation" style="width: 100%; height: 600px; border: 1px solid #ccc;">
   <div id="combined-field" style="width: 100%; height: 500px; position: relative;">
     <div id="annotation-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;"></div>
@@ -628,36 +634,34 @@ function updateVelocityField() {
     }
   });
 
-  // Average the velocities
+  // Build the alignment field as a Vicsek-style neighborhood average.
+  // Each cell averages the velocities of ALL particles within a
+  // (2*alignRadius+1) x (2*alignRadius+1) block of cells, with periodic
+  // boundaries. Because these neighborhoods overlap, aligned domains can
+  // merge into global order. Averaging only a single 10px cell (~5 particles)
+  // leaves the local mean direction too noisy for order to ever propagate,
+  // which is why the flock stays disordered no matter how high the alignment.
+  const alignRadius = 2;
   for (let i = 0; i < gridRows; i++) {
     for (let j = 0; j < gridCols; j++) {
-      if (velocityCounts[i][j].count > 0) {
-        velocityField[i][j].vx = velocityCounts[i][j].vx / velocityCounts[i][j].count;
-        velocityField[i][j].vy = velocityCounts[i][j].vy / velocityCounts[i][j].count;
+      let sumVx = 0, sumVy = 0, count = 0;
+      for (let di = -alignRadius; di <= alignRadius; di++) {
+        for (let dj = -alignRadius; dj <= alignRadius; dj++) {
+          const ni = (i + di + gridRows) % gridRows;
+          const nj = (j + dj + gridCols) % gridCols;
+          // velocityCounts holds the summed velocities and particle count
+          sumVx += velocityCounts[ni][nj].vx;
+          sumVy += velocityCounts[ni][nj].vy;
+          count += velocityCounts[ni][nj].count;
+        }
+      }
+      if (count > 0) {
+        velocityField[i][j].vx = sumVx / count;
+        velocityField[i][j].vy = sumVy / count;
       } else {
-        // Smooth velocity field by averaging neighbors when no particles present
-        let sumVx = 0, sumVy = 0, count = 0;
-
-        for (let di = -1; di <= 1; di++) {
-          for (let dj = -1; dj <= 1; dj++) {
-            const ni = (i + di + gridRows) % gridRows;
-            const nj = (j + dj + gridCols) % gridCols;
-            if (velocityCounts[ni][nj].count > 0) {
-              sumVx += velocityCounts[ni][nj].vx / velocityCounts[ni][nj].count;
-              sumVy += velocityCounts[ni][nj].vy / velocityCounts[ni][nj].count;
-              count++;
-            }
-          }
-        }
-
-        if (count > 0) {
-          velocityField[i][j].vx = 0.8 * velocityField[i][j].vx + 0.2 * (sumVx / count);
-          velocityField[i][j].vy = 0.8 * velocityField[i][j].vy + 0.2 * (sumVy / count);
-        } else {
-          // Decay velocity if no neighbors have particles
-          velocityField[i][j].vx *= 0.95;
-          velocityField[i][j].vy *= 0.95;
-        }
+        // Decay velocity if the whole neighborhood is empty
+        velocityField[i][j].vx *= 0.95;
+        velocityField[i][j].vy *= 0.95;
       }
     }
   }
@@ -721,8 +725,8 @@ function updateParticles() {
   d3.select("#alignment-value").text(alignmentStrength.toFixed(2));
   d3.select("#noise-valuett").text(noiseStrength.toFixed(2));
 
-  // Add density-dependent movement: particles prefer to move toward higher density
-  const densityAttraction = 0.3;
+  // Pressure response: particles are pushed from high to low density (the -grad P term)
+  const densityPressure = 0.3;
 
   // Update each particle
   particles.forEach(particle => {
@@ -779,9 +783,9 @@ function updateParticles() {
     const diffusionX = alignmentStrength * (fieldVx - particle.vx);
     const diffusionY = alignmentStrength * (fieldVy - particle.vy);
 
-    // 3. Response to density gradient
-    const densityResponseX = densityAttraction * localDensityGradX;
-    const densityResponseY = densityAttraction * localDensityGradY;
+    // 3. Pressure response (-grad P): push down the density gradient, from high to low density
+    const densityResponseX = -densityPressure * localDensityGradX;
+    const densityResponseY = -densityPressure * localDensityGradY;
 
     // 4. Random noise
     const noiseX = (Math.random() - 0.5) * noiseStrength;
@@ -794,8 +798,8 @@ function updateParticles() {
     // Maintain approximately constant speed - a key feature of Toner-Tu
     const speed = Math.sqrt(particle.vx**2 + particle.vy**2);
     if (speed > 0) {
-      // Let the self-propulsion term drive the speed to the preferred value
-      // rather than strictly enforcing it
+      // The self-propulsion term already drives the speed toward v0; here we add
+      // a weak relaxation toward the preferred speed to keep the dynamics numerically stable
       const targetSpeed = particleSpeed;
       const speedFactor = 0.1;
       const adjustedSpeed = speed * (1 - speedFactor) + targetSpeed * speedFactor;
@@ -920,6 +924,26 @@ d3.select("#reset-simulation").on("click", () => {
 <li><p><strong>Self-Propulsion</strong>: The simulation explicitly implements the self-propulsion term (α·v - β|v|²·v) that drives particles to move at a preferred speed, which is crucial for the formation of flocks.</p></li>
 </ol>
 <p>The key insight from the Toner-Tu model is that polar active matter can exhibit true long-range order in two dimensions, which would be impossible in equilibrium systems according to the Mermin-Wagner theorem. This property enables bird flocks, fish schools, and other collective biological systems to maintain coherence over large distances.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+From Theory to Experiment: Toner-Tu Flocking
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The predictions above are not just mathematical curiosities; each has a concrete experimental counterpart:</p>
+<ul>
+<li><strong>Long-range polar order and the flocking transition</strong> were observed directly in colloidal Quincke rollers, where millions of self-propelled colloids spontaneously organize into a macroscopic polar liquid (Bricard et al., <em>Nature</em> 2013).</li>
+<li><strong>Traveling density bands</strong> at the onset of order appear in actin motility assays, where myosin-driven actin filaments form propagating polar waves (Schaller et al., <em>Nature</em> 2010).</li>
+<li><strong>Giant number fluctuations</strong> and collective flows are measured in vibrated granular polar disks (Deseigne et al., 2010) and in swarming bacterial colonies such as <em>Bacillus subtilis</em> (Zhang et al., 2010).</li>
+<li><strong>Robust collective motion</strong> in two dimensions underlies bird flocks, fish schools, and migrating epithelial sheets during wound healing.</li>
+</ul>
+<p>The recurrence of the same Toner-Tu phenomenology across colloids, cytoskeletal filaments, granular matter, bacteria, and animals is a striking demonstration of universality in active matter.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="active-liquid-crystals-and-nematic-order" class="level2">
@@ -928,7 +952,7 @@ d3.select("#reset-simulation").on("click", () => {
 <h3 class="anchored" data-anchor-id="liquid-crystals">Liquid Crystals</h3>
 <p>Liquid crystals represent a state of matter that combines properties of both liquids and crystalline solids. Unlike ordinary liquids where molecules move and orient randomly, or crystals where molecules are locked in rigid lattices, liquid crystals flow like liquids while maintaining some degree of molecular orientation order.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -937,7 +961,7 @@ Entropic Origin of Liquid Crystal Ordering
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The ordering in liquid crystals arises primarily from entropic effects due to steric interactions (physical exclusion) rather than energetic attractions between molecules. When rod-like molecules become densely packed, they spontaneously align to maximize the available free volume and thus maximize entropy. This counterintuitive “order from disorder” phenomenon occurs because aligned rod-like molecules can actually access more translational configurations than randomly oriented ones at sufficient density, making the aligned state entropically favorable.</p>
 <p>Mathematically, this can be shown using Onsager’s theory, where the free energy per particle has the form:</p>
@@ -966,7 +990,7 @@ Figure&nbsp;1— Different phases of liquid crystals, showing the progression fr
 <section id="from-passive-to-active-nematics-adding-energy-to-the-mix" class="level3">
 <h3 class="anchored" data-anchor-id="from-passive-to-active-nematics-adding-energy-to-the-mix">From Passive to Active Nematics: Adding Energy to the Mix</h3>
 <p>Active nematics take the concept of liquid crystals one step further by incorporating internal energy consumption. While regular (passive) liquid crystals only change their configuration in response to external forces, active nematics continuously convert stored or ambient energy into motion.</p>
-<p>Think about the difference between a crowd of people standing still (passive system) versus a crowd where everyone is walking (active system). Both might show alignment—people facing the same direction—but the active system has a constant energy input that drives motion.</p>
+<p>Think about the difference between a crowd of people standing still (passive system) versus a crowd where everyone is walking (active system). Both might show alignment – people facing the same direction – but the active system has a constant energy input that drives motion.</p>
 <p>In laboratory settings, active nematics can be created using:</p>
 <ol type="1">
 <li><strong>Biological components</strong>: Mixtures of microtubules (protein filaments from cell structures) and kinesin motor proteins that consume ATP for movement</li>
@@ -988,7 +1012,7 @@ Figure&nbsp;1— Different phases of liquid crystals, showing the progression fr
 <img src="../assets/images/lecture08/biosystems.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-liquid-crystal-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— Active nematic defects in biological systems. a Expanding colony of E. coli bacteria showing how the migration of +1/2 defects toward the growing edge can influence colony morphology. b Epithelial layer of Madine–Darby canine kidney (MDCK) cells (scale bar: 10 μm) where researchers have observed significant associations between +1/2 defect positions and cellular apoptosis and extrusion processes. c Neural progenitor stem cell monolayer demonstrating selective cell distribution with depletion around −1/2 defects (blue trefoil markers) and accumulation near +1/2 defects (red comet-shaped markers). d Mouse fibroblast cells in a dense monolayer exhibiting both −1/2 and +1/2 topological defects indicated by blue and orange circles, respectively. Source: Doostmohammadi, A., Ignés-Mullol, J., Yeomans, J.M. et al.&nbsp;Active nematics. Nat Commun 9, 3246 (2018).
+Figure&nbsp;2— Active nematic defects in biological systems. a Expanding colony of E. coli bacteria showing how the migration of +1/2 defects toward the growing edge can influence colony morphology. b Epithelial layer of Madin-Darby canine kidney (MDCK) cells (scale bar: 10 μm) where researchers have observed significant associations between +1/2 defect positions and cellular apoptosis and extrusion processes. c Neural progenitor stem cell monolayer demonstrating selective cell distribution with depletion around −1/2 defects (blue trefoil markers) and accumulation near +1/2 defects (red comet-shaped markers). d Mouse fibroblast cells in a dense monolayer exhibiting both −1/2 and +1/2 topological defects indicated by blue and orange circles, respectively. Source: Doostmohammadi, A., Ignés-Mullol, J., Yeomans, J.M. et al.&nbsp;Active nematics. Nat Commun 9, 3246 (2018).
 </figcaption>
 </figure>
 </div>
@@ -1000,9 +1024,11 @@ Figure&nbsp;2— Active nematic defects in biological systems. a Expanding colon
 <li><p><strong>The director field (n)</strong>: A unit vector that represents the average orientation of particles at each point in space. Because of head-tail symmetry, n and -n represent the same physical state.</p></li>
 <li><p><strong>The scalar order parameter (S)</strong>: A measure of how well-aligned the particles are with the director. S ranges from 0 (complete disorder) to 1 (perfect alignment).</p></li>
 </ol>
-<p>For a collection of rod-like particles, the scalar order parameter can be calculated as:</p>
-<p><span class="math display">\[S = \langle 2(\mathbf{u}_i \cdot \mathbf{n})^2 - 1 \rangle\]</span></p>
-<p>Where <span class="math inline">\(\mathbf{u}_i\)</span> is the orientation of the i-th particle, <span class="math inline">\(\mathbf{n}\)</span> is the director, and the angle brackets represent an average over all particles in a small region. This formula gives S = 1 when all particles align perfectly with n, and S = 0 when orientations are completely random.</p>
+<p>For a collection of rod-like particles in two dimensions, the scalar order parameter can be calculated as:</p>
+<p><span class="math display">\[S = \langle 2(\mathbf{u}_i \cdot \mathbf{n})^2 - 1 \rangle = \langle \cos 2\theta_i \rangle \qquad (2\text{D})\]</span></p>
+<p>where <span class="math inline">\(\mathbf{u}_i\)</span> is the orientation of the i-th particle, <span class="math inline">\(\theta_i\)</span> is its angle relative to the director <span class="math inline">\(\mathbf{n}\)</span>, and the angle brackets represent an average over all particles in a small region. This formula gives S = 1 when all particles align perfectly with n, and S = 0 when orientations are completely random. In three dimensions the corresponding definition is the second Legendre polynomial,</p>
+<p><span class="math display">\[S = \left\langle \frac{3\cos^2\theta_i - 1}{2} \right\rangle = \langle P_2(\cos\theta_i)\rangle \qquad (3\text{D})\]</span></p>
+<p>which likewise runs from 0 (isotropic) to 1 (perfect alignment). The factor and offset differ between 2D and 3D because the isotropic average of <span class="math inline">\(\cos^2\theta\)</span> is <span class="math inline">\(1/2\)</span> in the plane but <span class="math inline">\(1/3\)</span> in space.</p>
 </section>
 <section id="the-q-tensor-a-complete-mathematical-description" class="level3">
 <h3 class="anchored" data-anchor-id="the-q-tensor-a-complete-mathematical-description">The Q-Tensor: A Complete Mathematical Description</h3>
@@ -1845,7 +1871,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ``` -->
 <!-- ## Animal Collective Behavior and Biological Swarms
 
-Biological collective motion provides both inspiration for theoretical models and testing grounds for their predictions. Across diverse organisms—from bird flocks and fish schools to insect swarms and mammalian herds—similar patterns of self-organization emerge despite vastly different sensory and cognitive capabilities.
+Biological collective motion provides both inspiration for theoretical models and testing grounds for their predictions. Across diverse organisms -- from bird flocks and fish schools to insect swarms and mammalian herds -- similar patterns of self-organization emerge despite vastly different sensory and cognitive capabilities.
 
 In bird flocks (particularly starlings), high-resolution tracking has revealed several key features:
 - Scale-free velocity correlations, where correlation length scales with group size
@@ -1921,8 +1947,8 @@ The development of these synthetic systems not only validates theoretical models
 <p><span class="math display">\[\sigma^{active} = -\zeta \mathbf{Q}\]</span></p>
 <p>This remarkably simple term encapsulates the essence of activity in the system. The activity parameter <span class="math inline">\(\zeta\)</span> determines both the strength and type of active stress:</p>
 <ul>
-<li>When <span class="math inline">\(\zeta &gt; 0\)</span> (extensile systems), the active units push outward along the director axis</li>
-<li>When <span class="math inline">\(\zeta &lt; 0\)</span> (contractile systems), the active units pull inward along the director axis</li>
+<li>When <span class="math inline">\(\zeta &gt; 0\)</span> (extensile systems), the active units push fluid outward along the director axis and draw it in from the sides. These systems are destabilized by bend distortions.</li>
+<li>When <span class="math inline">\(\zeta &lt; 0\)</span> (contractile systems), the active units pull fluid inward along the director axis and push it out to the sides. These systems are destabilized by splay distortions.</li>
 </ul>
 <div id="fig-active-nematics-defects" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1946,11 +1972,11 @@ Figure&nbsp;5— Schematic illustration of microtubule bundles driven by kinesin
 </figure>
 </div>
 <p>The final key equation describes how the nematic order itself evolves:</p>
-<p><span class="math display">\[(\partial_t + \mathbf{u} \cdot \nabla) \mathbf{Q} - \mathbf{S} = \Gamma \mathbf{H}\]</span></p>
+<p><span class="math display">\[(\partial_t + \mathbf{u} \cdot \nabla) \mathbf{Q} - \mathbf{S}(\mathbf{W}, \mathbf{Q}) = \Gamma \mathbf{H}\]</span></p>
 <p>This equation includes:</p>
 <ul>
 <li>Advection of the nematic order by the flow (the <span class="math inline">\(\mathbf{u} \cdot \nabla \mathbf{Q}\)</span> term)</li>
-<li>Flow-induced rotation and stretching of the director (the <span class="math inline">\(\mathbf{S}\)</span> term)</li>
+<li>Flow-induced rotation and stretching of the director, described by the corotational term <span class="math inline">\(\mathbf{S}(\mathbf{W}, \mathbf{Q})\)</span>, which depends on the symmetric and antisymmetric parts <span class="math inline">\(\mathbf{W}\)</span> of the velocity-gradient tensor (note this is a tensor coupling, not the scalar order parameter <span class="math inline">\(S\)</span> above)</li>
 <li>Relaxation toward equilibrium (the <span class="math inline">\(\Gamma \mathbf{H}\)</span> term, where <span class="math inline">\(\mathbf{H}\)</span> is the molecular field derived from the free energy)</li>
 </ul>
 <p>Together, these equations create a feedback loop: the nematic order generates active stresses, which create flows, which in turn affect the nematic order.</p>
@@ -1968,13 +1994,33 @@ Figure&nbsp;5— Schematic illustration of microtubule bundles driven by kinesin
 </section>
 <section id="topological-defects-as-active-particles" class="level4">
 <h4 class="anchored" data-anchor-id="topological-defects-as-active-particles">Topological Defects as Active Particles</h4>
-<p>Topological defects—points where the nematic order breaks down—take on a new significance in active systems. In passive nematics, defects are static imperfections that gradually annihilate to minimize elastic energy. In active nematics, they become dynamic entities that drive the system’s complex behavior.</p>
+<p>Topological defects – points where the nematic order breaks down – take on a new significance in active systems. In passive nematics, defects are static imperfections that gradually annihilate to minimize elastic energy. In active nematics, they become dynamic entities that drive the system’s complex behavior.</p>
 <p>Active nematics spontaneously generate pairs of topological defects with charges +1/2 and -1/2. The +1/2 defects, with their comet-like structure, experience an active force along their symmetry axis, causing them to move like self-propelled particles. Their velocity scales with activity:</p>
 <p><span class="math display">\[v_{+1/2} \sim \zeta l_d/\eta\]</span></p>
 <p>where <span class="math inline">\(l_d\)</span> is the defect core size and <span class="math inline">\(\eta\)</span> is the viscosity. In contrast, -1/2 defects with three-fold symmetry experience no net active force and move primarily due to elastic interactions and background flow.</p>
 <p>This continuous creation, motion, and annihilation of defects sustains the active turbulent state. The defect density in steady state scales as:</p>
 <p><span class="math display">\[n_{defect} \sim |\zeta|/K\]</span></p>
 <p>showing that stronger activity generates more defects, while stronger elasticity suppresses them.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Properties of Active Nematics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Apolar order</strong>: Particles have head-tail symmetry (n is equivalent to -n), so the order is described by the tensor Q rather than by a velocity vector as in the Toner-Tu model.</li>
+<li><strong>Active stress</strong>: Activity enters through a single term, <span class="math inline">\(\sigma^{active} = -\zeta \mathbf{Q}\)</span>, with <span class="math inline">\(\zeta &gt; 0\)</span> for extensile and <span class="math inline">\(\zeta &lt; 0\)</span> for contractile systems.</li>
+<li><strong>Generic instability</strong>: The uniformly ordered state is unstable above a critical activity <span class="math inline">\(\zeta_c \sim K/L^2\)</span> (bend-driven for extensile, splay-driven for contractile), with no analogue in passive nematics.</li>
+<li><strong>Intrinsic length scale</strong>: Beyond threshold the flow self-organizes on a scale <span class="math inline">\(l_{active} \sim \sqrt{K/\zeta}\)</span> that shrinks as activity grows.</li>
+<li><strong>Self-motile defects</strong>: Topological defects become dynamical objects; +1/2 defects self-propel like active particles (<span class="math inline">\(v \sim \zeta l_d/\eta\)</span>) while -1/2 defects experience no net active force.</li>
+<li><strong>Active turbulence</strong>: The continuous creation, motion, and annihilation of defects sustains a chaotic flow state even at vanishing Reynolds number.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="experimental-realizations" class="level4">
 <h4 class="anchored" data-anchor-id="experimental-realizations">Experimental Realizations</h4>
@@ -1998,7 +2044,7 @@ Figure&nbsp;6— Active nematic turbulence showing the characteristic flow patte
 </figure>
 </div>
 <p>Channel geometries provide another route to control active nematics. When the channel width approaches the intrinsic active length scale <span class="math inline">\(l_{active}\)</span>, the chaotic active turbulence can transform into coherent, unidirectional flows. This phenomenon suggests potential applications in microfluidic pumping and transport.</p>
-<p>Some confined geometries even produce oscillatory states, where the system cycles regularly between different defect configurations. These active nematic oscillators represent a form of mechanical self-organization that converts continuous energy input into regular motion—a principle that may have applications in designing synthetic motors at the microscale.</p>
+<p>Some confined geometries even produce oscillatory states, where the system cycles regularly between different defect configurations. These active nematic oscillators represent a form of mechanical self-organization that converts continuous energy input into regular motion – a principle that may have applications in designing synthetic motors at the microscale.</p>
 </section>
 <section id="active-nematics-in-biology" class="level4">
 <h4 class="anchored" data-anchor-id="active-nematics-in-biology">Active Nematics in Biology</h4>
@@ -2006,6 +2052,26 @@ Figure&nbsp;6— Active nematic turbulence showing the characteristic flow patte
 <p>The cytoskeleton itself combines semiflexible filaments (microtubules, actin) with molecular motors in a manner that closely resembles an active nematic. The branched actin networks driving cell motility and the spindle apparatus separating chromosomes during cell division both exhibit active stress generation coupled with orientational order.</p>
 <p>At the tissue level, many cell types are naturally elongated and form nematic arrangements when crowded. The active stresses generated by these cells create patterns of deformation and flow that influence tissue development. Recent work has identified nematic ordering and topological defects in developing fruit fly wings, embryonic tissues, and even tumor cell invasions.</p>
 <p>This growing evidence suggests that active nematic physics may represent a fundamental organizing principle in biology, contributing to pattern formation and function across scales. The mathematical framework we’ve discussed provides a quantitative language for understanding these complex biological phenomena.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+From Theory to Experiment: Active Nematics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The continuum predictions map cleanly onto a hierarchy of experimental systems, each probing a different facet of the theory:</p>
+<ul>
+<li><strong>Microtubule-kinesin suspensions</strong> (Sanchez et al., 2012) are the cleanest extensile active nematic, confirming spontaneous defect generation, the active length scale <span class="math inline">\(l_{active}\)</span>, and turbulent flows.</li>
+<li><strong>Dense bacterial suspensions</strong> (Dunkel et al., 2013) reproduce the velocity fields and energy spectra characteristic of active turbulence.</li>
+<li><strong>Epithelial cell monolayers</strong> (Saw et al., 2017) show that +1/2 defects are biologically functional, triggering cell extrusion and death at defect cores.</li>
+<li><strong>Confined active nematics</strong> (Opathalage et al., 2019) develop ordered defect lattices and oscillatory states when the confinement size approaches <span class="math inline">\(l_{active}\)</span>.</li>
+</ul>
+<p>The fact that a single activity parameter <span class="math inline">\(\zeta\)</span> together with the elastic constant <span class="math inline">\(K\)</span> captures behavior spanning reconstituted proteins, bacteria, and living tissue is the central reason active nematics has become a unifying framework across soft and living matter.</p>
+</div>
+</div>
 
 
 </section>
@@ -2412,6 +2478,15 @@ Figure&nbsp;6— Active nematic turbulence showing the characteristic flow patte
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture07/lecture07.html" class="pagination-link" aria-label="Lecture 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 7</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

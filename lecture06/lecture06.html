@@ -291,6 +291,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 7</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -435,7 +441,7 @@ Figure&nbsp;1— Ehrenfest classification of phase transitions. First-order tran
 <div id="fig-landau-potential" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-landau-potential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="cb555557" class="cell" data-execution_count="2">
+<div id="17a1199b" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -723,14 +729,23 @@ function calculateSpinEnergy(i, j) {
 
 // Calculate total energy
 function calculateTotalEnergy() {
-  let energy = 0;
+  const J = parseFloat(couplingSlider.value);
+  const h = parseFloat(magneticFieldSlider.value);
+  let bond = 0;
+  let field = 0;
   for (let i = 0; i < gridSize; i++) {
     for (let j = 0; j < gridSize; j++) {
-      energy += calculateSpinEnergy(i, j);
+      const spin = spins[i][j];
+      const up = spins[(i - 1 + gridSize) % gridSize][j];
+      const down = spins[(i + 1) % gridSize][j];
+      const left = spins[i][(j - 1 + gridSize) % gridSize];
+      const right = spins[i][(j + 1) % gridSize];
+      bond += -J * spin * (up + down + left + right);
+      field += -h * spin;
     }
   }
-  // Divide by 2 to avoid double counting
-  return energy / 2;
+  // Only the bond term is double-counted; the field term is counted once per site
+  return bond / 2 + field;
 }
 
 // Calculate magnetization
@@ -951,7 +966,7 @@ button:hover {
     <div class="slider-container">
       <label for="speed">Particle Speed:</label>
       <input type="range" id="speed" min="0.1" max="1" step="0.01" value="0.2">
-      <span class="slider-value" id="speed-value">1.0</span>
+      <span class="slider-value" id="speed-value">0.2</span>
     </div>
 
     <div class="slider-container">
@@ -1637,7 +1652,7 @@ Incorporating Brownian Motion
 <div id="fig-phaseplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="357d0c10" class="cell" data-execution_count="4">
+<div id="79613d1e" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1666,14 +1681,17 @@ Figure&nbsp;6— Stationary density distribution in MIPS. The plot shows density
 <p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle\]</span></p>
 <p>This means the standard deviation of these fluctuations scales as <span class="math inline">\(\sqrt{\langle N\rangle}\)</span>. When we examine relative fluctuations—the ratio of fluctuation magnitude to the mean—we find they scale as</p>
 <p><span class="math display">\[\delta N/\langle N\rangle \propto 1/\sqrt{\langle N\rangle}\]</span></p>
-<p>This <span class="math inline">\(1/\sqrt{N}\)</span> scaling is universal across equilibrium systems, appearing in ideal gases, liquids, and even interacting solids. It represents one of the most reliable signatures of equilibrium behavior and reflects the absence of long-range correlations that would otherwise amplify fluctuations beyond this scaling.</p>
+<p>This <span class="math inline">\(1/\sqrt{N}\)</span> scaling holds across equilibrium systems away from any critical point, appearing in ideal gases, liquids, and even interacting solids. It reflects the absence of long-range correlations that would otherwise amplify fluctuations beyond this scaling.</p>
+<p>It is important to be precise here, because the <span class="math inline">\(\sqrt{N}\)</span> law is not universal: it breaks down at a classical critical point. Statistical mechanics relates the number fluctuations exactly to the isothermal compressibility <span class="math inline">\(\kappa_T\)</span>,</p>
+<p><span class="math display">\[\frac{\langle(\delta N)^2\rangle}{\langle N\rangle} = \rho\, k_B T\, \kappa_T\]</span></p>
+<p>Away from <span class="math inline">\(T_c\)</span> the compressibility is finite, so the variance is linear in <span class="math inline">\(\langle N\rangle\)</span> and we recover <span class="math inline">\(\delta N/\langle N\rangle \propto 1/\sqrt{\langle N\rangle}\)</span>. But on approaching a critical point, <span class="math inline">\(\kappa_T\)</span> diverges (this is the flat free-energy minimum at <span class="math inline">\(r = 0\)</span> from Landau theory), the correlation length <span class="math inline">\(\xi\)</span> grows without bound, and the number fluctuations become anomalously large and correlated over macroscopic distances. This is exactly the phenomenon of critical opalescence: a classical, equilibrium system also exhibits giant density fluctuations, but only when it is fine-tuned to its critical point.</p>
 </section>
 <section id="number-density-fluctuations-in-mips" class="level4">
 <h4 class="anchored" data-anchor-id="number-density-fluctuations-in-mips">Number density fluctuations in MIPS</h4>
 <p>Active systems exhibiting Motility-Induced Phase Separation (MIPS) demonstrate a profound departure from this equilibrium behavior. In these systems, the self-propulsion of particles creates persistent motion and induces spatial correlations that extend far beyond what’s possible in equilibrium.</p>
-<p>The most striking manifestation of this non-equilibrium nature appears in the density fluctuations. Rather than following the equilibrium <span class="math inline">\(1/\sqrt{N}\)</span> scaling, active systems show “giant number fluctuations” where the variance scales as</p>
-<p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle^{a}\]</span></p>
-<p>with <span class="math inline">\(a &gt; 1\)</span>. This super-linear scaling means that relative fluctuations actually grow with system size rather than diminish.</p>
+<p>The most striking manifestation of this non-equilibrium nature appears in the density fluctuations. Rather than following the equilibrium <span class="math inline">\(1/\sqrt{N}\)</span> scaling, active systems show “giant number fluctuations” where the standard deviation scales as</p>
+<p><span class="math display">\[\Delta N \propto \langle N\rangle^{a}\]</span></p>
+<p>with <span class="math inline">\(a &gt; 1/2\)</span> (equivalently, the variance <span class="math inline">\(\langle(\delta N)^2\rangle \propto \langle N\rangle^{2a}\)</span> grows faster than linearly). The equilibrium central-limit value is <span class="math inline">\(a = 1/2\)</span>. This super-linear scaling means that relative fluctuations actually grow with system size rather than diminish.</p>
 <div id="fig-giantnumber" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-giantnumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1685,6 +1703,7 @@ Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters
 </figure>
 </div>
 <p>This anomalous behavior stems from the long-range correlations that activity creates between particle positions and velocities. As particles cluster in MIPS, they don’t distribute randomly but rather organize collectively in response to local density gradients, amplifying density variations instead of smoothing them out.</p>
+<p>The sharper distinction from equilibrium is therefore not simply that active systems show large fluctuations, since classical systems do too at their critical point. It is that active systems exhibit these anomalous fluctuations throughout an extended region of parameter space rather than only at a single fine-tuned critical point. Activity sustains the long-range correlations generically, without the need to tune temperature or density to a critical value.</p>
 <p>This difference in number fluctuation scaling provides researchers with a powerful experimental signature to distinguish active from passive phase separation, even without tracking individual particle trajectories. By measuring how density fluctuations scale with system size, one can immediately identify the non-equilibrium character of active matter systems, revealing one of the clearest manifestations of their departure from equilibrium physics.</p>
 <p>MIPS exemplifies several profound concepts in non-equilibrium statistical mechanics:</p>
 <p><strong>Emergent Thermodynamics</strong>: Despite being driven by non-equilibrium processes, MIPS exhibits phase coexistence reminiscent of equilibrium systems. This suggests the possibility of constructing effective thermodynamic frameworks for active systems—an open question that connects to fundamental postulates of statistical mechanics.</p>

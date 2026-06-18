@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Vicsek Model and Flocking Transition – Active Matter Physics</title>
+<title>lecture07 – Active Matter Physics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture08/lecture08.html" rel="next">
 <link href="../lecture06/lecture06.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -255,6 +256,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 7</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -267,13 +274,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#vicsek-model-and-flocking-transition" id="toc-vicsek-model-and-flocking-transition" class="nav-link active" data-scroll-target="#vicsek-model-and-flocking-transition">Vicsek Model and Flocking Transition</a>
-  <ul class="collapse">
-  <li><a href="#interactive-vicsek-model-simulation" id="toc-interactive-vicsek-model-simulation" class="nav-link" data-scroll-target="#interactive-vicsek-model-simulation">Interactive Vicsek Model Simulation</a></li>
+  <li><a href="#interactive-vicsek-model-simulation" id="toc-interactive-vicsek-model-simulation" class="nav-link active" data-scroll-target="#interactive-vicsek-model-simulation">Interactive Vicsek Model Simulation</a></li>
   <li><a href="#topological-interactions-in-collective-motion" id="toc-topological-interactions-in-collective-motion" class="nav-link" data-scroll-target="#topological-interactions-in-collective-motion">Topological Interactions in Collective Motion</a></li>
   <li><a href="#voronoi-based-interactions" id="toc-voronoi-based-interactions" class="nav-link" data-scroll-target="#voronoi-based-interactions">Voronoi-Based Interactions</a></li>
   <li><a href="#delay-vicsek-model-information-transfer-with-memory" id="toc-delay-vicsek-model-information-transfer-with-memory" class="nav-link" data-scroll-target="#delay-vicsek-model-information-transfer-with-memory">Delay Vicsek Model: Information Transfer with Memory</a></li>
-  </ul></li>
   <li><a href="#information-propagation-in-active-groups" id="toc-information-propagation-in-active-groups" class="nav-link" data-scroll-target="#information-propagation-in-active-groups">Information Propagation in Active Groups</a>
   <ul class="collapse">
   <li><a href="#wave-like-information-transfer-in-starling-flocks" id="toc-wave-like-information-transfer-in-starling-flocks" class="nav-link" data-scroll-target="#wave-like-information-transfer-in-starling-flocks">Wave-like Information Transfer in Starling Flocks</a></li>
@@ -308,8 +312,6 @@ window.Quarto = {
 </header>
 
 
-<section id="vicsek-model-and-flocking-transition" class="level2">
-<h2 class="anchored" data-anchor-id="vicsek-model-and-flocking-transition">Vicsek Model and Flocking Transition</h2>
 <p>The Vicsek model, introduced in 1995, provides a minimal framework for understanding collective motion in active systems. It was motivated by striking observations of coordinated movement across diverse biological systems, from bird flocks and fish schools to bacterial colonies and insect swarms. These natural systems display remarkable collective behaviors despite the absence of any centralized control mechanism:</p>
 <ul>
 <li><p><strong>Bird flocks</strong>: Starling murmurations demonstrate rapid information propagation, with thousands of birds turning almost simultaneously. High-speed photography has revealed that changes in direction can spread across a flock at speeds faster than single-bird reaction times would allow.</p></li>
@@ -318,8 +320,8 @@ window.Quarto = {
 <li><p><strong>Locust swarms</strong>: Field studies demonstrate that locusts maintain aligned motion over vast distances despite considerable environmental perturbations, with density-dependent transitions from disordered to ordered movement.</p></li>
 </ul>
 <p>The Vicsek model represents one of the simplest models demonstrating a non-equilibrium phase transition from disordered motion to coherent flocking behavior, and has become a cornerstone of the active matter field.</p>
-<p>The model’s profound impact on the active matter community stems from its demonstration that simple local alignment rules can produce complex collective phenomena without any centralized control. This insight has inspired thousands of subsequent studies, from bacterial colonies and cellular tissues to robotic swarms and synthetic active colloids. The Vicsek model established the paradigm that active systems—those consuming energy to maintain non-equilibrium states—can exhibit fundamentally different physics from their passive counterparts.</p>
-<p>Recent experimental studies have provided crucial insights that both validate and challenge aspects of the Vicsek model. Cavagna et al.&nbsp;(2017) demonstrated the emergence of dynamic scaling laws in natural swarms of midges, establishing that these biological collectives exhibit critical behavior analogous to physical systems near phase transitions. Their groundbreaking analysis revealed that spatio-temporal correlation functions in different swarms can be rescaled using a single characteristic time, which grows with correlation length according to a dynamical critical exponent z ≈ 1. This finding stands in stark contrast to both equilibrium models and simulations of self-propelled particles (including the Vicsek model), which typically yield z ≈ 2. This discrepancy suggests that natural swarms belong to a novel dynamic universality class not captured by existing theoretical frameworks.</p>
+<p>The model’s profound impact on the active matter community stems from its demonstration that simple local alignment rules can produce complex collective phenomena without any centralized control. This insight has inspired thousands of subsequent studies, from bacterial colonies and cellular tissues to robotic swarms and synthetic active colloids. The Vicsek model established the paradigm that active systems – those consuming energy to maintain non-equilibrium states – can exhibit fundamentally different physics from their passive counterparts.</p>
+<p>Recent experimental studies have provided crucial insights that both validate and challenge aspects of the Vicsek model. Cavagna et al.&nbsp;(2017) demonstrated the emergence of dynamic scaling laws in natural swarms of midges, establishing that these biological collectives exhibit critical behavior analogous to physical systems near phase transitions. Their groundbreaking analysis revealed that spatio-temporal correlation functions in different swarms can be rescaled using a single characteristic time, which grows with correlation length according to a dynamical critical exponent <span class="math inline">\(z \approx 1\)</span>. This finding stands in stark contrast to both equilibrium models and simulations of self-propelled particles (including the Vicsek model), which typically yield <span class="math inline">\(z \approx 2\)</span>. This discrepancy suggests that natural swarms belong to a novel dynamic universality class not captured by existing theoretical frameworks.</p>
 <div id="fig-midges" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-midges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -332,14 +334,21 @@ Figure&nbsp;1— a, A system of three synchronized high-speed cameras shooting a
 </div>
 <p>The study provided experimental evidence for non-dissipative modes in the relaxation dynamics of swarms, indicating that previously overlooked inertial effects are essential to describe collective animal motion accurately. Unlike the original Vicsek model, which assumes instantaneous alignment and purely dissipative dynamics, real biological systems appear to incorporate behavioral inertia that fundamentally alters information propagation through the group.</p>
 <p>This finding aligns with research by Attanasi et al.&nbsp;(2014) on information transfer in starling flocks during collective turns. Their empirical observations revealed that direction changes propagate across flocks with a linear dispersion law and negligible attenuation, dramatically minimizing group decoherence. This linear and undamped propagation stands in direct opposition to standard models of collective motion, including the original Vicsek model, which predict diffusive transport of information that would cause significant group fragmentation during rapid maneuvers.</p>
-<p>The authors identified behavioral inertia—the tendency of individuals to resist sudden changes in their state of motion—as the crucial missing ingredient in existing models. By incorporating this inertia into a theoretical framework built on spontaneous symmetry breaking and conservation principles, they successfully reproduced the observed linear propagation. Importantly, their theory predicted that information transfer becomes faster as a group’s orientational order increases, a prediction they confirmed through detailed analysis of empirical data. This suggests that the strong polarization observed in many animal groups may have evolved specifically to enable rapid collective decision-making.</p>
+<p>The authors identified behavioral inertia – the tendency of individuals to resist sudden changes in their state of motion – as the crucial missing ingredient in existing models. By incorporating this inertia into a theoretical framework built on spontaneous symmetry breaking and conservation principles, they successfully reproduced the observed linear propagation. Importantly, their theory predicted that information transfer becomes faster as a group’s orientational order increases, a prediction they confirmed through detailed analysis of empirical data. This suggests that the strong polarization observed in many animal groups may have evolved specifically to enable rapid collective decision-making.</p>
 <p>In this model, self-propelled particles move with constant speed while adjusting their direction based on their neighbors. The update rule is elegantly simple:</p>
 <p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t) \rangle_{j \in \mathcal{N}_i} + \eta \xi_i(t)\]</span></p>
-<p>where <span class="math inline">\(\theta_i\)</span> is the direction of the <span class="math inline">\(i\)</span>-th particle, <span class="math inline">\(\mathcal{N}_i\)</span> represents its neighbors within a radius <span class="math inline">\(R\)</span>, and <span class="math inline">\(\xi_i(t)\)</span> is a random variable uniformly distributed in <span class="math inline">\([-\pi,\pi]\)</span> with noise strength <span class="math inline">\(\eta\)</span>.</p>
+<p>where <span class="math inline">\(\theta_i\)</span> is the direction of the <span class="math inline">\(i\)</span>-th particle, <span class="math inline">\(\mathcal{N}_i\)</span> represents its neighbors within a radius <span class="math inline">\(R\)</span>, and <span class="math inline">\(\xi_i(t)\)</span> is a random variable uniformly distributed in <span class="math inline">\([-\pi,\pi]\)</span> with dimensionless noise strength <span class="math inline">\(\eta \in [0,1]\)</span>.</p>
+<p>Two technical points are worth making explicit. First, <span class="math inline">\(\langle \theta_j(t) \rangle\)</span> does <em>not</em> mean the ordinary arithmetic average of the neighbor angles. The reason is that angles live on a circle: <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\theta = 2\pi\)</span> describe the same direction, so naively averaging numbers like <span class="math inline">\(0.1\)</span> and <span class="math inline">\(2\pi - 0.1\)</span> would give roughly <span class="math inline">\(\pi\)</span> (pointing the opposite way), even though both particles are pointing in essentially the same direction.</p>
+<p>The standard fix is to average the <em>unit velocity vectors</em> <span class="math inline">\((\cos\theta_j, \sin\theta_j)\)</span> instead, and then read off the angle of the resulting vector. Concretely, compute</p>
+<p><span class="math display">\[\bar{c} = \frac{1}{|\mathcal{N}_i|}\sum_{j\in\mathcal{N}_i} \cos\theta_j, \qquad \bar{s} = \frac{1}{|\mathcal{N}_i|}\sum_{j\in\mathcal{N}_i} \sin\theta_j,\]</span></p>
+<p>and define the mean direction as</p>
+<p><span class="math display">\[\langle \theta_j \rangle \;=\; \mathrm{atan2}(\bar{s},\, \bar{c}).\]</span></p>
+<p>(The two-argument <span class="math inline">\(\mathrm{atan2}\)</span> is used instead of <span class="math inline">\(\arctan(\bar{s}/\bar{c})\)</span> so that the correct quadrant is picked out.) Equivalently, in complex notation, <span class="math inline">\(\langle \theta_j \rangle = \arg\!\left(\sum_{j\in\mathcal{N}_i} e^{i\theta_j}\right)\)</span>. This procedure gives a sensible “average heading” that respects the circular nature of angles.</p>
+<p>Second, our <span class="math inline">\(\eta\)</span> is a dimensionless amplitude multiplying <span class="math inline">\(\xi\in[-\pi,\pi]\)</span>; the original Vicsek paper instead defines <span class="math inline">\(\eta\)</span> as the <em>width</em> of a uniform angular noise interval (<span class="math inline">\(\eta\in[0,2\pi]\)</span>), so the <span class="math inline">\(\eta\)</span> values quoted in the figure captions below follow that original convention rather than the one in the equation above.</p>
 <p>The particles move with position updates:</p>
 <p><span class="math display">\[\mathbf{r}_i(t+1) = \mathbf{r}_i(t) + v_0 (\cos\theta_i(t+1), \sin\theta_i(t+1))\]</span></p>
-<p>The Vicsek model bears striking resemblances to classical equilibrium models in statistical physics, particularly the XY model, while also connecting to the simpler Ising model. Like the two-dimensional XY model, the Vicsek system has continuous rotational symmetry—particles can point in any direction in the plane—and exhibits ordering through alignment interactions. Both models use similar order parameters measuring the degree of collective alignment. However, a crucial difference emerges: while the Mermin-Wagner theorem prohibits long-range order in the 2D equilibrium XY model at finite temperature due to thermal fluctuations, the active Vicsek system can maintain stable ordered states because it operates far from equilibrium through constant energy injection.</p>
-<p>The connection to the Ising model is more conceptual but equally illuminating. Both models involve local alignment interactions leading to global order-disorder transitions, with the key distinction being that Ising spins are discrete (up/down) while Vicsek particles have continuous orientations. In some sense, the Vicsek model can be viewed as a “dynamic Ising model” with continuous spins, constant motion, and broken detailed balance—features that fundamentally alter the nature of the phase transition.</p>
+<p>The Vicsek model bears striking resemblances to classical equilibrium models in statistical physics, particularly the XY model, while also connecting to the simpler Ising model. Like the two-dimensional XY model, the Vicsek system has continuous rotational symmetry – particles can point in any direction in the plane – and exhibits ordering through alignment interactions. Both models use similar order parameters measuring the degree of collective alignment. However, a crucial difference emerges: while the Mermin-Wagner theorem prohibits long-range order in the 2D equilibrium XY model at finite temperature due to thermal fluctuations, the active Vicsek system can maintain stable ordered states because it operates far from equilibrium through constant energy injection.</p>
+<p>The connection to the Ising model is more conceptual but equally illuminating. Both models involve local alignment interactions leading to global order-disorder transitions, with the key distinction being that Ising spins are discrete (up/down) while Vicsek particles have continuous orientations. In some sense, the Vicsek model can be viewed as a “dynamic Ising model” with continuous spins, constant motion, and broken detailed balance – features that fundamentally alter the nature of the phase transition.</p>
 <p>The key physical insight from the Vicsek model is the emergence of a phase transition controlled by two parameters: the noise strength <span class="math inline">\(\eta\)</span> and the particle density <span class="math inline">\(\rho\)</span>. As noise decreases or density increases, the system transitions from a disordered gas-like state to a coherent flock where particles move collectively in a common direction.</p>
 <div id="fig-vicsek-snapshots" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -395,7 +404,7 @@ Key Properties of the Vicsek Model
 <li><strong>Non-equilibrium phase transition</strong>: Transition from disorder to order as <span class="math inline">\(\eta\)</span> decreases or <span class="math inline">\(\rho\)</span> increases</li>
 <li><strong>Long-range order in 2D</strong>: Unlike equilibrium systems (constrained by Mermin-Wagner theorem), can maintain true long-range order</li>
 <li><strong>Giant number fluctuations</strong>: Exhibits unusually large density variations not seen in equilibrium systems</li>
-<li><strong>Universality class</strong>: Belongs to a distinct non-equilibrium universality class with unique critical exponents</li>
+<li><strong>First-order transition</strong>: The order-disorder transition is discontinuous (liquid-gas-like, with traveling bands), while the ordered phase shows universal Toner-Tu scaling</li>
 <li><strong>Applications</strong>: Successfully applied to bird flocks, fish schools, bacterial colonies, cell migrations, and artificial swarms</li>
 </ul>
 </div>
@@ -415,8 +424,8 @@ Key Properties of the Vicsek Model
       <input type="range" id="interaction-radius" min="10" max="100" step="5" value="50">
     </div>
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <label for="noise-level">Noise (η): <span id="noise-value">1.0</span></label>
-      <input type="range" id="noise-level" min="0" max="5" step="0.1" value="1.0">
+      <label for="noise-level">Noise (η): <span id="noise-value">0.3</span></label>
+      <input type="range" id="noise-level" min="0" max="1" step="0.02" value="0.3">
     </div>
     <div style="display: flex; flex-direction: column; align-items: center;">
       <label for="particle-density">Density (ρ): <span id="density-value">3.0</span></label>
@@ -579,9 +588,9 @@ function updateVicsekParticles() {
       // New angle is the average angle plus noise
       let newAngle = Math.atan2(avgSin, avgCos);
 
-      // Add noise - consistent with original Vicsek paper scaling
-      // η ranges from 0 to 5, with noise applied as η * ξ where ξ ∈ [-π, π]
-      newAngle += (Math.random() - 0.5) * 2 * Math.PI * (noiseLevel / 5);
+      // Add noise as η * ξ, where ξ is uniform in [-π, π] and η is the slider value (0 to 1)
+      // This matches the update rule in the text: θ(t+1) = arg(Σ e^{iθ_j}) + η ξ
+      newAngle += (Math.random() - 0.5) * 2 * Math.PI * noiseLevel;
 
       // Update angle and velocity
       particle.angle = newAngle;
@@ -653,7 +662,7 @@ d3.select("#interaction-radius").on("input", function() {
 
 d3.select("#noise-level").on("input", function() {
   const value = parseFloat(this.value);
-  d3.select("#noise-value").text(value.toFixed(1));
+  d3.select("#noise-value").text(value.toFixed(2));
 });
 
 d3.select("#particle-density").on("input", function() {
@@ -669,16 +678,15 @@ d3.select("#particle-density").on("input", function() {
 <li><p><strong>Emergent Behavior</strong>: The global ordering emerges spontaneously from purely local interactions, without any centralized control.</p></li>
 </ol>
 <p>Try different parameter combinations to explore how these factors affect the collective dynamics. For instance, increasing the noise while keeping other parameters constant will eventually break down the ordered flocking state, illustrating the noise-induced phase transition that made the Vicsek model so influential in the field of active matter.</p>
-<p>The nature of the order-disorder transition in the Vicsek model has been the subject of significant debate in the scientific community. In their original 1995 paper, Vicsek and colleagues characterized the transition as continuous (second-order), with the order parameter scaling as <span class="math inline">\((\eta_c-\eta)^\beta\)</span> with <span class="math inline">\(\beta \approx 0.45\)</span>. This classification aligns with many traditional continuous phase transitions in equilibrium statistical physics, where the order parameter grows continuously from zero as the control parameter crosses a critical threshold.</p>
-<p>Continuous phase transitions are characterized by several key features that the Vicsek model appears to share:</p>
+<p>The nature of the order-disorder transition in the Vicsek model was debated for nearly two decades. In their original 1995 paper, Vicsek and colleagues characterized the transition as continuous (second-order), with the order parameter scaling as <span class="math inline">\((\eta_c-\eta)^\beta\)</span> with <span class="math inline">\(\beta \approx 0.45\)</span>, a value that differs from known equilibrium universality classes. This original interpretation rested on features that the early, relatively small simulations appeared to show:</p>
 <ol type="1">
-<li><p><strong>Scale-free correlations</strong>: Near the critical point, correlation lengths diverge, leading to scale-invariant behavior where fluctuations occur at all length scales. This property is evidenced in the Vicsek model by the emergence of clusters of aligned particles at all scales near the transition.</p></li>
-<li><p><strong>Critical exponents</strong>: The behavior near the transition can be described by power laws with characteristic critical exponents. The original Vicsek model revealed an order parameter exponent <span class="math inline">\(\beta \approx 0.45\)</span>, which differs from known equilibrium universality classes, suggesting a novel universality class specific to active systems.</p></li>
-<li><p><strong>Universality</strong>: The values of these exponents are expected to be universal, depending only on fundamental properties like symmetry and dimensionality rather than microscopic details. Recent work by Jentsch and Lee (2024) has proposed that the Vicsek model indeed represents a novel universality class with distinct critical exponents that have been confirmed through both theoretical analysis and simulations.</p></li>
-<li><p><strong>Dynamic scaling</strong>: Time-dependent correlation functions exhibit scaling properties near the critical point, as demonstrated by Cavagna et al.&nbsp;(2017) in natural swarms, though with important differences from the Vicsek model predictions.</p></li>
+<li><p><strong>Scale-free correlations</strong>: Near the apparent critical point, correlation lengths grow large, leading to nearly scale-invariant behavior where clusters of aligned particles appear at many length scales.</p></li>
+<li><p><strong>Critical exponents</strong>: The original simulations reported an order parameter exponent <span class="math inline">\(\beta \approx 0.45\)</span>, which differs from known equilibrium universality classes and was taken to suggest a novel universality class specific to active systems.</p></li>
+<li><p><strong>Dynamic scaling</strong>: Time-dependent correlation functions exhibit scaling properties, as later demonstrated by Cavagna et al.&nbsp;(2017) in natural swarms, though with important differences from the Vicsek model predictions.</p></li>
 </ol>
-<p>However, subsequent studies by Chaté and collaborators (2008) challenged this view, presenting evidence that the transition might actually be first-order (discontinuous) under certain conditions. Their detailed numerical analyses revealed that the apparent continuous nature of the transition might be an artifact of finite-size effects and simulation protocols. This controversy has led to extensive investigations of how factors such as boundary conditions, system size, and update rules affect the observed transition.</p>
-<p>Recent research by Solon, Chaté, and Tailleur (2015) has offered a unifying perspective by framing the Vicsek transition as analogous to a liquid-gas transition rather than a simple order-disorder one. In this view, the system undergoes microphase separation, leading to traveling bands of high-density ordered regions surrounded by a disordered gas phase. This interpretation helps explain the apparent discontinuity while connecting to the original observations of scaling behavior.</p>
+<p>However, subsequent large-scale studies by Chaté and collaborators (2008) overturned this picture, showing that the transition is in fact <strong>first-order (discontinuous)</strong>, and that the apparent continuous behavior with <span class="math inline">\(\beta \approx 0.45\)</span> was an artifact of finite-size effects in the smaller early simulations.</p>
+<p>Solon, Chaté, and Tailleur (2015) then provided the unifying framework that is accepted today: the Vicsek transition is analogous to a <strong>liquid-gas transition</strong> rather than a simple order-disorder one. The system undergoes microphase separation, producing traveling bands of high-density ordered fluid coexisting with a dilute disordered gas. This coexistence is the hallmark of the first-order character and explains the discontinuity.</p>
+<p>It is important to separate two questions. The <em>order of the transition</em> is settled (first-order, liquid-gas-like). What remains genuinely universal and model-independent is the physics of the <em>ordered flocking phase</em> itself, captured by Toner-Tu hydrodynamics: true long-range order in two dimensions and anomalous, scale-dependent density fluctuations. Continuing renormalization-group work (e.g.&nbsp;Jentsch and Lee, 2024) refines the universal scaling exponents of this ordered phase, not the order of the transition.</p>
 <p>Remarkably, the detailed nature of the transition depends critically on fluctuations in the system, which select between different possible inhomogeneous patterns. This highlights a fundamental feature of active matter: the essential role of nonequilibrium fluctuations in determining macroscopic behavior, a feature without parallel in equilibrium systems undergoing continuous phase transitions.</p>
 </section>
 <section id="topological-interactions-in-collective-motion" class="level3">
@@ -697,7 +705,7 @@ d3.select("#particle-density").on("input", function() {
 </section>
 <section id="voronoi-based-interactions" class="level3">
 <h3 class="anchored" data-anchor-id="voronoi-based-interactions">Voronoi-Based Interactions</h3>
-<p>A refinement of topological interactions comes through Voronoi tessellation, where space is partitioned into regions closest to each particle. In the Voronoi Vicsek model, particles interact with their Voronoi neighbors—those sharing a boundary in the tessellation.</p>
+<p>A refinement of topological interactions comes through Voronoi tessellation, where space is partitioned into regions closest to each particle. In the Voronoi Vicsek model, particles interact with their Voronoi neighbors – those sharing a boundary in the tessellation.</p>
 <div id="fig-voronoi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-voronoi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -719,11 +727,11 @@ Figure&nbsp;4— Voronoi tessellation applied to a system of particles. Each cel
 <li>More efficient information propagation compared to fixed-radius interactions</li>
 </ul>
 <p>Recent work by Bastien and Romanczuk (2020) showed that Voronoi-based models better replicate the emergent properties of fish schools, particularly the characteristic “milling” behavior where groups form rotating torus patterns.</p>
-<p>The Voronoi framework also provides natural extensions to include visual occlusion effects, where individuals can only interact with neighbors they can see—a constraint believed to be important in the self-organization of dense biological collectives.</p>
+<p>The Voronoi framework also provides natural extensions to include visual occlusion effects, where individuals can only interact with neighbors they can see – a constraint believed to be important in the self-organization of dense biological collectives.</p>
 </section>
 <section id="delay-vicsek-model-information-transfer-with-memory" class="level3">
 <h3 class="anchored" data-anchor-id="delay-vicsek-model-information-transfer-with-memory">Delay Vicsek Model: Information Transfer with Memory</h3>
-<p>Recent empirical studies revealing linear wave propagation in starling flocks highlight a key limitation of the standard Vicsek model: it assumes that particles respond instantaneously to the orientation of their neighbors. However, real biological agents—whether birds, fish, or cells—can’t react immediately due to sensory processing time, neural delays, and mechanical constraints of their bodies. This limitation has motivated the development of delay Vicsek models, where particles adjust their orientation based on the state of their neighbors at some time in the past.</p>
+<p>Recent empirical studies revealing linear wave propagation in starling flocks highlight a key limitation of the standard Vicsek model: it assumes that particles respond instantaneously to the orientation of their neighbors. However, real biological agents – whether birds, fish, or cells – can’t react immediately due to sensory processing time, neural delays, and mechanical constraints of their bodies. This limitation has motivated the development of delay Vicsek models, where particles adjust their orientation based on the state of their neighbors at some time in the past.</p>
 <p>The delay Vicsek model modifies the standard update rule to incorporate this temporal lag:</p>
 <p><span class="math display">\[\theta_i(t+1) = \langle \theta_j(t-\tau) \rangle_{j \in \mathcal{N}_i} + \eta \xi_i(t)\]</span></p>
 <p>where <span class="math inline">\(\tau\)</span> represents the time delay. This seemingly simple modification produces profound changes in the collective dynamics:</p>
@@ -732,18 +740,17 @@ Figure&nbsp;4— Voronoi tessellation applied to a system of particles. Each cel
 <li><p><strong>Emergence of oscillatory states</strong>: The system can develop spatiotemporal patterns like traveling waves, oscillations, and even chaotic states not seen in the standard model.</p></li>
 <li><p><strong>Enhanced stability in some regimes</strong>: Counterintuitively, moderate time delays can sometimes stabilize ordered motion by dampening overreactions to fluctuations.</p></li>
 </ol>
-<p>The role of delay becomes particularly important when considering how flocks respond to rapid environmental changes like predator attacks. Simulations by Mishra et al.&nbsp;(2012) showed that the delay-induced wave-like propagation allows information about threats to spread through a flock up to 20 times faster than would be possible through sequential neighbor-to-neighbor transmission.</p>
+<p>The role of delay becomes particularly important when considering how flocks respond to rapid environmental changes like predator attacks. Simulations of delay-coupled flocking models show that delay-induced wave-like propagation allows information about threats to spread through a flock far faster than would be possible through sequential neighbor-to-neighbor transmission.</p>
 <!-- :::{#fig-delay-vicsek}
 ![](/assets/images/lecture07/delay_vicsek.png){width=70%}
 
 Comparison of information propagation in (a) standard Vicsek model showing diffusive spreading and (b) delay Vicsek model exhibiting wave-like propagation. The colors represent the time at which particles change their direction after a perturbation is introduced at the center. Notice how in the delay model, the information front moves at nearly constant speed (linear relationship between distance and time).
 ::: -->
-<p>Experimental validation comes from studies like those by Calovi et al.&nbsp;(2018), who analyzed trajectory data from schooling fish and found evidence of memory effects in their alignment behavior. They showed that fish respond not just to their neighbors’ current positions and orientations, but to an effective “anticipated” position based on past movement. This anticipation mechanism effectively implements a negative delay (prediction rather than reaction), which further enhances the school’s ability to maintain cohesion during rapid maneuvers.</p>
+<p>Experimental validation comes from studies like those by Calovi et al.&nbsp;(2018), who analyzed trajectory data from schooling fish and found evidence of memory effects in their alignment behavior. They showed that fish respond not just to their neighbors’ current positions and orientations, but to an effective “anticipated” position based on past movement. This anticipation can be modeled as an effectively anticipatory response (prediction rather than reaction), which further enhances the school’s ability to maintain cohesion during rapid maneuvers.</p>
 <p>Theoretically, the delay Vicsek model provides a critical link between microscopic interaction rules and macroscopic wave propagation. When properly formulated with inertial effects (resistance to orientation changes), the model produces a linear dispersion relation for small perturbations:</p>
-<p><span class="math display">\[\omega \approx c_s q + i\gamma q^2\]</span></p>
-<p>where <span class="math inline">\(c_s\)</span> is the propagation speed and <span class="math inline">\(\gamma\)</span> is a damping coefficient. This matches the observed dynamics of starling flocks far better than the purely diffusive propagation (<span class="math inline">\(\omega \sim iq^2\)</span>) predicted by the standard Vicsek model.</p>
+<p><span class="math display">\[\omega \approx c_s q - i\gamma q^2\]</span></p>
+<p>where <span class="math inline">\(c_s\)</span> is the propagation speed and <span class="math inline">\(\gamma &gt; 0\)</span> is a damping coefficient (the <span class="math inline">\(-i\gamma q^2\)</span> term gives a decaying amplitude <span class="math inline">\(e^{-\gamma q^2 t}\)</span>). This matches the observed dynamics of starling flocks far better than the purely diffusive propagation (<span class="math inline">\(\omega \sim -iq^2\)</span>) predicted by the standard Vicsek model.</p>
 <p>Current research is exploring how heterogeneous delays (different response times for different individuals) affect collective dynamics, and how natural systems might exploit these delay effects to optimize information transfer while maintaining robust coordination in noisy environments.</p>
-</section>
 </section>
 <section id="information-propagation-in-active-groups" class="level2">
 <h2 class="anchored" data-anchor-id="information-propagation-in-active-groups">Information Propagation in Active Groups</h2>
@@ -754,7 +761,7 @@ Comparison of information propagation in (a) standard Vicsek model showing diffu
 <p>The mathematical formulation yields a diffusion equation for the propagation of orientation fluctuations:</p>
 <p><span class="math display">\[\frac{\partial \phi}{\partial t} = D \nabla^2 \phi\]</span></p>
 <p>where <span class="math inline">\(\phi\)</span> represents the orientation angle and <span class="math inline">\(D\)</span> is a diffusion constant. This diffusion equation has a characteristic dispersion relation:</p>
-<p><span class="math display">\[\omega(q) \sim iq^2\]</span></p>
+<p><span class="math display">\[\omega(q) \sim -iq^2\]</span></p>
 <p>where <span class="math inline">\(\omega\)</span> is the frequency and <span class="math inline">\(q\)</span> is the wavevector. In physical terms, this means that information about direction changes would spread through the group as a diffusive process, where the distance covered scales with time as <span class="math inline">\(x \sim \sqrt{t}\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -774,16 +781,16 @@ Mathematical Derivation of the Dispersion Relation
 <p><span class="math display">\[\phi(\mathbf{r},t) = \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)}\]</span></p>
 <p>Substituting this into the diffusion equation:</p>
 <p><span class="math display">\[-i\omega \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)} = -D q^2 \phi_0 e^{i(\mathbf{q}\cdot\mathbf{r} - \omega t)}\]</span></p>
-<p>Simplifying:</p>
-<p><span class="math display">\[\omega = iDq^2\]</span></p>
-<p>This is the dispersion relation for diffusive processes. The imaginary coefficient indicates that these waves are damped rather than propagating, with the amplitude decaying as <span class="math inline">\(e^{-Dq^2t}\)</span>. Longer wavelengths (smaller <span class="math inline">\(q\)</span>) decay more slowly than shorter wavelengths.</p>
+<p>Simplifying (dividing by <span class="math inline">\(-i\)</span>):</p>
+<p><span class="math display">\[\omega = -iDq^2\]</span></p>
+<p>This is the dispersion relation for diffusive processes. The purely imaginary frequency indicates that these modes are damped rather than propagating: with the convention above the amplitude decays as <span class="math inline">\(e^{-i\omega t} = e^{-Dq^2t}\)</span>. Longer wavelengths (smaller <span class="math inline">\(q\)</span>) decay more slowly than shorter wavelengths.</p>
 </div>
 </div>
 </div>
-<p>The diffusive nature of information transfer poses a serious problem for biological groups: during rapid maneuvers, like avoiding a predator, diffusion would cause significant decoherence—different parts of the flock would receive the information at vastly different times, potentially fragmenting the group. This is especially problematic for large flocks, where diffusion would be far too slow to maintain cohesion during quick turns.</p>
+<p>The diffusive nature of information transfer poses a serious problem for biological groups: during rapid maneuvers, like avoiding a predator, diffusion would cause significant decoherence – different parts of the flock would receive the information at vastly different times, potentially fragmenting the group. This is especially problematic for large flocks, where diffusion would be far too slow to maintain cohesion during quick turns.</p>
 <section id="wave-like-information-transfer-in-starling-flocks" class="level3">
 <h3 class="anchored" data-anchor-id="wave-like-information-transfer-in-starling-flocks">Wave-like Information Transfer in Starling Flocks</h3>
-<p>High-resolution tracking experiments of starling flocks by Attanasi et al.&nbsp;(2014) revealed a fundamentally different mechanism of information propagation. Using a system of three synchronized high-speed cameras recording at 170 frames per second (see <a href="#fig-midges" class="quarto-xref">Figure&nbsp;1</a>), they captured the three-dimensional trajectories of individual birds within flocks of up to 3,000 starlings during natural turning events.</p>
+<p>High-resolution tracking experiments of starling flocks by Attanasi et al.&nbsp;(2014) revealed a fundamentally different mechanism of information propagation. Using synchronized high-speed stereoscopic cameras, they reconstructed the three-dimensional trajectories of individual birds within flocks of up to 3,000 starlings during natural turning events (<a href="#fig-starling-turns" class="quarto-xref">Figure&nbsp;5</a>).</p>
 <div id="fig-starling-turns" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-starling-turns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -795,7 +802,7 @@ Figure&nbsp;5— Experimental evidence of linear wave propagation in starling fl
 </figure>
 </div>
 <p>Their analysis revealed that direction changes propagate linearly in time (rather than diffusively) and with negligible damping. When one bird initiates a turn, this directional change spreads through the flock as a wave, with a nearly constant speed of propagation. The experimental data showed a clear linear relationship between the distance from the initiation point and the time at which birds responded, contradicting the quadratic relationship expected from diffusive models.</p>
-<p>The researchers measured propagation speeds of 20-40 meters per second—remarkably faster than the flight speed of individual birds (about 10 m/s). This high-speed propagation allows information to reach all flock members almost simultaneously, enabling the dramatic, seemingly choreographed turns observed in starling murmurations.</p>
+<p>The researchers measured propagation speeds of roughly 20-40 meters per second – remarkably faster than the flight speed of individual birds (about 10 m/s). This high-speed propagation allows information to reach all flock members almost simultaneously, enabling the dramatic, seemingly choreographed turns observed in starling murmurations.</p>
 </section>
 <section id="the-role-of-behavioral-inertia" class="level3">
 <h3 class="anchored" data-anchor-id="the-role-of-behavioral-inertia">The Role of Behavioral Inertia</h3>
@@ -814,6 +821,7 @@ Figure&nbsp;5— Experimental evidence of linear wave propagation in starling fl
 <p>This wave equation has a linear dispersion relation:</p>
 <p><span class="math display">\[\omega(q) = c_s q\]</span></p>
 <p>This means that information travels linearly with time (x = c_s t), much faster than diffusive propagation would allow. This explains the observed linear propagation of turning information through the flock.</p>
+<p>The undamped wave equation here and the weakly-damped delay-model relation <span class="math inline">\(\omega \approx c_s q - i\gamma q^2\)</span> given earlier are two limits of the same physics: real flocks sit in the underdamped regime, where the propagating term <span class="math inline">\(c_s q\)</span> dominates over the small damping <span class="math inline">\(\gamma q^2\)</span>, so turning information crosses the flock with only weak attenuation.</p>
 </section>
 <section id="evidence-from-natural-swarms-and-other-systems" class="level3">
 <h3 class="anchored" data-anchor-id="evidence-from-natural-swarms-and-other-systems">Evidence from Natural Swarms and Other Systems</h3>
@@ -828,7 +836,7 @@ Figure&nbsp;6— Rescaled correlation functions from different midge swarms coll
 </figcaption>
 </figure>
 </div>
-<p>Similar wave-like propagation has been observed in fish schools. Rosenthal et al.&nbsp;(2015) documented that startled golden shiners (Notemigonus crysoleucas) generate a wave of behavioral change that propagates through the school at a speed of approximately 15 body lengths per second—much faster than would be predicted by nearest-neighbor reaction time models. This behavioral wave allows the entire school to respond to a threat almost simultaneously, dramatically improving collective escape success.</p>
+<p>Similar wave-like propagation has been observed in fish schools. Rosenthal et al.&nbsp;(2015) documented that startled golden shiners (Notemigonus crysoleucas) generate a wave of behavioral change that propagates through the school at a speed of approximately 15 body lengths per second – much faster than would be predicted by nearest-neighbor reaction time models. This behavioral wave allows the entire school to respond to a threat almost simultaneously, dramatically improving collective escape success.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -842,7 +850,8 @@ Spatiotemporal Correlation Functions in Collective Motion
 <p>The behavior of spatiotemporal correlation functions reveals the underlying physics of information transfer in collective systems:</p>
 <p><strong>Correlation Function Definition:</strong> <span class="math display">\[C(r,t) = \langle \delta\mathbf{v}(\mathbf{r}+\mathbf{r}',t+t') \cdot \delta\mathbf{v}(\mathbf{r}',t') \rangle\]</span></p>
 <p>where <span class="math inline">\(\delta\mathbf{v}\)</span> represents velocity fluctuations around the mean.</p>
-<p><strong>Dynamical Scaling:</strong> For systems with critical behavior, the correlation function follows a scaling form: <span class="math display">\[C(r,t) = r^{-(d-2+\eta)}f(t/r^z)\]</span></p>
+<p><strong>Dynamical Scaling:</strong> For systems with critical behavior, the correlation function follows a scaling form: <span class="math display">\[C(r,t) = r^{-(d-2+\eta_c)}f(t/r^z)\]</span></p>
+<p>where <span class="math inline">\(\eta_c\)</span> is the anomalous (correlation) exponent, not to be confused with the noise strength <span class="math inline">\(\eta\)</span> used elsewhere in this lecture, and <span class="math inline">\(z\)</span> is the dynamical critical exponent.</p>
 <p>The dynamical critical exponent <span class="math inline">\(z\)</span> determines how information propagation scales with distance:</p>
 <ul>
 <li><span class="math inline">\(z \approx 2\)</span>: Diffusive propagation (standard models)</li>
@@ -869,7 +878,7 @@ Figure&nbsp;7— Experimentally measured relationship between propagation speed 
 </section>
 <section id="functional-benefits-of-wave-like-propagation" class="level3">
 <h3 class="anchored" data-anchor-id="functional-benefits-of-wave-like-propagation">Functional Benefits of Wave-Like Propagation</h3>
-<p>The linear, undamped propagation allows flocks to execute coherent turns without fragmentation, as information about direction changes reaches all members with minimal delay. The turning dynamics represents what physicists call “second sound”—propagating waves of orientation rather than density, analogous to phenomena observed in superfluids and crystalline solids.</p>
+<p>The linear, undamped propagation allows flocks to execute coherent turns without fragmentation, as information about direction changes reaches all members with minimal delay. The turning dynamics represents what physicists call “second sound” – propagating waves of orientation rather than density, analogous to phenomena observed in superfluids and crystalline solids.</p>
 <p>This mechanism explains how starling flocks maintain their remarkable cohesion during complex aerial maneuvers. Their study reveals that biological collectives have evolved mechanisms that effectively overcome the limitations of diffusive information transfer, enabling rapid and coordinated responses essential for survival.</p>
 <!-- :::{#fig-equal-radius}
 ![Equal-radius turning in starling flocks, showing how birds maintain their relative positions during turns.](/assets/images/lecture07/equal_radius_turning.png)
@@ -886,7 +895,7 @@ The equal-radius turning that results from this propagation mechanism has clear 
 <section id="applications-and-future-directions" class="level3">
 <h3 class="anchored" data-anchor-id="applications-and-future-directions">Applications and Future Directions</h3>
 <p>These findings highlight how active biological systems can achieve robust collective behavior through mechanisms that incorporate memory effects (behavioral inertia) and leverage fundamental principles of symmetry and conservation. The mathematical framework bridges statistical physics, information theory, and collective behavior, showing how local interactions with inertial effects produce the coherent global coordination observed in natural flocks.</p>
-<p>Recent experimental work by Bonnet et al.&nbsp;(2020) on hybrid systems—where autonomous robots interact with living fish schools—has demonstrated the possibility of injecting information through controlled perturbations. By programming a robotic fish with specific behavioral rules including appropriate behavioral inertia, they successfully influenced the collective motion of live zebrafish schools, steering their direction and even inducing consensus changes.</p>
+<p>Recent experimental work by Bonnet et al.&nbsp;(2020) on hybrid systems – where autonomous robots interact with living fish schools – has demonstrated the possibility of injecting information through controlled perturbations. By programming a robotic fish with specific behavioral rules including appropriate behavioral inertia, they successfully influenced the collective motion of live zebrafish schools, steering their direction and even inducing consensus changes.</p>
 <div id="fig-robot-fish" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-robot-fish-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1311,6 +1320,9 @@ Figure&nbsp;8— A robotic fish designed to interact with and influence the coll
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../lecture08/lecture08.html" class="pagination-link" aria-label="Lecture 8">
+        <span class="nav-page-text">Lecture 8</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
