@@ -295,6 +295,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 8</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -377,18 +383,10 @@ Figure&nbsp;1— Visualization of active stress generation by a chain of self-pr
 </div>
 <p>ABPs propel because of friction, not against it. When encountering obstacles, they continue applying propulsive force, generating fluid flows that create stresses in the surrounding medium. These microscopic stresses propagate through the system via fluid flow patterns around particles, pressure gradients, hydrodynamic interactions between particles, and elastic deformations in solid or viscoelastic media. Collectively, these mechanisms generate the macroscopic active stress tensor:</p>
 <p><span class="math display">\[\sigma_{ij}^{active} = -\zeta \Delta \mu \int \mathbf{n}_i \mathbf{n}_j c(\mathbf{r}, \mathbf{n}) d\mathbf{n}\]</span></p>
-<p>where <span class="math inline">\(c(\mathbf{r}, \mathbf{n})\)</span> is the particle distribution and <span class="math inline">\(\zeta \Delta \mu\)</span> represents self-propulsion strength. The negative sign indicates most ABPs are “pushers” generating extensile stresses along their motion direction.</p>
-<p>To describe active stresses more generally in a material, we need to use tensors, which are mathematical objects that represent forces acting in different directions.</p>
-<p>The active stress tensor can be written as:</p>
-<p><span class="math display">\[\sigma_{ij}^{active} = \alpha c(r,t) Q_{ij}(r,t)\]</span></p>
-<p>This equation has three important parts:</p>
-<ul>
-<li><span class="math inline">\(\alpha\)</span> is the activity parameter (how strongly the active components generate force)</li>
-<li><span class="math inline">\(c(r,t)\)</span> is the concentration of active components at position <span class="math inline">\(r\)</span> and time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(Q_{ij}(r,t)\)</span> is the order parameter tensor, which describes how the active units are oriented</li>
-</ul>
-<p>For the simplest case where active particles don’t have a preferred direction (isotropic case), the stress takes a simpler form: <span class="math display">\[\sigma_{ij}^{active} = -\zeta \Delta \mu c(r,t) \delta_{ij}\]</span></p>
-<p>Here, <span class="math inline">\(\zeta \Delta \mu\)</span> represents how strongly each active unit generates force, and <span class="math inline">\(\delta_{ij}\)</span> is the identity tensor (forces are equal in all directions).</p>
+<p>where <span class="math inline">\(c(\mathbf{r}, \mathbf{n})\)</span> is the particle distribution and <span class="math inline">\(\zeta \Delta \mu\)</span> represents self-propulsion strength. The negative sign indicates most ABPs are “pushers” generating extensile stresses along their motion direction (the pusher/puller distinction is introduced for microswimmers in Lecture 5, and its extensile/contractile counterpart for active nematics in Lecture 8).</p>
+<p>For an orientationally ordered material the active stress is carried by the nematic order-parameter tensor <span class="math inline">\(Q_{ij}\)</span> (defined in Lecture 8):</p>
+<p><span class="math display">\[\sigma_{ij}^{active} = \alpha\, c(r,t)\, Q_{ij}(r,t)\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is the activity parameter and <span class="math inline">\(c(r,t)\)</span> the concentration of active units. This is the same active stress that drives the instabilities of active nematics in Lecture 8 (<span class="math inline">\(\sigma^{active} = -\zeta \mathbf{Q}\)</span>); here we follow its consequences for the bulk mechanical response rather than for the flow. In the isotropic case (no orientational order) it reduces to a uniform active pressure, <span class="math display">\[\sigma_{ij}^{active} = -\zeta \Delta \mu\, c(r,t)\, \delta_{ij},\]</span> with <span class="math inline">\(\delta_{ij}\)</span> the identity tensor.</p>
 <p>The key takeaway is that active stresses:</p>
 <ol type="1">
 <li>Are proportional to the concentration of active components</li>
@@ -407,172 +405,129 @@ Figure&nbsp;1— Visualization of active stress generation by a chain of self-pr
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> FancyArrowPatch</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> patches</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid for visualization</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dipole positions and types (pusher = +1, puller = -1)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dipoles <span class="op">=</span> [</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},   <span class="co"># pusher</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},   <span class="co"># puller</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},  <span class="co"># pusher</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},  <span class="co"># puller</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the flow field from all dipoles</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># For a 2D force dipole: u_i = sum over dipoles of (source velocity from each dipole)</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate using a simplified dipole potential</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.zeros_like(X)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> np.zeros_like(Y)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    r_x <span class="op">=</span> X <span class="op">-</span> dipole[<span class="st">'x'</span>]</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    r_y <span class="op">=</span> Y <span class="op">-</span> dipole[<span class="st">'y'</span>]</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.sqrt(r_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> r_y<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Avoid singularities</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.maximum(r, <span class="fl">0.3</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dipole velocity field (pushing/pulling along x-axis)</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pusher: forces in opposite directions create flow away along axis</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Puller: forces pull inward</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    strength <span class="op">=</span> dipole[<span class="st">'type'</span>] <span class="op">*</span> dipole[<span class="st">'strength'</span>]</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flow components (simplified dipole flow pattern)</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    U <span class="op">+=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>r<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>r<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    V <span class="op">+=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">*</span>r_y<span class="op">/</span>r<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> LogNorm</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid for visualization</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dipole positions and types (pusher = +1, puller = -1)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>dipoles <span class="op">=</span> [</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},   <span class="co"># pusher</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},   <span class="co"># puller</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},  <span class="co"># pusher</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'x'</span>: <span class="fl">1.5</span>, <span class="st">'y'</span>: <span class="op">-</span><span class="fl">1.5</span>, <span class="st">'type'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'strength'</span>: <span class="fl">1.0</span>},  <span class="co"># puller</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Force-dipole (stresslet) flow field oriented along the x-axis.</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Sign convention: strength &gt; 0 = pusher (extensile, pushes fluid out along the</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># axis and draws it in from the sides); strength &lt; 0 = puller (contractile, the</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># reverse).</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dipole_field(X, Y, x0, y0, strength, core<span class="op">=</span><span class="fl">0.4</span>):</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    r_x <span class="op">=</span> X <span class="op">-</span> x0</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    r_y <span class="op">=</span> Y <span class="op">-</span> y0</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.maximum(np.sqrt(r_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> r_y<span class="op">**</span><span class="dv">2</span>), core)  <span class="co"># clamp the singular core</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>r<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>r<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">*</span>r_y<span class="op">/</span>r<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U, V</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Map flow speed to a streamline linewidth that stays legible: normalise to a</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># high percentile (not the singular maximum) so the bulk pattern remains visible.</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stream_linewidth(U, V, scale<span class="op">=</span><span class="fl">2.2</span>):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    speed <span class="op">=</span> np.sqrt(U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ref <span class="op">=</span> np.percentile(speed, <span class="dv">99</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.3</span> <span class="op">+</span> scale <span class="op">*</span> np.clip(speed <span class="op">/</span> ref, <span class="dv">0</span>, <span class="dv">1</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with subplots</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">18</span>, <span class="fl">6.5</span>))</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize for visualization</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>U_norm <span class="op">=</span> U <span class="op">/</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(U))</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>V_norm <span class="op">=</span> V <span class="op">/</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(V))</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with subplots</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">16</span>, <span class="dv">5</span>))</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Pusher configuration</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalculate for pusher only</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>U_p <span class="op">=</span> np.zeros_like(X)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>V_p <span class="op">=</span> np.zeros_like(Y)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># pusher only</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        r_x <span class="op">=</span> X <span class="op">-</span> dipole[<span class="st">'x'</span>]</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        r_y <span class="op">=</span> Y <span class="op">-</span> dipole[<span class="st">'y'</span>]</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> np.maximum(r, <span class="fl">0.3</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        U_p <span class="op">+=</span> dipole[<span class="st">'strength'</span>] <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>r<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>r<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        V_p <span class="op">+=</span> dipole[<span class="st">'strength'</span>] <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">*</span>r_y<span class="op">/</span>r<span class="op">**</span><span class="dv">4</span>)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streamlines for pushers</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>speed <span class="op">=</span> np.sqrt(U_p<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V_p<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>speed <span class="op">/</span> speed.<span class="bu">max</span>()</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U_p, V_p, color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span>lw, density<span class="op">=</span><span class="fl">1.5</span>, arrowsize<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark pusher positions</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">12</span>, label<span class="op">=</span><span class="st">'Pusher'</span> <span class="cf">if</span> dipole <span class="op">==</span> dipoles[<span class="dv">0</span>] <span class="cf">else</span> <span class="st">''</span>)</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Draw force dipole visualization</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        ax.arrow(dipole[<span class="st">'x'</span>]<span class="op">-</span><span class="fl">0.3</span>, dipole[<span class="st">'y'</span>], <span class="fl">0.3</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.15</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'red'</span>, ec<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        ax.arrow(dipole[<span class="st">'x'</span>]<span class="op">+</span><span class="fl">0.3</span>, dipole[<span class="st">'y'</span>], <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.15</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'red'</span>, ec<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Pusher Configuration</span><span class="ch">\n</span><span class="st">(Extensile Stress)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Puller configuration</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>U_pull <span class="op">=</span> np.zeros_like(X)</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>V_pull <span class="op">=</span> np.zeros_like(Y)</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:  <span class="co"># puller only</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        r_x <span class="op">=</span> X <span class="op">-</span> dipole[<span class="st">'x'</span>]</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        r_y <span class="op">=</span> Y <span class="op">-</span> dipole[<span class="st">'y'</span>]</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> np.maximum(r, <span class="fl">0.3</span>)</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>        U_pull <span class="op">+=</span> dipole[<span class="st">'strength'</span>] <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>r<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>r<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>        V_pull <span class="op">+=</span> dipole[<span class="st">'strength'</span>] <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">*</span>r_y<span class="op">/</span>r<span class="op">**</span><span class="dv">4</span>)</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>speed <span class="op">=</span> np.sqrt(U_pull<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V_pull<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>speed <span class="op">/</span> speed.<span class="bu">max</span>()</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U_pull, V_pull, color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span>lw, density<span class="op">=</span><span class="fl">1.5</span>, arrowsize<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark puller positions</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'bs'</span>, markersize<span class="op">=</span><span class="dv">12</span>, label<span class="op">=</span><span class="st">'Puller'</span> <span class="cf">if</span> dipole <span class="op">==</span> dipoles[<span class="dv">1</span>] <span class="cf">else</span> <span class="st">''</span>)</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Draw force dipole visualization</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>        ax.arrow(dipole[<span class="st">'x'</span>]<span class="op">-</span><span class="fl">0.3</span>, dipole[<span class="st">'y'</span>], <span class="fl">0.3</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.15</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>        ax.arrow(dipole[<span class="st">'x'</span>]<span class="op">+</span><span class="fl">0.3</span>, dipole[<span class="st">'y'</span>], <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.15</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Puller Configuration</span><span class="ch">\n</span><span class="st">(Contractile Stress)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: Combined system showing stress magnitude</span></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>]</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalculate full field</span></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>U_full <span class="op">=</span> np.zeros_like(X)</span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>V_full <span class="op">=</span> np.zeros_like(Y)</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    r_x <span class="op">=</span> X <span class="op">-</span> dipole[<span class="st">'x'</span>]</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>    r_y <span class="op">=</span> Y <span class="op">-</span> dipole[<span class="st">'y'</span>]</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.maximum(r, <span class="fl">0.3</span>)</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    strength <span class="op">=</span> dipole[<span class="st">'type'</span>] <span class="op">*</span> dipole[<span class="st">'strength'</span>]</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>    U_full <span class="op">+=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>r<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>r<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>    V_full <span class="op">+=</span> strength <span class="op">*</span> (<span class="dv">3</span><span class="op">*</span>r_x<span class="op">*</span>r_y<span class="op">/</span>r<span class="op">**</span><span class="dv">4</span>)</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Magnitude of flow field (proportional to stress)</span></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>stress_magnitude <span class="op">=</span> np.sqrt(U_full<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V_full<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot contour of stress magnitude</span></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> ax.contourf(X, Y, stress_magnitude, levels<span class="op">=</span><span class="dv">15</span>, cmap<span class="op">=</span><span class="st">'RdYlBu_r'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(contour, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">'Stress Magnitude'</span>)</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay streamlines</span></span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>speed <span class="op">=</span> stress_magnitude</span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> <span class="fl">1.5</span><span class="op">*</span>speed <span class="op">/</span> speed.<span class="bu">max</span>()</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U_full, V_full, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span>lw<span class="op">*</span><span class="fl">0.5</span>, density<span class="op">=</span><span class="fl">1.0</span>, arrowsize<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark all dipole positions</span></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, dipole <span class="kw">in</span> <span class="bu">enumerate</span>(dipoles):</span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'r^'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'bv'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Combined System</span><span class="ch">\n</span><span class="st">Stress Field Magnitude'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: a single pusher (extensile) -- flow OUT along the axis, IN from the sides</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>U, V <span class="op">=</span> dipole_field(X, Y, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="op">+</span><span class="fl">1.0</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U, V, color<span class="op">=</span><span class="st">'#c0392b'</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>              linewidth<span class="op">=</span>stream_linewidth(U, V), density<span class="op">=</span><span class="fl">1.3</span>, arrowsize<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'#c0392b'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Force-dipole arrows point outward for a pusher</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.9</span>, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="fl">0.15</span>, <span class="dv">0</span>),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-|&gt;'</span>, color<span class="op">=</span><span class="st">'#c0392b'</span>, lw<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="op">-</span><span class="fl">0.9</span>, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="dv">0</span>),</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-|&gt;'</span>, color<span class="op">=</span><span class="st">'#c0392b'</span>, lw<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: a single puller (contractile) -- flow IN along the axis, OUT to the sides</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>U, V <span class="op">=</span> dipole_field(X, Y, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">1.0</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U, V, color<span class="op">=</span><span class="st">'#2255aa'</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>              linewidth<span class="op">=</span>stream_linewidth(U, V), density<span class="op">=</span><span class="fl">1.3</span>, arrowsize<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'s'</span>, color<span class="op">=</span><span class="st">'#2255aa'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Force-dipole arrows point inward for a puller</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.15</span>, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="fl">0.9</span>, <span class="dv">0</span>),</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-|&gt;'</span>, color<span class="op">=</span><span class="st">'#2255aa'</span>, lw<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="op">-</span><span class="fl">0.9</span>, <span class="dv">0</span>),</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-|&gt;'</span>, color<span class="op">=</span><span class="st">'#2255aa'</span>, lw<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: combined field from the full collection of dipoles</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>]</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>U_full <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>V_full <span class="op">=</span> np.zeros_like(Y)</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    u, v <span class="op">=</span> dipole_field(X, Y, dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>],</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>                        dipole[<span class="st">'type'</span>] <span class="op">*</span> dipole[<span class="st">'strength'</span>])</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    U_full <span class="op">+=</span> u</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    V_full <span class="op">+=</span> v</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress magnitude spans several orders of magnitude near the cores, so use a</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="co"># logarithmic colour scale clipped to percentiles to reveal the spatial structure.</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>stress_magnitude <span class="op">=</span> np.sqrt(U_full<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V_full<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>vmin <span class="op">=</span> <span class="bu">max</span>(np.percentile(stress_magnitude, <span class="dv">40</span>), <span class="fl">1e-2</span>)</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>vmax <span class="op">=</span> np.percentile(stress_magnitude, <span class="dv">99</span>)</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>ax.pcolormesh(X, Y, stress_magnitude, cmap<span class="op">=</span><span class="st">'magma'</span>,</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>              norm<span class="op">=</span>LogNorm(vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax), shading<span class="op">=</span><span class="st">'auto'</span>)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>ax.streamplot(X, Y, U_full, V_full, color<span class="op">=</span><span class="st">'white'</span>,</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>              linewidth<span class="op">=</span><span class="fl">0.7</span>, density<span class="op">=</span><span class="fl">1.0</span>, arrowsize<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark dipole positions: pushers (red up-triangle), pullers (blue down-triangle)</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dipole <span class="kw">in</span> dipoles:</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dipole[<span class="st">'type'</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'^'</span>, color<span class="op">=</span><span class="st">'#c0392b'</span>,</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>                markersize<span class="op">=</span><span class="dv">9</span>, markeredgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>        ax.plot(dipole[<span class="st">'x'</span>], dipole[<span class="st">'y'</span>], <span class="st">'v'</span>, color<span class="op">=</span><span class="st">'#2255aa'</span>,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>                markersize<span class="op">=</span><span class="dv">9</span>, markeredgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(w_pad<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-active-stress-field" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-active-stress-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture10_files/figure-html/fig-active-stress-field-output-1.png" width="584" height="188" class="figure-img">
+<img src="lecture10_files/figure-html/fig-active-stress-field-output-1.png" width="670" height="232" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-stress-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— Active stress field visualization from a collection of force dipoles showing pusher (extensile) and puller (contractile) flow patterns and their contributions to the macroscopic stress tensor.
+Figure&nbsp;2— Active stress field from a collection of force dipoles. Left: a single pusher (extensile) flow field. Middle: a single puller (contractile) flow field. Right: the combined field of several dipoles, where the color map shows the local stress magnitude on a logarithmic scale (brighter = higher stress) and the white streamlines trace the resulting flow.
 </figcaption>
 </figure>
 </div>
@@ -698,7 +653,7 @@ Current Research Frontiers in Force Transmission
 <li>Create spatially heterogeneous fluctuations even in homogeneous materials</li>
 </ul></li>
 </ul>
-<p>These enhanced fluctuations manifest as measurable mechanical phenomena. For instance, in active gels containing molecular motors, the local stress fluctuations can be orders of magnitude larger than thermal expectations, driving spontaneous flows and deformations absent in passive materials.</p>
+<p>These enhanced fluctuations manifest as measurable mechanical phenomena. For instance, in active gels containing molecular motors, the local stress fluctuations can be orders of magnitude larger than thermal expectations, driving spontaneous flows and deformations absent in passive materials. They are the mechanical analogue of the anomalous velocity fluctuations and scale-free correlations seen in collective motion (Lecture 9).</p>
 </section>
 <section id="mechanical-consequences-of-active-fluctuations" class="level3">
 <h3 class="anchored" data-anchor-id="mechanical-consequences-of-active-fluctuations">Mechanical Consequences of Active Fluctuations</h3>
@@ -802,116 +757,73 @@ Kramers-Kronig Relations
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">500</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># temperature (in units of k_B T)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>G0 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># elastic modulus</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># viscosity</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>A_active <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># amplitude of active contribution</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># power law exponent</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a simple viscoelastic model for passive material</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Complex modulus: G*(omega) = G0 + i*eta*omega (simplified model)</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>G_star_passive <span class="op">=</span> G0 <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> eta <span class="op">*</span> omega</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Imaginary part of 1/G*(omega)</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>one_over_G_star <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> G_star_passive</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Im_inv_G <span class="op">=</span> np.imag(one_over_G_star)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Passive (thermal) contribution to PSD</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>S_eq <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> k_B <span class="op">*</span> T <span class="op">/</span> omega<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> Im_inv_G</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Active contribution to PSD (power law)</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>S_active_contrib <span class="op">=</span> A_active <span class="op">/</span> omega<span class="op">**</span>beta</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Total PSD for active system</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>S_active_total <span class="op">=</span> S_eq <span class="op">+</span> S_active_contrib</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Full PSD on log-log scale</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_eq, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Passive (thermal)'</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_active_contrib, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'Active contribution </span><span class="kw">(</span><span class="dv">$</span><span class="vs">A/</span><span class="er">\</span><span class="vs">omega</span><span class="dv">^</span><span class="vs">{</span><span class="dv">\b</span><span class="vs">eta}</span><span class="dv">$</span><span class="vs">, </span><span class="dv">$\b</span><span class="vs">eta=2</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_active_total, <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Active system (total)'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Add reference lines to show power law behavior</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>omega_ref <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co"># -2 slope (passive high-freq behavior)</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>ref_m2 <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> (omega_ref)<span class="op">**</span>(<span class="op">-</span><span class="dv">2</span>)</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega_ref, ref_m2, <span class="st">'b:'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="er">\</span><span class="vs">propto </span><span class="er">\</span><span class="vs">omega</span><span class="dv">^</span><span class="vs">{-2}</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># -2 slope (active low-freq behavior)</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>ref_m2_active <span class="op">=</span> <span class="fl">0.01</span> <span class="op">*</span> (omega_ref)<span class="op">**</span>(<span class="op">-</span><span class="dv">2</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega_ref, ref_m2_active, <span class="st">'r:'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="er">\</span><span class="vs">propto </span><span class="er">\</span><span class="vs">omega</span><span class="dv">^</span><span class="vs">{-2}</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">active</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Frequency </span><span class="dv">$</span><span class="er">\</span><span class="vs">omega</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Power Spectral Density </span><span class="dv">$</span><span class="vs">S_x</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Full Power Spectral Density Comparison'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">100</span>)</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Ratio of active to passive (showing enhancement)</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Avoid division by zero</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>S_eq_safe <span class="op">=</span> np.maximum(S_eq, <span class="fl">1e-10</span>)</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> S_active_total <span class="op">/</span> S_eq_safe</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, ratio, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Total / Passive'</span>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight the low-frequency region where active effects dominate</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>omega_low <span class="op">=</span> omega[omega <span class="op">&lt;</span> <span class="fl">0.1</span>]</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>ratio_low <span class="op">=</span> ratio[omega <span class="op">&lt;</span> <span class="fl">0.1</span>]</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>ax.fill_between(omega_low, ratio_low, <span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'purple'</span>, label<span class="op">=</span><span class="st">'Active enhancement region'</span>)</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line at ratio = 1</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate regions</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.05</span>, <span class="dv">5</span>, <span class="st">'Low-freq</span><span class="ch">\n</span><span class="st">active dom.'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ha<span class="op">=</span><span class="st">'center'</span>,</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">50</span>, <span class="fl">1.2</span>, <span class="st">'High-freq</span><span class="ch">\n</span><span class="st">thermal dom.'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ha<span class="op">=</span><span class="st">'center'</span>,</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Frequency </span><span class="dv">$</span><span class="er">\</span><span class="vs">omega</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Enhancement Ratio </span><span class="dv">$</span><span class="vs">S_x</span><span class="dv">^</span><span class="vs">{total}/S_x</span><span class="dv">^</span><span class="vs">{eq}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Low-Frequency Enhancement from Activity'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">100</span>)</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.5</span>, <span class="dv">100</span>)</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Key observations:"</span>)</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1. At low frequencies (ω &lt; 0.1): Active contribution dominates, S_x ∝ ω^(-</span><span class="sc">{</span>beta<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2. At high frequencies (ω &gt; 1): Thermal contribution dominates (Kramers-Kronig constrained)"</span>)</span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3. The active contribution violates Kramers-Kronig relations by decoupling S_x from dissipation"</span>)</span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"4. Maximum enhancement occurs at ω ≈ </span><span class="sc">{</span>omega[np.argmax(ratio)]<span class="sc">:.3f}</span><span class="ss">, with ratio = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(ratio)<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>A_active <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># amplitude of the active low-frequency excess</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">2.0</span>         <span class="co"># active power-law exponent</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Passive (thermal-equilibrium) PSD: a Lorentzian that obeys the</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># fluctuation-dissipation theorem -- it plateaus at low frequency, falls off as</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 1/omega^2 at high frequency, and is positive everywhere.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>S_eq <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> k_B <span class="op">*</span> T <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> omega<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Active contribution: an extra 1/omega^beta excess at low frequency</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>S_active_contrib <span class="op">=</span> A_active <span class="op">/</span> omega<span class="op">**</span>beta</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Total PSD of the active system</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>S_active_total <span class="op">=</span> S_eq <span class="op">+</span> S_active_contrib</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">17</span>, <span class="dv">8</span>))</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: the full power spectral density</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_eq, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_active_contrib, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, S_active_total, <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Frequency </span><span class="dv">$</span><span class="er">\</span><span class="vs">omega</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Power spectral density </span><span class="dv">$</span><span class="vs">S_x</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Power spectral density'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">100</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: ratio of active to passive (the low-frequency enhancement)</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> S_active_total <span class="op">/</span> S_eq</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax.loglog(omega, ratio, color<span class="op">=</span><span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>omega_low <span class="op">=</span> omega[omega <span class="op">&lt;</span> <span class="fl">0.1</span>]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>ratio_low <span class="op">=</span> ratio[omega <span class="op">&lt;</span> <span class="fl">0.1</span>]</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>ax.fill_between(omega_low, ratio_low, <span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'purple'</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.04</span>, <span class="dv">200</span>, <span class="st">'low-freq</span><span class="ch">\n</span><span class="st">active'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ha<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">20</span>, <span class="fl">2.5</span>, <span class="st">'high-freq</span><span class="ch">\n</span><span class="st">thermal'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ha<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Frequency </span><span class="dv">$</span><span class="er">\</span><span class="vs">omega</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Enhancement ratio </span><span class="dv">$</span><span class="vs">S_x</span><span class="dv">^</span><span class="vs">{</span><span class="ch">\r</span><span class="vs">m total}/S_x</span><span class="dv">^</span><span class="vs">{</span><span class="ch">\r</span><span class="vs">m eq}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Low-frequency enhancement'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">100</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.8</span>, <span class="dv">2000</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-psd-active-passive" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-psd-active-passive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture10_files/figure-html/fig-psd-active-passive-output-1.png" width="639" height="174" class="figure-img">
+<img src="lecture10_files/figure-html/fig-psd-active-passive-output-1.png" width="636" height="287" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-psd-active-passive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Power spectral density <span class="math inline">\(S_x(\omega)\)</span> for passive (thermal equilibrium) and active systems, demonstrating the characteristic <span class="math inline">\(1/\omega^\beta\)</span> enhancement at low frequencies. The active contribution violates the Kramers-Kronig relations and drives the enhanced fluctuations observed in active materials.
+Figure&nbsp;4— Power spectral density <span class="math inline">\(S_x(\omega)\)</span> for passive and active systems. Left: the passive thermal spectrum (blue), the active low-frequency contribution <span class="math inline">\(A/\omega^\beta\)</span> with <span class="math inline">\(\beta=2\)</span> (red dashed), and their sum for the active system (green). Right: the enhancement ratio <span class="math inline">\(S_x^\text{total}/S_x^\text{eq}\)</span> (purple); it is large at low frequency, where the active contribution dominates (shaded region), and approaches one at high frequency, where ordinary thermal fluctuations dominate. The active contribution violates the Kramers-Kronig relations and drives the enhanced low-frequency fluctuations characteristic of active materials.
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Key observations:
-1. At low frequencies (ω &lt; 0.1): Active contribution dominates, S_x ∝ ω^(-2.0)
-2. At high frequencies (ω &gt; 1): Thermal contribution dominates (Kramers-Kronig constrained)
-3. The active contribution violates Kramers-Kronig relations by decoupling S_x from dissipation
-4. Maximum enhancement occurs at ω ≈ 0.010, with ratio = 9000024999375.0</code></pre>
 </div>
-</div>
-<p>This visualization reveals a crucial feature of active materials: the power spectral density exhibits a characteristic low-frequency enhancement that is qualitatively different from equilibrium systems. The <span class="math inline">\(1/\omega^2\)</span> behavior at low frequencies demonstrates that the material’s fluctuations are amplified precisely where thermal motions would be suppressed in passive systems. This enhancement is not a curiosity—it drives important biological and synthetic active material processes, from cell migration powered by motor proteins to self-assembly in engineered active colloidal suspensions.</p>
+<p>The low-frequency plateau of the passive (equilibrium) spectrum is itself meaningful: it reflects elastic confinement. A particle held by a harmonic restoring force – here the elastic modulus <span class="math inline">\(G_0\)</span> of the surrounding medium, which sets a relaxation time <span class="math inline">\(\tau = \eta/G_0\)</span> – has bounded fluctuations, so <span class="math inline">\(S_x(\omega)\)</span> saturates below the corner frequency <span class="math inline">\(\omega_c = 1/\tau\)</span> and falls as <span class="math inline">\(1/\omega^2\)</span> above it. Without confinement (<span class="math inline">\(G_0 \to 0\)</span>, a free Brownian particle) the plateau disappears and <span class="math inline">\(S_x \propto 1/\omega^2\)</span> all the way to zero frequency, the signature of unbounded diffusion.</p>
+<p>This visualization reveals a crucial feature of active materials: the power spectral density exhibits a characteristic low-frequency enhancement that is qualitatively different from equilibrium systems. The <span class="math inline">\(1/\omega^2\)</span> behavior at low frequencies demonstrates that the material’s fluctuations are amplified precisely where thermal motions would be suppressed (the plateau) in passive systems. This enhancement is not a curiosity – it drives important biological and synthetic active material processes, from cell migration powered by motor proteins to self-assembly in engineered active colloidal suspensions.</p>
 <p>Beyond modifying fluctuation spectra, this broken symmetry enables entirely new mechanical phenomena.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -1060,167 +972,106 @@ Origin of Odd Elasticity in Starfish Embryos
 <div id="cell-fig-swim-pressure-eos" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">2</span>  <span class="co"># dimension</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define density range</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="fl">3.0</span>, <span class="dv">300</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define different activity levels (v0^2 / (2*d*D_r))</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>D_A_values <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]  <span class="co"># Active diffusivity</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="ss">f'$D_A$ = </span><span class="sc">{</span>da<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> da <span class="kw">in</span> D_A_values]</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Pressure vs density for different activity levels</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_A, color, label <span class="kw">in</span> <span class="bu">zip</span>(D_A_values, colors, labels):</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Swim pressure contribution (linear in density)</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    P_swim <span class="op">=</span> n <span class="op">*</span> D_A</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ideal gas contribution (thermal)</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    P_ideal <span class="op">=</span> n <span class="op">*</span> k_B <span class="op">*</span> T</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a simple pairwise interaction term (like excluded volume effects)</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This creates a density-dependent correction that can lead to non-monotonic behavior</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># excluded volume parameter</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    P_interaction <span class="op">=</span> <span class="op">-</span>b <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span>  <span class="co"># repulsive at low density, but saturates effects at high density</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Total pressure with activity-enhanced effects</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The key is that swim pressure affects the effective "stiffness" of interactions</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    P_total <span class="op">=</span> P_ideal <span class="op">+</span> P_swim <span class="op">+</span> P_interaction</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    ax.plot(n, P_total, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Add reference line for passive system (D_A = 0)</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>P_passive <span class="op">=</span> n <span class="op">*</span> k_B <span class="op">*</span> T <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ax.plot(n, P_passive, <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Passive ($D_A = 0$)'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Density $n$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Pressure $P$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Swim Pressure vs Density (Different Activities)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">3</span>)</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Phase diagram showing spinodal region</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="co"># For each activity level, compute the spinodal curve</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co"># dp/dn = 0 defines the limit of metastability</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>D_A_dense <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="dv">100</span>)</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>n_spinodal_low <span class="op">=</span> []</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>n_spinodal_high <span class="op">=</span> []</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_A <span class="kw">in</span> D_A_dense:</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pressure function: P = n*k_B*T + n*D_A - b*n^2</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dP/dn = k_B*T + D_A - 2*b*n = 0</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n_spinodal = (k_B*T + D_A) / (2*b)</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    n_spin <span class="op">=</span> (k_B <span class="op">*</span> T <span class="op">+</span> D_A) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="fl">0.5</span>)</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For the non-monotonic case, we can have two spinodal points</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use a more complex interaction model</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># P = n*k_B*T + n*D_A - 0.5*n^2 + 0.1*n^3 (cubic correction)</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dP/dn = k_B*T + D_A - n + 0.3*n^2 = 0</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This is a quadratic in n</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simplified: consider the van der Waals-like construction</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For activity-induced spinodal</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    coeff_a <span class="op">=</span> <span class="fl">0.3</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>    coeff_b <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> k_B <span class="op">*</span> T <span class="op">+</span> D_A</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    discriminant <span class="op">=</span> coeff_b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>coeff_a<span class="op">*</span>const</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> discriminant <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>        n_s1 <span class="op">=</span> (<span class="op">-</span>coeff_b <span class="op">-</span> np.sqrt(discriminant)) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>coeff_a)</span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>        n_s2 <span class="op">=</span> (<span class="op">-</span>coeff_b <span class="op">+</span> np.sqrt(discriminant)) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>coeff_a)</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n_s1 <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>            n_spinodal_low.append(n_s1)</span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>            n_spinodal_low.append(np.nan)</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n_s2 <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>            n_spinodal_high.append(n_s2)</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>            n_spinodal_high.append(np.nan)</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>        n_spinodal_low.append(np.nan)</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>        n_spinodal_high.append(np.nan)</span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>n_spinodal_low <span class="op">=</span> np.array(n_spinodal_low)</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>n_spinodal_high <span class="op">=</span> np.array(n_spinodal_high)</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot spinodal curves</span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>valid_low <span class="op">=</span> <span class="op">~</span>np.isnan(n_spinodal_low)</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>valid_high <span class="op">=</span> <span class="op">~</span>np.isnan(n_spinodal_high)</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[valid_low], n_spinodal_low[valid_low], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Spinodal (low $n$)'</span>)</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[valid_high], n_spinodal_high[valid_high], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Spinodal (high $n$)'</span>)</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill the spinodal region</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>ax.fill_between(D_A_dense[valid_low], n_spinodal_low[valid_low], n_spinodal_high[valid_high],</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>                alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Spinodal (unstable region)'</span>)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some phase boundary points (binodal curve would connect these)</span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplified: connect with a straight line approximation</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="fl">0.8</span>], [<span class="fl">0.5</span>, <span class="fl">1.5</span>], <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Binodal (coexistence curve)'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Critical point</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="fl">0.35</span>, <span class="fl">1.15</span>, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">20</span>, label<span class="op">=</span><span class="st">'Critical point'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Activity Parameter </span><span class="dv">$</span><span class="vs">D_A = v_0</span><span class="dv">^</span><span class="vs">2/</span><span class="kw">(</span><span class="vs">2dD_r</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Density $n$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Phase Diagram: MIPS from Swim Pressure'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">0.8</span>)</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Phase separation mechanism:"</span>)</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1. Swim pressure P_swim = n * D_A increases linearly with activity"</span>)</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2. This creates non-monotonic P(n) curves at sufficient activity"</span>)</span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3. The spinodal region (where ∂P/∂n &lt; 0) marks absolute instability"</span>)</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"4. MIPS phase boundary emerges from the interplay of swim pressure and"</span>)</span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   density-dependent interactions (excluded volume, hydrodynamics)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">2</span>  <span class="co"># dimension</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define density range</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="fl">3.0</span>, <span class="dv">300</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define different activity levels (v0^2 / (2*d*D_r))</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>D_A_values <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>]  <span class="co"># Active diffusivity</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="ss">f'$D_A$ = </span><span class="sc">{</span>da<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> da <span class="kw">in</span> D_A_values]</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">17</span>, <span class="dv">8</span>))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Pressure vs density for different activity levels</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_A, color, label <span class="kw">in</span> <span class="bu">zip</span>(D_A_values, colors, labels):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Swim pressure contribution (linear in density)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    P_swim <span class="op">=</span> n <span class="op">*</span> D_A</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ideal gas contribution (thermal)</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    P_ideal <span class="op">=</span> n <span class="op">*</span> k_B <span class="op">*</span> T</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a simple pairwise interaction term (like excluded volume effects)</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This creates a density-dependent correction that can lead to non-monotonic behavior</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># excluded volume parameter</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    P_interaction <span class="op">=</span> <span class="op">-</span>b <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span>  <span class="co"># repulsive at low density, but saturates effects at high density</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Total pressure with activity-enhanced effects</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The key is that swim pressure affects the effective "stiffness" of interactions</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    P_total <span class="op">=</span> P_ideal <span class="op">+</span> P_swim <span class="op">+</span> P_interaction</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    ax.plot(n, P_total, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Add reference line for passive system (D_A = 0)</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>P_passive <span class="op">=</span> n <span class="op">*</span> k_B <span class="op">*</span> T <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>ax.plot(n, P_passive, <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Passive ($D_A = 0$)'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Density $n$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Pressure $P$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Equation of state $P(n)$'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">3</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Phase diagram showing spinodal region</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Schematic MIPS phase diagram: a mean-field coexistence dome that opens above a</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co"># critical activity D_c. Inside the spinodal the homogeneous state is unstable.</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>D_A_dense <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="dv">200</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>D_c, n_c <span class="op">=</span> <span class="fl">0.3</span>, <span class="fl">1.0</span>           <span class="co"># critical activity and critical density</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>A_bin, A_spin <span class="op">=</span> <span class="fl">1.25</span>, <span class="fl">0.85</span>    <span class="co"># widths of the binodal and spinodal domes</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>above <span class="op">=</span> D_A_dense <span class="op">&gt;</span> D_c</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.sqrt(np.clip(D_A_dense <span class="op">-</span> D_c, <span class="dv">0</span>, <span class="va">None</span>))</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>spin_low, spin_high <span class="op">=</span> n_c <span class="op">-</span> A_spin <span class="op">*</span> w, n_c <span class="op">+</span> A_spin <span class="op">*</span> w</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>bin_low, bin_high <span class="op">=</span> n_c <span class="op">-</span> A_bin <span class="op">*</span> w, n_c <span class="op">+</span> A_bin <span class="op">*</span> w</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax.fill_between(D_A_dense[above], spin_low[above], spin_high[above],</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>                alpha<span class="op">=</span><span class="fl">0.25</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Unstable (spinodal) region'</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[above], spin_low[above], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>, label<span class="op">=</span><span class="st">'Spinodal'</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[above], spin_high[above], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[above], bin_low[above], <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>, alpha<span class="op">=</span><span class="fl">0.85</span>, label<span class="op">=</span><span class="st">'Binodal (coexistence)'</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax.plot(D_A_dense[above], bin_high[above], <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax.plot(D_c, n_c, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">15</span>, label<span class="op">=</span><span class="st">'Critical point'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Activity Parameter </span><span class="dv">$</span><span class="vs">D_A = v_0</span><span class="dv">^</span><span class="vs">2/</span><span class="kw">(</span><span class="vs">2dD_r</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">a</span><span class="dv">.</span><span class="vs">u</span><span class="dv">.</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Density $n$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Phase diagram (MIPS)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-swim-pressure-eos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-swim-pressure-eos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture10_files/figure-html/fig-swim-pressure-eos-output-1.png" width="683" height="176" class="figure-img">
+<img src="lecture10_files/figure-html/fig-swim-pressure-eos-output-1.png" width="629" height="289" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-swim-pressure-eos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7— Swim pressure and active equation of state showing (left) how pressure varies with density for different activity levels, and (right) the phase diagram with spinodal (unstable) region where motility-induced phase separation occurs. Higher activity increases the swim pressure and shifts the spinodal point.
+Figure&nbsp;7— Swim pressure and active equation of state. Left: the pressure <span class="math inline">\(P(n)\)</span> versus density for increasing activity, <span class="math inline">\(D_A = 0.1, 0.3, 0.5, 0.7\)</span> (blue, green, orange, red), together with the passive limit <span class="math inline">\(D_A = 0\)</span> (dashed grey); higher activity raises the pressure. Right: the resulting phase diagram. Above a critical activity (red star) a coexistence region (binodal, green dashed) opens, enclosing an unstable spinodal region (blue curve, red shading), which is the signature of motility-induced phase separation.
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Phase separation mechanism:
-1. Swim pressure P_swim = n * D_A increases linearly with activity
-2. This creates non-monotonic P(n) curves at sufficient activity
-3. The spinodal region (where ∂P/∂n &lt; 0) marks absolute instability
-4. MIPS phase boundary emerges from the interplay of swim pressure and
-   density-dependent interactions (excluded volume, hydrodynamics)</code></pre>
 </div>
-</div>
-<p>This visualization illustrates the central role of swim pressure in active matter thermodynamics. Unlike passive systems where a simple equation of state (<span class="math inline">\(PV = Nk_BT\)</span> for ideal gas) captures the entire equilibrium behavior, active systems require careful tracking of how swim pressure modifies the stability landscape. The emergence of the spinodal region and phase separation at finite activity represents a fundamental non-equilibrium phase transition—one that cannot occur in passive systems at fixed temperature and density.</p>
+<p>This visualization illustrates the central role of swim pressure in active matter thermodynamics. Unlike passive systems where a simple equation of state (<span class="math inline">\(PV = Nk_BT\)</span> for ideal gas) captures the entire equilibrium behavior, active systems require careful tracking of how swim pressure modifies the stability landscape. The emergence of the spinodal region and phase separation at finite activity represents a fundamental non-equilibrium phase transition – one that cannot occur in passive systems at fixed temperature and density.</p>
 </section>
 </section>
 </section>
@@ -1327,124 +1178,124 @@ Figure&nbsp;9— Experimental demonstration of activity-induced stiffening throu
 <div id="cell-fig-stiffening-softening" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Differential modulus K vs stress sigma for passive and active networks</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress range</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="dv">5</span>, <span class="dv">300</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Passive system (baseline)</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># K_passive ~ sigma^(3/2) for semiflexible polymers</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>K_passive <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma, K_passive, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Passive network'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Active systems with different motor forces</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># K_active ~ (sigma_ext + sigma_active)^(3/2)</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>sigma_motor_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>]  <span class="co"># Internal motor-generated stress</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>colors_activity <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'cyan'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>labels_activity <span class="op">=</span> [<span class="st">'No motors'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 0.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.0$'</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 2.0$'</span>]</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sigma_a, color, label <span class="kw">in</span> <span class="bu">zip</span>(sigma_motor_values, colors_activity, labels_activity):</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Effective stress including motor contribution</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    sigma_eff <span class="op">=</span> sigma <span class="op">+</span> sigma_a</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    K_active <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma_eff<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    ax.loglog(sigma, K_active, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line showing sigma^(3/2) scaling</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>sigma_ref <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">100</span>)</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>K_ref <span class="op">=</span> sigma_ref<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma_ref, K_ref, <span class="st">'k:'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$</span><span class="ch">\\</span><span class="st">propto </span><span class="ch">\\</span><span class="st">sigma^{3/2}$ reference'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Applied Stress $</span><span class="ch">\\</span><span class="st">sigma$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Nonlinear Stress-Dependent Stiffening'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">5</span>)</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.01</span>, <span class="dv">10</span>)</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Modulus vs activity (non-monotonic behavior)</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity parameter (related to motor force generation)</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference stress (applied externally)</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>sigma_ext <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Stiffening contribution (activity increases network prestress)</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co"># K_stiffening ~ (sigma_ext + c_s * a)^(3/2) where c_s is coupling coefficient</span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>c_s <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># stiffening coupling</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>K_stiffening <span class="op">=</span> (sigma_ext <span class="op">+</span> c_s <span class="op">*</span> a)<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Softening contribution (activity causes defects, reduces yield stress)</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="co"># K_softening = K_max / (1 + c_soft * a) or similar saturation</span></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>c_soft <span class="op">=</span> <span class="fl">1.2</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>K_softening_factor <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.8</span> <span class="op">*</span> a)</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Total modulus showing competition</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>K_total <span class="op">=</span> K_stiffening <span class="op">*</span> K_softening_factor</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Also compute the stiffening-only case for comparison</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>K_stiffening_only <span class="op">=</span> K_stiffening</span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_stiffening_only, <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Stiffening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co"># And softening-only contribution to the modulus</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>K_softening_only <span class="op">=</span> sigma_ext<span class="op">**</span><span class="fl">1.5</span> <span class="op">*</span> K_softening_factor</span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_softening_only, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Softening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Total combined effect</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_total, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Net effect (stiffening + softening)'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the optimal activity where K is maximum</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>a_opt <span class="op">=</span> a[np.argmax(K_total)]</span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>K_opt <span class="op">=</span> np.<span class="bu">max</span>(K_total)</span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>ax.plot(a_opt, K_opt, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">20</span>, label<span class="op">=</span><span class="ss">f'Optimal activity ($a^* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">$)'</span>, zorder<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Regimes</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="dv">0</span>, a_opt, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Stiffening dominates'</span>)</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>ax.axvspan(a_opt, <span class="fl">2.5</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Softening dominates'</span>)</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Activity Parameter $a$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Non-Monotonic Activity Dependence'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">8</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">2.5</span>)</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotation arrows</span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">stiffening'</span>, xy<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>), xytext<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">softening'</span>, xy<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">1.2</span>), xytext<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">0.3</span>),</span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'red'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summary of stiffening/softening competition:"</span>)</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1. Low activity (a &lt; a*): Stiffening dominates via motor-generated prestress"</span>)</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - K ~ (σ_ext + σ_motor)^(3/2)"</span>)</span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Leads to dramatic modulus increase (up to 100-fold in actin-myosin)"</span>)</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2. High activity (a &gt; a*): Softening dominates via defect generation &amp; fluidization"</span>)</span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Reduced yield stress allows easier deformation"</span>)</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Network can approach unjamming transition"</span>)</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3. Optimal activity a* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">: Maximum material stiffness achieved"</span>)</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Allows precise tuning of mechanical properties through activity control"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'sans-serif'</span>})</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Differential modulus K vs stress sigma for passive and active networks</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress range</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="dv">5</span>, <span class="dv">300</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Passive system (baseline)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># K_passive ~ sigma^(3/2) for semiflexible polymers</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>K_passive <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma, K_passive, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Passive network'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Active systems with different motor forces</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># K_active ~ (sigma_ext + sigma_active)^(3/2)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>sigma_motor_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>]  <span class="co"># Internal motor-generated stress</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>colors_activity <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'cyan'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>labels_activity <span class="op">=</span> [<span class="st">'No motors'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 0.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.0$'</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 2.0$'</span>]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sigma_a, color, label <span class="kw">in</span> <span class="bu">zip</span>(sigma_motor_values, colors_activity, labels_activity):</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Effective stress including motor contribution</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    sigma_eff <span class="op">=</span> sigma <span class="op">+</span> sigma_a</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    K_active <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma_eff<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    ax.loglog(sigma, K_active, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line showing sigma^(3/2) scaling</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>sigma_ref <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">100</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>K_ref <span class="op">=</span> sigma_ref<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma_ref, K_ref, <span class="st">'k:'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$</span><span class="ch">\\</span><span class="st">propto </span><span class="ch">\\</span><span class="st">sigma^{3/2}$ reference'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Applied Stress $</span><span class="ch">\\</span><span class="st">sigma$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Nonlinear Stress-Dependent Stiffening'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">5</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.01</span>, <span class="dv">10</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Modulus vs activity (non-monotonic behavior)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity parameter (related to motor force generation)</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference stress (applied externally)</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>sigma_ext <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Stiffening contribution (activity increases network prestress)</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co"># K_stiffening ~ (sigma_ext + c_s * a)^(3/2) where c_s is coupling coefficient</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>c_s <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># stiffening coupling</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>K_stiffening <span class="op">=</span> (sigma_ext <span class="op">+</span> c_s <span class="op">*</span> a)<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Softening contribution (activity causes defects, reduces yield stress)</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="co"># K_softening = K_max / (1 + c_soft * a) or similar saturation</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>c_soft <span class="op">=</span> <span class="fl">1.2</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>K_softening_factor <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.8</span> <span class="op">*</span> a)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Total modulus showing competition</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>K_total <span class="op">=</span> K_stiffening <span class="op">*</span> K_softening_factor</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Also compute the stiffening-only case for comparison</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>K_stiffening_only <span class="op">=</span> K_stiffening</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_stiffening_only, <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Stiffening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># And softening-only contribution to the modulus</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>K_softening_only <span class="op">=</span> sigma_ext<span class="op">**</span><span class="fl">1.5</span> <span class="op">*</span> K_softening_factor</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_softening_only, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Softening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Total combined effect</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_total, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Net effect (stiffening + softening)'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the optimal activity where K is maximum</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>a_opt <span class="op">=</span> a[np.argmax(K_total)]</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>K_opt <span class="op">=</span> np.<span class="bu">max</span>(K_total)</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>ax.plot(a_opt, K_opt, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">20</span>, label<span class="op">=</span><span class="ss">f'Optimal activity ($a^* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">$)'</span>, zorder<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Regimes</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="dv">0</span>, a_opt, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Stiffening dominates'</span>)</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>ax.axvspan(a_opt, <span class="fl">2.5</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Softening dominates'</span>)</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Activity Parameter $a$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Non-Monotonic Activity Dependence'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">8</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">2.5</span>)</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotation arrows</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">stiffening'</span>, xy<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>), xytext<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">softening'</span>, xy<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">1.2</span>), xytext<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">0.3</span>),</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'red'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summary of stiffening/softening competition:"</span>)</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1. Low activity (a &lt; a*): Stiffening dominates via motor-generated prestress"</span>)</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - K ~ (σ_ext + σ_motor)^(3/2)"</span>)</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Leads to dramatic modulus increase (up to 100-fold in actin-myosin)"</span>)</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2. High activity (a &gt; a*): Softening dominates via defect generation &amp; fluidization"</span>)</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Reduced yield stress allows easier deformation"</span>)</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Network can approach unjamming transition"</span>)</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3. Optimal activity a* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">: Maximum material stiffness achieved"</span>)</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Allows precise tuning of mechanical properties through activity control"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-stiffening-softening" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1492,7 +1343,7 @@ Figure&nbsp;10— Activity-induced stiffening and softening of networks showing 
 <li><strong>Rigidity percolation</strong>: Emergence of system-spanning mechanical networks</li>
 <li><strong>Strain localization</strong>: Formation of yield zones and shear bands</li>
 </ul>
-<p>These transitions follow critical phenomena frameworks. For activity-driven unjamming, an order parameter <span class="math inline">\(\psi\)</span> (e.g., the yield strain) scales with distance from the critical activity <span class="math inline">\(a_c\)</span>:</p>
+<p>These transitions follow the same critical-phenomena framework introduced for equilibrium phase transitions in Lecture 6 and applied to the flocking transition in Lecture 9, now with activity as the control parameter. For activity-driven unjamming, an order parameter <span class="math inline">\(\psi\)</span> (e.g., the yield strain) scales with distance from the critical activity <span class="math inline">\(a_c\)</span>:</p>
 <p><span class="math display">\[\psi \sim |a - a_c|^\beta\]</span></p>
 <p>where <span class="math inline">\(\beta\)</span> is the critical exponent. Similarly, the correlation length <span class="math inline">\(\xi\)</span> diverges near the transition:</p>
 <p><span class="math display">\[\xi \sim |a - a_c|^{-\nu}\]</span></p>
