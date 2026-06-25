@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture09/lecture09.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -164,7 +165,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mechanical Properties of Active Materials</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture10/lecture10.html">Lecture 10</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -291,8 +292,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture08/lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture09/lecture09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 10</span></a>
   </div>
 </li>
       </ul>
@@ -336,7 +349,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture06/lecture06.html">Emergent Phenomena and Phase Behavior</a></li><li class="breadcrumb-item"><a href="../lecture10/lecture10.html">Lecture 10</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Mechanical Properties of Active Materials</h1>
 </div>
@@ -557,8 +570,8 @@ Figure&nbsp;2— Active stress field from a collection of force dipoles. Left: a
 <p>In most materials, when you apply a force at one point, its effect weakens as you move away from that point. Think of pressing your finger into a soft gel - the deformation is strongest right under your finger and gets smaller farther away. The characteristic distance over which forces remain significant is called the “screening length.” Beyond this distance, the force effect becomes negligible.</p>
 <p>This enhancement in active materials arises through several mechanisms:</p>
 <ol type="1">
-<li><p><strong>Modified Screening Lengths</strong>: In ordinary viscoelastic materials (materials that are part solid, part liquid-like), forces decay over a characteristic distance called the screening length: <span class="math display">\[\ell_{screen} = \sqrt{\eta/G}\]</span> where <span class="math inline">\(\eta\)</span> is viscosity (resistance to flow) and <span class="math inline">\(G\)</span> is the elastic modulus (stiffness).</p>
-<p>In active materials, the activity effectively adds to the viscosity, increasing this screening length: <span class="math display">\[\ell_{screen}^{active} = \sqrt{(\eta + \eta_{active})/G}\]</span></p>
+<li><p><strong>Modified Screening Lengths</strong>: A homogeneous fluid or elastic solid does not screen forces in space – the disturbance decays as a power law, with no intrinsic length. A finite screening length appears only when momentum can drain to a background through a friction coefficient <span class="math inline">\(\Gamma\)</span> (the drag per unit volume between the network and the permeating solvent, or a substrate): <span class="math display">\[\ell_{screen} = \sqrt{\eta/\Gamma}\]</span> where <span class="math inline">\(\eta\)</span> is viscosity (resistance to flow) and <span class="math inline">\(\Gamma\)</span> is the friction coefficient. (Note that the ratio <span class="math inline">\(\eta/G\)</span> of viscosity to elastic modulus is instead the Maxwell relaxation <em>time</em> <span class="math inline">\(\tau\)</span>, not a length.)</p>
+<p>In active materials, the activity effectively adds to the viscosity, increasing this screening length: <span class="math display">\[\ell_{screen}^{active} = \sqrt{(\eta + \eta_{active})/\Gamma}\]</span></p>
 <p>This means forces can “reach” farther in active materials - like having a louder voice that carries across a larger room.</p></li>
 <li><p><strong>Collective Effects and Bacterial Superfluidity</strong>: Active particles generate correlated flow fields and stresses that couple their motion over distances larger than individual particle sizes. A striking example is bacterial superfluidity - when bacterial suspensions become dense enough, they can exhibit a dramatic reduction in viscosity, sometimes approaching zero or even becoming negative. This counterintuitive behavior occurs because the bacteria’s swimming motion collectively reduces the resistance to flow, allowing forces to propagate with minimal dissipation.</p>
 <p>In superfluid bacterial suspensions, the effective viscosity can be written as: <span class="math display">\[\eta_{eff} = \eta_0(1 - \alpha n v_0)\]</span></p>
@@ -603,7 +616,13 @@ Figure&nbsp;3— Experimental evidence of bacterial superfluidity from López et
 <ol start="3" type="1">
 <li><strong>Non-equilibrium Interactions</strong>: Activity creates effective long-range interactions between particles that would not exist in equilibrium systems. These are like chain reactions where one particle’s activity triggers nearby particles, which trigger others, extending the range of influence. In bacterial systems approaching superfluidity, these interactions become particularly strong, with collective swimming patterns creating coherent flows that span the entire system.</li>
 </ol>
-<p>Experimental evidence for enhanced force transmission includes: - Photoelastic measurements in active granular systems showing dynamic force chains (Deseigne et al., 2010) - these are like “highways” of force that form and reform dynamically - Traction force microscopy revealing long-range stress correlations in active biological tissues - showing that cells can “feel” each other from surprisingly far away - Direct visualization of collective flows in bacterial suspensions with distinct scaling properties - revealing how microscopic swimming creates large-scale fluid flows. Studies by López et al.&nbsp;(2015) demonstrated superfluid-like behavior in E. coli suspensions, with viscosity reductions of up to 90% at high bacterial densities - Measurements of negative viscosity in pusher-type bacterial suspensions (Gachelin et al., 2013), confirming theoretical predictions of bacterial superfluidity</p>
+<p>Experimental evidence for enhanced force transmission includes:</p>
+<ul>
+<li>Photoelastic measurements in active granular systems showing dynamic force chains (Deseigne et al., 2010) - these are like “highways” of force that form and reform dynamically</li>
+<li>Traction force microscopy revealing long-range stress correlations in active biological tissues - showing that cells can “feel” each other from surprisingly far away</li>
+<li>Direct visualization of collective flows in bacterial suspensions with distinct scaling properties - revealing how microscopic swimming creates large-scale fluid flows. Studies by López et al.&nbsp;(2015) demonstrated superfluid-like behavior in E. coli suspensions, with viscosity reductions of up to 90% at high bacterial densities</li>
+<li>Measurements of negative viscosity in pusher-type bacterial suspensions (Gachelin et al., 2013), confirming theoretical predictions of bacterial superfluidity</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -647,7 +666,9 @@ Current Research Frontiers in Force Transmission
 <li>Create spatially heterogeneous fluctuations even in homogeneous materials</li>
 </ul></li>
 </ul>
-<p>These enhanced fluctuations manifest as measurable mechanical phenomena. For instance, in active gels containing molecular motors, the local stress fluctuations can be orders of magnitude larger than thermal expectations, driving spontaneous flows and deformations absent in passive materials. They are the mechanical analogue of the anomalous velocity fluctuations and scale-free correlations seen in collective motion (Lecture 9).</p>
+<p>These enhanced fluctuations manifest as measurable mechanical phenomena. The cleanest demonstration is the experiment of Mizuno et al.&nbsp;(2007), who reconstituted actin filaments with myosin motors and independently measured two things: the network’s mechanical <strong>response</strong> (by microrheology – pushing a probe bead with a known force and recording its displacement) and its spontaneous <strong>fluctuations</strong> (by tracking the bead’s motion). In equilibrium these two are locked together by the fluctuation-dissipation theorem,</p>
+<p><span class="math display">\[S_x(\omega) = \frac{2 k_B T}{\omega}\,\chi''(\omega),\]</span></p>
+<p>where <span class="math inline">\(\chi''\)</span> is the dissipative part of the response. With ATP present (motors on), the measured fluctuations exceeded the FDT prediction by orders of magnitude at low frequencies – a direct violation – equivalent to an effective temperature far above room temperature; removing the ATP (motors off) restored the FDT exactly. The same non-thermal, ATP-driven excess powers the flickering of red-blood-cell membranes; the title of that study captures the logic exactly – <em>Equilibrium physics breakdown reveals the active nature of red blood cell flickering</em> (Turlier, H., Fedosov, D., Audoly, B. et al., <em>Nature Physics</em> 12, 513-519, 2016): it is precisely the <em>failure</em> of equilibrium (FDT) physics that exposes the activity. These active fluctuations are the mechanical analogue of the anomalous velocity fluctuations and scale-free correlations seen in collective motion (Lecture 9).</p>
 </section>
 <section id="mechanical-consequences-of-active-fluctuations" class="level3">
 <h3 class="anchored" data-anchor-id="mechanical-consequences-of-active-fluctuations">Mechanical Consequences of Active Fluctuations</h3>
@@ -1180,7 +1201,7 @@ Figure&nbsp;9— Experimental demonstration of activity-induced stiffening throu
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w, h):</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w<span class="op">/</span><span class="fl">2.54</span>, h<span class="op">/</span><span class="fl">2.54</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">18</span>, <span class="dv">8</span>))</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Differential modulus K vs stress sigma for passive and active networks</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
@@ -1188,131 +1209,103 @@ Figure&nbsp;9— Experimental demonstration of activity-induced stiffening throu
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress range</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="dv">5</span>, <span class="dv">300</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Passive system (baseline)</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># K_passive ~ sigma^(3/2) for semiflexible polymers</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>K_passive <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma, K_passive, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Passive network'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Active systems with different motor forces</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># K_active ~ (sigma_ext + sigma_active)^(3/2)</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>sigma_motor_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>]  <span class="co"># Internal motor-generated stress</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>colors_activity <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'cyan'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>labels_activity <span class="op">=</span> [<span class="st">'No motors'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 0.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.0$'</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 2.0$'</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Active networks with different motor-generated prestress (sigma_a = 0 is the passive/no-motor case)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># K_active ~ (sigma_ext + sigma_active)^(3/2)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>sigma_motor_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>]  <span class="co"># Internal motor-generated stress</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>colors_activity <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'cyan'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'red'</span>]</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>labels_activity <span class="op">=</span> [<span class="st">'No motors'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 0.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.0$'</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 1.5$'</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a = 2.0$'</span>]</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sigma_a, color, label <span class="kw">in</span> <span class="bu">zip</span>(sigma_motor_values, colors_activity, labels_activity):</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Effective stress including motor contribution</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    sigma_eff <span class="op">=</span> sigma <span class="op">+</span> sigma_a</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    K_active <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma_eff<span class="op">**</span><span class="fl">1.5</span></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sigma_a, color, label <span class="kw">in</span> <span class="bu">zip</span>(sigma_motor_values, colors_activity, labels_activity):</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Effective stress including motor contribution</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    sigma_eff <span class="op">=</span> sigma <span class="op">+</span> sigma_a</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    K_active <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> sigma_eff<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    ax.loglog(sigma, K_active, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    ax.loglog(sigma, K_active, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line showing sigma^(3/2) scaling</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>sigma_ref <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">100</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>K_ref <span class="op">=</span> sigma_ref<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma_ref, K_ref, <span class="st">'k:'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$</span><span class="ch">\\</span><span class="st">propto </span><span class="ch">\\</span><span class="st">sigma^{3/2}$ reference'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line showing sigma^(3/2) scaling</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>sigma_ref <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">100</span>)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>K_ref <span class="op">=</span> sigma_ref<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax.loglog(sigma_ref, K_ref, <span class="st">'k:'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$</span><span class="ch">\\</span><span class="st">propto </span><span class="ch">\\</span><span class="st">sigma^{3/2}$ reference'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Applied Stress $</span><span class="ch">\\</span><span class="st">sigma$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Nonlinear Stress-Dependent Stiffening'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">5</span>)</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.01</span>, <span class="dv">10</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Applied Stress $</span><span class="ch">\\</span><span class="st">sigma$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Stress-dependent stiffening'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">0.01</span>, <span class="dv">5</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">0.01</span>, <span class="dv">10</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Modulus vs activity (non-monotonic behavior)</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity parameter (related to motor force generation)</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)</span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Modulus vs activity (non-monotonic behavior)</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference stress (applied externally)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>sigma_ext <span class="op">=</span> <span class="fl">0.5</span></span>
 <span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity parameter (related to motor force generation)</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference stress (applied externally)</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>sigma_ext <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Stiffening contribution (activity increases network prestress)</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co"># K_stiffening ~ (sigma_ext + c_s * a)^(3/2) where c_s is coupling coefficient</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>c_s <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># stiffening coupling</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>K_stiffening <span class="op">=</span> (sigma_ext <span class="op">+</span> c_s <span class="op">*</span> a)<span class="op">**</span><span class="fl">1.5</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Softening contribution (activity causes defects, reduces yield stress)</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="co"># K_softening = K_max / (1 + c_soft * a) or similar saturation</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>c_soft <span class="op">=</span> <span class="fl">1.2</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>K_softening_factor <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.8</span> <span class="op">*</span> a)</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Total modulus showing competition</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>K_total <span class="op">=</span> K_stiffening <span class="op">*</span> K_softening_factor</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Also compute the stiffening-only case for comparison</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>K_stiffening_only <span class="op">=</span> K_stiffening</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_stiffening_only, <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Stiffening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># And softening-only contribution to the modulus</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>K_softening_only <span class="op">=</span> sigma_ext<span class="op">**</span><span class="fl">1.5</span> <span class="op">*</span> K_softening_factor</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_softening_only, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Softening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Total combined effect</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_total, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Net effect (stiffening + softening)'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the optimal activity where K is maximum</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>a_opt <span class="op">=</span> a[np.argmax(K_total)]</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>K_opt <span class="op">=</span> np.<span class="bu">max</span>(K_total)</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>ax.plot(a_opt, K_opt, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">20</span>, label<span class="op">=</span><span class="ss">f'Optimal activity ($a^* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">$)'</span>, zorder<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Regimes</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="dv">0</span>, a_opt, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Stiffening dominates'</span>)</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>ax.axvspan(a_opt, <span class="fl">2.5</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Softening dominates'</span>)</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Activity Parameter $a$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Non-Monotonic Activity Dependence'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">8</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">2.5</span>)</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotation arrows</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">stiffening'</span>, xy<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>), xytext<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">softening'</span>, xy<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">1.2</span>), xytext<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">0.3</span>),</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'red'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summary of stiffening/softening competition:"</span>)</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1. Low activity (a &lt; a*): Stiffening dominates via motor-generated prestress"</span>)</span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - K ~ (σ_ext + σ_motor)^(3/2)"</span>)</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Leads to dramatic modulus increase (up to 100-fold in actin-myosin)"</span>)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2. High activity (a &gt; a*): Softening dominates via defect generation &amp; fluidization"</span>)</span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Reduced yield stress allows easier deformation"</span>)</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Network can approach unjamming transition"</span>)</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3. Optimal activity a* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">: Maximum material stiffness achieved"</span>)</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   - Allows precise tuning of mechanical properties through activity control"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Stiffening contribution (activity increases network prestress)</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co"># K_stiffening ~ (sigma_ext + c_s * a)^(3/2) where c_s is coupling coefficient</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>c_s <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># stiffening coupling</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>K_stiffening <span class="op">=</span> (sigma_ext <span class="op">+</span> c_s <span class="op">*</span> a)<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Softening contribution (activity fluidizes the network): a decaying factor that</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># eventually overcomes the stiffening, so the net modulus turns over (non-monotonic)</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>c_soft <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>K_softening_factor <span class="op">=</span> np.exp(<span class="op">-</span>c_soft <span class="op">*</span> a)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Total modulus showing competition</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>K_total <span class="op">=</span> K_stiffening <span class="op">*</span> K_softening_factor</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Also compute the stiffening-only case for comparison</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>K_stiffening_only <span class="op">=</span> K_stiffening</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_stiffening_only, <span class="st">'g--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Stiffening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="co"># And softening-only contribution to the modulus</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>K_softening_only <span class="op">=</span> sigma_ext<span class="op">**</span><span class="fl">1.5</span> <span class="op">*</span> K_softening_factor</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_softening_only, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Softening only'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Total combined effect</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>ax.plot(a, K_total, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Net effect (stiffening + softening)'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the optimal activity where K is maximum</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>a_opt <span class="op">=</span> a[np.argmax(K_total)]</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>K_opt <span class="op">=</span> np.<span class="bu">max</span>(K_total)</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>ax.plot(a_opt, K_opt, <span class="st">'r*'</span>, markersize<span class="op">=</span><span class="dv">20</span>, label<span class="op">=</span><span class="ss">f'Optimal activity ($a^* = </span><span class="sc">{</span>a_opt<span class="sc">:.2f}</span><span class="ss">$)'</span>, zorder<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Regimes</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="dv">0</span>, a_opt, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Stiffening dominates'</span>)</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>ax.axvspan(a_opt, <span class="fl">2.5</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Softening dominates'</span>)</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Activity Parameter $a$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Differential Modulus $K$ (a.u.)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Non-monotonic in activity'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">2.5</span>)</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotation arrows</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">stiffening'</span>, xy<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>), xytext<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">'Increasing</span><span class="ch">\n</span><span class="st">softening'</span>, xy<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">1.2</span>), xytext<span class="op">=</span>(<span class="fl">1.8</span>, <span class="fl">0.3</span>),</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'red'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-stiffening-softening" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stiffening-softening-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture10_files/figure-html/fig-stiffening-softening-output-1.png" width="702" height="206" class="figure-img">
+<img src="lecture10_files/figure-html/fig-stiffening-softening-output-1.png" width="666" height="287" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stiffening-softening-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10— Activity-induced stiffening and softening of networks showing (left) the nonlinear stress dependence of differential modulus with the characteristic <span class="math inline">\(\sigma^{3/2}\)</span> power law, and (right) how network stiffness exhibits non-monotonic dependence on activity level due to competition between stiffening and softening mechanisms.
+Figure&nbsp;10— Activity-induced stiffening and softening of networks. (left) Differential modulus <span class="math inline">\(K\)</span> versus applied stress <span class="math inline">\(\sigma\)</span> for increasing motor prestress <span class="math inline">\(\sigma_a = 0\)</span> (blue, no motors), <span class="math inline">\(0.5\)</span> (cyan), <span class="math inline">\(1.0\)</span> (green), <span class="math inline">\(1.5\)</span> (orange) and <span class="math inline">\(2.0\)</span> (red); all follow the characteristic <span class="math inline">\(\sigma^{3/2}\)</span> power law (dotted reference), and higher activity shifts the curve upward (stiffer at a given stress). (right) Differential modulus versus activity <span class="math inline">\(a\)</span> at fixed external stress: the stiffening-only contribution (green dashed) grows while the softening-only contribution (red dashed) decays, so their combination – the net modulus (purple) – is non-monotonic and peaks at an optimal activity <span class="math inline">\(a^\ast\)</span> (star). Green and red shading mark where stiffening and softening dominate.
 </figcaption>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Summary of stiffening/softening competition:
-1. Low activity (a &lt; a*): Stiffening dominates via motor-generated prestress
-   - K ~ (σ_ext + σ_motor)^(3/2)
-   - Leads to dramatic modulus increase (up to 100-fold in actin-myosin)
-2. High activity (a &gt; a*): Softening dominates via defect generation &amp; fluidization
-   - Reduced yield stress allows easier deformation
-   - Network can approach unjamming transition
-3. Optimal activity a* = 2.50: Maximum material stiffness achieved
-   - Allows precise tuning of mechanical properties through activity control</code></pre>
 </div>
 </div>
 <p>This phase diagram reveals a crucial principle of active material mechanics: <strong>activity is not universally stiffening or softening, but exhibits rich tunable behavior</strong>. The optimal activity level <span class="math inline">\(a^*\)</span> marks the point where mechanical properties can be precisely controlled—too little activity and the material remains soft, too much and softening mechanisms take over. This principle underlies the mechanical adaptability of living cells and suggests strategies for engineering tunable active materials with programmable stiffness.</p>
@@ -1756,6 +1749,15 @@ Figure&nbsp;10— Activity-induced stiffening and softening of networks showing 
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture09/lecture09.html" class="pagination-link" aria-label="Lecture 9">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 9</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
