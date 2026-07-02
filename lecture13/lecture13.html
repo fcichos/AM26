@@ -233,6 +233,10 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part II</span>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -270,6 +274,33 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../lecture10/lecture10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 10</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part III</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
   </div>
 </li>
       </ul>
@@ -323,7 +354,7 @@ window.Quarto = {
 <p>Building on our understanding of basic active matter principles, we can now explore how these systems store and process information about past states to influence future behavior. Consider examples we’ve previously discussed in a new light: bird flocks maintaining formation patterns despite temporary disruptions, or bacterial colonies adapting growth patterns based on previous environmental exposures. These phenomena point to frontier research questions about memory mechanisms in active systems.</p>
 <section id="memory-mechanisms-in-active-matter-systems" class="level3">
 <h3 class="anchored" data-anchor-id="memory-mechanisms-in-active-matter-systems">Memory Mechanisms in Active Matter Systems</h3>
-<p>Recent advances have revealed three key mechanisms through which active matter systems implement memory and learning-like behaviors: Now I have comprehensive information about the sources mentioned in the text. Let me analyze the findings:</p>
+<p>Recent advances have revealed three key mechanisms through which active matter systems implement memory and learning-like behaviors:</p>
 <ol type="1">
 <li><strong>Structural Memory</strong></li>
 </ol>
@@ -335,7 +366,7 @@ window.Quarto = {
 <p><span class="math display">\[F(\phi, \varepsilon) = \frac{\varepsilon^n}{K^n + \varepsilon^n} \cdot (1-\phi)\]</span></p>
 <p>This sigmoidal shape arises from the saturation effects inherent in many physical systems - at low stimulus levels, the response increases gradually, then more rapidly at intermediate levels, before saturating at high stimulus intensities. The sigmoidal form is ubiquitous in nature because it represents cooperative effects (captured by the Hill coefficient <span class="math inline">\(n\)</span>) and provides both signal amplification and noise filtering capabilities. In active matter systems, such nonlinearities can emerge from collective interactions between components that exhibit threshold-like behaviors or positive feedback mechanisms.</p>
 <p>The persistence of <span class="math inline">\(\phi\)</span> over time encodes historical information, as demonstrated in various studies of active matter systems with memory effects. The characteristic memory timescale is determined by <span class="math inline">\(1/\alpha\)</span>, which controls how quickly the system forgets past stimuli in the absence of new inputs.</p>
-<p>A well-documented example comes from Palacci et al.’s work (Science, 2013) on light-activated colloidal surfers. When exposed to blue light, these photosensitive active colloids containing hematite and TiO<span class="math inline">\(_2\)</span> particles organize into specific configurations called “living crystals.” After the light is removed, the particles maintain this organized arrangement for a significant period before gradually returning to random orientation. This demonstrates how the system “remembers” the light pattern through its structural configuration, with <span class="math inline">\(\phi(t)\)</span> representing the degree of organization and <span class="math inline">\(\varepsilon(t)\)</span> the light stimulus.</p>
+<p>A well-documented example comes from Palacci et al.’s work (Science, 2013) on light-activated colloidal surfers. When exposed to blue light, these photosensitive active colloids containing hematite and TiO<span class="math inline">\(_2\)</span> particles organize through phoretic attraction into dynamic clusters called “living crystals.” These crystals persist only while the light is on: once the illumination is removed they reversibly melt back into a disordered gas within seconds, set by the colloids’ rotational and translational relaxation. They therefore illustrate a light-driven, <em>reversible</em> steady state – with the organization <span class="math inline">\(\phi(t)\)</span> closely slaved to the light stimulus <span class="math inline">\(\varepsilon(t)\)</span> – rather than a long-lived structural memory. Genuinely persistent structural memory, where a configuration survives after the stimulus is gone, instead requires hysteretic systems such as the magnetically-programmed materials described next.</p>
 <p>Research in magnetically-responsive materials has shown similar memory effects, where materials can retain deformation patterns that depend on the sequence of applied magnetic fields. In these systems, the internal variable <span class="math inline">\(\phi(t)\)</span> corresponds to structural reconfigurations within the material that persist after field removal.</p>
 <p>In viscoelastic active materials, the strain <span class="math inline">\(\gamma(t)\)</span> depends on the stress history <span class="math inline">\(\sigma(\tau)\)</span> for <span class="math inline">\(\tau &lt; t\)</span> through:</p>
 <p><span class="math display">\[\gamma(t) = \int_{-\infty}^{t} J(t-\tau) \frac{d\sigma(\tau)}{d\tau} d\tau\]</span></p>
@@ -346,7 +377,7 @@ window.Quarto = {
 <p>Expanding our previous treatment of chemical signaling in active systems, we can describe the evolution of concentration fields <span class="math inline">\(C(\mathbf{r},t)\)</span> through reaction-diffusion equations with memory effects:</p>
 <p><span class="math display">\[\frac{\partial C(\mathbf{r},t)}{\partial t} = D\nabla^2 C(\mathbf{r},t) + R(C,\mathbf{r},t)\]</span></p>
 <p>where <span class="math inline">\(D\)</span> is the diffusion coefficient and <span class="math inline">\(R\)</span> represents reaction terms that can create stable patterns persisting far longer than individual particle dynamics.</p>
-<p>A concrete example is the Belousov-Zhabotinsky (BZ) reaction in active gels, where chemical oscillations can be “frozen” into stable patterns that persist for hours. In these systems, ruthenium catalysts embedded in polymer networks undergo redox cycles that produce visible color changes (shifting between orange and green states). When exposed to specific light patterns, these oscillations can be locally arrested, creating persistent chemical “imprints” that serve as memory. The local modification of reaction rates creates a spatial chemical memory that outlasts the initial stimulus by factors of 10³-10⁴, effectively encoding information.</p>
+<p>A concrete example is the Belousov-Zhabotinsky (BZ) reaction in active gels, where chemical oscillations can be “frozen” into stable patterns that persist for hours. In these systems, ruthenium catalysts embedded in polymer networks undergo redox cycles that produce visible color changes (shifting between orange and green states). When exposed to specific light patterns, these oscillations can be locally arrested, creating persistent chemical “imprints” that serve as memory. The local modification of reaction rates creates a spatial chemical memory that outlasts the initial stimulus by factors of <span class="math inline">\(10^3\)</span> to <span class="math inline">\(10^4\)</span>, effectively encoding information.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -365,15 +396,15 @@ Belousov-Zhabotinsky Reaction: Detailed Mechanism
 <li><p><strong>Catalyst states</strong>: <span class="math inline">\(\text{Ru}(\text{bpy})_3^{2+}\)</span> (reduced, orange) and <span class="math inline">\(\text{Ru}(\text{bpy})_3^{3+}\)</span> (oxidized, green), where bpy is 2,2’-bipyridine</p></li>
 <li><p><strong>Key reactions</strong>:</p>
 <ul>
-<li>Autocatalytic step: <span class="math inline">\(\text{BrO}_3^- + 5\text{Br}^- + 6\text{H}^+ \rightarrow 3\text{Br}_2 + 3\text{H}_2\text{O}\)</span></li>
-<li>Catalyst oxidation: <span class="math inline">\(\text{Ru}(\text{bpy})_3^{2+} + \text{Br}_2 \rightarrow \text{Ru}(\text{bpy})_3^{3+} + 2\text{Br}^- + 2\text{H}^+\)</span></li>
-<li>Organic substrate reaction: <span class="math inline">\(2\text{Ru}(\text{bpy})_3^{3+} + \text{CH}_2(\text{COOH})_2 + 2\text{H}_2\text{O} \rightarrow 2\text{Ru}(\text{bpy})_3^{2+} + \text{HCOOH} + 2\text{CO}_2 + 6\text{H}^+\)</span></li>
+<li>Bromide consumption (Process A; note this is <em>not</em> the autocatalytic step, which produces <span class="math inline">\(\text{HBrO}_2\)</span>): <span class="math inline">\(\text{BrO}_3^- + 5\text{Br}^- + 6\text{H}^+ \rightarrow 3\text{Br}_2 + 3\text{H}_2\text{O}\)</span></li>
+<li>Catalyst oxidation: <span class="math inline">\(2\,\text{Ru}(\text{bpy})_3^{2+} + \text{Br}_2 \rightarrow 2\,\text{Ru}(\text{bpy})_3^{3+} + 2\text{Br}^-\)</span></li>
+<li>Organic substrate reaction: <span class="math inline">\(6\,\text{Ru}(\text{bpy})_3^{3+} + \text{CH}_2(\text{COOH})_2 + 2\text{H}_2\text{O} \rightarrow 6\,\text{Ru}(\text{bpy})_3^{2+} + \text{HCOOH} + 2\text{CO}_2 + 6\text{H}^+\)</span></li>
 </ul></li>
 <li><p><strong>Photosensitivity mechanism</strong>: The ruthenium complex is photosensitive - blue light (~450 nm) excites <span class="math inline">\(\text{Ru}(\text{bpy})_3^{2+}\)</span> to produce <span class="math inline">\(\text{Ru}(\text{bpy})_3^{2+*}\)</span>, which can transfer an electron to <span class="math inline">\(\text{BrO}_3^-\)</span> or other oxidizing agents in the system, generating <span class="math inline">\(\text{Ru}(\text{bpy})_3^{3+}\)</span> and inhibiting the oscillation.</p></li>
 <li><p><strong>Memory encoding</strong>: When localized areas of the gel are illuminated with patterned blue light, the reaction is inhibited specifically in those regions. This creates a persistent spatial pattern of oxidized and reduced catalyst states that maintains itself through the autocatalytic reaction network dynamics.</p></li>
 </ol>
 <p>The mathematical description of the BZ reaction often uses the Oregonator model, a simplified system of differential equations:</p>
-<p><span class="math display">\[\frac{dx}{dt} = k_1y - k_2xy + k_3x(1-x)\]</span> <span class="math display">\[\frac{dy}{dt} = -k_1y - k_2xy + k_4z\]</span> <span class="math display">\[\frac{dz}{dt} = k_5 - k_4z\]</span></p>
+<p><span class="math display">\[\frac{dx}{dt} = k_1y - k_2xy + k_3x(1-x)\]</span> <span class="math display">\[\frac{dy}{dt} = -k_1y - k_2xy + k_4z\]</span> <span class="math display">\[\frac{dz}{dt} = k_5 x - k_4z\]</span></p>
 <p>Where <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> represent concentrations of key intermediates, typically <span class="math inline">\(\text{HBrO}_2\)</span> (bromous acid), <span class="math inline">\(\text{Br}^-\)</span> (bromide ion), and <span class="math inline">\(\text{Ru}(\text{bpy})_3^{3+}\)</span> (oxidized catalyst).</p>
 <p>The photosensitive variant adds a light-dependent term to these equations, allowing external control of the reaction dynamics and enabling the “writing” of persistent chemical patterns that serve as memory.</p>
 </div>
@@ -395,8 +426,8 @@ Figure&nbsp;1— Belousov-Zhabotinsky reaction pattern
 <p>In the first equation, <span class="math inline">\(D_\rho \nabla \rho\)</span> describes cells’ random diffusive motion, while <span class="math inline">\(-\chi \rho \nabla c\)</span> represents directed movement of cells up the chemical gradient (the actual chemotaxis). The divergence operator <span class="math inline">\(\nabla \cdot\)</span> ensures conservation of cell number. In the second equation, <span class="math inline">\(D_c \nabla^2 c\)</span> models how the chemical diffuses through space, <span class="math inline">\(\alpha \rho\)</span> captures how cells produce the chemical signal (proportional to cell density), and <span class="math inline">\(-\beta c\)</span> accounts for the natural breakdown of the chemical over time.</p>
 <p>While this model was originally developed for bacterial chemotaxis, similar principles apply to the remarkable maze-solving abilities of the slime mold <em>Physarum polycephalum</em>. The slime mold uses a different but related mechanism: as it explores a maze, it deposits persistent chemical trails and maintains a network of protoplasmic tubes. The tube conductivity depends on flow history, effectively implementing a form of chemical memory. When encountering a previously visited dead-end, the reduced tube conductivity “remembers” the unsuccessful path. This network-based memory allows the organism to solve complex mazes by maintaining information about path quality through persistent physical and chemical modifications.</p>
 <p><strong>Pattern Formation in Chemical Memory Systems</strong>: A beautiful example of chemical memory through pattern formation can be seen in the Gray-Scott reaction-diffusion system:</p>
-<p><span class="math display">\[\frac{\partial u}{\partial t} = \nabla^2 u + u^2v - (a+b)u\]</span> <span class="math display">\[\frac{\partial v}{\partial t} = D\nabla^2 v - u^2v + a(1-v)\]</span></p>
-<p>where <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are chemical concentrations, <span class="math inline">\(D\)</span> is the diffusion coefficient ratio (typically <span class="math inline">\(D = 2\)</span>), and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are reaction parameters. The dependencies in these equations reflect the underlying chemical processes: the <span class="math inline">\(\nabla^2\)</span> terms represent diffusion of chemicals through space, with <span class="math inline">\(v\)</span> diffusing at rate <span class="math inline">\(D\)</span> relative to <span class="math inline">\(u\)</span>. The nonlinear term <span class="math inline">\(u^2v\)</span> appears in both equations with opposite signs because it models an autocatalytic reaction where one molecule of <span class="math inline">\(u\)</span> and two molecules of <span class="math inline">\(v\)</span> interact to produce three molecules of <span class="math inline">\(v\)</span> (consuming <span class="math inline">\(u\)</span> while producing more <span class="math inline">\(v\)</span>). The term <span class="math inline">\((a+b)u\)</span> represents removal of <span class="math inline">\(u\)</span> through both feeding of fresh chemicals (<span class="math inline">\(a\)</span>) and conversion/decay (<span class="math inline">\(b\)</span>), while <span class="math inline">\(a(1-v)\)</span> represents the feeding of <span class="math inline">\(v\)</span> at a rate proportional to how far it is from saturation. This system exhibits an extraordinary range of behaviors depending on the parameter values: stable spot patterns, labyrinthine structures, moving spots, pulsating dynamics, and spatiotemporal chaos. These patterns persist long after initial perturbations, serving as spatial memory of the initial conditions and parameter history. The rich parameter space allows encoding different types of chemical memories through distinct pattern morphologies.</p>
+<p><span class="math display">\[\frac{\partial u}{\partial t} = D_u\nabla^2 u - uv^2 + a(1-u)\]</span> <span class="math display">\[\frac{\partial v}{\partial t} = D_v\nabla^2 v + uv^2 - (a+b)v\]</span></p>
+<p>where <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are chemical concentrations, <span class="math inline">\(D_u\)</span> and <span class="math inline">\(D_v\)</span> are their diffusion coefficients (with the substrate <span class="math inline">\(u\)</span> diffusing faster, <span class="math inline">\(D_u/D_v \approx 2\)</span>), and <span class="math inline">\(a\)</span> (feed) and <span class="math inline">\(b\)</span> (kill) are reaction parameters. The dependencies in these equations reflect the underlying chemical processes: the <span class="math inline">\(\nabla^2\)</span> terms represent diffusion of chemicals through space, with <span class="math inline">\(u\)</span> diffusing faster than <span class="math inline">\(v\)</span>. The nonlinear term <span class="math inline">\(uv^2\)</span> appears in both equations with opposite signs because it models an autocatalytic reaction where one molecule of <span class="math inline">\(u\)</span> and two molecules of <span class="math inline">\(v\)</span> interact to produce three molecules of <span class="math inline">\(v\)</span> (consuming <span class="math inline">\(u\)</span> while producing more <span class="math inline">\(v\)</span>). The term <span class="math inline">\(a(1-u)\)</span> feeds the substrate <span class="math inline">\(u\)</span> toward its reservoir value of 1, while <span class="math inline">\((a+b)v\)</span> removes the autocatalyst <span class="math inline">\(v\)</span> through the combined feed (<span class="math inline">\(a\)</span>) and kill (<span class="math inline">\(b\)</span>) rates. This system exhibits an extraordinary range of behaviors depending on the parameter values: stable spot patterns, labyrinthine structures, moving spots, pulsating dynamics, and spatiotemporal chaos. These patterns persist long after initial perturbations, serving as spatial memory of the initial conditions and parameter history. The rich parameter space allows encoding different types of chemical memories through distinct pattern morphologies.</p>
 <div id="grayscott-container" style="max-width: 800px; margin: 20px auto; padding: 20px; border: 0px solid #333; border-radius: 10px; ">
   <h4 style="text-align: center; margin-bottom: 20px; color: #333;" class="anchored">Gray-Scott Reaction-Diffusion System</h4>
 
@@ -411,7 +442,7 @@ Figure&nbsp;1— Belousov-Zhabotinsky reaction pattern
       <h5 style="margin-top: 0; color: #333;" class="anchored">Pattern Selection</h5>
       <select id="pattern-selector" style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
         <option value="labyrinthine">Labyrinthine (a=0.037, b=0.06)</option>
-        <option value="spots">Spots (a=0.03, b=0.062)</option>
+        <option value="spots">Spots (a=0.035, b=0.065)</option>
         <option value="pulsating">Pulsating Spots (a=0.025, b=0.06)</option>
         <option value="worms">Worms (a=0.078, b=0.061)</option>
         <option value="holes">Holes (a=0.039, b=0.058)</option>
@@ -471,8 +502,8 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // System parameters for stable Gray-Scott patterns
-  let a = 0.035;  // Feed rate (F)
-  let b = 0.065;  // Kill rate (k)
+  let a = 0.037;  // Feed rate (F)
+  let b = 0.06;   // Kill rate (k)
   const Du = 0.2097;  // Diffusion coefficient for u
   const Dv = 0.105;   // Diffusion coefficient for v
   const dt = 1.0;     // Time step
@@ -686,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>This interactive simulation demonstrates how the Gray-Scott system creates persistent chemical memory patterns. You can:</p>
 <ul>
 <li>Select different parameter regimes from the dropdown</li>
-<li>Manually adjust feed (a) and kill (b) rates using sliders</li>
+<li>Manually adjust feed (<span class="math inline">\(a\)</span>) and kill (<span class="math inline">\(b\)</span>) rates using sliders</li>
 <li>Click on the canvas to add perturbations and observe pattern formation</li>
 <li>Pause/resume the simulation to observe steady-state patterns</li>
 </ul>
@@ -709,8 +740,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </ol>
 <p>The agent’s goal is to learn an optimal <strong>policy</strong> <span class="math inline">\(\pi^*(\mathbf{a}|\mathbf{s})\)</span> that maximizes the expected cumulative reward:</p>
 <p><span class="math display">\[\pi^* = \arg\max_\pi \mathbb{E}_\pi\left[\sum_{t=0}^{\infty} \gamma^t R(\mathbf{s}_t, \mathbf{a}_t)\right]\]</span></p>
-<p>where <span class="math inline">\(\gamma \in [0,1]\)</span> is a discount factor that prioritizes immediate rewards over future ones. - Actions are chosen according to <span class="math inline">\(\mathbf{a}_t \sim \pi(\cdot|\mathbf{s}_t)\)</span> - State transitions occur according to the environment dynamics <span class="math inline">\(\mathbf{s}_{t+1} \sim P(\cdot|\mathbf{s}_t, \mathbf{a}_t)\)</span></p>
-<p>The discount factor <span class="math inline">\(\gamma \in [0,1]\)</span> prioritizes immediate rewards over future ones, addressing both mathematical convergence and reflecting the preference for earlier rewards.</p>
+<p>where <span class="math inline">\(\gamma \in [0,1]\)</span> is a discount factor that prioritizes immediate rewards over future ones (this both ensures convergence of the infinite sum and reflects a preference for earlier rewards). - Actions are chosen according to <span class="math inline">\(\mathbf{a}_t \sim \pi(\cdot|\mathbf{s}_t)\)</span> - State transitions occur according to the environment dynamics <span class="math inline">\(\mathbf{s}_{t+1} \sim P(\cdot|\mathbf{s}_t, \mathbf{a}_t)\)</span></p>
 <p>With these core concepts established, we can now delve into the mathematical machinery that makes reinforcement learning possible. The key insight is that optimal decision-making can be formulated as a dynamic programming problem, where we systematically evaluate the long-term consequences of actions. The following concepts provide the theoretical foundation that enables active matter systems to implement sophisticated learning behaviors.</p>
 </section>
 <section id="key-reinforcement-learning-concepts" class="level4">
@@ -733,7 +763,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><span class="math inline">\(\gamma \max_{\mathbf{a}'} Q(\mathbf{s}', \mathbf{a}')\)</span> represents the maximum expected future reward from the next state <span class="math inline">\(\mathbf{s}'\)</span></li>
 <li>The term in brackets is called the TD-error, representing the difference between the current estimate and the improved estimate</li>
 </ul>
-<p>The algorithm proceeds by repeatedly: (1) observing the current state, (2) selecting and executing an action (typically using an ε-greedy policy that balances exploration and exploitation), (3) observing the reward and next state, (4) updating the Q-value using the equation above, and (5) transitioning to the next state. Over time, the Q-values converge to the optimal action-value function <span class="math inline">\(Q^*\)</span>, enabling the system to select optimal actions in any state.</p></li>
+<p>The algorithm proceeds by repeatedly: (1) observing the current state, (2) selecting and executing an action (typically using an <span class="math inline">\(\varepsilon\)</span>-greedy policy that balances exploration and exploitation), (3) observing the reward and next state, (4) updating the Q-value using the equation above, and (5) transitioning to the next state. Over time, the Q-values converge to the optimal action-value function <span class="math inline">\(Q^*\)</span>, enabling the system to select optimal actions in any state.</p></li>
 <li><p><strong>Policy gradient methods</strong>: These algorithms directly optimize the policy without learning a value function. They work by adjusting policy parameters <span class="math inline">\(\boldsymbol{\theta}\)</span> to maximize expected returns through gradient ascent: <span class="math display">\[\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta}) = \mathbb{E}_\pi\left[\sum_{t=0}^{\infty} \nabla_{\boldsymbol{\theta}} \log \pi_{\boldsymbol{\theta}}(\mathbf{a}_t|\mathbf{s}_t) Q^\pi(\mathbf{s}_t, \mathbf{a}_t)\right]\]</span></p>
 <p>This equation expresses the gradient of the expected return <span class="math inline">\(J(\boldsymbol{\theta})\)</span> with respect to policy parameters <span class="math inline">\(\boldsymbol{\theta}\)</span>. Let’s understand each component:</p>
 <ul>
@@ -758,11 +788,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <h4 class="anchored" data-anchor-id="applications-to-active-matter-systems">Applications to Active Matter Systems</h4>
 <p>Active matter systems implement reinforcement learning through various mechanisms that arise naturally from their physical properties and interactions. These implementations span both biological and synthetic systems, with remarkable parallels to the abstract frameworks of reinforcement learning we’ve discussed.</p>
 <p><strong>Biological Systems Implementing RL</strong>:</p>
-<p><strong>Bacterial Chemotaxis as Temporal Difference Learning</strong>: Consider the navigation strategy of <em>E. coli</em> bacteria. These microorganisms navigate chemical gradients through a sophisticated biochemical network that functions remarkably similar to Q-learning algorithms. At the molecular level, this process centers on the phosphorylation state of the CheY protein, which directly controls the flagellar motor switching between running (straight swimming) and tumbling (random reorientation) behaviors.</p>
-<p>The phosphorylated CheY protein state (CheY-P) effectively encodes a form of value function, with its concentration determining how the bacterium evaluates its current state. The temporal evolution of this internal state follows:</p>
-<p><span class="math display">\[\text{CheY-P}(t+1) = \text{CheY-P}(t) + \alpha \left[\text{Nutrient}(t) - \text{CheY-P}(t)\right]\]</span></p>
-<p>This equation reveals the essence of temporal difference learning in a physical system. The bacterium continuously updates its internal state based on the difference between the actual nutrient concentration encountered and its previous internal representation. The parameter <span class="math inline">\(\alpha\)</span> serves as a learning rate, determining how quickly the bacterium adapts to new information.</p>
-<p>When a bacterium moves up a nutrient gradient, the positive difference between nutrient concentration and the internal state leads to a decrease in CheY-P, which reduces tumbling frequency and prolongs runs in favorable directions. Conversely, movement down a gradient increases CheY-P concentration, increasing tumbling frequency to facilitate course correction. This elegant adaptation mechanism allows bacteria to navigate complex chemical landscapes with remarkable efficiency despite their limited sensory capabilities.</p>
+<p><strong>Bacterial Chemotaxis as Adaptive Gradient Sensing (a Prediction-Error Analogy)</strong>: Consider the navigation strategy of <em>E. coli</em> bacteria. These microorganisms navigate chemical gradients through a sophisticated biochemical network that shares one key motif with temporal-difference (TD) learning – a <em>prediction-error</em> signal – although, as we qualify below, it is not literally a learning algorithm. At the molecular level, this process centers on the phosphorylation state of the CheY protein, which directly controls the flagellar motor switching between running (straight swimming) and tumbling (random reorientation) behaviors.</p>
+<p>The bacterium maintains an internal estimate <span class="math inline">\(m(t)\)</span> of the local nutrient level – a running “prediction” analogous to a value function – which it compares against the concentration it currently senses. The phosphorylated protein CheY-P reads out this comparison and sets the tumbling bias (high CheY-P promotes tumbling, low CheY-P promotes running). The internal estimate evolves as:</p>
+<p><span class="math display">\[m(t+1) = m(t) + \alpha \left[\text{Nutrient}(t) - m(t)\right]\]</span></p>
+<p>This has the same form as a temporal-difference update: the bacterium relaxes its internal estimate <span class="math inline">\(m(t)\)</span> toward the actual nutrient concentration, with <span class="math inline">\(\alpha\)</span> setting how quickly it adapts. The quantity <span class="math inline">\(\delta(t) = \text{Nutrient}(t) - m(t)\)</span> plays the role of the TD error. (Strictly, <span class="math inline">\(\alpha\)</span> is an <em>adaptation</em> rate rather than a learning rate, and this update is the degenerate <span class="math inline">\(\gamma = 0\)</span> limit of TD – an exponentially-weighted running average, or adaptive filter.)</p>
+<p>When the bacterium swims up a nutrient gradient, the concentration it senses exceeds its adapted estimate, so <span class="math inline">\(\delta(t) &gt; 0\)</span>. This positive TD error transiently <em>lowers</em> CheY-P, reducing the tumbling frequency and prolonging runs in the favorable direction. Swimming down a gradient makes <span class="math inline">\(\delta(t) &lt; 0\)</span>, raising CheY-P and increasing tumbling to trigger reorientation. Because <span class="math inline">\(m(t)\)</span> then relaxes toward the new level (adaptation), it is the <em>change</em> in concentration – not its absolute value – that steers the cell (the network effectively computes <span class="math inline">\(dc/dt\)</span> along the trajectory), much as a TD error reports a change rather than a level.</p>
+<p><strong>How far does the analogy go?</strong> The parallel is at the level of the <em>error signal only</em>. The two features that make TD a genuine <em>learning</em> algorithm are absent here: the strategy is <strong>hard-wired by evolution</strong>, not improved from experience within the cell’s lifetime, and there is no value bootstrapping, discounting, or policy update – the biochemistry is fixed. What the cell actually implements is <strong>adaptation-based temporal-derivative (gradient) sensing</strong>, best described as an adaptive filter or predictive-coding mechanism rather than reinforcement learning. Genuine <em>reinforcement</em> – an internal variable that is strengthened by success and thereby changes future behaviour – appears instead in the slime-mold and ant-colony examples below, which are the closer analogues of reinforcement learning.</p>
 <p><strong>Slime Mold Network Adaptation</strong>: The slime mold <em>Physarum polycephalum</em> demonstrates a more complex form of reinforcement learning through its adaptive tube network morphology. This single-celled organism, despite lacking a central nervous system, can solve spatial optimization problems like finding the shortest path through a maze or creating efficient transport networks.</p>
 <p>The physical mechanism underlying this learning ability lies in the flow-dependent adaptation of its tubular network. Tubes carrying higher flow become reinforced, while those with little flow gradually thin and eventually disappear. This process can be modeled mathematically as:</p>
 <p><span class="math display">\[\frac{dD_{ij}}{dt} = f(Q_{ij}) - \gamma D_{ij}\]</span></p>
@@ -1374,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><strong>Key Features:</strong></p>
 <ul>
 <li><strong>Pheromone Dynamics</strong>: Red trails show pheromone concentration, implementing the equation <span class="math inline">\(\tau_{ij}(t+1) = (1-\rho)\tau_{ij}(t) + \sum_{k} \Delta\tau_{ij}^k\)</span></li>
-<li><strong>Softmax Decision Making</strong>: Ants choose paths based on both pheromone strength (α parameter) and distance heuristics (β parameter)</li>
+<li><strong>Softmax Decision Making</strong>: Ants choose paths based on both pheromone strength (<span class="math inline">\(\alpha\)</span> parameter) and distance heuristics (<span class="math inline">\(\beta\)</span> parameter)</li>
 <li><strong>Adaptive Behavior</strong>: Watch how optimal paths emerge through collective exploration and exploitation</li>
 <li><strong>Environmental Challenges</strong>: Add obstacles to see how the colony adapts its foraging strategy</li>
 </ul>

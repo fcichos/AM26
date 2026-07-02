@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture12/lecture12.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -164,7 +165,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Synthetic Active Particles</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Applications and Advanced Topics</a></li><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Lecture 11</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -268,6 +269,10 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part II</span>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -309,6 +314,33 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+ <span class="menu-text">Part III</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications and Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture11/lecture11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture12/lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 12</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -343,7 +375,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Applications and Advanced Topics</a></li><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Lecture 11</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Synthetic Active Particles</h1>
 </div>
@@ -451,7 +483,7 @@ Figure&nbsp;1— Various synthetic active particle designs documented in literat
 </tbody>
 </table>
 <p>As comprehensively reviewed by Anderson, these phoretic mechanisms share a common physical foundation: they all involve interfacial forces that drive fluid motion within a thin boundary layer near surfaces, resulting in relative motion between particles and their surrounding fluid. Anderson’s seminal work establishes a unified framework for understanding these diverse phenomena through the lens of non-equilibrium thermodynamics and low Reynolds number hydrodynamics.</p>
-<p><em>Anderson, J.L. (1985). “Colloid transport by interfacial forces.” Annual Review of Fluid Mechanics, 21, 61–99.</em></p>
+<p><em>Anderson, J.L. (1989). “Colloid transport by interfacial forces.” Annual Review of Fluid Mechanics, 21, 61–99.</em></p>
 <section id="role-in-synthetic-active-matter-systems" class="level4">
 <h4 class="anchored" data-anchor-id="role-in-synthetic-active-matter-systems">Role in Synthetic Active Matter Systems</h4>
 <p>Phoretic mechanisms enable synthetic active matter by providing controllable propulsion at microscales where viscous forces dominate. Unlike macroscopic propulsion mechanisms that rely on inertia, phoretic propulsion works efficiently in low Reynolds number environments. This makes it particularly suitable for applications in biological environments, microfluidics, and materials science.</p>
@@ -487,7 +519,7 @@ Figure&nbsp;2— Left: Gold coated polystyrene particle that resembles a so-call
 <p>Beyond this thin interfacial region (typically nanometers), the fluid exhibits bulk-like properties with no memory of the surface interactions.</p>
 <p>The flow within this boundary layer is governed by the Stokes equation with an additional body force term:</p>
 <p><span class="math display">\[
-\eta \Delta \vec{u}=-\nabla p-\vec{f}
+\eta \Delta \vec{u}=\nabla p-\vec{f}
 \]</span></p>
 <p>where <span class="math inline">\(\vec{f}\)</span> represents the interfacial force density arising from the gradient-driven mechanisms. This equation can be decomposed into components parallel and perpendicular to the surface:</p>
 <p><strong>Normal component:</strong> <span class="math display">\[
@@ -646,7 +678,7 @@ f_x = -(-2en_0\sinh\left(\frac{e\psi}{k_B T}\right)) \frac{\partial \psi}{\parti
 <p>Now we combine the force and pressure gradient: <span class="math display">\[
 f_x - \frac{\partial p}{\partial x} = 2en_0\sinh\left(\frac{e\psi}{k_B T}\right) \frac{\partial \psi}{\partial x} - n k_B \frac{\partial T}{\partial x} - \rho \psi \frac{1}{T}\frac{\partial T}{\partial x} - (-\rho) \frac{\partial \psi}{\partial x}
 \]</span></p>
-<p>Notice that the first term <span class="math inline">\(2en_0\sinh\left(\frac{e\psi}{k_B T}\right) \frac{\partial \psi}{\partial x}\)</span> and the last term <span class="math inline">\(\rho \frac{\partial \psi}{\partial x}\)</span> are identical (since <span class="math inline">\(\rho = -2en_0\sinh\left(\frac{e\psi}{k_B T}\right)\)</span>), so they cancel!</p>
+<p>Notice that the first term <span class="math inline">\(2en_0\sinh\left(\frac{e\psi}{k_B T}\right) \frac{\partial \psi}{\partial x}\)</span> and the last term <span class="math inline">\(\rho \frac{\partial \psi}{\partial x}\)</span> are equal and opposite (since <span class="math inline">\(\rho = -2en_0\sinh\left(\frac{e\psi}{k_B T}\right)\)</span>), so they cancel!</p>
 <p>This leaves us with: <span class="math display">\[
 f_x - \frac{\partial p}{\partial x} = -n k_B \frac{\partial T}{\partial x} - \rho \psi \frac{1}{T}\frac{\partial T}{\partial x}
 \]</span></p>
@@ -681,7 +713,7 @@ h(z) &amp;= \rho\psi + nk_BT \\
 u_B= -\frac{1}{\eta}\int_0^{\infty} z h(z)dz\frac{\nabla T_{||}}{T}
 \]</span></p>
 <p>We can integrate this analytically for the linearized case (valid when <span class="math inline">\(e\psi \ll k_BT\)</span>), which is the Debye-Hückel approximation. This involves substituting our expressions for the excess enthalpy density and potential profile, then solving the resulting integral.</p>
-<p>For a charged surface characterized by its zeta potential <span class="math inline">\(\zeta\)</span> (approximately equal to the surface potential <span class="math inline">\(\psi_0\)</span> in many models), and recalling that the Debye length <span class="math inline">\(\lambda_D\)</span> is related to permittivity through <span class="math inline">\(\lambda_D^2 = \frac{\varepsilon k_B T}{2 e^2 n_0}\)</span>, we can express the boundary velocity as:</p>
+<p>For a charged surface characterized by its zeta potential <span class="math inline">\(\zeta\)</span> (approximately equal to the surface potential <span class="math inline">\(\psi_0\)</span> in many models), and recalling that the Debye length <span class="math inline">\(\lambda_D\)</span> is related to permittivity through <span class="math inline">\(\lambda_D^2 = \frac{\varepsilon k_B T}{2 e^2 n_0}\)</span> (where <span class="math inline">\(\varepsilon \equiv \epsilon\epsilon_0\)</span> is the total permittivity of the fluid, written this way from here on), we can express the boundary velocity as:</p>
 <p><span class="math display">\[
 u_B = \frac{\varepsilon \zeta^2}{8 \eta} \frac{\nabla T_{||}}{T}
 \]</span></p>
@@ -780,7 +812,7 @@ u_B = \mu_D \nabla c_{||}
 \]</span></p>
 <p>where <span class="math inline">\(\mu_D\)</span> is the diffusio-osmotic mobility:</p>
 <p><span class="math display">\[
-\mu_D = \frac{k_B T}{\eta} \int_0^{\infty} (e^{-\beta \Phi(z)} - 1) dz
+\mu_D = -\frac{k_B T}{\eta} \int_0^{\infty} z\,(e^{-\beta \Phi(z)} - 1)\, dz
 \]</span></p>
 <p>Here, <span class="math inline">\(\Phi(z)\)</span> represents the interaction potential between the solute and the surface, which typically decays over a characteristic length scale <span class="math inline">\(\lambda_c\)</span>. The sign of <span class="math inline">\(\mu_D\)</span> depends on whether these interactions are attractive (negative) or repulsive (positive).</p>
 <p>For a spherical particle exhibiting diffusiophoresis in a concentration gradient, the particle velocity becomes:</p>
@@ -802,7 +834,7 @@ u_B = -\frac{\varepsilon \zeta}{\eta} E_{||}
 <p><span class="math display">\[
 U = \frac{\varepsilon \zeta}{\eta} E = \mu_E E
 \]</span></p>
-<p>where <span class="math inline">\(\mu_E = \frac{\varepsilon \zeta}{\eta}\)</span> is the electrophoretic mobility. Unlike the other phoretic mechanisms discussed earlier, there is no factor of <span class="math inline">\(-\frac{2}{3}\)</span> because the potential gradient develops uniformly around the particle, creating a consistent osmotic flow pattern rather than the asymmetric gradients seen in thermophoresis or diffusiophoresis.</p>
+<p>where <span class="math inline">\(\mu_E = \frac{\varepsilon \zeta}{\eta}\)</span> is the electrophoretic mobility (the Helmholtz-Smoluchowski result, valid for a thin double layer, <span class="math inline">\(\kappa a \gg 1\)</span>). There is no residual factor of <span class="math inline">\(\frac{2}{3}\)</span> here – but not because the field is uniform around the particle. In fact an insulating sphere distorts the applied field, enhancing the tangential field at the surface to <span class="math inline">\(\frac{3}{2} E \sin\theta\)</span>; this <span class="math inline">\(\frac{3}{2}\)</span> exactly cancels the <span class="math inline">\(\frac{2}{3}\)</span> that comes from surface-averaging the slip, leaving the full <span class="math inline">\(\mu_E = \varepsilon\zeta/\eta\)</span>. Equivalently, the outer electro-osmotic flow is irrotational, which is why the electrophoretic mobility is independent of particle size and shape.</p>
 <p>These mechanisms can be combined in synthetic active matter systems, either working with external gradients or, more commonly, with self-generated gradients created through asymmetric catalytic or physical properties.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -836,8 +868,8 @@ Figure&nbsp;4— Bubble propulsion from a rolled-up microtube coated with platin
 </figure>
 </div>
 <p>The resulting particle velocity scales approximately with:</p>
-<p><span class="math display">\[U \approx \frac{k_B T}{\eta} \frac{a \lambda_c^2}{D} \dot{r}\]</span></p>
-<p>where <span class="math inline">\(\dot{r}\)</span> represents the reaction rate per unit area, <span class="math inline">\(D\)</span> is the diffusion coefficient of the product species, <span class="math inline">\(\lambda_c\)</span> is the interaction range, and <span class="math inline">\(a\)</span> is the particle radius.</p>
+<p><span class="math display">\[U \approx \frac{k_B T}{\eta} \frac{\lambda_c^2}{D} \dot{r}\]</span></p>
+<p>where <span class="math inline">\(\dot{r}\)</span> represents the reaction rate per unit area, <span class="math inline">\(D\)</span> is the diffusion coefficient of the product species, and <span class="math inline">\(\lambda_c\)</span> is the interaction range. Note that the self-phoretic speed is, to leading order, <strong>independent of the particle radius</strong>: a fixed surface reaction rate per area sets a surface concentration gradient <span class="math inline">\(\nabla c|_\text{surf} \sim \dot{r}/D\)</span> that does not scale with <span class="math inline">\(a\)</span>.</p>
 <p>The precise direction of motion (toward or away from the catalytic side) depends on the specific interactions between reaction products and the particle surface, which can be engineered through surface chemistry modifications.</p>
 </div>
 </div>
@@ -885,13 +917,13 @@ Calculating Marangoni Stresses and Flow Fields
 <div class="callout-body-container callout-body">
 <p>The flow field around a droplet driven by Marangoni effects can be calculated by considering the stress balance at the interface. For a fluid interface between two immiscible fluids (labeled 1 and 2), the tangential stress balance is:</p>
 <p><span class="math display">\[\eta_1 \frac{\partial u_1}{\partial n} - \eta_2 \frac{\partial u_2}{\partial n} = \nabla_s \gamma\]</span></p>
-<p>where <span class="math inline">\(\eta_i\)</span> is the viscosity of fluid <span class="math inline">\(i\)</span>, <span class="math inline">\(u_i\)</span> is the tangential velocity component, <span class="math inline">\(\partial/\partial n\)</span> represents the derivative normal to the interface, and <span class="math inline">\(\nabla_s \gamma\)</span> is the surface tension gradient.</p>
-<p>For a spherical droplet with radius <span class="math inline">\(a\)</span> in the low Reynolds number regime, the flow field can be obtained by solving the Stokes equations with this boundary condition. When the surface tension varies as <span class="math inline">\(\gamma(\theta) = \gamma_0 + \Delta\gamma \cos\theta\)</span> (with <span class="math inline">\(\theta\)</span> measured from the direction of motion), the resulting flow field outside the droplet (for <span class="math inline">\(r &gt; a\)</span>) is:</p>
-<p><span class="math display">\[\mathbf{u}(\mathbf{r}) = \frac{\Delta\gamma a^2}{2\eta_o} \left(\frac{1}{r^3}\mathbf{r}(\mathbf{r}\cdot\mathbf{p}) - \frac{1}{r}\mathbf{p}\right)\]</span></p>
-<p>where <span class="math inline">\(\mathbf{p}\)</span> is the unit vector in the direction of the surface tension gradient and <span class="math inline">\(\eta_o\)</span> is the viscosity of the outer fluid. This flow field has a characteristic dipolar structure, resembling the “pusher” flow field in microswimmer hydrodynamics.</p>
+<p>where <span class="math inline">\(\eta_i\)</span> is the viscosity of fluid <span class="math inline">\(i\)</span>, <span class="math inline">\(u_i\)</span> is the tangential velocity component, <span class="math inline">\(\partial/\partial n\)</span> represents the derivative normal to the interface, and <span class="math inline">\(\nabla_s \gamma\)</span> is the surface tension gradient. Note that each term <span class="math inline">\(\eta_i\,\partial u_i/\partial n\)</span> is the viscous <strong>shear stress</strong> – the <em>tangential</em> traction on the interface – given by viscosity times the shear rate (the normal derivative of the tangential velocity); the word “tangential” here refers to the direction of the force, not to the direction of the derivative. This is the tangential projection of the general interfacial stress-jump condition <span class="math inline">\([\![\boldsymbol{\sigma}\cdot\hat{\mathbf{n}}]\!] = \gamma\kappa\,\hat{\mathbf{n}} - \nabla_s\gamma\)</span> (whose normal projection is the Young-Laplace law <span class="math inline">\(\Delta p = \gamma\kappa\)</span>): a massless interface must be force-free, so the jump in viscous shear stress between the two fluids is balanced by the surface-tension gradient (the Marangoni stress), which is what drives the flow.</p>
+<p>For a spherical droplet with radius <span class="math inline">\(a\)</span> in the low Reynolds number regime, the flow field can be obtained by solving the Stokes equations with this boundary condition. When the surface tension varies as <span class="math inline">\(\gamma(\theta) = \gamma_0 + \Delta\gamma \cos\theta\)</span> (with <span class="math inline">\(\theta\)</span> measured from the direction of motion), the droplet swims <strong>force-free</strong>, so its exterior disturbance flow (for <span class="math inline">\(r &gt; a\)</span>) is a <strong>source dipole</strong> decaying as <span class="math inline">\(1/r^3\)</span>:</p>
+<p><span class="math display">\[\mathbf{u}(\mathbf{r}) = \frac{U a^3}{2 r^3}\left(3(\hat{\mathbf{r}}\cdot\mathbf{p})\,\hat{\mathbf{r}} - \mathbf{p}\right)\]</span></p>
+<p>where <span class="math inline">\(\mathbf{p}\)</span> is the unit vector along the surface tension gradient (the swimming direction), <span class="math inline">\(\hat{\mathbf{r}} = \mathbf{r}/r\)</span>, <span class="math inline">\(\eta_o\)</span> is the viscosity of the outer fluid, and <span class="math inline">\(U\)</span> is the droplet speed given below. Because the droplet exerts no net force on the fluid, the slowly decaying (<span class="math inline">\(1/r\)</span>) Stokeslet term is absent; the leading term is the <span class="math inline">\(1/r^3\)</span> source dipole characteristic of a <strong>neutral squirmer</strong> (a <span class="math inline">\(\gamma \propto \cos\theta\)</span> profile excites only the <span class="math inline">\(B_1\)</span> squirming mode). Higher angular harmonics in <span class="math inline">\(\gamma(\theta)\)</span> would add a <span class="math inline">\(1/r^2\)</span> stresslet and produce pusher- or puller-type far fields.</p>
 <p>The droplet velocity can be calculated from this flow field as:</p>
 <p><span class="math display">\[U = \frac{a \Delta\gamma}{2\eta_o(2+3\lambda)}\]</span></p>
-<p>where <span class="math inline">\(\lambda = \eta_i/\eta_o\)</span> is the viscosity ratio between inner and outer fluids. For highly viscous droplets (<span class="math inline">\(\lambda \gg 1\)</span>), this simplifies to <span class="math inline">\(U \approx \frac{a\Delta\gamma}{6\eta_o}\)</span>, while for bubbles or low-viscosity droplets (<span class="math inline">\(\lambda \ll 1\)</span>), it approaches <span class="math inline">\(U \approx \frac{a\Delta\gamma}{4\eta_o}\)</span>.</p>
+<p>where <span class="math inline">\(\lambda = \eta_i/\eta_o\)</span> is the viscosity ratio between inner and outer fluids. For highly viscous droplets (<span class="math inline">\(\lambda \gg 1\)</span>), this simplifies to <span class="math inline">\(U \approx \frac{a\Delta\gamma}{6\eta_o\lambda} = \frac{a\Delta\gamma}{6\eta_i}\)</span>, while for bubbles or low-viscosity droplets (<span class="math inline">\(\lambda \ll 1\)</span>), it approaches <span class="math inline">\(U \approx \frac{a\Delta\gamma}{4\eta_o}\)</span>.</p>
 </div>
 </div>
 </div>
@@ -911,7 +943,7 @@ Calculating Marangoni Stresses and Flow Fields
 </section>
 <section id="quincke-rollers-and-electrorotation" class="level2">
 <h2 class="anchored" data-anchor-id="quincke-rollers-and-electrorotation">Quincke Rollers and Electrorotation</h2>
-<p>Quincke rotation represents another fascinating electrokinetic phenomenon in synthetic active matter. When a dielectric particle is placed in a uniform DC electric field exceeding a critical threshold, it can spontaneously start rotating around an axis perpendicular to the field direction. This phenomenon, first described by G. Quincke in 1896, results from an electrohydrodynamic instability.</p>
+<p>Quincke rotation represents another fascinating electrokinetic phenomenon in synthetic active matter. When a dielectric particle <strong>suspended in a weakly conducting liquid</strong> is placed in a uniform DC electric field exceeding a critical threshold, it can spontaneously start rotating around an axis perpendicular to the field direction. This phenomenon, first described by G. Quincke in 1896, results from an electrohydrodynamic instability. The weak conductivity of the liquid is essential: it is what allows free charge to accumulate at the particle-liquid interface and drive the instability, so a perfectly insulating liquid produces no rotation (this requirement is made precise in the callout below).</p>
 <div id="fig-quncke" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-quncke-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -960,6 +992,21 @@ Charge Relaxation Times
 <li>When <span class="math inline">\(R &gt; 1\)</span>: The fluid responds faster than the particle. This creates an unstable situation where any small perturbation causes the dipole to misalign with the field, generating a torque that amplifies the rotation.</li>
 </ul></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The liquid must be weakly conducting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quincke rotation cannot occur in a perfectly insulating liquid. The mechanism is driven by <strong>free (Ohmic) charge</strong> accumulating at the particle-liquid interface, and free charge that can move and build up requires a finite conductivity. If the liquid were a perfect dielectric (<span class="math inline">\(\sigma_l = 0\)</span>), its charge-relaxation time <span class="math inline">\(\tau_l = \varepsilon_l/\sigma_l\)</span> would diverge, so <span class="math inline">\(R = \tau_p/\tau_l \to 0 &lt; 1\)</span> and the anti-aligned free-charge dipole that drives the instability never forms.</p>
+<p>The condition <span class="math inline">\(R&gt;1\)</span> (i.e.&nbsp;<span class="math inline">\(\varepsilon_p\sigma_l &gt; \varepsilon_l\sigma_p\)</span>) means the liquid must relax <em>faster</em> than the particle: with comparable permittivities the particle is essentially insulating and the <strong>liquid is the slightly more conducting phase</strong> that carries the free charge.</p>
+<p>But it must be only <em>weakly</em> conducting. Too close to insulating (<span class="math inline">\(\sigma_l \to \sigma_p\)</span>) sends <span class="math inline">\(R\to 1\)</span>, where <span class="math inline">\(\chi^\infty-\chi^0\to 0\)</span> and the threshold <span class="math inline">\(E_c\to\infty\)</span>; too conducting shrinks <span class="math inline">\(\tau_i\)</span> (raising <span class="math inline">\(E_c \sim \sqrt{\sigma_l}\)</span>) and brings Ohmic heating, electrode polarization, and electrolysis. Experimentally one hits this intermediate window by dissolving a trace of an ionic surfactant (e.g.&nbsp;AOT) in an apolar oil such as hexadecane to set a small, controlled conductivity (Bricard et al., <em>Nature</em> 2013).</p>
+</div>
+</div>
 <p>The fundamental physics can be described by coupling electrostatics with rotational dynamics:</p>
 <ul>
 <li><p>An electric field <span class="math inline">\(\mathbf{E}\)</span> exerts a torque on the particle’s dipole moment <span class="math inline">\(\mathbf{P}\)</span>: <span class="math display">\[\mathbf{T}_e = \mathbf{P} \times \mathbf{E}\]</span></p></li>
@@ -967,7 +1014,8 @@ Charge Relaxation Times
 <li><p>The free charge component evolves according to: <span class="math display">\[\frac{d\mathbf{P}_f}{dt} = -\frac{1}{\tau_i}\mathbf{P}_f + \varepsilon_l a^3 \mathbf{\Omega} \times \mathbf{E}\]</span> where <span class="math inline">\(\tau_i\)</span> is a distinct interfacial relaxation time scale (different from the individual charge relaxation times <span class="math inline">\(\tau_p\)</span> and <span class="math inline">\(\tau_l\)</span>). This <span class="math inline">\(\tau_i\)</span> characterizes how quickly charges redistribute at the particle-fluid interface and depends on the combined electrical properties of both materials: <span class="math inline">\(\tau_i = \frac{\varepsilon_p + 2\varepsilon_l}{\sigma_p + 2\sigma_l}\)</span>. The parameter <span class="math inline">\(a\)</span> is the particle radius.</p></li>
 <li><p>The particle’s rotation follows Newton’s second law for rotation: <span class="math display">\[I\frac{d\mathbf{\Omega}}{dt} = \mathbf{T}_e - 8\pi\eta a^3 \mathbf{\Omega}\]</span> where <span class="math inline">\(I\)</span> is the moment of inertia and the second term represents viscous drag in the fluid.</p></li>
 </ul>
-<p>For a spherical particle of radius <span class="math inline">\(a\)</span>, there exists a critical field strength: <span class="math display">\[E_c = \sqrt{\frac{2\eta(R+2)^2}{a^2\varepsilon_l(R-1)(R+1/2)}}\]</span></p>
+<p>For a spherical particle there exists a critical field strength – <strong>independent of the particle radius</strong> (the electrical torque and the viscous drag both scale as <span class="math inline">\(a^3\)</span>, so <span class="math inline">\(a\)</span> cancels): <span class="math display">\[E_c = \sqrt{\frac{2\eta}{\varepsilon_l\,\tau_i\,(\chi^\infty - \chi^0)}}, \qquad \chi^0 = \frac{\sigma_p-\sigma_l}{\sigma_p+2\sigma_l},\quad \chi^\infty = \frac{\varepsilon_p-\varepsilon_l}{\varepsilon_p+2\varepsilon_l}\]</span></p>
+<p>where <span class="math inline">\(\chi^0\)</span> and <span class="math inline">\(\chi^\infty\)</span> are the low- and high-frequency (Clausius-Mossotti) polarization coefficients. Since <span class="math inline">\(\chi^\infty - \chi^0 = \dfrac{3(\varepsilon_p\sigma_l - \varepsilon_l\sigma_p)}{(\varepsilon_p+2\varepsilon_l)(\sigma_p+2\sigma_l)}\)</span>, the threshold is real – and rotation is possible – exactly when <span class="math inline">\(\chi^\infty &gt; \chi^0\)</span>, which is the same condition as <span class="math inline">\(R&gt;1\)</span> found above.</p>
 <p>Above this threshold, the particle rotates with angular velocity: <span class="math display">\[\Omega = \frac{\sigma_l}{\varepsilon_l} \sqrt{\frac{E^2}{E_c^2} - 1}\]</span></p>
 <p>When these rotating particles are placed near a surface, they convert rotational motion into translation, rolling like microscopic wheels. These “Quincke rollers” can achieve significant speeds (hundreds of μm/s) and exhibit fascinating collective behaviors:</p>
 <ol type="1">
@@ -980,9 +1028,10 @@ Charge Relaxation Times
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
-<li>Anderson, J.L. (1985). “Colloid transport by interfacial forces.” <em>Annual Review of Fluid Mechanics</em>, 21, 61–99.</li>
+<li>Anderson, J.L. (1989). “Colloid transport by interfacial forces.” <em>Annual Review of Fluid Mechanics</em>, 21, 61–99.</li>
 <li>Bricard, A., Caussin, J.B., Desreumaux, N., Dauchot, O., &amp; Bartolo, D. (2013). “Emergence of macroscopic directed motion in populations of motile colloids.” <em>Nature</em>, 503(7474), 95-98.</li>
-<li>Quincke, H. (1895). “Über die Bewegung von Rotationskörpern in Flüssigkeiten.” <em>Annalen der Physik</em>, 289(1), 1-24.- Howse, J.R., Jones, R.A.L., Ryan, A.J., Gough, T., Vafabakhsh, R., &amp; Golestanian, R. (2007). “Self-Motile Colloidal Particles: From Directed Propulsion to Random Walk.” <em>Physical Review Letters</em>, 99(4), 048102.</li>
+<li>Quincke, G. (1896). “Ueber Rotationen im constanten electrischen Felde.” <em>Annalen der Physik und Chemie</em>, 59, 417-486.</li>
+<li>Howse, J.R., Jones, R.A.L., Ryan, A.J., Gough, T., Vafabakhsh, R., &amp; Golestanian, R. (2007). “Self-Motile Colloidal Particles: From Directed Propulsion to Random Walk.” <em>Physical Review Letters</em>, 99(4), 048102.</li>
 <li>Ebben, R.S., Vos, D.E., &amp; Löwen, H. (2021). “Diffusiophoretic orientation of catalytic dimers: Phoretic alignment beats polarity.” <em>Soft Matter</em>, 17(33), 7638-7648.</li>
 <li>Bregulla, A.P., Yang, H., &amp; Cichos, F. (2014). “Stochastic Localization of Microswimmers by Photon Nudging.” <em>ACS Nano</em>, 8(7), 6542-6550.</li>
 <li>Jiang, H.R., Yoshinaga, N., &amp; Sano, M. (2010). “Active Motion of a Janus Particle by Self-Thermophoresis in a Defocused Laser Beam.” <em>Physical Review Letters</em>, 105(26), 268302.</li>
@@ -1392,6 +1441,15 @@ Charge Relaxation Times
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture12/lecture12.html" class="pagination-link" aria-label="Lecture 12">
+        <span class="nav-page-text">Lecture 12</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
