@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lecture12/lecture12.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -129,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Frontiers in Active Matter Research</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Applications and Advanced Topics</a></li><li class="breadcrumb-item"><a href="../lecture13/lecture13.html">Lecture 13</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -303,6 +304,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 12</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -328,7 +335,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture11/lecture11.html">Applications and Advanced Topics</a></li><li class="breadcrumb-item"><a href="../lecture13/lecture13.html">Lecture 13</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Frontiers in Active Matter Research</h1>
 </div>
@@ -782,6 +789,39 @@ document.addEventListener('DOMContentLoaded', function() {
 </ul>
 <p>The algorithm operates by: (1) observing state <span class="math inline">\(\mathbf{s}_t\)</span>, (2) selecting and executing action <span class="math inline">\(\mathbf{a}_t\)</span> according to policy <span class="math inline">\(\pi\)</span>, (3) observing reward <span class="math inline">\(R(\mathbf{s}_t, \mathbf{a}_t)\)</span> and next state <span class="math inline">\(\mathbf{s}_{t+1}\)</span>, (4) updating the value estimate using the equation above, and (5) moving to the next state. TD learning is particularly useful in active matter systems because it can learn from incomplete sequences and ongoing interactions, without requiring episodes to terminate.</p></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Actor-Critic Methods and Proximal Policy Optimization (PPO)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The three algorithms above fall into two families: value-based (Q-learning, TD) and policy-based (policy gradient). <strong>Actor-critic</strong> methods combine them, and <strong>PPO</strong> is the most widely used actor-critic algorithm today – including in most active-matter navigation studies that train swimmers with deep RL.</p>
+<p><strong>Actor and critic.</strong> Two learned components cooperate:</p>
+<ul>
+<li>the <strong>actor</strong> is the policy <span class="math inline">\(\pi_{\boldsymbol{\theta}}(\mathbf{a}|\mathbf{s})\)</span> – it chooses actions;</li>
+<li>the <strong>critic</strong> is a value function <span class="math inline">\(V_{\boldsymbol{\phi}}(\mathbf{s})\)</span> (or <span class="math inline">\(Q\)</span>) – it estimates how good states/actions are.</li>
+</ul>
+<p>The critic exists to give the actor a low-variance learning signal. Instead of weighting the policy gradient by the raw, noisy return, we weight it by the <strong>advantage</strong></p>
+<p><span class="math display">\[A(\mathbf{s},\mathbf{a}) = Q(\mathbf{s},\mathbf{a}) - V(\mathbf{s}) \;\approx\; \underbrace{R + \gamma V_{\boldsymbol{\phi}}(\mathbf{s}') - V_{\boldsymbol{\phi}}(\mathbf{s})}_{\text{TD error}},\]</span></p>
+<p>which measures how much better an action did than the critic expected. The actor update is the policy gradient weighted by the advantage,</p>
+<p><span class="math display">\[\nabla_{\boldsymbol{\theta}} J = \mathbb{E}\big[\nabla_{\boldsymbol{\theta}} \log \pi_{\boldsymbol{\theta}}(\mathbf{a}|\mathbf{s})\, A(\mathbf{s},\mathbf{a})\big],\]</span></p>
+<p>while the critic is trained by minimizing the TD error (a regression of <span class="math inline">\(V_{\boldsymbol{\phi}}\)</span> onto <span class="math inline">\(R + \gamma V_{\boldsymbol{\phi}}(\mathbf{s}')\)</span>). Positive advantage makes an action more likely; negative advantage makes it less likely.</p>
+<p><strong>Why PPO.</strong> Plain actor-critic is unstable: a single large step can move the policy into a region where the already-collected data is no longer representative, collapsing performance. PPO keeps each update <strong>proximal</strong> to the current policy. Define the probability ratio between the new and old policies,</p>
+<p><span class="math display">\[r_t(\boldsymbol{\theta}) = \frac{\pi_{\boldsymbol{\theta}}(\mathbf{a}_t|\mathbf{s}_t)}{\pi_{\boldsymbol{\theta}_\text{old}}(\mathbf{a}_t|\mathbf{s}_t)},\]</span></p>
+<p>and maximize the <strong>clipped surrogate objective</strong></p>
+<p><span class="math display">\[L^{\text{CLIP}}(\boldsymbol{\theta}) = \mathbb{E}_t\Big[\min\big(r_t(\boldsymbol{\theta})\,A_t,\; \text{clip}(r_t(\boldsymbol{\theta}),\,1-\epsilon,\,1+\epsilon)\,A_t\big)\Big].\]</span></p>
+<p>The clip (with <span class="math inline">\(\epsilon \approx 0.1\text{–}0.2\)</span>) removes any incentive to push <span class="math inline">\(r_t\)</span> beyond <span class="math inline">\([1-\epsilon,\,1+\epsilon]\)</span>, so the policy cannot change too much in one update – giving much of the stability of trust-region methods while using only ordinary first-order gradients.</p>
+<p><strong>The loop.</strong> (1) Run the current policy to collect a batch of transitions; (2) estimate the advantages <span class="math inline">\(A_t\)</span> (commonly via generalized advantage estimation); (3) perform several epochs of minibatch gradient ascent on <span class="math inline">\(L^{\text{CLIP}}\)</span>, plus a critic (value) loss and a small entropy bonus that encourages exploration; (4) set <span class="math inline">\(\pi_{\boldsymbol{\theta}_\text{old}} \leftarrow \pi_{\boldsymbol{\theta}}\)</span> and repeat.</p>
+<p><strong>Relevance to active matter.</strong> Because it handles continuous state and action spaces stably, PPO (and related actor-critic methods) is the standard tool for training active agents – steering microswimmers through flows, learning to navigate toward a target against Brownian noise, or optimizing swimming gaits – exactly the continuous-control settings that arise throughout this section.</p>
+</div>
+</div>
+</div>
 <p>The mathematical framework we’ve established provides the theoretical foundation, but the true excitement lies in how these abstract concepts manifest in real physical systems. Active matter systems naturally implement many of the computational primitives required for reinforcement learning—they can sense their environment, execute actions, and modify their behavior based on outcomes. What makes this particularly remarkable is that these learning capabilities emerge from the collective behavior of simple physical components, without any centralized control or explicit programming.</p>
 </section>
 <section id="applications-to-active-matter-systems" class="level4">
@@ -794,6 +834,31 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>This has the same form as a temporal-difference update: the bacterium relaxes its internal estimate <span class="math inline">\(m(t)\)</span> toward the actual nutrient concentration, with <span class="math inline">\(\alpha\)</span> setting how quickly it adapts. The quantity <span class="math inline">\(\delta(t) = \text{Nutrient}(t) - m(t)\)</span> plays the role of the TD error. (Strictly, <span class="math inline">\(\alpha\)</span> is an <em>adaptation</em> rate rather than a learning rate, and this update is the degenerate <span class="math inline">\(\gamma = 0\)</span> limit of TD – an exponentially-weighted running average, or adaptive filter.)</p>
 <p>When the bacterium swims up a nutrient gradient, the concentration it senses exceeds its adapted estimate, so <span class="math inline">\(\delta(t) &gt; 0\)</span>. This positive TD error transiently <em>lowers</em> CheY-P, reducing the tumbling frequency and prolonging runs in the favorable direction. Swimming down a gradient makes <span class="math inline">\(\delta(t) &lt; 0\)</span>, raising CheY-P and increasing tumbling to trigger reorientation. Because <span class="math inline">\(m(t)\)</span> then relaxes toward the new level (adaptation), it is the <em>change</em> in concentration – not its absolute value – that steers the cell (the network effectively computes <span class="math inline">\(dc/dt\)</span> along the trajectory), much as a TD error reports a change rather than a level.</p>
 <p><strong>How far does the analogy go?</strong> The parallel is at the level of the <em>error signal only</em>. The two features that make TD a genuine <em>learning</em> algorithm are absent here: the strategy is <strong>hard-wired by evolution</strong>, not improved from experience within the cell’s lifetime, and there is no value bootstrapping, discounting, or policy update – the biochemistry is fixed. What the cell actually implements is <strong>adaptation-based temporal-derivative (gradient) sensing</strong>, best described as an adaptive filter or predictive-coding mechanism rather than reinforcement learning. Genuine <em>reinforcement</em> – an internal variable that is strengthened by success and thereby changes future behaviour – appears instead in the slime-mold and ant-colony examples below, which are the closer analogues of reinforcement learning.</p>
+<p><strong>Adaptation as integral feedback control.</strong> A landmark result from systems biology sharpens this picture and gives it a rigorous control-theory footing. Barkai and Leibler (1997) showed that the adaptation of <em>E. coli</em> chemotaxis is <strong>robust</strong> – a structural property of the network wiring rather than a fine-tuned coincidence – and Yi, Huang, Simon and Doyle (2000) identified its mechanism: an <strong>integral feedback controller</strong>. The slow receptor-methylation dynamics (CheR methylates receptors, CheB demethylates the <em>active</em> ones) integrate the deviation of the receptor-kinase activity from a fixed setpoint over time and feed it back, driving that deviation to zero. The consequence is <strong>robust perfect adaptation</strong>: after a step change in a uniform attractant background, the tumbling frequency returns <em>exactly</em> to its pre-stimulus baseline, independent of the background concentration and of most kinetic parameters. This is precisely <em>why</em> the cell responds to changes rather than to absolute levels. In these terms, the simple relaxation model <span class="math inline">\(m(t{+}1)=m(t)+\alpha[\text{Nutrient}-m(t)]\)</span> above is only a <em>leaky</em> (hence imperfect) integrator; the real network approximates a <em>pure</em> integrator, which is what guarantees the steady-state error is eliminated exactly (see callout). More recent work has made this correspondence general – robust perfect adaptation in a biochemical network of any size <em>requires</em> an embedded integral-control motif (Araujo and Liebler, 2018) – and the same principle is now deliberately engineered into synthetic biology (the antithetic integral-feedback motif of Briat, Gupta and Khammash, 2016).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is an integral controller?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A <strong>controller</strong> steers a system’s actuation so that some measured output stays at a desired <strong>setpoint</strong>, using the <strong>error</strong> <span class="math inline">\(e(t) = \text{setpoint} - \text{output}\)</span>.</p>
+<ul>
+<li><strong>Proportional (P) control</strong>, <span class="math inline">\(u \propto e\)</span>, reacts to the <em>current</em> error. It is simple, but it leaves a residual <strong>steady-state error</strong> (offset): the actuation only stays on while an error persists.</li>
+<li><strong>Integral (I) control</strong> accumulates the error over time,</li>
+</ul>
+<p><span class="math display">\[u(t) = k_I \int_0^t e(\tau)\,d\tau \qquad\Longleftrightarrow\qquad \frac{du}{dt} = k_I\, e(t).\]</span></p>
+<p>The crucial property follows immediately: at steady state <span class="math inline">\(du/dt = 0\)</span>, so the equation <em>forces</em> <span class="math inline">\(e = 0\)</span>. An integral controller therefore keeps adjusting until the error is <strong>exactly</strong> zero, eliminating the steady-state offset whatever the (constant) disturbance. This is the “I” term of the familiar <strong>PID controller</strong> <span class="math inline">\(u = k_P\, e + k_I\!\int e\,dt + k_D\,\dot e\)</span>.</p>
+<p>Because zero steady-state error follows from the <em>structure</em> – an integrator sitting in the feedback loop – rather than from finely tuned gains, the property is <strong>robust</strong>: it survives changes in the rate constants and in the size of the disturbance. In biology this structural guarantee is exactly what “robust perfect adaptation” means.</p>
+<p><strong>In chemotaxis:</strong> the receptor <strong>methylation level</strong> <span class="math inline">\(m\)</span> is the integrated variable, the kinase <strong>activity</strong> <span class="math inline">\(a\)</span> is the controlled output, and the ambient <strong>attractant</strong> is the disturbance. The net methylation rate depends on the activity error, <span class="math inline">\(\dot m \propto (a_0 - a)\)</span>, so <span class="math inline">\(m\)</span> integrates that error; at steady state <span class="math inline">\(\dot m = 0\)</span> forces <span class="math inline">\(a = a_0\)</span>, returning the tumbling frequency to baseline regardless of the attractant level.</p>
+</div>
+</div>
+</div>
 <p><strong>Slime Mold Network Adaptation</strong>: The slime mold <em>Physarum polycephalum</em> demonstrates a more complex form of reinforcement learning through its adaptive tube network morphology. This single-celled organism, despite lacking a central nervous system, can solve spatial optimization problems like finding the shortest path through a maze or creating efficient transport networks.</p>
 <p>The physical mechanism underlying this learning ability lies in the flow-dependent adaptation of its tubular network. Tubes carrying higher flow become reinforced, while those with little flow gradually thin and eventually disappear. This process can be modeled mathematically as:</p>
 <p><span class="math display">\[\frac{dD_{ij}}{dt} = f(Q_{ij}) - \gamma D_{ij}\]</span></p>
@@ -807,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><span class="math display">\[P_{ij} = \frac{\tau_{ij}^\alpha \eta_{ij}^\beta}{\sum_{k} \tau_{ik}^\alpha \eta_{ik}^\beta}\]</span></p>
 <p>In this equation, <span class="math inline">\(\eta_{ij}\)</span> represents a heuristic desirability of the path (often inversely proportional to distance), while <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> control the relative influence of learned information (pheromones) versus innate preference (heuristic information). This balance between exploitation of known good paths and exploration of potentially better alternatives is a fundamental aspect of reinforcement learning that emerges naturally from the physics and chemistry of pheromone deposition and sensing.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -816,7 +881,7 @@ Softmax Policy: Mathematical Foundation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The softmax policy represents a fundamental concept in reinforcement learning that converts action values (such as Q-values) into a probability distribution for action selection. Mathematically, the general form of the softmax policy is:</p>
 <p><span class="math display">\[\pi(a|s) = \frac{e^{Q(s,a)/\tau}}{\sum_{a'} e^{Q(s,a')/\tau}}\]</span></p>
@@ -1933,6 +1998,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lecture12/lecture12.html" class="pagination-link" aria-label="Lecture 12">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 12</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

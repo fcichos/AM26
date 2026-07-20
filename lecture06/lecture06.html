@@ -339,6 +339,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 12</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 13</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -394,7 +400,7 @@ window.Quarto = {
 
 <section id="equilibrium-phase-transitions-fundamental-principles" class="level2">
 <h2 class="anchored" data-anchor-id="equilibrium-phase-transitions-fundamental-principles">Equilibrium Phase Transitions: Fundamental Principles</h2>
-<p>Unlike the non-equilibrium phase separation phenomena we will discuss later, equilibrium phase transitions form the bedrock of conventional condensed matter physics. These transitions represent dramatic changes in the physical properties of a system when certain conditions, like temperature or pressure, are varied across a critical point. Phase transitions, whether in equilibrium systems or non-equilibrium active matter, are quintessential <em>emergent phenomena</em> where the collective interactions of enormous numbers of microscopic constituents produce entirely new states of matter with <em>qualitatively different properties—properties</em> that don’t exist at the microscopic level. During these transitions, we typically observe <em>spontaneous symmetry breaking</em>, where the system collectively “chooses” one of several equivalent states, creating order from disorder in a way that cannot be predicted from individual particle behavior. Perhaps most strikingly, systems with completely different microscopic details can exhibit identical critical behavior when they belong to the same <em>universality class</em>, demonstrating how macroscopic physics emerges independently of microscopic details. This non-reducibility often necessitates new theoretical frameworks that operate at higher levels of organization than the underlying microscopic laws.</p>
+<p>Unlike the non-equilibrium phase separation phenomena we will discuss later, equilibrium phase transitions form the bedrock of conventional condensed matter physics. These transitions represent dramatic changes in the physical properties of a system when certain conditions, like temperature or pressure, are varied across a critical point. Phase transitions, whether in equilibrium systems or non-equilibrium active matter, are quintessential <em>emergent phenomena</em> where the collective interactions of enormous numbers of microscopic constituents produce entirely new states of matter with <em>qualitatively different properties</em>, properties that don’t exist at the microscopic level. During these transitions, we typically observe <em>spontaneous symmetry breaking</em>, where the system collectively “chooses” one of several equivalent states, creating order from disorder in a way that cannot be predicted from individual particle behavior. Perhaps most strikingly, systems with completely different microscopic details can exhibit identical critical behavior when they belong to the same <em>universality class</em>, demonstrating how macroscopic physics emerges independently of microscopic details. This non-reducibility often necessitates new theoretical frameworks that operate at higher levels of organization than the underlying microscopic laws.</p>
 <section id="classification-of-phase-transitions" class="level3">
 <h3 class="anchored" data-anchor-id="classification-of-phase-transitions">Classification of Phase Transitions</h3>
 <p>Equilibrium phase transitions are traditionally classified using Ehrenfest’s approach, which focuses on the behavior of the free energy. The general expression for the Gibbs free energy is:</p>
@@ -483,7 +489,7 @@ Figure&nbsp;1— Ehrenfest classification of phase transitions. First-order tran
 <div id="fig-landau-potential" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-landau-potential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="1d6fa3e9" class="cell" data-execution_count="2">
+<div id="ddb872d1" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -511,7 +517,7 @@ Figure&nbsp;2— Potential <span class="math inline">\(V(\phi)\)</span> in the L
 </section>
 <section id="universality" class="level3">
 <h3 class="anchored" data-anchor-id="universality">Universality</h3>
-<p>Perhaps the most remarkable aspect of phase transitions is universality. Seemingly different physical systems—like magnets, fluids, or alloys—can exhibit identical critical behavior if they share the same symmetries and dimensionality. This universality is reflected in matching sets of critical exponents, regardless of microscopic details.</p>
+<p>Perhaps the most remarkable aspect of phase transitions is universality. Seemingly different physical systems, like magnets, fluids, or alloys, can exhibit identical critical behavior if they share the same symmetries and dimensionality. This universality is reflected in matching sets of critical exponents, regardless of microscopic details.</p>
 </section>
 <section id="the-ising-model" class="level3">
 <h3 class="anchored" data-anchor-id="the-ising-model">The Ising Model</h3>
@@ -886,7 +892,7 @@ Figure&nbsp;5— Phase separation: (a) Relative mean size <span class="math inli
 </figcaption>
 </figure>
 </div>
-<p>The central mechanism of MIPS can be understood through a feedback loop: active particles move slower in crowded regions due to collisions, leading to their accumulation, which further increases local density. This positive feedback mechanism drives phase separation even with purely repulsive interactions—a stark departure from equilibrium phase transitions that typically require attractive forces.</p>
+<p>The central mechanism of MIPS can be understood through a feedback loop: active particles move slower in crowded regions due to collisions, leading to their accumulation, which further increases local density. This positive feedback mechanism drives phase separation even with purely repulsive interactions, a stark departure from equilibrium phase transitions that typically require attractive forces.</p>
 <p>In real experimental systems, the actual active particle interactions are not completely free of additional forces other than steric forces, though the principle phenomenon of MIPS is to some extent preserved.</p>
 <section id="mathematical-description" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-description">Mathematical Description</h3>
@@ -908,7 +914,7 @@ Figure&nbsp;5— Phase separation: (a) Relative mean size <span class="math inli
 <li><p><strong>Filling Fraction</strong>: Controls the density of particles in the system. Higher values promote clustering.</p></li>
 <li><p><strong>Orientational Noise</strong>: Determines how randomly particles change their direction. Low noise allows particles to move persistently, facilitating phase separation.</p></li>
 <li><p><strong>Particle Speed</strong>: Sets how quickly particles move. Higher speeds typically enhance phase separation.</p></li>
-<li><p><strong>Attraction Strength</strong>: An additional sttraction between the particles due to phoretic fields, for example</p></li>
+<li><p><strong>Attraction Strength</strong>: An additional attraction between the particles due to phoretic fields, for example</p></li>
 </ol>
 <style>
 .mips-simulation-container {
@@ -1070,7 +1076,11 @@ class MIPSSimulation {
     this.particles = [];
 
     // Spatial grid for collision detection
-    this.gridSize = this.particleRadius * 2;
+    // Cell size must cover the largest interaction range (attraction cutoff 3r,
+    // cluster linking up to ~3.5r) so the 3x3 neighborhood search finds all pairs
+    this.gridSize = this.particleRadius * 4;
+    this.gridCols = Math.ceil(this.width / this.gridSize);
+    this.gridRows = Math.ceil(this.height / this.gridSize);
     this.grid = {};
 
     // Initialize
@@ -1088,18 +1098,14 @@ class MIPSSimulation {
     const particleArea = Math.PI * this.particleRadius * this.particleRadius;
     this.particleCount = Math.floor(this.fillingFraction * area / particleArea);
 
-    // Limit maximum attempts to prevent infinite loops at high density
-    const maxAttempts = 10000;
-    let totalAttempts = 0;
-    let particlesCreated = 0;
-
-    while (particlesCreated < this.particleCount && totalAttempts < maxAttempts) {
-      let attempt = 0;
-      let valid = false;
+    // Particles that find no free spot after many tries are placed anyway with
+    // slight overlap, which the repulsion resolves within a few frames. (Purely
+    // non-overlapping random placement jams near filling fraction ~0.4 and
+    // would silently create fewer particles than requested.)
+    for (let n = 0; n < this.particleCount; n++) {
       let particle;
 
-      // Try to place particles without overlap
-      while (!valid && attempt < 100) {
+      for (let attempt = 0; attempt < 100; attempt++) {
         // Ensure particles are distributed across the entire canvas
         const x = this.particleRadius + Math.random() * (this.width - 2 * this.particleRadius);
         const y = this.particleRadius + Math.random() * (this.height - 2 * this.particleRadius);
@@ -1108,7 +1114,7 @@ class MIPSSimulation {
         particle = new Particle(x, y, this.particleRadius, angle);
 
         // Check for overlaps with nearby particles
-        valid = true;
+        let valid = true;
         const nearbyParticles = this.getNearbyParticles(particle);
         for (let other of nearbyParticles) {
           if (particle.overlaps(other)) {
@@ -1117,16 +1123,11 @@ class MIPSSimulation {
           }
         }
 
-        attempt++;
-        totalAttempts++;
+        if (valid) break;
       }
 
-      // If we found a valid position, add the particle
-      if (valid && particle) {
-        this.particles.push(particle);
-        this.addToGrid(particle);
-        particlesCreated++;
-      }
+      this.particles.push(particle);
+      this.addToGrid(particle);
     }
 
     console.log(`Created ${this.particles.length} particles out of ${this.particleCount} requested`);
@@ -1143,8 +1144,8 @@ class MIPSSimulation {
 
   // Add a particle to the grid
   addToGrid(particle) {
-    const gridX = Math.floor(particle.x / this.gridSize);
-    const gridY = Math.floor(particle.y / this.gridSize);
+    const gridX = ((Math.floor(particle.x / this.gridSize) % this.gridCols) + this.gridCols) % this.gridCols;
+    const gridY = ((Math.floor(particle.y / this.gridSize) % this.gridRows) + this.gridRows) % this.gridRows;
     const key = `${gridX},${gridY}`;
 
     if (!this.grid[key]) {
@@ -1154,30 +1155,16 @@ class MIPSSimulation {
     this.grid[key].push(particle);
   }
 
-  // Remove a particle from the grid
-  removeFromGrid(particle) {
-    const gridX = Math.floor(particle.x / this.gridSize);
-    const gridY = Math.floor(particle.y / this.gridSize);
-    const key = `${gridX},${gridY}`;
-
-    if (this.grid[key]) {
-      const index = this.grid[key].indexOf(particle);
-      if (index !== -1) {
-        this.grid[key].splice(index, 1);
-      }
-    }
-  }
-
   // Get nearby particles efficiently using the grid
   getNearbyParticles(particle) {
     const nearbyParticles = [];
-    const gridX = Math.floor(particle.x / this.gridSize);
-    const gridY = Math.floor(particle.y / this.gridSize);
+    const gridX = ((Math.floor(particle.x / this.gridSize) % this.gridCols) + this.gridCols) % this.gridCols;
+    const gridY = ((Math.floor(particle.y / this.gridSize) % this.gridRows) + this.gridRows) % this.gridRows;
 
-    // Check 3x3 grid cells around the particle
+    // Check 3x3 grid cells around the particle, wrapping across the periodic boundaries
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        const key = `${gridX + i},${gridY + j}`;
+        const key = `${(gridX + i + this.gridCols) % this.gridCols},${(gridY + j + this.gridRows) % this.gridRows}`;
         if (this.grid[key]) {
           nearbyParticles.push(...this.grid[key]);
         }
@@ -1191,11 +1178,12 @@ class MIPSSimulation {
   update() {
     if (!this.running) return;
 
+    // Rebuild the spatial grid once per frame; collision resolution also moves
+    // neighboring particles, so incremental grid updates would go stale
+    this.updateGrid();
+
     // Update each particle position and orientation
     for (let particle of this.particles) {
-      // Remove from grid before updating
-      this.removeFromGrid(particle);
-
       // Random direction change (noise)
       particle.angle += (Math.random() * 2 - 1) * this.noise * Math.PI;
 
@@ -1296,9 +1284,6 @@ class MIPSSimulation {
           if (other.y > this.height) other.y -= this.height;
         }
       }
-
-      // Add back to grid after updating
-      this.addToGrid(particle);
     }
 
     // Identify clusters every 10 frames to save computation
@@ -1350,31 +1335,40 @@ class MIPSSimulation {
     this.largestClusterFraction = largestClusterSize / this.particles.length;
   }
 
-  // Recursive depth-first search to assign cluster IDs
+  // Iterative depth-first search to assign cluster IDs (recursion would
+  // overflow the call stack once a cluster spans thousands of particles)
   depthFirstClusterAssignment(particle, clusterID) {
+    const stack = [particle];
     particle.cluster = clusterID;
-    const nearbyParticles = this.getNearbyParticles(particle);
 
-    for (let other of nearbyParticles) {
-      if (other.cluster === -1) {
-        // Calculate the shortest distance considering periodic boundaries
-        let dx = particle.x - other.x;
-        let dy = particle.y - other.y;
+    while (stack.length > 0) {
+      const current = stack.pop();
+      const nearbyParticles = this.getNearbyParticles(current);
 
-        // Apply periodic boundary adjustment to find shortest distance
-        if (Math.abs(dx) > this.width/2) {
-          dx = dx - Math.sign(dx) * this.width;
-        }
-        if (Math.abs(dy) > this.height/2) {
-          dy = dy - Math.sign(dy) * this.height;
-        }
+      for (let other of nearbyParticles) {
+        if (other.cluster === -1) {
+          // Calculate the shortest distance considering periodic boundaries
+          let dx = current.x - other.x;
+          let dy = current.y - other.y;
 
-        const distance = Math.sqrt(dx*dx + dy*dy);
-        // Use an extended radius for cluster detection when attraction is enabled
-        const clusterRadius = particle.radius + other.radius + (this.attraction * particle.radius);
+          // Apply periodic boundary adjustment to find shortest distance
+          if (Math.abs(dx) > this.width/2) {
+            dx = dx - Math.sign(dx) * this.width;
+          }
+          if (Math.abs(dy) > this.height/2) {
+            dy = dy - Math.sign(dy) * this.height;
+          }
 
-        if (distance < clusterRadius) {
-          this.depthFirstClusterAssignment(other, clusterID);
+          const distance = Math.sqrt(dx*dx + dy*dy);
+          // 1.2 tolerance: collision resolution leaves touching particles at
+          // exactly contact distance, which a strict test at r_i + r_j would miss.
+          // Use an extended radius for cluster detection when attraction is enabled
+          const clusterRadius = 1.2 * (current.radius + other.radius) + (this.attraction * current.radius);
+
+          if (distance < clusterRadius) {
+            other.cluster = clusterID;
+            stack.push(other);
+          }
         }
       }
     }
@@ -1528,7 +1522,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const speedValue = document.getElementById('speed-value');
   speedSlider.addEventListener('input', () => {
     const value = parseFloat(speedSlider.value);
-    speedValue.textContent = value.toFixed(1);
+    speedValue.textContent = value.toFixed(2);
     simulation.setSpeed(value);
   });
 
@@ -1557,32 +1551,40 @@ document.addEventListener('DOMContentLoaded', () => {
 <p>A more direct understanding of MIPS can also be obtained with the help of continuum theories such as a hydrodynamic approach that couples the density field <span class="math inline">\(\rho\)</span> with a polarization field <span class="math inline">\(\mathbf{P}\)</span>:</p>
 <p><span class="math display">\[\partial_t \rho = -\nabla \cdot \mathbf{J}\]</span> <span class="math display">\[\mathbf{J} = v(\rho)\mathbf{P} - D_t\nabla\rho\]</span> <span class="math display">\[\partial_t \mathbf{P} = -D_r \mathbf{P} - \frac{1}{d}\nabla\bigl[v(\rho)\rho\bigr] + \text{higher order terms}\]</span></p>
 <p>Here <span class="math inline">\(\mathbf{P}\)</span> is the polarization density (the coarse-grained mean orientation field), and the diffusive term <span class="math inline">\(-D_t\nabla\rho\)</span> in the flux accounts for translational Brownian motion. The density-gradient term <span class="math inline">\(-\frac{1}{d}\nabla[v(\rho)\rho]\)</span> in the polarization equation is essential: it couples the local swim speed to density gradients and is the term responsible for the MIPS instability.</p>
-<p>The density-dependent swim speed <span class="math inline">\(v(\rho)\)</span> explicitly shows the speed-density coupling and creates the feedback loop driving MIPS:</p>
+<p>The remaining input is the density-dependent swim speed <span class="math inline">\(v(\rho)\)</span>, which encodes the speed-density coupling at the heart of MIPS. The mechanism does not rely on a particular functional form; all it requires is that <span class="math inline">\(v(\rho)\)</span> decreases with density. Whatever the true function looks like in a given system, at low density we can Taylor expand it around <span class="math inline">\(\rho = 0\)</span> and keep the first-order term:</p>
+<p><span class="math display">\[v(\rho) = v(0) + v'(0)\,\rho + \mathcal{O}(\rho^2) \equiv v_0\left(1-\frac{\rho}{\rho_c}\right) + \mathcal{O}(\rho^2)\]</span></p>
+<p>Here <span class="math inline">\(v_0 = v(0)\)</span> is the free swim speed, and the characteristic density <span class="math inline">\(\rho_c = -v_0/v'(0)\)</span> is set by the initial slope; it is positive because crowding slows the particles down, <span class="math inline">\(v'(0) &lt; 0\)</span>. The widely used linear law</p>
 <p><span class="math display">\[v(\rho) = v_0(1-\rho/\rho_c)\]</span></p>
+<p>is therefore nothing deeper than the first-order expansion of an unknown decreasing function, with all the microscopic physics condensed into the two constants <span class="math inline">\(v_0\)</span> and <span class="math inline">\(\rho_c\)</span>. Two questions remain: why the speed decreases at all, and what sets the slope <span class="math inline">\(\rho_c\)</span>.</p>
+<p>Why does crowding reduce the speed in the first place? When two active particles collide, they do not bounce off each other like billiard balls: their propulsion is persistent, so they keep pushing against each other while hardly advancing. A particle escapes such a stall only when it slides off its collision partner or when rotational diffusion turns its orientation away. During the stall its displacement is essentially zero. Collisions therefore reduce the <em>time-averaged</em> displacement rate, and it is this coarse-grained transport speed, not the microscopic propulsion force (which remains unchanged), that enters the continuum theory. You can observe exactly this in the interactive simulation above: colliding particles keep their orientations and simply fail to advance while they block each other.</p>
+<p>A kinetic estimate familiar from gas theory provides the slope, and with it a microscopic interpretation of <span class="math inline">\(\rho_c\)</span>. A particle moving at speed <span class="math inline">\(v_0\)</span> encounters neighbors at a rate <span class="math inline">\(1/\tau_\text{free} \approx \rho \sigma v_0\)</span>, where <span class="math inline">\(\sigma\)</span> is the particle diameter (the scattering cross section in two dimensions) and <span class="math inline">\(\rho\)</span> the number density. If every collision stalls the particle for an average time <span class="math inline">\(\tau_c\)</span>, the fraction of time lost in stalls is <span class="math inline">\(\approx \rho \sigma v_0 \tau_c\)</span> to first order in the density, and the mean speed is reduced accordingly:</p>
+<p><span class="math display">\[v(\rho) \approx v_0\,(1 - \rho \sigma v_0 \tau_c) \qquad \Rightarrow \qquad \rho_c = \frac{1}{\sigma v_0 \tau_c}\]</span></p>
+<p>The stall time fixes the scale of <span class="math inline">\(\rho_c\)</span>: a collision is typically resolved by sliding around the neighbor, which takes <span class="math inline">\(\tau_c \sim \sigma/v_0\)</span>, so that <span class="math inline">\(\rho_c \sim 1/\sigma^2\)</span>, a density of the order of close packing that is independent of the propulsion speed. How far can the first-order truncation be trusted? Remarkably far: simulations of active Brownian disks find <span class="math inline">\(v(\rho)\)</span> to be close to linear over the entire density range, extrapolating to zero near the close-packing density where motion stops entirely, see <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.235702">Fily &amp; Marchetti, Phys. Rev.&nbsp;Lett. 108, 235702 (2012)</a> and <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.111.145702">Stenhammar et al., Phys. Rev.&nbsp;Lett. 111, 145702 (2013)</a>. Model functions with curvature, such as <span class="math inline">\(f(\rho) = (1 - \rho/\rho_{max})^\alpha\)</span> introduced in the mathematical description above, reduce to the same linear law at first order, with <span class="math inline">\(\rho_c = \rho_{max}/\alpha\)</span>.</p>
 <p>Let’s examine the feedback loop that drives MIPS using a simple, intuitive approach. The key physics can be understood through a direct cause-and-effect chain:</p>
 <ol type="1">
 <li><p><strong>Slow-down in dense regions</strong>: Active particles move more slowly in regions of higher density due to more frequent collisions. This is captured by the relation <span class="math inline">\(v(\rho) = v_0(1-\rho/\rho_c)\)</span>, where speed decreases as density increases.</p></li>
 <li><p><strong>Particle accumulation</strong>: When particles move from a low-density to a high-density region, they slow down. This means particles spend more time in dense regions than in dilute ones, naturally leading to further accumulation where density is already high.</p></li>
 <li><p><strong>Positive feedback</strong>: This accumulation further increases the local density, causing even more slowing and even more accumulation - creating a positive feedback loop.</p></li>
 </ol>
-<p>To see how this works mathematically, consider a simple 1D system with a small density gradient. The particle flux is:</p>
-<p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
-<p>Taking the derivative with respect to density:</p>
-<p><span class="math display">\[\frac{dJ}{d\rho} = v_0(1-\rho/\rho_c) - v_0\rho/\rho_c = v_0(1-2\rho/\rho_c)\]</span></p>
-<p>This derivative is the effective advection speed for density perturbations. When <span class="math inline">\(dJ/d\rho &gt; 0\)</span> (low density, <span class="math inline">\(\rho &lt; \rho_c/2\)</span>), a local density increase raises the outward flux, so the excess density is carried away – the perturbation decays, and the system is stable. When <span class="math inline">\(dJ/d\rho &lt; 0\)</span> (high density, <span class="math inline">\(\rho &gt; \rho_c/2\)</span>), a local density increase reduces the outward flux, so particles accumulate further rather than dispersing. This is the hallmark of instability: density perturbations grow rather than relax, because the active flux effectively acts as a negative diffusivity.</p>
-<p>We can directly see this by writing the continuity equation:</p>
-<p><span class="math display">\[\partial_t\rho = -\nabla \cdot J = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho]\]</span></p>
-<p>Expanding this in 1D:</p>
-<p><span class="math display">\[\partial_t\rho = -\frac{\partial}{\partial x}[v_0(1-\rho/\rho_c)\rho]\]</span></p>
-<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial}{\partial x}[\rho - \rho^2/\rho_c]\]</span></p>
-<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{v_0}{\rho_c}\frac{\partial}{\partial x}[\rho^2]\]</span></p>
-<p>The first term is just advection, but the second term can be rewritten as:</p>
-<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{2v_0}{\rho_c}\rho\frac{\partial \rho}{\partial x}\]</span></p>
-<p>Rearranging:</p>
-<p><span class="math display">\[\partial_t\rho = v_0(2\rho/\rho_c - 1)\frac{\partial \rho}{\partial x}\]</span></p>
-<p>This equation reveals the instability directly. When <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, the coefficient of the gradient term becomes positive, meaning that density increases in the direction of increasing density - exactly the opposite of regular diffusion. This “anti-diffusion” behavior is the mathematical expression of our intuitive feedback loop.</p>
-<p>The critical density for instability is <span class="math inline">\(\rho_{critical} = \rho_c/2\)</span>, which is exactly what more complex analyses using Fourier modes would find. Any small density fluctuation above this threshold will grow rather than decay, leading to phase separation.</p>
-<p>This simple derivation captures the essential physics of MIPS: the feedback between density and motility creates regions where particles effectively move up concentration gradients rather than down, driving spontaneous phase separation even without attractive interactions between particles.</p>
+<p>To see how this works quantitatively, we need two ingredients: the fact that active particles accumulate where they are slow, and the density dependence of the speed. Combining the two turns the qualitative loop above into a sharp instability criterion.</p>
+<p><strong>Step 1: Active particles accumulate where they are slow.</strong> Consider first non-interacting active particles whose swim speed varies in space, <span class="math inline">\(v = v(\mathbf{r})\)</span>, imposed for example by a light pattern that controls the activity. In steady state, the density adjusts to be inversely proportional to the local speed:</p>
+<p><span class="math display">\[\rho_\text{stat}(\mathbf{r}) = \frac{c}{v(\mathbf{r})}, \qquad c = \text{const}\]</span></p>
+<p>For run-and-tumble particles in one dimension this relation is exact (the zero-flux steady state requires <span class="math inline">\(v(x)\rho(x) = \text{const}\)</span>), and it holds for active Brownian particles up to gradient corrections. The physical reason is simple: a particle crosses fast regions quickly and lingers in slow regions, so the time spent, and with it the steady-state density, scales as <span class="math inline">\(1/v\)</span>. Since the large-scale motion of an active particle is diffusive with an active diffusivity <span class="math inline">\(D_\text{act} = v^2\tau_p/d\)</span>, the accumulation law can equivalently be written as <span class="math inline">\(\rho_\text{stat} \propto 1/\sqrt{D_\text{act}}\)</span>. Note that this behavior is impossible in equilibrium: the density of passive Brownian particles follows the Boltzmann distribution, which depends only on energies, and therefore remains uniform no matter how the mobility or diffusivity varies in space. Accumulation controlled by kinetics rather than energetics is the first genuinely non-equilibrium ingredient of MIPS.</p>
+<p><strong>Step 2: The speed decreases with density.</strong> In an interacting suspension, the speed landscape is not imposed from outside but generated by the particles themselves: collisions reduce the effective propulsion speed, <span class="math inline">\(v = v(\rho)\)</span> with <span class="math inline">\(v'(\rho) &lt; 0\)</span>, as in the linear form <span class="math inline">\(v(\rho) = v_0(1-\rho/\rho_c)\)</span> introduced above.</p>
+<p><strong>Step 3: The feedback loop closes.</strong> A uniform density <span class="math inline">\(\rho_0\)</span> must satisfy the self-consistency condition of Step 1,</p>
+<p><span class="math display">\[\rho_0 = \frac{c}{v(\rho_0)}\]</span></p>
+<p>Now impose a small density perturbation <span class="math inline">\(\delta\rho(\mathbf{r})\)</span>. The local speed responds as</p>
+<p><span class="math display">\[v(\rho_0 + \delta\rho(\mathbf{r})) \approx v(\rho_0) + v'(\rho_0)\,\delta\rho(\mathbf{r})\]</span></p>
+<p>Because <span class="math inline">\(v'(\rho) &lt; 0\)</span>, the speed perturbation <span class="math inline">\(\delta v(\mathbf{r})\)</span> is in antiphase with the density perturbation: the suspension is slowest where it is densest. According to Step 1, the density then relaxes toward the stationary profile dictated by this new speed landscape:</p>
+<p><span class="math display">\[\rho_0 + \delta\rho' = \frac{c}{v(\rho_0)+v'(\rho_0)\,\delta\rho} \approx \frac{c}{v(\rho_0)}\left(1 - \frac{v'(\rho_0)}{v(\rho_0)}\,\delta\rho\right) = \rho_0 - \rho_0\,\frac{v'(\rho_0)}{v(\rho_0)}\,\delta\rho\]</span></p>
+<p>The density response to the seed perturbation is therefore</p>
+<p><span class="math display">\[\delta\rho' = -\rho_0\,\frac{v'(\rho_0)}{v(\rho_0)}\,\delta\rho\]</span></p>
+<p>Since <span class="math inline">\(v' &lt; 0\)</span>, the response <span class="math inline">\(\delta\rho'\)</span> has the same sign as the seed <span class="math inline">\(\delta\rho\)</span>: dense regions slow down and thereby collect even more particles. If the response exceeds the seed, <span class="math inline">\(\delta\rho' &gt; \delta\rho\)</span>, each round of the loop amplifies the perturbation and the uniform profile is unstable. This happens when</p>
+<p><span class="math display">\[\frac{v'(\rho_0)}{v(\rho_0)} &lt; -\frac{1}{\rho_0} \qquad \Longleftrightarrow \qquad \frac{\mathrm{d}\ln v}{\mathrm{d}\ln \rho} &lt; -1\]</span></p>
+<p>The uniform active fluid thus becomes unstable as soon as the speed decays faster than <span class="math inline">\(1/\rho\)</span>. The criterion can equivalently be written as <span class="math inline">\(\frac{\mathrm{d}}{\mathrm{d}\rho}[\rho\, v(\rho)] &lt; 0\)</span>: instability sets in when the “throughput” <span class="math inline">\(\rho v\)</span> decreases upon adding particles, which is precisely the condition under which car traffic jams.</p>
+<p>For the linear speed law <span class="math inline">\(v(\rho) = v_0(1-\rho/\rho_c)\)</span> we have <span class="math inline">\(v'(\rho) = -v_0/\rho_c\)</span>, and the criterion becomes</p>
+<p><span class="math display">\[\rho_0 &gt; \frac{\rho_c}{2}\]</span></p>
+<p>Beyond half the jamming density the feedback wins, and the system spontaneously separates into dense (slow) and dilute (fast) regions, even though no attractive forces act between the particles. This simple argument neglects translational diffusion and the finite persistence of the orientation, which both smooth density perturbations; the collapsed note below shows that including them turns the criterion into a threshold in activity while reproducing the same instability window.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1598,103 +1600,77 @@ Incorporating Brownian Motion
 <p>To develop a more complete picture of MIPS, we need to incorporate rotational diffusion explicitly. Recall that active particles undergo rotational Brownian motion described by:</p>
 <p><span class="math display">\[\dot{\theta}_i = \sqrt{2D_r} \eta_i(t)\]</span></p>
 <p>where <span class="math inline">\(D_r\)</span> is the rotational diffusion coefficient and <span class="math inline">\(\eta_i(t)\)</span> is Gaussian white noise.</p>
-<p>This rotational diffusion leads to a persistence time <span class="math inline">\(\tau_p = 1/D_r\)</span>, which is the characteristic time over which a particle maintains its direction before randomizing. This timescale critically affects the development of MIPS.</p>
-<p>To incorporate this effect mathematically, we need to extend our continuum model to include both translational and rotational diffusion. Starting from the particle flux:</p>
-<p><span class="math display">\[J = v(\rho)\rho = v_0(1-\rho/\rho_c)\rho\]</span></p>
-<p>We add a diffusion term that accounts for both translational diffusion (<span class="math inline">\(D_t\)</span>) and effective diffusion from rotational motion:</p>
-<p><span class="math display">\[J = v_0(1-\rho/\rho_c)\rho - D_\text{eff} \nabla \rho\]</span></p>
-<p>where <span class="math inline">\(D_\text{eff} = D_t + v_0^2/(2dD_r)\)</span> for a <span class="math inline">\(d\)</span>-dimensional system. The second term captures how particles effectively diffuse due to their persistent random motion, with persistence length <span class="math inline">\(l_p = v_0\tau_p\)</span>. The persistence time is <span class="math inline">\(\tau_p = 1/D_r\)</span> in 2D (where the orientational correlation decays as <span class="math inline">\(e^{-D_r t}\)</span>) and <span class="math inline">\(\tau_p = 1/(2D_r)\)</span> in 3D, so the formula for <span class="math inline">\(D_\text{eff}\)</span> already absorbs the correct <span class="math inline">\(d\)</span>-dependence.</p>
-<p>Now our continuity equation becomes:</p>
-<p><span class="math display">\[\partial_t\rho = -\nabla \cdot [v_0(1-\rho/\rho_c)\rho] + \nabla \cdot (D_\text{eff} \nabla \rho)\]</span></p>
-<p>Expanding in 1D:</p>
-<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial}{\partial x}[\rho - \rho^2/\rho_c] + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
-<p><span class="math display">\[\partial_t\rho = -v_0\frac{\partial \rho}{\partial x} + \frac{v_0}{\rho_c}\frac{\partial}{\partial x}[\rho^2] + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
-<p>Rearranging:</p>
-<p><span class="math display">\[\partial_t\rho = v_0(2\rho/\rho_c - 1)\frac{\partial \rho}{\partial x} + D_\text{eff}\frac{\partial^2 \rho}{\partial x^2}\]</span></p>
-<p>This equation now contains two competing effects: the “anti-diffusion” term that drives phase separation when <span class="math inline">\(\rho &gt; \rho_c/2\)</span>, and the effective diffusion term that works to homogenize the system. Phase separation occurs when the anti-diffusion overcomes the regularizing effect of diffusion.</p>
-<p>A stability analysis shows that the critical condition for MIPS becomes:</p>
-<p><span class="math display">\[\frac{v_0^2}{D_\text{eff} D_r} &gt; \frac{4\rho_c}{\rho(\rho_c-\rho)}\]</span></p>
-<p>This reveals that MIPS requires a sufficiently large ratio of self-propulsion to diffusion, commonly expressed through the Péclet number Pe = <span class="math inline">\(v_0/(\sigma D_r)\)</span>, where <span class="math inline">\(\sigma\)</span> is the particle size. Specifically, the system phase separates when:</p>
+<p>This rotational diffusion leads to a persistence time <span class="math inline">\(\tau_p\)</span>, the characteristic time over which a particle maintains its direction before randomizing: <span class="math inline">\(\tau_p = 1/D_r\)</span> in two dimensions (where the orientational correlation decays as <span class="math inline">\(e^{-D_r t}\)</span>) and <span class="math inline">\(\tau_p = 1/(2D_r)\)</span> in three dimensions. This timescale critically affects the development of MIPS.</p>
+<p>On timescales much longer than <span class="math inline">\(\tau_p\)</span>, a free active particle performs a persistent random walk and behaves diffusively, with an effective diffusion coefficient</p>
+<p><span class="math display">\[D_\text{eff} = D_t + \frac{v_0^2 \tau_p}{d}\]</span></p>
+<p>in <span class="math inline">\(d\)</span> dimensions (in 2D, <span class="math inline">\(D_\text{eff} = D_t + v_0^2/(2D_r)\)</span>). The second term is the active contribution <span class="math inline">\(D_\text{act}\)</span> used in Step 1 above; it reflects the persistent motion with persistence length <span class="math inline">\(l_p = v_0\tau_p\)</span>.</p>
+<p>Diffusion smooths density perturbations and therefore counteracts the feedback mechanism, an effect the simple argument above ignored. To include it, we return to the hydrodynamic equations of the continuum theory and eliminate the polarization adiabatically: on timescales longer than <span class="math inline">\(\tau_p\)</span>, the polarization has already relaxed, so we can set <span class="math inline">\(\partial_t \mathbf{P} \approx 0\)</span> and obtain (in 2D, where the relaxation rate is <span class="math inline">\(D_r = 1/\tau_p\)</span>)</p>
+<p><span class="math display">\[\mathbf{P} \approx -\frac{1}{d D_r}\nabla\bigl[v(\rho)\rho\bigr]\]</span></p>
+<p>Substituting this into the flux <span class="math inline">\(\mathbf{J} = v(\rho)\mathbf{P} - D_t\nabla\rho\)</span> and using <span class="math inline">\(\nabla[v(\rho)\rho] = [v(\rho) + \rho\, v'(\rho)]\nabla\rho\)</span> gives a purely diffusive flux,</p>
+<p><span class="math display">\[\mathbf{J} = -D(\rho)\,\nabla\rho, \qquad D(\rho) = D_t + \frac{v(\rho)\bigl[v(\rho) + \rho\, v'(\rho)\bigr]\tau_p}{d}\]</span></p>
+<p>so that the density obeys a nonlinear diffusion equation with a density-dependent effective diffusivity:</p>
+<p><span class="math display">\[\partial_t\rho = \nabla \cdot \bigl[D(\rho)\, \nabla \rho\bigr]\]</span></p>
+<p>A small perturbation <span class="math inline">\(\delta\rho \propto e^{ikx + \sigma t}\)</span> around the uniform state <span class="math inline">\(\rho_0\)</span> grows at the rate <span class="math inline">\(\sigma = -D(\rho_0)\,k^2\)</span>, so the uniform state is linearly unstable exactly when</p>
+<p><span class="math display">\[D(\rho_0) &lt; 0\]</span></p>
+<p>A negative effective diffusivity means that particles flow <em>up</em> density gradients. This is the mathematically precise version of the “anti-diffusion” behind MIPS. Two limits connect to what we already know. For a density-independent speed (<span class="math inline">\(v' = 0\)</span>), <span class="math inline">\(D(\rho) = D_\text{eff} &gt; 0\)</span> and the uniform state is always stable. Without translational diffusion (<span class="math inline">\(D_t \to 0\)</span>), <span class="math inline">\(D(\rho) &lt; 0\)</span> reduces to <span class="math inline">\(v + \rho v' &lt; 0\)</span>, i.e.&nbsp;<span class="math inline">\(v'/v &lt; -1/\rho\)</span>, which is exactly the feedback criterion derived above.</p>
+<p>For the linear speed law <span class="math inline">\(v(\rho) = v_0(1-\rho/\rho_c)\)</span> the effective diffusivity becomes</p>
+<p><span class="math display">\[D(\rho) = D_t + \frac{v_0^2\tau_p}{d}\left(1-\frac{\rho}{\rho_c}\right)\left(1-\frac{2\rho}{\rho_c}\right)\]</span></p>
+<p>The activity term is negative only in the window <span class="math inline">\(\rho_c/2 &lt; \rho &lt; \rho_c\)</span>, and it must in addition overcome the translational diffusion:</p>
+<p><span class="math display">\[\frac{v_0^2 \tau_p}{d\, D_t} &gt; \frac{1}{\left(\frac{2\rho}{\rho_c}-1\right)\left(1-\frac{\rho}{\rho_c}\right)}\]</span></p>
+<p>The right-hand side is smallest (equal to <span class="math inline">\(8\)</span>) at <span class="math inline">\(\rho = \tfrac{3}{4}\rho_c\)</span>, so the instability first appears at a critical activity <span class="math inline">\(v_0^2\tau_p/(d D_t) = 8\)</span> and density <span class="math inline">\(\rho = \tfrac{3}{4}\rho_c\)</span>: the critical point of MIPS. The ratio of self-propulsion to diffusion is commonly expressed through the Péclet number Pe = <span class="math inline">\(v_0/(\sigma D_r)\)</span>, where <span class="math inline">\(\sigma\)</span> is the particle size. In summary, the system phase separates when:</p>
 <ol type="1">
-<li>The density is in the appropriate range: <span class="math inline">\(\rho &lt; \rho_c\)</span></li>
+<li>The density lies in the unstable window: <span class="math inline">\(\rho_c/2 &lt; \rho &lt; \rho_c\)</span></li>
 <li>The Péclet number exceeds a critical value that depends on density</li>
 <li>The rotational diffusion <span class="math inline">\(D_r\)</span> is sufficiently low to allow persistent motion</li>
 </ol>
-<p>When all of these parameters exceed their critical values, the feedback mechanism between density and mobility becomes sufficiently strong to induce phase separation. At high Péclet numbers, particles move persistently along their orientation before randomizing, creating density fluctuations that can trigger the instability. Similarly, when the density surpasses a threshold value, the motility reduction in crowded regions becomes pronounced enough to sustain the positive feedback loop.</p>
+<p>At high Péclet numbers, particles move persistently along their orientation before randomizing, so the accumulation mechanism outruns the smoothing by diffusion. When the density additionally lies in the unstable window, the motility reduction in crowded regions is pronounced enough to sustain the positive feedback loop, and the uniform suspension phase separates.</p>
 </div>
 </div>
 </div>
-<p>The phase separation behavior is captured in the binodal curve shown in the phase diagram above, which separates the homogeneous phase from the phase-separated region. The system exhibits a critical point where the distinction between phases vanishes, similar to equilibrium phase transitions. The universality class of the MIPS critical point is an open and actively debated question. Several numerical studies find exponents close to mean-field values (<span class="math inline">\(\beta \approx 0.5\)</span>, <span class="math inline">\(\gamma \approx 1.0\)</span>, <span class="math inline">\(\nu \approx 0.5\)</span>), while others report Ising-like exponents in two dimensions. The difficulty is that finite-size effects and slow dynamics near the critical point make it hard to extract reliable exponents from simulations or experiments, and it remains unclear whether MIPS belongs to the Ising universality class, a new non-equilibrium class, or displays effective mean-field behavior due to long-ranged fluctuations. What is certain is that MIPS is a non-equilibrium phase transition driven by activity rather than thermodynamic interactions.</p>
+<p>The phase separation behavior is captured in the binodal curve shown in the phase diagram below, which separates the homogeneous phase from the phase-separated region. The system exhibits a critical point where the distinction between phases vanishes, similar to equilibrium phase transitions. The universality class of the MIPS critical point is an open and actively debated question. Several numerical studies find exponents close to mean-field values (<span class="math inline">\(\beta \approx 0.5\)</span>, <span class="math inline">\(\gamma \approx 1.0\)</span>, <span class="math inline">\(\nu \approx 0.5\)</span>), while others report Ising-like exponents in two dimensions. The difficulty is that finite-size effects and slow dynamics near the critical point make it hard to extract reliable exponents from simulations or experiments, and it remains unclear whether MIPS belongs to the Ising universality class, a new non-equilibrium class, or displays effective mean-field behavior due to long-ranged fluctuations. What is certain is that MIPS is a non-equilibrium phase transition driven by activity rather than thermodynamic interactions.</p>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v_c <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Critical speed</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rho_c <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Critical density</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>speed_range <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>max_density <span class="op">=</span> <span class="fl">0.7</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v_c <span class="op">=</span> <span class="fl">1.0</span>             <span class="co"># Critical speed</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rho_c <span class="op">=</span> <span class="fl">0.2</span>           <span class="co"># Critical density (mean density of the system)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rho_dense_max <span class="op">=</span> <span class="fl">0.7</span>   <span class="co"># Dense-phase density at high speed (near close packing)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>rho_dilute_min <span class="op">=</span> <span class="fl">0.02</span> <span class="co"># Residual gas density at high speed</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate binodal curve</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binodal(v, v_c, rho_c, max_density):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> v_c:</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.array([rho_c])  <span class="co"># Just critical density below v_c</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate high and low density branches</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        delta <span class="op">=</span> <span class="fl">0.6</span> <span class="op">*</span> np.sqrt((v<span class="op">-</span>v_c)<span class="op">/</span>v_c)  <span class="co"># Simplified model</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        high_density <span class="op">=</span> <span class="bu">min</span>(rho_c <span class="op">+</span> delta, max_density)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        low_density <span class="op">=</span> <span class="bu">max</span>(rho_c <span class="op">-</span> delta, <span class="fl">0.05</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.array([low_density, high_density])  <span class="co"># Return BOTH phases</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Binodal branches: square-root (mean-field) behavior near the critical</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># point, smoothly saturating at the limiting densities far above v_c</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binodal(v):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.sqrt(np.maximum(v <span class="op">-</span> v_c, <span class="dv">0</span>) <span class="op">/</span> v_c)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    high <span class="op">=</span> rho_c <span class="op">+</span> (rho_dense_max <span class="op">-</span> rho_c) <span class="op">*</span> np.tanh(<span class="fl">1.2</span> <span class="op">*</span> x)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    low <span class="op">=</span> rho_c <span class="op">-</span> (rho_c <span class="op">-</span> rho_dilute_min) <span class="op">*</span> np.tanh(<span class="fl">1.2</span> <span class="op">*</span> x)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> low, high</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>speed_range <span class="op">=</span> np.linspace(v_c, <span class="dv">3</span>, <span class="dv">500</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>low, high <span class="op">=</span> binodal(speed_range)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot intensity map showing density distribution</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>mesh_v, mesh_rho <span class="op">=</span> np.meshgrid(</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    speed_range,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>intensity <span class="op">=</span> np.zeros_like(mesh_v)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(speed_range):</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    densities <span class="op">=</span> binodal(v, v_c, rho_c, max_density)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(densities) <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Homogeneous phase</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">0</span>]))</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        intensity[idx, i] <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Phase separated - fill the coexistence region</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        low_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">0</span>]))</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        high_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, max_density, <span class="dv">200</span>) <span class="op">-</span> densities[<span class="dv">1</span>]))</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        intensity[low_idx:high_idx<span class="op">+</span><span class="dv">1</span>, i] <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># Fill the region between branches</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Smooth the intensity for visualization</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot binodal line</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>binodal_points <span class="op">=</span> []</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> speed_range:</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    densities <span class="op">=</span> binodal(v, v_c, rho_c, max_density)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> densities:</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        binodal_points.append([v, d])</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>binodal_points <span class="op">=</span> np.array(binodal_points)</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Only plot the high density branch</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>mask_low <span class="op">=</span> binodal_points[:, <span class="dv">1</span>] <span class="op">&lt;=</span> rho_c</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>mask_high <span class="op">=</span> binodal_points[:, <span class="dv">1</span>] <span class="op">&gt;=</span> rho_c</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(binodal_points[mask_high, <span class="dv">0</span>], binodal_points[mask_high, <span class="dv">1</span>], <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'High density'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>plt.plot(binodal_points[mask_low, <span class="dv">0</span>], binodal_points[mask_low, <span class="dv">1</span>], <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Low density'</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Add critical point</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.plot(v_c, rho_c, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels and title</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'particle speed $v_0$'</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'density $</span><span class="ch">\\</span><span class="st">rho$'</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Homogeneous stationary density below the critical speed</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, v_c], [rho_c, rho_c], <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Coexistence region and binodal branches above the critical speed</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>plt.fill_between(speed_range, low, high, color<span class="op">=</span><span class="st">'0.85'</span>, label<span class="op">=</span><span class="st">'coexistence region'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.plot(speed_range, high, <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'dense phase'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.plot(speed_range, low, <span class="st">'k--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'dilute phase'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.plot(v_c, rho_c, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'particle speed $v_0$'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'density $</span><span class="ch">\\</span><span class="st">rho$'</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>,fontsize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-phaseplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="a7cee8b6" class="cell" data-execution_count="4">
+<div id="39f12ce0" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1705,7 +1681,7 @@ Incorporating Brownian Motion
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phaseplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6— Stationary density distribution in MIPS. The plot shows density in the coexistence region as a function of the particle speed v₀. Below a critical speed v_c, the system remains homogeneous. Above v_c, the system separates into dense and dilute phases, with their respective densities following the binodal curve.
+Figure&nbsp;6— Stationary density distribution in MIPS for a system prepared at the mean density ρ_c.&nbsp;Below the critical speed v_c, the system remains homogeneous. Above v_c, it separates into dense and dilute phases whose densities follow the two branches of the binodal curve; the shaded area marks the coexistence region.
 </figcaption>
 </figure>
 </div>
@@ -1721,7 +1697,7 @@ Figure&nbsp;6— Stationary density distribution in MIPS. The plot shows density
 <p>In equilibrium systems, number density fluctuations follow a characteristic scaling law that serves as a fundamental signature of thermodynamic equilibrium. This behavior emerges directly from the central limit theorem of statistics. When we observe a subsystem containing an average of <span class="math inline">\(N\)</span> particles, the particles are either statistically independent (in non-interacting systems) or exhibit only short-range correlations. As a result, counting particles in this volume effectively sums many weakly correlated random variables.</p>
 <p>The central limit theorem tells us that such a sum produces fluctuations with a variance that scales linearly with the system size:</p>
 <p><span class="math display">\[\langle(\delta N)^2\rangle \propto \langle N\rangle\]</span></p>
-<p>This means the standard deviation of these fluctuations scales as <span class="math inline">\(\sqrt{\langle N\rangle}\)</span>. When we examine relative fluctuations—the ratio of fluctuation magnitude to the mean—we find they scale as</p>
+<p>This means the standard deviation of these fluctuations scales as <span class="math inline">\(\sqrt{\langle N\rangle}\)</span>. When we examine relative fluctuations, the ratio of fluctuation magnitude to the mean, we find they scale as</p>
 <p><span class="math display">\[\delta N/\langle N\rangle \propto 1/\sqrt{\langle N\rangle}\]</span></p>
 <p>This <span class="math inline">\(1/\sqrt{N}\)</span> scaling holds across equilibrium systems away from any critical point, appearing in ideal gases, liquids, and even interacting solids. It reflects the absence of long-range correlations that would otherwise amplify fluctuations beyond this scaling.</p>
 <p>It is important to be precise here, because the <span class="math inline">\(\sqrt{N}\)</span> law is not universal: it breaks down at a classical critical point. Statistical mechanics relates the number fluctuations exactly to the isothermal compressibility <span class="math inline">\(\kappa_T\)</span>,</p>
@@ -1748,10 +1724,10 @@ Figure&nbsp;7— Giant number fluctuations observed in active colloidal clusters
 <p>The sharper distinction from equilibrium is therefore not simply that active systems show large fluctuations, since classical systems do too at their critical point. It is that active systems exhibit these anomalous fluctuations throughout an extended region of parameter space rather than only at a single fine-tuned critical point. Activity sustains the long-range correlations generically, without the need to tune temperature or density to a critical value.</p>
 <p>This difference in number fluctuation scaling provides researchers with a powerful experimental signature to distinguish active from passive phase separation, even without tracking individual particle trajectories. By measuring how density fluctuations scale with system size, one can immediately identify the non-equilibrium character of active matter systems, revealing one of the clearest manifestations of their departure from equilibrium physics.</p>
 <p>MIPS exemplifies several profound concepts in non-equilibrium statistical mechanics:</p>
-<p><strong>Emergent Thermodynamics</strong>: Despite being driven by non-equilibrium processes, MIPS exhibits phase coexistence reminiscent of equilibrium systems. This suggests the possibility of constructing effective thermodynamic frameworks for active systems—an open question that connects to fundamental postulates of statistical mechanics.</p>
+<p><strong>Emergent Thermodynamics</strong>: Despite being driven by non-equilibrium processes, MIPS exhibits phase coexistence reminiscent of equilibrium systems. This suggests the possibility of constructing effective thermodynamic frameworks for active systems, an open question that connects to fundamental postulates of statistical mechanics.</p>
 <p><strong>Entropy Production</strong>: Active systems continuously dissipate energy and produce entropy. Quantifying this entropy production and its relationship to pattern formation addresses foundational questions about irreversibility and the arrow of time.</p>
-<p><strong>Broken Time-Reversal Symmetry</strong>: The equations governing active particles lack time-reversal symmetry, leading to novel dynamical phenomena including odd elasticity, non-reciprocal interactions, and topologically protected states—concepts that parallel developments in quantum many-body physics.</p>
-<p>MIPS provides a conceptual bridge between statistical mechanics and several interdisciplinary fields. Cellular aggregation, bacterial biofilms, and tissue formation involve self-propelled biological entities that can exhibit MIPS-like behavior within the realm of Biological Physics. MIPS concepts help explain the behavior of synthetic active colloids, microswimmers, and other designed active materials in Soft Matter research. Pattern formation in active systems exemplifies how simple rules can generate complex, emergent behaviors—a theme that resonates across physics from condensed matter to cosmology in Complexity Science. Simulating MIPS requires numerical techniques that balance microscopic accuracy with computational efficiency, providing practical experience in scientific computing for those interested in Computational Physics.</p>
+<p><strong>Broken Time-Reversal Symmetry</strong>: The equations governing active particles lack time-reversal symmetry, leading to novel dynamical phenomena including odd elasticity, non-reciprocal interactions, and topologically protected states, concepts that parallel developments in quantum many-body physics.</p>
+<p>MIPS provides a conceptual bridge between statistical mechanics and several interdisciplinary fields. Cellular aggregation, bacterial biofilms, and tissue formation involve self-propelled biological entities that can exhibit MIPS-like behavior within the realm of Biological Physics. MIPS concepts help explain the behavior of synthetic active colloids, microswimmers, and other designed active materials in Soft Matter research. Pattern formation in active systems exemplifies how simple rules can generate complex, emergent behaviors, a theme that resonates across physics from condensed matter to cosmology in Complexity Science. Simulating MIPS requires numerical techniques that balance microscopic accuracy with computational efficiency, providing practical experience in scientific computing for those interested in Computational Physics.</p>
 <p>For further reading, consider these foundational papers:</p>
 <ul>
 <li>Cates, M. E., &amp; Tailleur, J. (2015). Motility-induced phase separation. Annual Review of Condensed Matter Physics, 6, 219-244.</li>
